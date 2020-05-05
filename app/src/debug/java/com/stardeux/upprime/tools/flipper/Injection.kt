@@ -20,14 +20,7 @@ val flipperModule = module {
             get()
         )
     }
-
-    factory { provideFlipperClient(get()) }
 }
-
-fun provideFlipperClient(context: Context): FlipperClient {
-    return AndroidFlipperClient.getInstance(context)
-}
-
 
 fun provideNetworkFlipperPlugin(): NetworkFlipperPlugin {
     return NetworkFlipperPlugin()
