@@ -4,6 +4,6 @@
     package="com.stardeux.upprime">
 
     <application
-        android:name=".app.UpPrimeApplicationRelease"
+        android:name=".app.UpPrimeApplicationDebug"
         tools:replace="android:name" />
 </manifest>

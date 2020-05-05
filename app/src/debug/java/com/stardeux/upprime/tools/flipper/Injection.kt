@@ -33,7 +33,10 @@ fun provideNetworkFlipperPlugin(): NetworkFlipperPlugin {
     return NetworkFlipperPlugin()
 }
 
-fun provideFlipperClient(context: Context, networkFlipperPlugin: NetworkFlipperPlugin): FlipperClient {
+fun provideFlipperClient(
+    context: Context,
+    networkFlipperPlugin: NetworkFlipperPlugin
+): FlipperClient {
     return AndroidFlipperClient.getInstance(context).apply {
         addPlugin(networkFlipperPlugin)
     }
