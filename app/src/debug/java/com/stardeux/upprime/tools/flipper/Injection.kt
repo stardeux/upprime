@@ -20,19 +20,24 @@ val flipperModule = module {
             get()
         )
     }
+
+    factory { provideFlipperClient(get()) }
 }
+
+fun provideFlipperClient(context: Context): FlipperClient {
+    return AndroidFlipperClient.getInstance(context)
+}
+
 
 fun provideNetworkFlipperPlugin(): NetworkFlipperPlugin {
     return NetworkFlipperPlugin()
 }
-
 
 fun provideFlipperClient(context: Context, networkFlipperPlugin: NetworkFlipperPlugin): FlipperClient {
     return AndroidFlipperClient.getInstance(context).apply {
         addPlugin(networkFlipperPlugin)
     }
 }
-
 
 fun provideFlipperOkhttpInterceptor(networkFlipperPlugin: NetworkFlipperPlugin): FlipperOkhttpInterceptor {
     return FlipperOkhttpInterceptor(networkFlipperPlugin)
