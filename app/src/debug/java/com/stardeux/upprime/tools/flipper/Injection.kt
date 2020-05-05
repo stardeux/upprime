@@ -8,18 +8,9 @@ import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import org.koin.dsl.module
 
 val flipperModule = module {
-    factory {
-        provideFlipperClient(
-            get(),
-            get()
-        )
-    }
+    factory { provideFlipperClient(get(), get()) }
     single { provideNetworkFlipperPlugin() }    //Single because provided twice : provideFlipperClient and provideOkHttp
-    single {
-        provideFlipperOkhttpInterceptor(
-            get()
-        )
-    }
+    single { provideFlipperOkhttpInterceptor(get()) }
 }
 
 fun provideNetworkFlipperPlugin(): NetworkFlipperPlugin {
