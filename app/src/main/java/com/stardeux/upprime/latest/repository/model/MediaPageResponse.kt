@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class MediaPageResponse(
     @SerializedName("Count")
-    val count: Int,
+    val count: Int?,
 
     @SerializedName("Results")
-    val results: List<MediaItemResponse>
+    val results: List<MediaItemResponse>?
 )
