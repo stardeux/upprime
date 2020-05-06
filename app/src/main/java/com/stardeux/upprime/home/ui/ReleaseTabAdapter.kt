@@ -7,7 +7,7 @@ import com.stardeux.upprime.latest.ui.LatestFragment
 
 class ReleaseTabAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    private val tabs = listOf(ReleaseType.NEW, ReleaseType.NEW)
+    private val tabs = listOf(ReleaseType.NEW, ReleaseType.EXPIRING)
 
     public fun getReleaseType(position: Int): ReleaseType {
         return tabs[position]
