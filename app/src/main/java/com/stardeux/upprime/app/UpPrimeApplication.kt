@@ -1,6 +1,7 @@
 package com.stardeux.upprime.app
 
 import android.app.Application
+import com.stardeux.upprime.latest.di.latestModule
 import com.stardeux.upprime.network.okhttp.fullNetwork
 import com.stardeux.upprime.tools.flipper.flipperModule
 import org.koin.android.ext.koin.androidContext
@@ -24,6 +25,11 @@ abstract class UpPrimeApplication : Application() {
              */
             modules(flipperModule)
             modules(fullNetwork)
+
+            /**
+             * Features
+             */
+            modules(latestModule)
         }
     }
 }
