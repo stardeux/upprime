@@ -11,9 +11,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule = module {
-    single { provideHttpLoggingInterceptor() }
-    single { ApiInterceptor() }
-    factory { provideOkHttpBuilder(get(), get()) }
+    factory { provideHttpLoggingInterceptor() }
+    factory { provideApiInterceptor() }
+    single { provideOkHttpBuilder(get(), get()) }
     single { provideRetrofit(get()) }
 }
 
