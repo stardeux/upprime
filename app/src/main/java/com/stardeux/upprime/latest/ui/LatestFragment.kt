@@ -6,7 +6,7 @@ class LatestFragment : Fragment() {
 
     companion object {
         fun newInstance(): LatestFragment {
-            return LatestFragment.newInstance()
+            return LatestFragment()
         }
     }
 }
