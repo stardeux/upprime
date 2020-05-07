@@ -17,18 +17,18 @@ val latestModule = module {
 }
 
 
-fun provideLatestApi(retrofit: Retrofit): LatestApi {
+private fun provideLatestApi(retrofit: Retrofit): LatestApi {
     return retrofit.create(LatestApi::class.java)
 }
 
-fun provideLatestRepository(latestApi: LatestApi): LatestRepository {
+private fun provideLatestRepository(latestApi: LatestApi): LatestRepository {
     return LatestRepository(latestApi)
 }
 
-fun provideLatestUseCase(latestRepository: LatestRepository): GetLatestUseCase {
+private fun provideLatestUseCase(latestRepository: LatestRepository): GetLatestUseCase {
     return GetLatestUseCase(latestRepository)
 }
 
-fun provideLatestMediaViewModel(getLatestUseCase: GetLatestUseCase): LatestMediaViewModel {
+private fun provideLatestMediaViewModel(getLatestUseCase: GetLatestUseCase): LatestMediaViewModel {
     return LatestMediaViewModel(getLatestUseCase)
 }

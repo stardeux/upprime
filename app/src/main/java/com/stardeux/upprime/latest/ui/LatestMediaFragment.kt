@@ -3,18 +3,25 @@ package com.stardeux.upprime.latest.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import com.stardeux.upprime.latest.ui.model.MediaAdapter
+import com.stardeux.upprime.tmdb.repository.model.TmdbDetailsRequest
+import com.stardeux.upprime.tmdb.usecase.GetMovieDetailsUseCase
 import kotlinx.android.synthetic.main.fragment_latest.*
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
 
     private val latestViewModel : LatestMediaViewModel by viewModel()
+
+    private val getMovieDetails: GetMovieDetailsUseCase by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +37,12 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
         }
 
         latestViewModel.load()
+
+        lifecycle.coroutineScope.launch {
+            val a = getMovieDetails(TmdbDetailsRequest("tt0137523", "fr"))
+            val b = ""
+        }
+
     }
 
     private fun getMediaAdapter(): MediaAdapter {

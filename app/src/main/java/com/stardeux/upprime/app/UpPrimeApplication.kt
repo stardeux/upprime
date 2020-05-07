@@ -5,6 +5,8 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import com.stardeux.upprime.latest.di.latestModule
 import com.stardeux.upprime.network.okhttp.commonNetwork
 import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
+import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
+import com.stardeux.upprime.tmdb.di.tmdbModule
 import com.stardeux.upprime.tools.flipper.flipperModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -30,6 +32,8 @@ abstract class UpPrimeApplication : Application() {
             modules(commonNetwork)
             modules(flipperModule)
             modules(fullAmazonNetwork)
+            modules(fullTmdbNetwork)
+            modules(tmdbModule)
 
             /**
              * Features
