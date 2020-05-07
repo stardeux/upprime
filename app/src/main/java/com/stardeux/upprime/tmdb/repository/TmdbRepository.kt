@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb
+package com.stardeux.upprime.tmdb.repository
 
 import com.stardeux.upprime.tmdb.repository.api.TmdbApi
 import com.stardeux.upprime.tmdb.repository.model.TmdbDetailsRequest
