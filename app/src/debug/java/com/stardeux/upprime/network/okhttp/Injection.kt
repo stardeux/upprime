@@ -10,31 +10,19 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-val commonNetwork = module {
-    factory { provideHttpLoggingInterceptor() }
-}
-
 val fullAmazonNetwork = amazonNetworkModule.apply {
-    single(named(AMAZON_NAMED_QUALIFIER)) { provideOkHttp(get(named(AMAZON_NAMED_QUALIFIER)), get(), get()) }
+    single(named(AMAZON_NAMED_QUALIFIER)) { provideOkHttp(get(named(AMAZON_NAMED_QUALIFIER)), get()) }
 }
 
 val fullTmdbNetwork = tmdbNetworkModule.apply {
-    single(named(TMDB_NAMED_QUALIFIER)) { provideOkHttp(get(named(TMDB_NAMED_QUALIFIER)), get(), get()) }
+    single(named(TMDB_NAMED_QUALIFIER)) { provideOkHttp(get(named(TMDB_NAMED_QUALIFIER)), get()) }
 }
 
-fun provideOkHttp(
+private fun provideOkHttp(
     okHttpClientBuilder: OkHttpClient.Builder,
-    flipperOkHttpInterceptor: FlipperOkhttpInterceptor,
-    httpLoggingInterceptor: HttpLoggingInterceptor
+    flipperOkHttpInterceptor: FlipperOkhttpInterceptor
 ): OkHttpClient {
     return okHttpClientBuilder
         .addInterceptor(flipperOkHttpInterceptor)
-        .addInterceptor(httpLoggingInterceptor)
         .build()
-}
-
-fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-    return HttpLoggingInterceptor().apply {
-        setLevel(HttpLoggingInterceptor.Level.HEADERS)
-    }
 }
