@@ -18,8 +18,8 @@ class MediaCell : ConstraintLayout {
         defStyleAttr
     )
 
-    private val title: TextView by lazy { findViewById(R.id.title) }
-    private val gender: TextView by lazy { findViewById(R.id.details) }
+    private val title: TextView by lazy { findViewById<TextView>(R.id.title) }
+    private val gender: TextView by lazy { findViewById<TextView>(R.id.details) }
 
     init {
         setLayout(R.layout.cell_latest)
@@ -27,6 +27,6 @@ class MediaCell : ConstraintLayout {
 
     fun bind(mediaUi: MediaUi) {
         title.text = mediaUi.title
-        gender.text = mediaUi.type
+        gender.text = context.getString(mediaUi.type)
     }
 }
