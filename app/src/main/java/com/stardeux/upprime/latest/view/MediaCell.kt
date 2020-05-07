@@ -3,8 +3,10 @@ package com.stardeux.upprime.latest.view
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.latest.ui.model.MediaUi
@@ -20,6 +22,7 @@ class MediaCell : ConstraintLayout {
 
     private val title: TextView by lazy { findViewById<TextView>(R.id.title) }
     private val gender: TextView by lazy { findViewById<TextView>(R.id.details) }
+    private val poster: ImageView by lazy { findViewById<ImageView>(R.id.poster) }
 
     init {
         setLayout(R.layout.latest_media_item)
@@ -34,5 +37,9 @@ class MediaCell : ConstraintLayout {
     fun bind(mediaUi: MediaUi) {
         title.text = mediaUi.title
         gender.text = context.getString(mediaUi.type)
+
+        mediaUi.posterUrl?.let {
+            Glide.with(this).load(it).into(poster)
+        }
     }
 }

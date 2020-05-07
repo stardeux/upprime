@@ -9,6 +9,7 @@ fun mapToMediaUi(media: Media): MediaUi {
         title = media.title,
         amazonId = media.amazonId,
         imdbId = media.imdbId,
-        type = mapToStringId(media.type)
+        type = mapToStringId(media.type),
+        posterUrl = null
     )
 }

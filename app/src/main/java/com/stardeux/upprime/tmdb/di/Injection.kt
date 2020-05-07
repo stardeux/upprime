@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 val tmdbModule = module {
     single { provideTmdbApi(get((named(TMDB_NAMED_QUALIFIER)))) }
     factory { provideTmdbRepository(get()) }
-    factory { provideGetMovieDetailsUseCase(get()) }
+    single { provideGetMovieDetailsUseCase(get()) }
 }
 
 private fun provideTmdbApi(retrofit: Retrofit): TmdbApi {

@@ -7,10 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.stardeux.upprime.latest.ui.mapper.mapToMediaUi
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
+import com.stardeux.upprime.tmdb.usecase.GetMovieDetailsUseCase
 import kotlinx.coroutines.launch
 
 class LatestMediaViewModel(
-    private val getLatestUseCase: GetLatestUseCase
+    private val getLatestUseCase: GetLatestUseCase,
+    private val getMovieDetailsUseCase: GetMovieDetailsUseCase
 ) : ViewModel(){
 
     private val _mediaItems = MutableLiveData<List<MediaUi>>()
