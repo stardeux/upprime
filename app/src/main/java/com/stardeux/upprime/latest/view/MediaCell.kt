@@ -2,7 +2,6 @@ package com.stardeux.upprime.latest.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.stardeux.upprime.R
@@ -22,7 +21,7 @@ class MediaCell : ConstraintLayout {
     private val gender: TextView by lazy { findViewById<TextView>(R.id.details) }
 
     init {
-        setLayout(R.layout.cell_latest)
+        setLayout(R.layout.latest_media_item)
     }
 
     fun bind(mediaUi: MediaUi) {

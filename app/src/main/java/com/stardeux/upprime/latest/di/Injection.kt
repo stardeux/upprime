@@ -11,6 +11,7 @@ val latestModule = module {
     single { provideLatestApi(get()) }
     factory { provideLatestRepository(get()) }
     factory { provideLatestUseCase(get()) }
+    factory { provideLatestMediaViewModel(get()) }
 }
 
 

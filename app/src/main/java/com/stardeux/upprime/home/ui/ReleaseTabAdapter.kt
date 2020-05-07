@@ -18,6 +18,10 @@ class ReleaseTabAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     }
 
     override fun createFragment(position: Int): Fragment {
-        return LatestMediaFragment.newInstance()
+        return if (position == 0) {
+            LatestMediaFragment.newInstance()
+        } else {
+            Fragment()
+        }
     }
 }

@@ -28,6 +28,8 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
         latestViewModel.mediaItems.observeNotNull(viewLifecycleOwner) {
             getMediaAdapter().submitList(it)
         }
+
+        latestViewModel.load()
     }
 
     private fun getMediaAdapter(): MediaAdapter {

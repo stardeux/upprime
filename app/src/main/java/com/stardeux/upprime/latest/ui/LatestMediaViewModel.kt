@@ -20,6 +20,7 @@ class LatestMediaViewModel(
         viewModelScope.launch {
             val result = getLatestUseCase.getLatest()
             _mediaItems.value = result.media.map(::mapToMediaUi)
+            val a = ""
         }
 
     }
