@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cell media -->
+    <dimen name="cell_media_poster_height">120dp</dimen>
+    <dimen name="cell_media_poster_width">88dp</dimen>
+    <dimen name="cell_media_data_margin">8dp</dimen>
+</resources>
