@@ -2,6 +2,7 @@ package com.stardeux.upprime.latest.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.stardeux.upprime.R
@@ -22,6 +23,12 @@ class MediaCell : ConstraintLayout {
 
     init {
         setLayout(R.layout.latest_media_item)
+        initLayout()
+    }
+
+    private fun initLayout() {
+        val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        setLayoutParams(layoutParams)
     }
 
     fun bind(mediaUi: MediaUi) {
