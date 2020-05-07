@@ -1,11 +1,11 @@
 package com.stardeux.upprime.network.okhttp
 
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
-import com.stardeux.upprime.network.di.networkModule
+import com.stardeux.upprime.network.amazon.di.amazonNetworkModule
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-val fullNetwork = networkModule.apply {
+val fullNetwork = amazonNetworkModule.apply {
     single { provideOkHttp(get(), get(), get()) }
     factory { provideHttpLoggingInterceptor() }
 }
