@@ -22,6 +22,6 @@ fun mapToMediaUi(movieDetails: MovieDetails, shortMediaUi: MediaUi): MediaUi {
         imdbId = movieDetails.imdbId,
         type = shortMediaUi.type,
         //TODO dynamically compute base url
-        posterUrl = "http://image.tmdb.org/t/p/w500" + movieDetails.posterUrl
+        posterUrl = "https://image.tmdb.org/t/p/w500" + movieDetails.posterUrl
     )
 }

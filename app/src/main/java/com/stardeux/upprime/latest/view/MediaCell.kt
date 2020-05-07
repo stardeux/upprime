@@ -15,9 +15,7 @@ class MediaCell : ConstraintLayout {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     )
 
     private val title: TextView by lazy { findViewById<TextView>(R.id.title) }
@@ -30,7 +28,9 @@ class MediaCell : ConstraintLayout {
     }
 
     private fun initLayout() {
-        val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         setLayoutParams(layoutParams)
     }
 
@@ -38,10 +38,12 @@ class MediaCell : ConstraintLayout {
         title.text = mediaUi.title
         gender.text = context.getString(mediaUi.type)
 
-        Glide.with(this).clear(poster)
+        with(Glide.with(this)) {
+            clear(poster)
 
-        mediaUi.posterUrl?.let {
-            Glide.with(this).load(it).into(poster)
+            mediaUi.posterUrl?.let {
+                load(it).error(R.drawable.ic_error_black_24dp).into(poster)
+            }
         }
     }
 }

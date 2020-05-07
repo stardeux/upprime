@@ -37,7 +37,7 @@ class LatestMediaViewModel(
     private fun loadNextDetails() {
         shortMediaItems.poll()?.let { currentShortMediaItemsList ->
             viewModelScope.launch {
-                currentShortMediaItemsList.subList(0, 10).forEach { shortMediaUi ->
+                currentShortMediaItemsList.subList(0, 5).forEach { shortMediaUi ->
                     try {
                         val details =
                             getMovieDetailsUseCase(TmdbDetailsRequest(shortMediaUi.imdbId, "fr"))
