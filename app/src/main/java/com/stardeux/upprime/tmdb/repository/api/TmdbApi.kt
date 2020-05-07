@@ -5,10 +5,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface TheMovieDatabaseApi {
+interface TmdbApi {
 
     @GET("movie/{imdbMovieId}")
-    fun movieDetails(
+    suspend fun movieDetails(
         @Path("imdbMovieId") imdbMovieId: String, @Query("language") language: String
     ): TmdbMovieResponse
 }
