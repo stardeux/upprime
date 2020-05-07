@@ -2,6 +2,7 @@ package com.stardeux.upprime.latest.di
 
 import com.stardeux.upprime.latest.repository.LatestRepository
 import com.stardeux.upprime.latest.repository.api.LatestApi
+import com.stardeux.upprime.latest.ui.LatestMediaViewModel
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -23,4 +24,8 @@ fun provideLatestRepository(latestApi: LatestApi): LatestRepository {
 
 fun provideLatestUseCase(latestRepository: LatestRepository): GetLatestUseCase {
     return GetLatestUseCase(latestRepository)
+}
+
+fun provideLatestMediaViewModel(getLatestUseCase: GetLatestUseCase): LatestMediaViewModel {
+    return LatestMediaViewModel(getLatestUseCase)
 }

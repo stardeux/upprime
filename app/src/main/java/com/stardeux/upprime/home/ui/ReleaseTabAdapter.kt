@@ -3,7 +3,7 @@ package com.stardeux.upprime.home.ui
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.stardeux.upprime.core.model.ReleaseType
-import com.stardeux.upprime.latest.ui.LatestFragment
+import com.stardeux.upprime.latest.ui.LatestMediaFragment
 
 class ReleaseTabAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -18,6 +18,6 @@ class ReleaseTabAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     }
 
     override fun createFragment(position: Int): Fragment {
-        return LatestFragment.newInstance()
+        return LatestMediaFragment.newInstance()
     }
 }

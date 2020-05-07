@@ -4,4 +4,7 @@
     <dimen name="cell_media_poster_height">120dp</dimen>
     <dimen name="cell_media_poster_width">88dp</dimen>
     <dimen name="cell_media_data_margin">8dp</dimen>
+
+    <!-- Media list -->
+    <dimen name="media_list_item_spacing">8dp</dimen>
 </resources>

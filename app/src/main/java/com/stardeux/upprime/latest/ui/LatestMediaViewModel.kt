@@ -9,7 +9,7 @@ import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
 import kotlinx.coroutines.launch
 
-class LatestFragmentViewModel(
+class LatestMediaViewModel(
     private val getLatestUseCase: GetLatestUseCase
 ) : ViewModel(){
 
