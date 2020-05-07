@@ -38,6 +38,8 @@ class MediaCell : ConstraintLayout {
         title.text = mediaUi.title
         gender.text = context.getString(mediaUi.type)
 
+        Glide.with(this).clear(poster)
+
         mediaUi.posterUrl?.let {
             Glide.with(this).load(it).into(poster)
         }
