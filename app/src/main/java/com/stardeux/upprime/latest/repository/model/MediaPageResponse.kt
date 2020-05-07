@@ -7,5 +7,5 @@ data class MediaPageResponse(
     val count: Int?,
 
     @SerializedName("Results")
-    val results: List<MediaItemResponse>?
+    val results: List<MediaResponse>?
 )

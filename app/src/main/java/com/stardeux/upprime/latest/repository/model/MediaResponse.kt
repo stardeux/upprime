@@ -2,7 +2,7 @@ package com.stardeux.upprime.latest.repository.model
 
 import com.google.gson.annotations.SerializedName
 
-data class MediaItemResponse(
+data class MediaResponse(
     @SerializedName("Title")
     val title : String?,
 
