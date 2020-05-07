@@ -3,7 +3,8 @@ package com.stardeux.upprime.app
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.stardeux.upprime.latest.di.latestModule
-import com.stardeux.upprime.network.okhttp.fullNetwork
+import com.stardeux.upprime.network.okhttp.commonNetwork
+import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
 import com.stardeux.upprime.tools.flipper.flipperModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -26,8 +27,9 @@ abstract class UpPrimeApplication : Application() {
             /**
              * Mid core
              */
+            modules(commonNetwork)
             modules(flipperModule)
-            modules(fullNetwork)
+            modules(fullAmazonNetwork)
 
             /**
              * Features

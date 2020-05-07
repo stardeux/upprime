@@ -6,19 +6,23 @@ import com.stardeux.upprime.network.amazon.di.amazonNetworkModule
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-val fullNetwork = amazonNetworkModule.apply {
-    single(named(AMAZON_NAMED_QUALIFIER)) { provideOkHttp(get((named(AMAZON_NAMED_QUALIFIER))), get(), get()) }
+val commonNetwork = module {
     factory { provideHttpLoggingInterceptor() }
+}
+
+val fullAmazonNetwork = amazonNetworkModule.apply {
+    single(named(AMAZON_NAMED_QUALIFIER)) { provideOkHttp(get(named(AMAZON_NAMED_QUALIFIER)), get(), get()) }
 }
 
 fun provideOkHttp(
     okHttpClientBuilder: OkHttpClient.Builder,
-    flipperOkhttpInterceptor: FlipperOkhttpInterceptor,
+    flipperOkHttpInterceptor: FlipperOkhttpInterceptor,
     httpLoggingInterceptor: HttpLoggingInterceptor
 ): OkHttpClient {
     return okHttpClientBuilder
-        .addInterceptor(flipperOkhttpInterceptor)
+        .addInterceptor(flipperOkHttpInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .build()
 }
