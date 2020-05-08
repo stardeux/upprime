@@ -1,27 +1,35 @@
 package com.stardeux.upprime.tmdb.di
 
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
-import com.stardeux.upprime.tmdb.repository.TmdbRepository
-import com.stardeux.upprime.tmdb.repository.api.TmdbApi
-import com.stardeux.upprime.tmdb.usecase.GetMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.movie.api.MovieApi
+import com.stardeux.upprime.tmdb.movie.repository.TmdbRepository
+import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.series.api.SeriesApi
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val tmdbModule = module {
-    single { provideTmdbApi(get((named(TMDB_NAMED_QUALIFIER)))) }
-    factory { provideTmdbRepository(get()) }
+    single { provideMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
+    single { provideMovieRepository(get()) }
     single { provideGetMovieDetailsUseCase(get()) }
+
+    single { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
 }
 
-private fun provideTmdbApi(retrofit: Retrofit): TmdbApi {
-    return retrofit.create(TmdbApi::class.java)
+private fun provideMovieApi(retrofit: Retrofit): MovieApi {
+    return retrofit.create(MovieApi::class.java)
 }
 
-private fun provideTmdbRepository(tmdbApi: TmdbApi): TmdbRepository {
-    return TmdbRepository(tmdbApi)
+private fun provideMovieRepository(movieApi: MovieApi): TmdbRepository {
+    return TmdbRepository(movieApi)
 }
 
 private fun provideGetMovieDetailsUseCase(tmdbRepository: TmdbRepository): GetMovieDetailsUseCase {
     return GetMovieDetailsUseCase(tmdbRepository)
+}
+
+
+private fun provideSeriesApi(retrofit: Retrofit): SeriesApi {
+    return retrofit.create(SeriesApi::class.java)
 }

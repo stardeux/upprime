@@ -1,7 +1,7 @@
-package com.stardeux.upprime.tmdb.usecase.mapper
+package com.stardeux.upprime.tmdb.movie.usecase.mapper
 
-import com.stardeux.upprime.tmdb.repository.model.TmdbMovieDetailsResponse
-import com.stardeux.upprime.tmdb.usecase.model.MovieDetails
+import com.stardeux.upprime.tmdb.movie.repository.model.TmdbMovieDetailsResponse
+import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 

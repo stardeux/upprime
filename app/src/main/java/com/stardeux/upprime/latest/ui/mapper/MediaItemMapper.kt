@@ -3,7 +3,7 @@ package com.stardeux.upprime.latest.ui.mapper
 import com.stardeux.upprime.core.mapper.mapToStringId
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.model.Media
-import com.stardeux.upprime.tmdb.usecase.model.MovieDetails
+import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 
 fun mapToMediaUi(media: Media): MediaUi {
     return MediaUi(

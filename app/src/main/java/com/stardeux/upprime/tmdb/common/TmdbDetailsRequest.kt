@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.repository.model
+package com.stardeux.upprime.tmdb.common
 
 data class TmdbDetailsRequest(
     val imdbMediaId: String,

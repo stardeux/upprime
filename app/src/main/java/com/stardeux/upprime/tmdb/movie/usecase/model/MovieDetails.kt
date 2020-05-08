@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.usecase.model
+package com.stardeux.upprime.tmdb.movie.usecase.model
 
 import org.threeten.bp.LocalDate
 

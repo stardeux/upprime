@@ -5,7 +5,7 @@ import com.stardeux.upprime.latest.repository.api.LatestApi
 import com.stardeux.upprime.latest.ui.LatestMediaViewModel
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
-import com.stardeux.upprime.tmdb.usecase.GetMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit

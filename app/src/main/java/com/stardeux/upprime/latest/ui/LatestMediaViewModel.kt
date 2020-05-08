@@ -8,8 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.stardeux.upprime.latest.ui.mapper.mapToMediaUi
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
-import com.stardeux.upprime.tmdb.repository.model.TmdbDetailsRequest
-import com.stardeux.upprime.tmdb.usecase.GetMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.common.TmdbDetailsRequest
+import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -40,7 +40,12 @@ class LatestMediaViewModel(
                 currentShortMediaItemsList.subList(0, 5).forEach { shortMediaUi ->
                     try {
                         val details =
-                            getMovieDetailsUseCase(TmdbDetailsRequest(shortMediaUi.imdbId, "fr"))
+                            getMovieDetailsUseCase(
+                                TmdbDetailsRequest(
+                                    shortMediaUi.imdbId,
+                                    "fr"
+                                )
+                            )
 
                         val completeMediaUi = mapToMediaUi(details, shortMediaUi)
 

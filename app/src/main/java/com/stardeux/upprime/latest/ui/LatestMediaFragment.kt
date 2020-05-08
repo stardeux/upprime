@@ -10,8 +10,8 @@ import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import com.stardeux.upprime.latest.ui.model.MediaAdapter
-import com.stardeux.upprime.tmdb.repository.model.TmdbDetailsRequest
-import com.stardeux.upprime.tmdb.usecase.GetMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.common.TmdbDetailsRequest
+import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import kotlinx.android.synthetic.main.fragment_latest.*
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -39,7 +39,12 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
         latestViewModel.load()
 
         lifecycle.coroutineScope.launch {
-            val a = getMovieDetails(TmdbDetailsRequest("tt0137523", "fr"))
+            val a = getMovieDetails(
+                TmdbDetailsRequest(
+                    "tt0137523",
+                    "fr"
+                )
+            )
             val b = ""
         }
 
