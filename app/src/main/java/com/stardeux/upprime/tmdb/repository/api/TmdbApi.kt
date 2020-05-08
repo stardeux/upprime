@@ -11,4 +11,9 @@ interface TmdbApi {
     suspend fun movieDetails(
         @Path("imdbMovieId") imdbMovieId: String, @Query("language") language: String
     ): TmdbMovieResponse
+
+    @GET("tv/{tmdbSeriesId}")
+    suspend fun seriesDetails(
+        @Path("tmdbSeriesId") tmdbSeriesId: String, @Query("language") language: String
+    ): TmdbMovieResponse
 }
