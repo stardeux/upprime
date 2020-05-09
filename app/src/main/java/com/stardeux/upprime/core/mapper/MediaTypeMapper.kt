@@ -1,5 +1,6 @@
 package com.stardeux.upprime.core.mapper
 
+import androidx.annotation.StringRes
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.model.MediaType
 
@@ -11,7 +12,7 @@ fun mapToMediaType(mediaTypeString: String): MediaType {
     }
 }
 
-fun mapToStringId(mediaType: MediaType): Int {
+@StringRes fun mapToStringId(mediaType: MediaType): Int {
     return when (mediaType) {
         MediaType.MOVIE -> R.string.movie
         MediaType.SERIES -> R.string.series

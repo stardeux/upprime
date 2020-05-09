@@ -6,6 +6,7 @@ import com.stardeux.upprime.latest.ui.LatestMediaViewModel
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -14,7 +15,7 @@ val latestModule = module {
     single { provideLatestApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
     factory { provideLatestRepository(get()) }
     factory { provideLatestUseCase(get()) }
-    factory { provideLatestMediaViewModel(get(), get()) }
+    factory { provideLatestMediaViewModel(get(), get(), get()) }
 }
 
 
@@ -32,7 +33,8 @@ private fun provideLatestUseCase(latestRepository: LatestRepository): GetLatestU
 
 private fun provideLatestMediaViewModel(
     getLatestUseCase: GetLatestUseCase,
-    getMovieDetailsUseCase: GetMovieDetailsUseCase
+    getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    getSeriesDetailsUseCase: GetSeriesDetailsUseCase
 ): LatestMediaViewModel {
-    return LatestMediaViewModel(getLatestUseCase, getMovieDetailsUseCase)
+    return LatestMediaViewModel(getLatestUseCase, getMovieDetailsUseCase, getSeriesDetailsUseCase)
 }
