@@ -1,7 +1,7 @@
 package com.stardeux.upprime.tmdb.find.usecase
 
 import com.stardeux.upprime.tmdb.find.repository.FindMediaRepository
-import com.stardeux.upprime.tmdb.find.repository.mapper.mapToFindMovie
+import com.stardeux.upprime.tmdb.find.usecase.mapper.mapToFindMovie
 import com.stardeux.upprime.tmdb.find.usecase.model.FindMovie
 import com.stardeux.upprime.tmdb.find.usecase.error.MovieNotFoundException
 

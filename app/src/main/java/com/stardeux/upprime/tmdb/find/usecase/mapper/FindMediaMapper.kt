@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.find.repository.mapper
+package com.stardeux.upprime.tmdb.find.usecase.mapper
 
 import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
 import com.stardeux.upprime.tmdb.find.repository.model.TmdbFindMovieResponse
