@@ -8,13 +8,13 @@ import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
-import com.stardeux.upprime.tmdb.series.api.SeriesApi
+import com.stardeux.upprime.tmdb.series.api.TmdbSeriesApi
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val tmdbModule = module {
-    single { provideMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
+    single { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideMovieRepository(get()) }
     single { provideGetMovieDetailsUseCase(get(), get()) }
 
@@ -42,7 +42,7 @@ private fun provideFindSeriesUseCase(findMediaRepository: FindMediaRepository): 
     return FindSeriesUseCase(findMediaRepository)
 }
 
-private fun provideMovieApi(retrofit: Retrofit): TmdbMovieApi {
+private fun provideTmdbMovieApi(retrofit: Retrofit): TmdbMovieApi {
     return retrofit.create(TmdbMovieApi::class.java)
 }
 
@@ -58,6 +58,6 @@ private fun provideGetMovieDetailsUseCase(
 }
 
 
-private fun provideSeriesApi(retrofit: Retrofit): SeriesApi {
-    return retrofit.create(SeriesApi::class.java)
+private fun provideSeriesApi(retrofit: Retrofit): TmdbSeriesApi {
+    return retrofit.create(TmdbSeriesApi::class.java)
 }
