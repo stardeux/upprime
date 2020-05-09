@@ -18,7 +18,7 @@ class GetImdbSeriesDetailsUseCase(
         val tmdbId = findResults?.tmdbId
 
         return tmdbId?.let {
-            getSeriesDetailsUseCase(it)
+            getSeriesDetailsUseCase(imdbId, it)
         } ?: throw SeriesNotFoundException(imdbId)
     }
 
