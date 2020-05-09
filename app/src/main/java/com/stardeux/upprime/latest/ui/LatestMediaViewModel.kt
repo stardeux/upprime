@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.latest.ui.mapper.mapToMediaUi
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
@@ -40,13 +41,14 @@ class LatestMediaViewModel(
             viewModelScope.launch {
                 currentShortMediaItemsList.subList(0, 5).forEach { shortMediaUi ->
                     try {
-                        val details = getMovieDetailsUseCase(shortMediaUi.imdbId)
-
-                        val completeMediaUi = mapToMediaUi(details, shortMediaUi)
+                        val completeMediaUi = when(shortMediaUi.type) {
+                            MediaType.MOVIE -> mapToMediaUi(getMovieDetailsUseCase(shortMediaUi.imdbId), shortMediaUi)
+                            MediaType.SERIES -> mapToMediaUi(getSeriesDetailsUseCase(shortMediaUi.imdbId), shortMediaUi)
+                        }
 
                         val currentList = _mediaItems.value?.toMutableList()
                         currentList?.set(
-                            currentList.indexOfFirst { it.imdbId == details.imdbId },
+                            currentList.indexOfFirst { it.imdbId == completeMediaUi.imdbId },
                             completeMediaUi
                         )
 
