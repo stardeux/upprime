@@ -1,13 +1,13 @@
 package com.stardeux.upprime.tmdb.find.repository.mapper
 
 import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
-import com.stardeux.upprime.tmdb.find.repository.model.FindMovieResponse
-import com.stardeux.upprime.tmdb.find.repository.model.FindSeriesResponse
+import com.stardeux.upprime.tmdb.find.repository.model.TmdbFindMovieResponse
+import com.stardeux.upprime.tmdb.find.repository.model.TmdbFindSeriesResponse
 import com.stardeux.upprime.tmdb.find.usecase.model.FindMovie
 import com.stardeux.upprime.tmdb.find.usecase.model.FindSeries
 
-fun mapToFindMovie(findMovieResponse: FindMovieResponse): FindMovie {
-    return with(findMovieResponse) {
+fun mapToFindMovie(tmdbFindMovieResponse: TmdbFindMovieResponse): FindMovie {
+    return with(tmdbFindMovieResponse) {
         FindMovie(
             tmdbId = requireNotNull(tmdbId),
             title = title,
@@ -20,8 +20,8 @@ fun mapToFindMovie(findMovieResponse: FindMovieResponse): FindMovie {
     }
 }
 
-fun mapToFindSeries(findSeriesResponse: FindSeriesResponse): FindSeries {
-    return with(findSeriesResponse) {
+fun mapToFindSeries(tmdbFindSeriesResponse: TmdbFindSeriesResponse): FindSeries {
+    return with(tmdbFindSeriesResponse) {
         FindSeries(
             tmdbId = requireNotNull(tmdbId),
             originalName = originalName,

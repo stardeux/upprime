@@ -2,7 +2,7 @@ package com.stardeux.upprime.tmdb.find.repository.model
 
 import com.google.gson.annotations.SerializedName
 
-data class FindSeriesResponse(
+data class TmdbFindSeriesResponse(
     @SerializedName("id") val tmdbId: String?,
     @SerializedName("original_name") val originalName: String?,
     @SerializedName("name") val name: String?,
