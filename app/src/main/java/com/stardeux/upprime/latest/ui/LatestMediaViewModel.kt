@@ -41,7 +41,7 @@ class LatestMediaViewModel(
     private fun loadNextDetails() {
         shortMediaItems.poll()?.let { currentShortMediaItemsList ->
             viewModelScope.launch {
-                currentShortMediaItemsList.subList(0, 5).forEach { shortMediaUi ->
+                currentShortMediaItemsList.subList(0, 20).forEach { shortMediaUi ->
                     try {
                         val completeMediaUi = when(shortMediaUi.type) {
                             MediaType.MOVIE -> mapToMediaUi(getImdbMovieDetailsUseCase(shortMediaUi.imdbId, shortMediaUi.title), shortMediaUi)
