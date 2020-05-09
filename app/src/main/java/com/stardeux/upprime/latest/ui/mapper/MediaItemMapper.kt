@@ -10,7 +10,7 @@ fun mapToMediaUi(media: Media): MediaUi {
         title = media.title,
         amazonId = media.amazonId,
         imdbId = media.imdbId,
-        type = mapToStringId(media.type),
+        typeText = mapToStringId(media.type),
         posterUrl = null
     )
 }
@@ -20,7 +20,7 @@ fun mapToMediaUi(movieDetails: MovieDetails, shortMediaUi: MediaUi): MediaUi {
         title = movieDetails.title,
         amazonId = shortMediaUi.amazonId,
         imdbId = movieDetails.imdbId,
-        type = shortMediaUi.type,
+        typeText = shortMediaUi.typeText,
         //TODO dynamically compute base url
         posterUrl = "https://image.tmdb.org/t/p/w500" + movieDetails.posterUrl
     )

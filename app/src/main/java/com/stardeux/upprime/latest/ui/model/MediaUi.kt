@@ -6,6 +6,6 @@ data class MediaUi(
     val title: String?,
     val amazonId: String,
     val imdbId: String,
-    @StringRes val type: Int,
+    @StringRes val typeText: Int,
     val posterUrl: String?
 )

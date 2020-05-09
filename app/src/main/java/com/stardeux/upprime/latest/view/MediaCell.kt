@@ -36,7 +36,7 @@ class MediaCell : ConstraintLayout {
 
     fun bind(mediaUi: MediaUi) {
         title.text = mediaUi.title
-        gender.text = context.getString(mediaUi.type)
+        gender.text = context.getString(mediaUi.typeText)
 
         with(Glide.with(this)) {
             clear(poster)
