@@ -1,5 +1,6 @@
 package com.stardeux.upprime.tmdb.find.repository.mapper
 
+import com.stardeux.upprime.tmdb.common.mapper.mapToLocalDate
 import com.stardeux.upprime.tmdb.find.repository.model.FindMovieResponse
 import com.stardeux.upprime.tmdb.find.repository.model.FindSeriesResponse
 import com.stardeux.upprime.tmdb.find.usecase.model.FindMovie
@@ -13,7 +14,7 @@ fun mapToFindMovie(findMovieResponse: FindMovieResponse): FindMovie {
             originalTitle = originalTitle,
             posterPath = posterPath,
             originalLanguage = originalLanguage,
-            releaseDate = releaseDate,
+            releaseDate = releaseDate?.let { mapToLocalDate(it) },
             voteAverage = voteAverage
         )
     }
@@ -28,7 +29,7 @@ fun mapToFindSeries(findSeriesResponse: FindSeriesResponse): FindSeries {
             posterPath = posterPath,
             originalLanguage = originalLanguage,
             originCountry = originCountry,
-            firstAirDate = firstAirDate,
+            firstAirDate = firstAirDate?.let { mapToLocalDate(it) },
             voteAverage = voteAverage
         )
     }

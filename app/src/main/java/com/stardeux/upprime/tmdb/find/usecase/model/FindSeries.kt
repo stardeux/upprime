@@ -1,5 +1,7 @@
 package com.stardeux.upprime.tmdb.find.usecase.model
 
+import org.threeten.bp.LocalDate
+
 data class FindSeries(
     val tmdbId: String,
     val originalName: String?,
@@ -7,6 +9,6 @@ data class FindSeries(
     val posterPath: String?,
     val originalLanguage: String,
     val originCountry: String,
-    val firstAirDate: String?,
+    val firstAirDate: LocalDate?,
     val voteAverage: Float?
 )

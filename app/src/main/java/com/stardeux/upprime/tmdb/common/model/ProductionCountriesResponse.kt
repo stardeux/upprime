@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.common
+package com.stardeux.upprime.tmdb.common.model
 
 import com.google.gson.annotations.SerializedName
 
