@@ -24,7 +24,7 @@ class GetImdbMovieDetailsUseCase(
         //If first request failed, i think that findMovieByImdbId will necessarily fail
         val tmdbId = findMovieUseCase.findMovieByImdbId(imdbId)?.tmdbId
         return if (tmdbId != null) {
-            getMovieDetailsUseCase(tmdbId, tmdbId)
+            getMovieDetailsUseCase(imdbId, tmdbId)
         } else {
             title?.let {
                 val searchResult = searchMovieUseCase.searchMovie(title)
