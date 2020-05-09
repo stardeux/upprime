@@ -8,7 +8,7 @@ data class TmdbFindSeriesResponse(
     @SerializedName("name") val name: String?,
     @SerializedName("poster_path") val posterPath: String?,
     @SerializedName("original_language") val originalLanguage: String,
-    @SerializedName("origin_country") val originCountry: String,
+    @SerializedName("origin_country") val originCountry: List<String>,
     @SerializedName("first_air_date") val firstAirDate: String?,
     @SerializedName("vote_average") val voteAverage: Float?
 )

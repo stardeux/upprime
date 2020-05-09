@@ -8,7 +8,7 @@ data class FindSeries(
     val name: String?,
     val posterPath: String?,
     val originalLanguage: String,
-    val originCountry: String,
+    val originCountry: List<String>,
     val firstAirDate: LocalDate?,
     val voteAverage: Float?
 )

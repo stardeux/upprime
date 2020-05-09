@@ -7,11 +7,11 @@ import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 fun mapToSeriesDetails(tmdbSeriesDetailsResponse: TmdbSeriesDetailsResponse): SeriesDetails {
     return with(tmdbSeriesDetailsResponse) {
         SeriesDetails(
-            imdbId = requireNotNull(imdbId),
+            imdbId = imdbId,
             name = requireNotNull(name),
             posterUrl = requireNotNull(posterUrl),
             releaseDate = firstAirDate?.let { mapTmdbLocalDate(it) },
-            runtimeMinutes = episodeRuntime,
+            runtimeMinutes = episodeRuntime.getOrNull(0),
             genders = genres?.mapNotNull { it.name },
             nationalities = originCountry,
             averageRating = voteAverage

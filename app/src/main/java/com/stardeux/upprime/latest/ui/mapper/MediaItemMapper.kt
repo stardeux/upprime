@@ -24,7 +24,7 @@ fun mapToMediaUi(movieDetails: MovieDetails, shortMediaUi: MediaUi): MediaUi {
             title = title,
             type = MediaType.MOVIE,
             amazonId = shortMediaUi.amazonId,
-            imdbId = imdbId,
+            imdbId = shortMediaUi.imdbId,
             //TODO dynamically compute base url
             posterUrl = "https://image.tmdb.org/t/p/w500$posterUrl"
         )
@@ -37,7 +37,7 @@ fun mapToMediaUi(seriesDetails: SeriesDetails, shortMediaUi: MediaUi): MediaUi {
             title = name,
             type = MediaType.MOVIE,
             amazonId = shortMediaUi.amazonId,
-            imdbId = imdbId,
+            imdbId = shortMediaUi.imdbId,
             //TODO dynamically compute base url
             posterUrl = "https://image.tmdb.org/t/p/w500$posterUrl"
         )
