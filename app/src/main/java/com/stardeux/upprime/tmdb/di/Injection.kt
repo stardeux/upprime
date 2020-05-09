@@ -2,9 +2,14 @@ package com.stardeux.upprime.tmdb.di
 
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.find.repository.FindMediaRepository
+import com.stardeux.upprime.tmdb.find.repository.SearchMovieRepository
+import com.stardeux.upprime.tmdb.find.repository.SearchSeriesRepository
 import com.stardeux.upprime.tmdb.find.repository.api.TmdbFindApi
+import com.stardeux.upprime.tmdb.find.repository.api.TmdbSearchApi
 import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
+import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
+import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
@@ -25,9 +30,38 @@ val tmdbModule = module {
     single { provideFindMovieUseCase(get()) }
     single { provideFindSeriesUseCase(get()) }
 
+    single { provideTmdbSearchApi(get(named(TMDB_NAMED_QUALIFIER))) }
+    single { provideSearchMovieRepository(get()) }
+    single { provideSearchSeriesRepository(get()) }
+    single { provideSearchMovieUseCase(get()) }
+    single { provideSearchSeriesUseCase(get()) }
+
     single { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideSeriesRepository(get()) }
     single { provideGetSeriesDetailsUseCase(get(), get()) }
+
+
+}
+
+private fun provideTmdbSearchApi(retrofit: Retrofit): TmdbSearchApi {
+    return retrofit.create(TmdbSearchApi::class.java)
+}
+
+private fun provideSearchMovieRepository(tmdbSearchApi: TmdbSearchApi): SearchMovieRepository {
+    return SearchMovieRepository(tmdbSearchApi)
+}
+
+private fun provideSearchSeriesRepository(tmdbSearchApi: TmdbSearchApi): SearchSeriesRepository {
+    return SearchSeriesRepository(tmdbSearchApi)
+}
+
+
+private fun provideSearchMovieUseCase(searchMovieRepository: SearchMovieRepository): SearchMovieUseCase {
+    return SearchMovieUseCase(searchMovieRepository)
+}
+
+private fun provideSearchSeriesUseCase(searchSeriesRepository: SearchSeriesRepository): SearchSeriesUseCase {
+    return SearchSeriesUseCase(searchSeriesRepository)
 }
 
 private fun provideTmdbFindApi(retrofit: Retrofit): TmdbFindApi {
