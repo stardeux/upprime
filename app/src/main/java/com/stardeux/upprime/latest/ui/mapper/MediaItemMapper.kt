@@ -9,10 +9,16 @@ import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 fun mapToMediaUi(media: Media): MediaUi {
     return with(media) {
         MediaUi(
-            title = title,
-            type = type,
             amazonId = amazonId,
             imdbId = imdbId,
+            tmdbId = null,
+            title = title,
+            type = type,
+            runtime = null,
+            mainGenre = null,
+            releaseYear = null,
+            mainNationality = null,
+            rating = null,
             posterUrl = null
         )
     }
@@ -24,10 +30,16 @@ fun mapToMediaUi(movieDetails: MovieDetails, shortMediaUi: MediaUi): MediaUi {
      */
     return with(movieDetails) {
         MediaUi(
+            amazonId = shortMediaUi.amazonId,
+            imdbId = imdbId,
+            tmdbId = tmdbId,
             title = title,
             type = MediaType.MOVIE,
-            amazonId = shortMediaUi.amazonId,
-            imdbId = shortMediaUi.imdbId,
+            runtime = runtimeMinutes,
+            mainGenre = genders?.getOrNull(0),
+            releaseYear = releaseDate?.toString(),
+            mainNationality = nationalities?.getOrNull(0),
+            rating = averageRating,
             //TODO dynamically compute base url
             posterUrl = "https://image.tmdb.org/t/p/w500$posterUrl"
         )
@@ -40,10 +52,16 @@ fun mapToMediaUi(seriesDetails: SeriesDetails, shortMediaUi: MediaUi): MediaUi {
      */
     return with(seriesDetails) {
         MediaUi(
+            amazonId = shortMediaUi.amazonId,
+            imdbId = imdbId,
+            tmdbId = tmdbId,
             title = name,
             type = MediaType.SERIES,
-            amazonId = shortMediaUi.amazonId,
-            imdbId = shortMediaUi.imdbId,
+            runtime = runtimeMinutes,
+            mainGenre = genders?.getOrNull(0),
+            releaseYear = releaseDate?.toString(),
+            mainNationality = nationalities?.getOrNull(0),
+            rating = averageRating,
             //TODO dynamically compute base url
             posterUrl = "https://image.tmdb.org/t/p/w500$posterUrl"
         )

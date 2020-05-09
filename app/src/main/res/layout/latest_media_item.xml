@@ -28,7 +28,7 @@
         tools:text="Titanic" />
 
     <TextView
-        android:id="@+id/details"
+        android:id="@+id/dates"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/cell_media_data_margin"
@@ -44,7 +44,7 @@
         android:layout_marginStart="@dimen/cell_media_data_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/poster"
-        app:layout_constraintTop_toBottomOf="@id/details"
+        app:layout_constraintTop_toBottomOf="@id/dates"
         tools:text="Action" />
 
     <TextView

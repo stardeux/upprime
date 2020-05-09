@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.latest.ui.model.MediaUi
+import kotlinx.android.synthetic.main.latest_media_item.view.*
 
 class MediaItem : ConstraintLayout {
     constructor(context: Context?) : super(context)
@@ -19,7 +20,9 @@ class MediaItem : ConstraintLayout {
     )
 
     private val title: TextView by lazy { findViewById<TextView>(R.id.title) }
-    private val gender: TextView by lazy { findViewById<TextView>(R.id.details) }
+    private val dates: TextView by lazy { findViewById<TextView>(R.id.dates) }
+    private val gender: TextView by lazy { findViewById<TextView>(R.id.gender) }
+    private val ratings: TextView by lazy { findViewById<TextView>(R.id.ratings) }
     private val poster: ImageView by lazy { findViewById<ImageView>(R.id.poster) }
 
     init {
@@ -36,7 +39,9 @@ class MediaItem : ConstraintLayout {
 
     fun bind(mediaUi: MediaUi) {
         title.text = mediaUi.title
-        gender.text = context.getString(mediaUi.mediaTypeStringRes)
+        dates.text = mediaUi.releaseYear + " " + mediaUi.runtime
+        gender.text = context.getString(mediaUi.mediaTypeStringRes) + " " + mediaUi.mainGenre + " " + mediaUi.mainNationality
+        ratings.text = mediaUi.rating.toString()
 
         with(Glide.with(this)) {
             clear(poster)
