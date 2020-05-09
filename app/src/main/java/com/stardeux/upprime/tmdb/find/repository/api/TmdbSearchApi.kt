@@ -1,5 +1,6 @@
 package com.stardeux.upprime.tmdb.find.repository.api
 
+import com.stardeux.upprime.tmdb.find.repository.model.TmdbSearchMovieResponse
 import com.stardeux.upprime.tmdb.find.repository.model.TmdbSearchSeriesResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,5 +13,12 @@ interface TmdbSearchApi {
         @Path("query") query: String,
         @Query("language") language: String
     ): TmdbSearchSeriesResponse
+
+
+    @GET("search/movie/")
+    suspend fun searchMovie(
+        @Path("query") query: String,
+        @Query("language") language: String
+    ): TmdbSearchMovieResponse
 
 }
