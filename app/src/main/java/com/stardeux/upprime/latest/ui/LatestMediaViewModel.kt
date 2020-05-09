@@ -9,6 +9,7 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.latest.ui.mapper.mapToMediaUi
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
+import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
@@ -17,7 +18,7 @@ import java.util.*
 
 class LatestMediaViewModel(
     private val getLatestUseCase: GetLatestUseCase,
-    private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    private val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ) : ViewModel() {
 
@@ -43,7 +44,7 @@ class LatestMediaViewModel(
                 currentShortMediaItemsList.subList(0, 5).forEach { shortMediaUi ->
                     try {
                         val completeMediaUi = when(shortMediaUi.type) {
-                            MediaType.MOVIE -> mapToMediaUi(getMovieDetailsUseCase(shortMediaUi.imdbId), shortMediaUi)
+                            MediaType.MOVIE -> mapToMediaUi(getImdbMovieDetailsUseCase(shortMediaUi.imdbId, shortMediaUi.title), shortMediaUi)
                             MediaType.SERIES -> mapToMediaUi(getImdbSeriesDetailsUseCase(shortMediaUi.imdbId, shortMediaUi.title), shortMediaUi)
                         }
 

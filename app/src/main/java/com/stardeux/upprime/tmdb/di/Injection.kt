@@ -12,6 +12,7 @@ import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
+import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.repository.SeriesRepository
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
@@ -24,7 +25,7 @@ import retrofit2.Retrofit
 val tmdbModule = module {
     single { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideMovieRepository(get()) }
-    single { provideGetMovieDetailsUseCase(get(), get()) }
+    single { provideGetMovieDetailsUseCase(get()) }
 
     single { provideTmdbFindApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideFindMediaRepository(get()) }
@@ -42,6 +43,7 @@ val tmdbModule = module {
     single { provideGetSeriesDetailsUseCase(get()) }
 
     single { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
+    single { provideGetImdbMovieDetailsUseCase(get(), get()) }
 }
 
 private fun provideTmdbSearchApi(retrofit: Retrofit): TmdbSearchApi {
@@ -90,9 +92,9 @@ private fun provideMovieRepository(tmdbMovieApi: TmdbMovieApi): MovieRepository 
 }
 
 private fun provideGetMovieDetailsUseCase(
-    movieRepository: MovieRepository, findMovieUseCase: FindMovieUseCase
+    movieRepository: MovieRepository
 ): GetMovieDetailsUseCase {
-    return GetMovieDetailsUseCase(movieRepository, findMovieUseCase)
+    return GetMovieDetailsUseCase(movieRepository)
 }
 
 
@@ -115,5 +117,15 @@ private fun provideGetImdbSeriesDetailsUseCase(
     searchSeriesUseCase: SearchSeriesUseCase,
     getSeriesDetailsUseCase: GetSeriesDetailsUseCase
 ): GetImdbSeriesDetailsUseCase {
-    return GetImdbSeriesDetailsUseCase(findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase)
+    return GetImdbSeriesDetailsUseCase(
+        findSeriesUseCase,
+        searchSeriesUseCase,
+        getSeriesDetailsUseCase
+    )
+}
+
+private fun provideGetImdbMovieDetailsUseCase(
+    getMovieDetailsUseCase: GetMovieDetailsUseCase, findMovieUseCase: FindMovieUseCase
+): GetImdbMovieDetailsUseCase {
+    return GetImdbMovieDetailsUseCase(getMovieDetailsUseCase, findMovieUseCase)
 }

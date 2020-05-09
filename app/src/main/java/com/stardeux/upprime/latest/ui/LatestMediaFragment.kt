@@ -38,11 +38,6 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
         }
 
         latestViewModel.load()
-
-        lifecycle.coroutineScope.launch {
-            val a = getMovieDetails("tt0137523")
-        }
-
     }
 
     private fun getMediaAdapter(): MediaAdapter {
