@@ -19,6 +19,9 @@ fun mapToMediaUi(media: Media): MediaUi {
 }
 
 fun mapToMediaUi(movieDetails: MovieDetails, shortMediaUi: MediaUi): MediaUi {
+    /**
+     * Get ids from shortMediaUi because they are assuredly present
+     */
     return with(movieDetails) {
         MediaUi(
             title = title,
@@ -32,6 +35,9 @@ fun mapToMediaUi(movieDetails: MovieDetails, shortMediaUi: MediaUi): MediaUi {
 }
 
 fun mapToMediaUi(seriesDetails: SeriesDetails, shortMediaUi: MediaUi): MediaUi {
+    /**
+     * Get ids from shortMediaUi because they are assuredly present
+     */
     return with(seriesDetails) {
         MediaUi(
             title = name,
