@@ -11,12 +11,8 @@ class GetSeriesDetailsUseCase(
 ) {
 
     suspend operator fun invoke(imdbSeriesId: String): SeriesDetails {
-        return try {
-            getSeriesDetails(imdbSeriesId)
-        } catch (exception: Exception) {
-            val findSeries = findSeriesUseCase.findSeriesByImdbId(imdbSeriesId)
-            getSeriesDetails(findSeries.tmdbId)
-        }
+        val findSeries = findSeriesUseCase.findSeriesByImdbId(imdbSeriesId)
+        return getSeriesDetails(findSeries.tmdbId)
     }
 
     private suspend fun getSeriesDetails (imdbOrTmdbSeriesId: String): SeriesDetails {

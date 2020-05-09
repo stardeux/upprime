@@ -10,9 +10,7 @@ class FindMovieUseCase(private val findMediaRepository: FindMediaRepository) {
     suspend fun findMovieByImdbId(imdbId: String): FindMovie {
         val movieResult = findMediaRepository.findMedia(imdbId, "fr").moviesResults?.getOrNull(0)
         if (movieResult == null) {
-            throw MovieNotFoundException(
-                imdbId
-            )
+            throw MovieNotFoundException(imdbId)
         } else {
             return mapToFindMovie(movieResult)
         }
