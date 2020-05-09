@@ -8,7 +8,7 @@ import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
-import com.stardeux.upprime.tmdb.series.api.TmdbSeriesApi
+import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
