@@ -9,7 +9,7 @@ class GetSeriesDetailsUseCase(
 ) {
 
     suspend operator fun invoke(tmdbSeriesId: String): SeriesDetails {
-        return mapToSeriesDetails(seriesRepository.getSeriesDetails(tmdbSeriesId, "fr"))
+        return mapToSeriesDetails(seriesRepository.getSeriesDetails(tmdbSeriesId, "fr"), tmdbSeriesId)
     }
 
 }
