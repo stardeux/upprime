@@ -10,6 +10,7 @@ import com.stardeux.upprime.latest.ui.mapper.mapToMediaUi
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
 import kotlinx.coroutines.launch
 import java.util.*
@@ -17,7 +18,7 @@ import java.util.*
 class LatestMediaViewModel(
     private val getLatestUseCase: GetLatestUseCase,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
-    private val getSeriesDetailsUseCase: GetSeriesDetailsUseCase
+    private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ) : ViewModel() {
 
     private val _mediaItems = MutableLiveData<List<MediaUi>>()
@@ -43,7 +44,7 @@ class LatestMediaViewModel(
                     try {
                         val completeMediaUi = when(shortMediaUi.type) {
                             MediaType.MOVIE -> mapToMediaUi(getMovieDetailsUseCase(shortMediaUi.imdbId), shortMediaUi)
-                            MediaType.SERIES -> mapToMediaUi(getSeriesDetailsUseCase(shortMediaUi.imdbId), shortMediaUi)
+                            MediaType.SERIES -> mapToMediaUi(getImdbSeriesDetailsUseCase(shortMediaUi.imdbId, shortMediaUi.title), shortMediaUi)
                         }
 
                         val currentList = _mediaItems.value?.toMutableList()

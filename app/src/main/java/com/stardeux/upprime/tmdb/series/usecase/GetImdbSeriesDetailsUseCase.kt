@@ -12,8 +12,9 @@ class GetImdbSeriesDetailsUseCase(
     private val getSeriesDetailsUseCase: GetSeriesDetailsUseCase
 ) {
 
-    suspend operator fun invoke(imdbId: String, name: String): SeriesDetails {
-        val findResults = findSeriesUseCase.findSeriesByImdbId(imdbId) ?: searchSeries(name)
+    suspend operator fun invoke(imdbId: String, name: String?): SeriesDetails {
+        val findResults =
+            findSeriesUseCase.findSeriesByImdbId(imdbId) ?: name?.let { searchSeries(it) }
         val tmdbId = findResults?.tmdbId
 
         return tmdbId?.let {

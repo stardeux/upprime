@@ -10,14 +10,14 @@ interface TmdbSearchApi {
 
     @GET("search/tv/")
     suspend fun searchSeries(
-        @Path("query") query: String,
+        @Query("query") query: String,
         @Query("language") language: String
     ): TmdbSearchSeriesResponse
 
 
     @GET("search/movie/")
     suspend fun searchMovie(
-        @Path("query") query: String,
+        @Query("query") query: String,
         @Query("language") language: String
     ): TmdbSearchMovieResponse
 
