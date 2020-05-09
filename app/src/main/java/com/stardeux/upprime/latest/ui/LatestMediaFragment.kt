@@ -20,8 +20,6 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
 
     private val latestViewModel: LatestMediaViewModel by viewModel()
 
-    private val getMovieDetails: GetMovieDetailsUseCase by inject()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

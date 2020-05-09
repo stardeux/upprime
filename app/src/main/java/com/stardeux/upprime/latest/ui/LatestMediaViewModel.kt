@@ -56,7 +56,7 @@ class LatestMediaViewModel(
 
                         _mediaItems.value = currentList
                     } catch (exception: Exception) {
-                        Log.e("GetMovieDetails", "ImdbId = ${shortMediaUi.imdbId}", exception)
+                        Log.e("Unfound", "ImdbId = ${shortMediaUi.imdbId}", exception)
                     }
                 }
             }
