@@ -41,7 +41,7 @@ class MediaItem : ConstraintLayout {
         title.text = mediaUi.title
         dates.text = mediaUi.releaseYear + " " + mediaUi.runtime
         gender.text = context.getString(mediaUi.mediaTypeStringRes) + " " + mediaUi.mainGenre + " " + mediaUi.mainNationality
-        ratings.text = mediaUi.rating.toString()
+        ratings.text = mediaUi.rating?.toString()
 
         with(Glide.with(this)) {
             clear(poster)

@@ -13,7 +13,7 @@ data class MediaUi(
     val tmdbId: TmdbId?,
     val title: String?,
     val type: MediaType,
-    val runtime: Int?,
+    val runtime: String?,
     val mainGenre: String?,
     val releaseYear: String?,
     val mainNationality: String?,

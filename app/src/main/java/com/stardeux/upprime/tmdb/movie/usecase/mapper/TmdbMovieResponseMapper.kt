@@ -10,7 +10,7 @@ fun mapToMovieDetails(tmdbMovieDetailsResponse: TmdbMovieDetailsResponse, imdbId
             tmdbId = requireNotNull(tmdbId),
             imdbId = imdbId,
             title = title,
-            posterUrl = requireNotNull(posterUrl),
+            posterUrl = posterUrl,
             releaseDate = releaseDate?.let { mapTmdbLocalDate(it) },
             runtimeMinutes = runtime,
             genders = genres?.mapNotNull { it.name },

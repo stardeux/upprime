@@ -1,5 +1,6 @@
 package com.stardeux.upprime.latest.ui.mapper
 
+import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.model.Media
@@ -35,7 +36,7 @@ fun mapToMediaUi(movieDetails: MovieDetails, shortMediaUi: MediaUi): MediaUi {
             tmdbId = tmdbId,
             title = title,
             type = MediaType.MOVIE,
-            runtime = runtimeMinutes,
+            runtime = runtimeMinutes?.let { mapRuntimeToString(runtimeMinutes) },
             mainGenre = genders?.getOrNull(0),
             releaseYear = releaseDate?.toString(),
             mainNationality = nationalities?.getOrNull(0),
@@ -57,7 +58,7 @@ fun mapToMediaUi(seriesDetails: SeriesDetails, shortMediaUi: MediaUi): MediaUi {
             tmdbId = tmdbId,
             title = name,
             type = MediaType.SERIES,
-            runtime = runtimeMinutes,
+            runtime = runtimeMinutes?.let { mapRuntimeToString(runtimeMinutes) },
             mainGenre = genders?.getOrNull(0),
             releaseYear = releaseDate?.toString(),
             mainNationality = nationalities?.getOrNull(0),
