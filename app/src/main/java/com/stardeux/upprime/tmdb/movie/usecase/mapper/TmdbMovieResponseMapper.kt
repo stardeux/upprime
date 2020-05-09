@@ -1,5 +1,6 @@
 package com.stardeux.upprime.tmdb.movie.usecase.mapper
 
+import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
 import com.stardeux.upprime.tmdb.movie.repository.model.TmdbMovieDetailsResponse
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import org.threeten.bp.LocalDate
@@ -10,11 +11,7 @@ fun mapToMovieDetails(tmdbMovieDetailsResponse: TmdbMovieDetailsResponse): Movie
         val detailsImdbId = requireNotNull(imdbId)
         val detailsTitle = requireNotNull(title)
         val detailsPosterUrl = requireNotNull(posterUrl)
-        val detailsReleaseDate = releaseDate?.let {
-            DateTimeFormatter.ISO_LOCAL_DATE.parse(
-                it, LocalDate::from
-            )
-        }
+        val detailsReleaseDate = releaseDate?.let { mapTmdbLocalDate(it) }
         val detailsRuntime = runtime
         val detailsGenres = genres?.mapNotNull { it.name }
         val detailsNationalities = productionCountries?.mapNotNull { it.name }
