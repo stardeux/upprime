@@ -1,13 +1,13 @@
 package com.stardeux.upprime.tmdb.movie.repository
 
-import com.stardeux.upprime.tmdb.movie.repository.api.MovieApi
+import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.model.TmdbMovieDetailsResponse
 
-class TmdbRepository(private val tmdbApi: MovieApi) {
+class TmdbMovieRepository(private val tmdbMovieApi: TmdbMovieApi) {
 
     suspend fun getMovieDetails(
         imdbMediaId: String, language: String
     ): TmdbMovieDetailsResponse {
-        return tmdbApi.movieDetails(imdbMediaId, language)
+        return tmdbMovieApi.movieDetails(imdbMediaId, language)
     }
 }
