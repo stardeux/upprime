@@ -1,5 +1,6 @@
 package com.stardeux.upprime.tmdb.find.repository.api
 
+import com.stardeux.upprime.tmdb.find.repository.model.FindMediaResponse
 import com.stardeux.upprime.tmdb.movie.repository.model.TmdbMovieDetailsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -9,6 +10,6 @@ interface FindApi {
 
     @GET("find/{imdbId}/")
     suspend fun find(
-        @Path("tmdbSeriesId") tmdbSeriesId: String, @Query("language") language: String
-    ): TmdbMovieDetailsResponse
+        @Path("imdbId") imdbId: String, @Query("language") language: String
+    ): FindMediaResponse
 }
