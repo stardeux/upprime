@@ -16,7 +16,7 @@ import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
-import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.movie.usecase.GetUnconfiguredMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.repository.SeriesRepository
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
@@ -114,8 +114,8 @@ private fun provideMovieRepository(tmdbMovieApi: TmdbMovieApi): MovieRepository 
 
 private fun provideGetMovieDetailsUseCase(
     movieRepository: MovieRepository
-): GetMovieDetailsUseCase {
-    return GetMovieDetailsUseCase(movieRepository)
+): GetUnconfiguredMovieDetailsUseCase {
+    return GetUnconfiguredMovieDetailsUseCase(movieRepository)
 }
 
 
@@ -144,9 +144,9 @@ private fun provideGetImdbSeriesDetailsUseCase(
 }
 
 private fun provideGetImdbMovieDetailsUseCase(
-    getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    getUnconfiguredMovieDetailsUseCase: GetUnconfiguredMovieDetailsUseCase,
     findMovieUseCase: FindMovieUseCase,
     searchMovieUseCase: SearchMovieUseCase
 ): GetImdbMovieDetailsUseCase {
-    return GetImdbMovieDetailsUseCase(getMovieDetailsUseCase, findMovieUseCase, searchMovieUseCase)
+    return GetImdbMovieDetailsUseCase(getUnconfiguredMovieDetailsUseCase, findMovieUseCase, searchMovieUseCase)
 }

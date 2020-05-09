@@ -3,17 +3,13 @@ package com.stardeux.upprime.latest.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import com.stardeux.upprime.latest.ui.model.MediaAdapter
-import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import kotlinx.android.synthetic.main.fragment_latest.*
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LatestMediaFragment : Fragment(R.layout.fragment_latest) {

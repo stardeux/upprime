@@ -6,7 +6,7 @@ import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
 import com.stardeux.upprime.tmdb.movie.usecase.mapper.mapToMovieDetails
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 
-class GetMovieDetailsUseCase(
+class GetUnconfiguredMovieDetailsUseCase(
     private val movieRepository: MovieRepository
 ) {
 

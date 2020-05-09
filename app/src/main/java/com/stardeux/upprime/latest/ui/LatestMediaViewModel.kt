@@ -10,9 +10,7 @@ import com.stardeux.upprime.latest.ui.mapper.mapToMediaUi
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
-import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
-import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.math.min

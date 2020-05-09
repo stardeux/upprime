@@ -7,7 +7,7 @@ class GetTmdbConfigurationUseCase(private val tmdbConfigurationRepository: TmdbC
 
     private var configuration: TmdbConfiguration? = null
 
-    suspend operator fun invoke(): TmdbConfiguration {
+    @Synchronized suspend operator fun invoke(): TmdbConfiguration {
         return configuration ?: fetchConfiguration().also { configuration = it }
     }
 
