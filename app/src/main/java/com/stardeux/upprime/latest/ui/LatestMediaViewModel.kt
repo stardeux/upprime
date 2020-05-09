@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.stardeux.upprime.latest.ui.mapper.mapToMediaUi
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
-import com.stardeux.upprime.tmdb.common.TmdbDetailsRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import kotlinx.coroutines.launch
 import java.util.*
@@ -41,9 +40,8 @@ class LatestMediaViewModel(
                     try {
                         val details =
                             getMovieDetailsUseCase(
-                                TmdbDetailsRequest(
-                                    shortMediaUi.imdbId,
-                                    "fr"
+                                GetMovieDetailsUseCase.TmdbDetailsRequest(
+                                    shortMediaUi.imdbId, "fr"
                                 )
                             )
 
