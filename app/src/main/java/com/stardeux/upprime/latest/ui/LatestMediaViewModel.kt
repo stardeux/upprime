@@ -38,12 +38,7 @@ class LatestMediaViewModel(
             viewModelScope.launch {
                 currentShortMediaItemsList.subList(0, 5).forEach { shortMediaUi ->
                     try {
-                        val details =
-                            getMovieDetailsUseCase(
-                                GetMovieDetailsUseCase.TmdbDetailsRequest(
-                                    shortMediaUi.imdbId, "fr"
-                                )
-                            )
+                        val details = getMovieDetailsUseCase(shortMediaUi.imdbId)
 
                         val completeMediaUi = mapToMediaUi(details, shortMediaUi)
 

@@ -18,7 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
 
-    private val latestViewModel : LatestMediaViewModel by viewModel()
+    private val latestViewModel: LatestMediaViewModel by viewModel()
 
     private val getMovieDetails: GetMovieDetailsUseCase by inject()
 
@@ -26,9 +26,11 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerMedia.adapter = MediaAdapter()
-        recyclerMedia.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        recyclerMedia.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
-        val decoration = SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.media_list_item_spacing))
+        val decoration =
+            SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.media_list_item_spacing))
         recyclerMedia.addItemDecoration(decoration)
 
         latestViewModel.mediaItems.observeNotNull(viewLifecycleOwner) {
@@ -38,12 +40,7 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
         latestViewModel.load()
 
         lifecycle.coroutineScope.launch {
-            val a = getMovieDetails(
-                GetMovieDetailsUseCase.TmdbDetailsRequest(
-                    "tt0137523", "fr"
-                )
-            )
-            val b = ""
+            val a = getMovieDetails("tt0137523")
         }
 
     }
