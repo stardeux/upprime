@@ -5,7 +5,13 @@ import com.stardeux.upprime.tmdb.configuration.usecase.model.TmdbConfiguration
 
 class GetTmdbConfigurationUseCase(private val tmdbConfigurationRepository: TmdbConfigurationRepository) {
 
+    private var configuration: TmdbConfiguration? = null
+
     suspend operator fun invoke(): TmdbConfiguration {
+        return configuration ?: fetchConfiguration().also { configuration = it }
+    }
+
+    private suspend fun fetchConfiguration(): TmdbConfiguration {
         val tmdbConfigurationResponse = tmdbConfigurationRepository.configuration()
 
         return with(tmdbConfigurationResponse) {

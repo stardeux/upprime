@@ -28,7 +28,7 @@ import retrofit2.Retrofit
 val tmdbModule = module {
     single { provideTmdbConfigurationApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideTmdbConfigurationRepository(get()) }
-    single { provideGetTmdbConfigurationUseCase(get()) }
+    single { provideGetTmdbConfigurationUseCase(get()) }    //SINGLE to keep configuration cache
 
     single { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideMovieRepository(get()) }
