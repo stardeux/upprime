@@ -1,11 +1,11 @@
 package com.stardeux.upprime.latest.ui.model
 
 import androidx.recyclerview.widget.RecyclerView
-import com.stardeux.upprime.latest.view.MediaCell
+import com.stardeux.upprime.latest.view.MediaItem
 
-class MediaViewHolder(private val mediaCell: MediaCell) : RecyclerView.ViewHolder(mediaCell) {
+class MediaViewHolder(private val mediaItem: MediaItem) : RecyclerView.ViewHolder(mediaItem) {
 
     fun bind(mediaUi: MediaUi) {
-        mediaCell.bind(mediaUi)
+        mediaItem.bind(mediaUi)
     }
 }

@@ -11,7 +11,7 @@ import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.latest.ui.model.MediaUi
 
-class MediaCell : ConstraintLayout {
+class MediaItem : ConstraintLayout {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
