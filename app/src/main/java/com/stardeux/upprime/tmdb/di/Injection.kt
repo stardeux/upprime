@@ -15,6 +15,7 @@ import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.repository.SeriesRepository
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
+import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -38,9 +39,9 @@ val tmdbModule = module {
 
     single { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideSeriesRepository(get()) }
-    single { provideGetSeriesDetailsUseCase(get(), get()) }
+    single { provideGetSeriesDetailsUseCase(get()) }
 
-
+    single { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
 }
 
 private fun provideTmdbSearchApi(retrofit: Retrofit): TmdbSearchApi {
@@ -104,7 +105,15 @@ private fun provideSeriesRepository(tmdbSeriesApi: TmdbSeriesApi): SeriesReposit
 }
 
 private fun provideGetSeriesDetailsUseCase(
-    seriesRepository: SeriesRepository, findSeriesUseCase: FindSeriesUseCase
+    seriesRepository: SeriesRepository
 ): GetSeriesDetailsUseCase {
-    return GetSeriesDetailsUseCase(seriesRepository, findSeriesUseCase)
+    return GetSeriesDetailsUseCase(seriesRepository)
+}
+
+private fun provideGetImdbSeriesDetailsUseCase(
+    findSeriesUseCase: FindSeriesUseCase,
+    searchSeriesUseCase: SearchSeriesUseCase,
+    getSeriesDetailsUseCase: GetSeriesDetailsUseCase
+): GetImdbSeriesDetailsUseCase {
+    return GetImdbSeriesDetailsUseCase(findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase)
 }
