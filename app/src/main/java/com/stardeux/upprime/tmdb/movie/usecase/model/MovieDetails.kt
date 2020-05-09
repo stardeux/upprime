@@ -3,6 +3,7 @@ package com.stardeux.upprime.tmdb.movie.usecase.model
 import org.threeten.bp.LocalDate
 
 data class MovieDetails(
+    val tmdbId: String,
     val imdbId: String,
     val title: String?,
     val posterUrl: String?,

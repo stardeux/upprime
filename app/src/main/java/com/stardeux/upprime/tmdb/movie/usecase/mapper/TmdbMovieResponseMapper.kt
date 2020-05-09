@@ -7,8 +7,9 @@ import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 fun mapToMovieDetails(tmdbMovieDetailsResponse: TmdbMovieDetailsResponse, imdbId: String): MovieDetails {
     return with(tmdbMovieDetailsResponse) {
         MovieDetails(
+            tmdbId = requireNotNull(tmdbId),
             imdbId = imdbId,
-            title = requireNotNull(title),
+            title = title,
             posterUrl = requireNotNull(posterUrl),
             releaseDate = releaseDate?.let { mapTmdbLocalDate(it) },
             runtimeMinutes = runtime,

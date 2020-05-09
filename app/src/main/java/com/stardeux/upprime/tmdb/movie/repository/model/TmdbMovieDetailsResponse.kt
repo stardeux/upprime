@@ -5,6 +5,7 @@ import com.stardeux.upprime.tmdb.common.model.GenreResponse
 import com.stardeux.upprime.tmdb.common.model.ProductionCountriesResponse
 
 data class TmdbMovieDetailsResponse(
+    @SerializedName("id") val tmdbId: String?,
     @SerializedName("imdb_id") val imdbId: String?,
     @SerializedName("title") val title: String?,
     @SerializedName("original_title") val original_title: String?,
