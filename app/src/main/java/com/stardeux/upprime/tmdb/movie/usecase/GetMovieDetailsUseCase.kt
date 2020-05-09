@@ -1,18 +1,27 @@
 package com.stardeux.upprime.tmdb.movie.usecase
 
+import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.movie.repository.TmdbMovieRepository
+import com.stardeux.upprime.tmdb.find.usecase.error.MovieNotFoundException
 import com.stardeux.upprime.tmdb.movie.usecase.mapper.mapToMovieDetails
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 
-class GetMovieDetailsUseCase(private val tmdbMovieRepository: TmdbMovieRepository) {
+class GetMovieDetailsUseCase(
+    private val tmdbMovieRepository: TmdbMovieRepository,
+    private val findMovieUseCase: FindMovieUseCase
+) {
 
-    suspend operator fun invoke(imdbMediaId: String): MovieDetails {
-        try {
-
+    suspend operator fun invoke(imdbMovieId: String): MovieDetails {
+        return try {
+            getMovieDetails(imdbMovieId)
         } catch (exception: Exception) {
-
+            val findMovie = findMovieUseCase.findMovieByImdbId(imdbMovieId)
+            getMovieDetails(findMovie.tmdbId)
         }
-        return mapToMovieDetails(tmdbMovieRepository.getMovieDetails(imdbMediaId, "fr"))
+    }
+
+    private suspend fun getMovieDetails (imdbOrTmdbMovieId: String): MovieDetails {
+        return mapToMovieDetails(tmdbMovieRepository.getMovieDetails(imdbOrTmdbMovieId, "fr"))
     }
 
 }

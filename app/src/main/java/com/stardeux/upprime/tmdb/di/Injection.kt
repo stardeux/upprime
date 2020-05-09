@@ -16,7 +16,7 @@ import retrofit2.Retrofit
 val tmdbModule = module {
     single { provideMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideMovieRepository(get()) }
-    single { provideGetMovieDetailsUseCase(get()) }
+    single { provideGetMovieDetailsUseCase(get(), get()) }
 
     single { provideTmdbFindApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideFindMediaRepository(get()) }
@@ -50,8 +50,11 @@ private fun provideMovieRepository(tmdbMovieApi: TmdbMovieApi): TmdbMovieReposit
     return TmdbMovieRepository(tmdbMovieApi)
 }
 
-private fun provideGetMovieDetailsUseCase(tmdbMovieRepository: TmdbMovieRepository): GetMovieDetailsUseCase {
-    return GetMovieDetailsUseCase(tmdbMovieRepository)
+private fun provideGetMovieDetailsUseCase(
+    tmdbMovieRepository: TmdbMovieRepository,
+    findMovieUseCase: FindMovieUseCase
+): GetMovieDetailsUseCase {
+    return GetMovieDetailsUseCase(tmdbMovieRepository, findMovieUseCase)
 }
 
 
