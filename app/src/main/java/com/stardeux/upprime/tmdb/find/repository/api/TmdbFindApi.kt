@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface FindApi {
+interface TmdbFindApi {
 
     @GET("find/{imdbId}?external_source=imdb_id")
     suspend fun find(
