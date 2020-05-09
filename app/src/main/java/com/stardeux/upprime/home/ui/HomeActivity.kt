@@ -12,7 +12,6 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(toolbar)
-        toolbar.title = "cocou"
 
         supportFragmentManager.commit {
             replace(R.id.mainContent, ReleaseTabListingFragment.newInstance())
