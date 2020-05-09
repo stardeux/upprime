@@ -7,6 +7,11 @@ import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 class GetMovieDetailsUseCase(private val tmdbMovieRepository: TmdbMovieRepository) {
 
     suspend operator fun invoke(imdbMediaId: String): MovieDetails {
+        try {
+
+        } catch (exception: Exception) {
+
+        }
         return mapToMovieDetails(tmdbMovieRepository.getMovieDetails(imdbMediaId, "fr"))
     }
 
