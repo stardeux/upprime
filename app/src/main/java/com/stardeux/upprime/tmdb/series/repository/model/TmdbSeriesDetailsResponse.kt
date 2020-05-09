@@ -3,7 +3,7 @@ package com.stardeux.upprime.tmdb.series.repository.model
 import com.google.gson.annotations.SerializedName
 import com.stardeux.upprime.tmdb.common.model.GenreResponse
 
-data class TmdbSeriesResponse(
+data class TmdbSeriesDetailsResponse(
     @SerializedName("imdb_id") val imdbId: String?,
     @SerializedName("name") val name: String?,
     @SerializedName("original_name") val originalName: String?,
