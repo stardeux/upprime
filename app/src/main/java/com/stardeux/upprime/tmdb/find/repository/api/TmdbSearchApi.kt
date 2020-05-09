@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface TmdbSearchApi {
 
     @GET("search/tv/")
-    suspend fun find(
+    suspend fun searchSeries(
         @Path("query") query: String, @Query("language") language: String
     ): TmdbSearchSeriesResponse
 
