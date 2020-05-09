@@ -41,8 +41,7 @@ fun mapToMediaUi(movieDetails: MovieDetails, shortMediaUi: MediaUi): MediaUi {
             releaseYear = releaseDate?.toString(),
             mainNationality = nationalities?.getOrNull(0),
             rating = averageRating,
-            //TODO dynamically compute base url
-            posterUrl = "https://image.tmdb.org/t/p/w500$posterUrl"
+            posterUrl = posterUrl
         )
     }
 }
@@ -63,8 +62,7 @@ fun mapToMediaUi(seriesDetails: SeriesDetails, shortMediaUi: MediaUi): MediaUi {
             releaseYear = releaseDate?.toString(),
             mainNationality = nationalities?.getOrNull(0),
             rating = averageRating,
-            //TODO dynamically compute base url
-            posterUrl = "https://image.tmdb.org/t/p/w500$posterUrl"
+            posterUrl = posterUrl
         )
     }
 }

@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface TmdbConfigurationApi {
 
-    @GET("/configuration")
-    fun configuration () : TmdbImageConfigurationResponse
+    @GET("configuration")
+    suspend fun configuration () : TmdbImageConfigurationResponse
 }

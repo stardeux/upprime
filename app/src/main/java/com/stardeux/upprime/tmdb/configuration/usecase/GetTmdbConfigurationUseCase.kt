@@ -2,26 +2,30 @@ package com.stardeux.upprime.tmdb.configuration.usecase
 
 import com.stardeux.upprime.tmdb.configuration.repository.TmdbConfigurationRepository
 import com.stardeux.upprime.tmdb.configuration.usecase.model.TmdbConfiguration
+import java.lang.Exception
 
 class GetTmdbConfigurationUseCase(private val tmdbConfigurationRepository: TmdbConfigurationRepository) {
 
     private var configuration: TmdbConfiguration? = null
 
-    @Synchronized suspend operator fun invoke(): TmdbConfiguration {
+    suspend operator fun invoke(): TmdbConfiguration {
         return configuration ?: fetchConfiguration().also { configuration = it }
     }
 
     private suspend fun fetchConfiguration(): TmdbConfiguration {
-        val tmdbConfigurationResponse = tmdbConfigurationRepository.configuration()
+        return try {
+            val tmdbConfigurationResponse = tmdbConfigurationRepository.configuration()
+            with(tmdbConfigurationResponse) {
 
-        return with(tmdbConfigurationResponse) {
-
-            TmdbConfiguration(
-                baseImageUrl = secureBaseUrl ?: baseUrl ?: DEFAULT_CONFIGURATION.baseImageUrl,
-                backdropSizes = backdropSizes ?: DEFAULT_CONFIGURATION.backdropSizes,
-                logoSizes = logoSizes ?: DEFAULT_CONFIGURATION.logoSizes,
-                posterSizes = posterSizes ?: DEFAULT_CONFIGURATION.posterSizes
-            )
+                TmdbConfiguration(
+                    baseImageUrl = secureBaseUrl ?: baseUrl ?: DEFAULT_CONFIGURATION.baseImageUrl,
+                    backdropSizes = backdropSizes ?: DEFAULT_CONFIGURATION.backdropSizes,
+                    logoSizes = logoSizes ?: DEFAULT_CONFIGURATION.logoSizes,
+                    posterSizes = posterSizes ?: DEFAULT_CONFIGURATION.posterSizes
+                )
+            }
+        } catch (exception: Exception) {
+            DEFAULT_CONFIGURATION
         }
     }
 

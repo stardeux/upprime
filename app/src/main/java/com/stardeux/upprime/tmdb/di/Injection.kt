@@ -16,11 +16,13 @@ import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetUnconfiguredMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.repository.SeriesRepository
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
+import com.stardeux.upprime.tmdb.series.usecase.GetUnconfiguredSeriesDetailsUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -32,8 +34,8 @@ val tmdbModule = module {
 
     single { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideMovieRepository(get()) }
-    single { provideGetMovieDetailsUseCase(get()) }
-
+    single { provideGetUnconfiguredMovieDetailsUseCase(get()) }
+    single { provideGetMovieDetailsUseCase(get(), get()) }
     single { provideTmdbFindApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideFindMediaRepository(get()) }
     single { provideFindMovieUseCase(get()) }
@@ -47,7 +49,8 @@ val tmdbModule = module {
 
     single { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
     single { provideSeriesRepository(get()) }
-    single { provideGetSeriesDetailsUseCase(get()) }
+    single { provideGetUnconfiguredSeriesDetailsUseCase(get()) }
+    single { provideGetSeriesDetailUseCase(get(), get()) }
 
     single { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
     single { provideGetImdbMovieDetailsUseCase(get(), get(), get()) }
@@ -112,12 +115,18 @@ private fun provideMovieRepository(tmdbMovieApi: TmdbMovieApi): MovieRepository 
     return MovieRepository(tmdbMovieApi)
 }
 
-private fun provideGetMovieDetailsUseCase(
+private fun provideGetUnconfiguredMovieDetailsUseCase(
     movieRepository: MovieRepository
 ): GetUnconfiguredMovieDetailsUseCase {
     return GetUnconfiguredMovieDetailsUseCase(movieRepository)
 }
 
+private fun provideGetMovieDetailsUseCase(
+    getUnconfiguredMovieDetailsUseCase: GetUnconfiguredMovieDetailsUseCase,
+    configurationUseCase: GetTmdbConfigurationUseCase
+): GetMovieDetailsUseCase {
+    return GetMovieDetailsUseCase(getUnconfiguredMovieDetailsUseCase, configurationUseCase)
+}
 
 private fun provideSeriesApi(retrofit: Retrofit): TmdbSeriesApi {
     return retrofit.create(TmdbSeriesApi::class.java)
@@ -127,10 +136,17 @@ private fun provideSeriesRepository(tmdbSeriesApi: TmdbSeriesApi): SeriesReposit
     return SeriesRepository(tmdbSeriesApi)
 }
 
-private fun provideGetSeriesDetailsUseCase(
+private fun provideGetUnconfiguredSeriesDetailsUseCase(
     seriesRepository: SeriesRepository
+): GetUnconfiguredSeriesDetailsUseCase {
+    return GetUnconfiguredSeriesDetailsUseCase(seriesRepository)
+}
+
+private fun provideGetSeriesDetailUseCase(
+    getUnconfiguredSeriesDetailsUseCase: GetUnconfiguredSeriesDetailsUseCase,
+    configurationUseCase: GetTmdbConfigurationUseCase
 ): GetSeriesDetailsUseCase {
-    return GetSeriesDetailsUseCase(seriesRepository)
+    return GetSeriesDetailsUseCase(getUnconfiguredSeriesDetailsUseCase, configurationUseCase)
 }
 
 private fun provideGetImdbSeriesDetailsUseCase(
@@ -144,9 +160,9 @@ private fun provideGetImdbSeriesDetailsUseCase(
 }
 
 private fun provideGetImdbMovieDetailsUseCase(
-    getUnconfiguredMovieDetailsUseCase: GetUnconfiguredMovieDetailsUseCase,
+    getMovieDetailsUseCase: GetMovieDetailsUseCase,
     findMovieUseCase: FindMovieUseCase,
     searchMovieUseCase: SearchMovieUseCase
 ): GetImdbMovieDetailsUseCase {
-    return GetImdbMovieDetailsUseCase(getUnconfiguredMovieDetailsUseCase, findMovieUseCase, searchMovieUseCase)
+    return GetImdbMovieDetailsUseCase(getMovieDetailsUseCase, findMovieUseCase, searchMovieUseCase)
 }
