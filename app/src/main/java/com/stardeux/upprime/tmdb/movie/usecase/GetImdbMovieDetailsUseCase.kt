@@ -13,9 +13,10 @@ class GetImdbMovieDetailsUseCase(
 
     suspend operator fun invoke(imdbId: String, title: String?): MovieDetails {
         return try {
-            getMovieDetailsUseCase.invoke(imdbId)
+            getMovieDetailsUseCase.invoke(imdbId, null)
         } catch (exception: Exception) {
-            searchMovie(imdbId, title) ?: throw MovieNotFoundException(imdbId)
+            val a = searchMovie(imdbId, title)
+            return a ?: throw MovieNotFoundException(imdbId)
         }
     }
 
@@ -23,12 +24,12 @@ class GetImdbMovieDetailsUseCase(
         //If first request failed, i think that findMovieByImdbId will necessarily fail
         val tmdbId = findMovieUseCase.findMovieByImdbId(imdbId)?.tmdbId
         return if (tmdbId != null) {
-            getMovieDetailsUseCase(tmdbId)
+            getMovieDetailsUseCase(tmdbId, tmdbId)
         } else {
             title?.let {
                 val searchResult = searchMovieUseCase.searchMovie(title)
                 if (searchResult.results.isNotEmpty()) {
-                    getMovieDetailsUseCase(searchResult.results[0].tmdbId)
+                    getMovieDetailsUseCase(imdbId, searchResult.results[0].tmdbId)
                 } else {
                     null
                 }

@@ -43,7 +43,7 @@ val tmdbModule = module {
     single { provideGetSeriesDetailsUseCase(get()) }
 
     single { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
-    single { provideGetImdbMovieDetailsUseCase(get(), get()) }
+    single { provideGetImdbMovieDetailsUseCase(get(), get(), get()) }
 }
 
 private fun provideTmdbSearchApi(retrofit: Retrofit): TmdbSearchApi {
@@ -118,14 +118,14 @@ private fun provideGetImdbSeriesDetailsUseCase(
     getSeriesDetailsUseCase: GetSeriesDetailsUseCase
 ): GetImdbSeriesDetailsUseCase {
     return GetImdbSeriesDetailsUseCase(
-        findSeriesUseCase,
-        searchSeriesUseCase,
-        getSeriesDetailsUseCase
+        findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase
     )
 }
 
 private fun provideGetImdbMovieDetailsUseCase(
-    getMovieDetailsUseCase: GetMovieDetailsUseCase, findMovieUseCase: FindMovieUseCase
+    getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    findMovieUseCase: FindMovieUseCase,
+    searchMovieUseCase: SearchMovieUseCase
 ): GetImdbMovieDetailsUseCase {
-    return GetImdbMovieDetailsUseCase(getMovieDetailsUseCase, findMovieUseCase)
+    return GetImdbMovieDetailsUseCase(getMovieDetailsUseCase, findMovieUseCase, searchMovieUseCase)
 }

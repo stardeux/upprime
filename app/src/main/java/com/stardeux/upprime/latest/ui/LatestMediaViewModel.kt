@@ -15,6 +15,7 @@ import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.math.min
 
 class LatestMediaViewModel(
     private val getLatestUseCase: GetLatestUseCase,
@@ -41,7 +42,7 @@ class LatestMediaViewModel(
     private fun loadNextDetails() {
         shortMediaItems.poll()?.let { currentShortMediaItemsList ->
             viewModelScope.launch {
-                currentShortMediaItemsList.subList(0, 20).forEach { shortMediaUi ->
+                currentShortMediaItemsList.subList(0, min(20,currentShortMediaItemsList.size)).forEach { shortMediaUi ->
                     try {
                         val completeMediaUi = when(shortMediaUi.type) {
                             MediaType.MOVIE -> mapToMediaUi(getImdbMovieDetailsUseCase(shortMediaUi.imdbId, shortMediaUi.title), shortMediaUi)

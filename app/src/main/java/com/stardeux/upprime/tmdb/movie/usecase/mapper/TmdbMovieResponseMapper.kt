@@ -4,10 +4,10 @@ import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
 import com.stardeux.upprime.tmdb.movie.repository.model.TmdbMovieDetailsResponse
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 
-fun mapToMovieDetails(tmdbMovieDetailsResponse: TmdbMovieDetailsResponse): MovieDetails {
+fun mapToMovieDetails(tmdbMovieDetailsResponse: TmdbMovieDetailsResponse, imdbId: String): MovieDetails {
     return with(tmdbMovieDetailsResponse) {
         MovieDetails(
-            imdbId = requireNotNull(imdbId),
+            imdbId = imdbId,
             title = requireNotNull(title),
             posterUrl = requireNotNull(posterUrl),
             releaseDate = releaseDate?.let { mapTmdbLocalDate(it) },

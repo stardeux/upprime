@@ -8,8 +8,9 @@ class GetMovieDetailsUseCase(
     private val movieRepository: MovieRepository
 ) {
 
-    suspend operator fun invoke(imdbOrTmdbMovieId: String): MovieDetails {
-        return mapToMovieDetails(movieRepository.getMovieDetails(imdbOrTmdbMovieId, "fr"))
+    suspend operator fun invoke(imdbId: String, tmdbId: String?): MovieDetails {
+        val id = tmdbId ?: imdbId
+        return mapToMovieDetails(movieRepository.getMovieDetails(id, "fr"), imdbId)
     }
 
 }
