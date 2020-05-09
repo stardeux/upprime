@@ -14,5 +14,6 @@ data class TmdbMovieDetailsResponse(
     @SerializedName("runtime") val runtime: Int?,
     @SerializedName("genres") val genres: List<GenreResponse>?,
     @SerializedName("production_countries") val productionCountries: List<ProductionCountriesResponse>?,
-    @SerializedName("vote_average") val voteAverage: Float?
+    @SerializedName("vote_average") val voteAverage: Float?,
+    @SerializedName("vote_count") val voteCount: Int?
 )

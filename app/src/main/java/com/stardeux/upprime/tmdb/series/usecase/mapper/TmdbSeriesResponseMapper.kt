@@ -15,7 +15,7 @@ fun mapToSeriesDetails(tmdbSeriesDetailsResponse: TmdbSeriesDetailsResponse, imd
             runtimeMinutes = episodeRuntime.getOrNull(0),
             genders = genres?.mapNotNull { it.name },
             nationalities = originCountry,
-            averageRating = voteAverage
+            averageRating = voteAverage?.takeIf { voteCount ?: 0 > 0 }
         )
     }
 }

@@ -4,10 +4,11 @@ import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
 import com.stardeux.upprime.tmdb.movie.repository.model.TmdbMovieDetailsResponse
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 
-fun mapToMovieDetails(tmdbMovieDetailsResponse: TmdbMovieDetailsResponse, imdbId: String): MovieDetails {
+fun mapToMovieDetails(
+    tmdbMovieDetailsResponse: TmdbMovieDetailsResponse, imdbId: String
+): MovieDetails {
     return with(tmdbMovieDetailsResponse) {
-        MovieDetails(
-            tmdbId = requireNotNull(tmdbId),
+        MovieDetails(tmdbId = requireNotNull(tmdbId),
             imdbId = imdbId,
             title = title,
             posterUrl = posterUrl,
@@ -15,7 +16,7 @@ fun mapToMovieDetails(tmdbMovieDetailsResponse: TmdbMovieDetailsResponse, imdbId
             runtimeMinutes = runtime,
             genders = genres?.mapNotNull { it.name },
             nationalities = productionCountries?.mapNotNull { it.name },
-            averageRating = voteAverage
+            averageRating = voteAverage?.takeIf { voteCount ?: 0 > 0 }
         )
     }
 }
