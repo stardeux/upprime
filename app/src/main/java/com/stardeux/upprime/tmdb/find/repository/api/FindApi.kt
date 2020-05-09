@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.find.api
+package com.stardeux.upprime.tmdb.find.repository.api
 
 import com.stardeux.upprime.tmdb.movie.repository.model.TmdbMovieDetailsResponse
 import retrofit2.http.GET

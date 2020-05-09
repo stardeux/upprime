@@ -1,7 +1,7 @@
 package com.stardeux.upprime.tmdb.di
 
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
-import com.stardeux.upprime.tmdb.movie.api.MovieApi
+import com.stardeux.upprime.tmdb.movie.repository.api.MovieApi
 import com.stardeux.upprime.tmdb.movie.repository.TmdbRepository
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.api.SeriesApi
