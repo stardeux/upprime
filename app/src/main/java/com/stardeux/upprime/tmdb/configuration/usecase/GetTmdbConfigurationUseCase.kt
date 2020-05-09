@@ -8,7 +8,7 @@ class GetTmdbConfigurationUseCase(private val tmdbConfigurationRepository: TmdbC
 
     private var configuration: TmdbConfiguration? = null
 
-    suspend operator fun invoke(): TmdbConfiguration {
+    @Synchronized suspend operator fun invoke(): TmdbConfiguration {
         return configuration ?: fetchConfiguration().also { configuration = it }
     }
 
@@ -17,11 +17,13 @@ class GetTmdbConfigurationUseCase(private val tmdbConfigurationRepository: TmdbC
             val tmdbConfigurationResponse = tmdbConfigurationRepository.configuration()
             with(tmdbConfigurationResponse) {
 
+                val posterSizeList = posterSizes ?: DEFAULT_CONFIGURATION.posterSizes
+
                 TmdbConfiguration(
-                    baseImageUrl = secureBaseUrl ?: baseUrl ?: DEFAULT_CONFIGURATION.baseImageUrl,
+                    baseImageUrl = (secureBaseUrl ?: baseUrl ?: DEFAULT_CONFIGURATION.baseImageUrl) + posterSizeList[4],
                     backdropSizes = backdropSizes ?: DEFAULT_CONFIGURATION.backdropSizes,
                     logoSizes = logoSizes ?: DEFAULT_CONFIGURATION.logoSizes,
-                    posterSizes = posterSizes ?: DEFAULT_CONFIGURATION.posterSizes
+                    posterSizes = posterSizeList
                 )
             }
         } catch (exception: Exception) {

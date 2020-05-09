@@ -28,32 +28,32 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val tmdbModule = module {
-    single { provideTmdbConfigurationApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    single { provideTmdbConfigurationRepository(get()) }
-    single { provideGetTmdbConfigurationUseCase(get()) }    //SINGLE to keep configuration cache
+    factory { provideTmdbConfigurationApi(get(named(TMDB_NAMED_QUALIFIER))) }
+    factory { provideTmdbConfigurationRepository(get()) }
+    single { provideGetTmdbConfigurationUseCase(get()) }    //single to keep configuration cache
 
-    single { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    single { provideMovieRepository(get()) }
-    single { provideGetUnconfiguredMovieDetailsUseCase(get()) }
-    single { provideGetMovieDetailsUseCase(get(), get()) }
-    single { provideTmdbFindApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    single { provideFindMediaRepository(get()) }
-    single { provideFindMovieUseCase(get()) }
-    single { provideFindSeriesUseCase(get()) }
+    factory { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
+    factory { provideMovieRepository(get()) }
+    factory { provideGetUnconfiguredMovieDetailsUseCase(get()) }
+    factory { provideGetMovieDetailsUseCase(get(), get()) }
+    factory { provideTmdbFindApi(get(named(TMDB_NAMED_QUALIFIER))) }
+    factory { provideFindMediaRepository(get()) }
+    factory { provideFindMovieUseCase(get()) }
+    factory { provideFindSeriesUseCase(get()) }
 
-    single { provideTmdbSearchApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    single { provideSearchMovieRepository(get()) }
-    single { provideSearchSeriesRepository(get()) }
-    single { provideSearchMovieUseCase(get()) }
-    single { provideSearchSeriesUseCase(get()) }
+    factory { provideTmdbSearchApi(get(named(TMDB_NAMED_QUALIFIER))) }
+    factory { provideSearchMovieRepository(get()) }
+    factory { provideSearchSeriesRepository(get()) }
+    factory { provideSearchMovieUseCase(get()) }
+    factory { provideSearchSeriesUseCase(get()) }
 
-    single { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    single { provideSeriesRepository(get()) }
-    single { provideGetUnconfiguredSeriesDetailsUseCase(get()) }
-    single { provideGetSeriesDetailUseCase(get(), get()) }
+    factory { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
+    factory { provideSeriesRepository(get()) }
+    factory { provideGetUnconfiguredSeriesDetailsUseCase(get()) }
+    factory { provideGetSeriesDetailUseCase(get(), get()) }
 
-    single { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
-    single { provideGetImdbMovieDetailsUseCase(get(), get(), get()) }
+    factory { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
+    factory { provideGetImdbMovieDetailsUseCase(get(), get(), get()) }
 }
 
 
