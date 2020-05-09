@@ -13,7 +13,8 @@ class GetImdbSeriesDetailsUseCase(
 ) {
 
     suspend operator fun invoke(imdbId: String, name: String?): SeriesDetails {
-        val findResults = findSeriesUseCase.findSeriesByImdbId(imdbId) ?: name?.let { searchSeries(it) }
+        val findResults =
+            findSeriesUseCase.findSeriesByImdbId(imdbId) ?: name?.let { searchSeries(it) }
         val tmdbId = findResults?.tmdbId
 
         return tmdbId?.let {
@@ -23,7 +24,16 @@ class GetImdbSeriesDetailsUseCase(
 
     private suspend fun searchSeries(name: String): FindSeries? {
         val searchResult = searchSeriesUseCase.searchSeries(name)
-        return searchResult.results.find { it.name?.toLowerCase() == name.toLowerCase() }
+        return if (searchResult.results.isNotEmpty()) {
+            val matchingTitleIndex =
+                searchResult.results.indexOfFirst { it.name?.toLowerCase() == name.toLowerCase() }
+
+            val index = if (matchingTitleIndex == -1) 0 else matchingTitleIndex
+            searchResult.results[index]
+        } else {
+            null
+        }
+
     }
 
 }

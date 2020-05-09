@@ -29,7 +29,9 @@ class GetImdbMovieDetailsUseCase(
             title?.let {
                 val searchResult = searchMovieUseCase.searchMovie(title)
                 if (searchResult.results.isNotEmpty()) {
-                    getMovieDetailsUseCase(imdbId, searchResult.results[0].tmdbId)
+                    val matchingTitleIndex = searchResult.results.indexOfFirst { it.title?.toLowerCase() == title.toLowerCase() }
+                    val index = if (matchingTitleIndex == -1) 0 else matchingTitleIndex
+                    getMovieDetailsUseCase(imdbId, searchResult.results[index].tmdbId)
                 } else {
                     null
                 }
