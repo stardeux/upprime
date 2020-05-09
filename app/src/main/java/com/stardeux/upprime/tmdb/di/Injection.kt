@@ -6,7 +6,7 @@ import com.stardeux.upprime.tmdb.find.repository.api.TmdbFindApi
 import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
-import com.stardeux.upprime.tmdb.movie.repository.TmdbMovieRepository
+import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.api.SeriesApi
 import org.koin.core.qualifier.named
@@ -46,15 +46,15 @@ private fun provideMovieApi(retrofit: Retrofit): TmdbMovieApi {
     return retrofit.create(TmdbMovieApi::class.java)
 }
 
-private fun provideMovieRepository(tmdbMovieApi: TmdbMovieApi): TmdbMovieRepository {
-    return TmdbMovieRepository(tmdbMovieApi)
+private fun provideMovieRepository(tmdbMovieApi: TmdbMovieApi): MovieRepository {
+    return MovieRepository(tmdbMovieApi)
 }
 
 private fun provideGetMovieDetailsUseCase(
-    tmdbMovieRepository: TmdbMovieRepository,
+    movieRepository: MovieRepository,
     findMovieUseCase: FindMovieUseCase
 ): GetMovieDetailsUseCase {
-    return GetMovieDetailsUseCase(tmdbMovieRepository, findMovieUseCase)
+    return GetMovieDetailsUseCase(movieRepository, findMovieUseCase)
 }
 
 
