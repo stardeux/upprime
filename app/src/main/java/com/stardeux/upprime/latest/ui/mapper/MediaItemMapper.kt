@@ -41,7 +41,7 @@ fun mapToMediaUi(seriesDetails: SeriesDetails, shortMediaUi: MediaUi): MediaUi {
     return with(seriesDetails) {
         MediaUi(
             title = name,
-            type = MediaType.MOVIE,
+            type = MediaType.SERIES,
             amazonId = shortMediaUi.amazonId,
             imdbId = shortMediaUi.imdbId,
             //TODO dynamically compute base url
