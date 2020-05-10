@@ -3,6 +3,7 @@ package com.stardeux.upprime.core.mapper
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.format.FormatStyle
 import org.threeten.bp.temporal.ChronoField
 import java.text.NumberFormat
 import java.util.*
@@ -21,6 +22,10 @@ fun mapRuntimeToString(runtimeMinute: Int): String {
 
 fun mapReleaseDateToYear(localDate: LocalDate): String {
     return localDate.get(ChronoField.YEAR).toString()
+}
+
+fun mapToHumanReadableMonthDay(localDate: LocalDate): String {
+    return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(localDate)
 }
 
 fun mapToRatingString(rating: Float): String {
