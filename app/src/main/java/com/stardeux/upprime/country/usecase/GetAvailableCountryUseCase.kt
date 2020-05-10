@@ -4,7 +4,7 @@ import java.util.*
 
 class GetAvailableCountryUseCase {
 
-    operator fun invoke(): List<String> {
-        return listOf(Locale.US.country, Locale.UK.country, Locale.GERMANY.country)
+    operator fun invoke(): List<Locale> {
+        return listOf(Locale.US, Locale.UK, Locale.GERMANY)
     }
 }

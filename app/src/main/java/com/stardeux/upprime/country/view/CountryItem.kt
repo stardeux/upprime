@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
-import com.stardeux.upprime.country.ui.model.CountryItemUi
+import com.stardeux.upprime.country.ui.model.CountryUi
 
 class CountryItem : ConstraintLayout {
     constructor(context: Context?) : super(context)
@@ -24,15 +24,15 @@ class CountryItem : ConstraintLayout {
         setLayout(R.layout.item_country)
     }
 
-    fun bind(countryItemUi: CountryItemUi) {
-        countryNameTextView.text = countryItemUi.name
+    fun bind(countryUi: CountryUi) {
+        countryNameTextView.text = countryUi.name
         with(Glide.with(context)) {
             clear(countryNameTextView)
-            load(countryItemUi.flagUrl).into(flagImageView)
+            load(countryUi.flagUrl).into(flagImageView)
         }
 
         setOnClickListener {
-            countryItemUi.onCountryClicked(countryItemUi)
+            countryUi.onCountryClicked(countryUi)
         }
     }
 }
