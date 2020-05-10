@@ -4,26 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    tools:parentTag="androidx.cardview.widget.CardView">
 
-    <ImageView
-        android:id="@+id/countryFlag"
-        android:layout_width="@dimen/item_country_flag_size"
-        android:layout_height="@dimen/item_country_flag_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/countryName"
-        android:layout_width="0dp"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/item_country_name_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/countryFlag"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="USA" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/countryFlag"
+            android:layout_width="@dimen/item_country_flag_size"
+            android:layout_height="@dimen/item_country_flag_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/countryName"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_country_name_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/countryFlag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="USA" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

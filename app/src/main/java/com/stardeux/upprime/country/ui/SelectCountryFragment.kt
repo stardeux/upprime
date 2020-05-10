@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
+import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import com.stardeux.upprime.country.ui.adapter.CountryAdapter
 import com.stardeux.upprime.country.ui.model.CountryUi
 import kotlinx.android.synthetic.main.fragment_country.*
+import kotlinx.android.synthetic.main.fragment_media_listing.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SelectCountryFragment : Fragment(R.layout.fragment_country) {
@@ -22,6 +24,10 @@ class SelectCountryFragment : Fragment(R.layout.fragment_country) {
         with(countriesRecycler) {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = CountryAdapter()
+
+            val decoration =
+                SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.country_list_item_spacing))
+            addItemDecoration(decoration)
         }
 
         selectCountryViewModel.countries.observeNotNull(viewLifecycleOwner, ::onCountries)

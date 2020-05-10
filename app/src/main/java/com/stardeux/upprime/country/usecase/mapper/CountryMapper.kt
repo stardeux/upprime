@@ -7,7 +7,7 @@ import java.util.*
 fun mapToCountryUi(locale: Locale, flagUrl : Uri, onCountryClicked : (CountryUi) -> Unit): CountryUi {
     return CountryUi(
         locale = locale,
-        name = locale.displayName,
+        name = locale.displayCountry,
         flagUrl = flagUrl,
         onCountryClicked = onCountryClicked
     )

@@ -5,16 +5,18 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.country.ui.model.CountryUi
 
-class CountryItem : ConstraintLayout {
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+class CountryItem : CardView {
+
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context, attrs, defStyleAttr
     )
 
