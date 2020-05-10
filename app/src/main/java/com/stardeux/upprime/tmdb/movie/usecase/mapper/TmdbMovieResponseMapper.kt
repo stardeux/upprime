@@ -17,7 +17,7 @@ fun mapToMovieDetails(
             title = title,
             posterUrl = posterUrl,
             mediaReleaseDate = releaseDate?.let { mapTmdbLocalDate(it) },
-            runtimeMinutes = runtime,
+            runtimeMinutes = runtime?.takeIf { it > 0 },
             genders = genres?.mapNotNull { it.name },
             nationalities = productionCountries?.mapNotNull { it.name },
             averageRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },

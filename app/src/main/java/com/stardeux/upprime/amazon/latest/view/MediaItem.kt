@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.amazon.common.view.MediaUi
+import com.stardeux.upprime.core.extension.setTextAndVisibility
 
 class MediaItem : CardView {
 
@@ -39,11 +41,11 @@ class MediaItem : CardView {
     }
 
     fun bind(mediaUi: MediaUi) {
-        title.text = mediaUi.title
-        firstInfo.text = computeText(context.getString(mediaUi.mediaTypeStringRes), mediaUi.runtime, " ")
-        secondInfo.text = computeText(mediaUi.mainNationality, mediaUi.mediaReleaseYear, " ")
-        thirdInfo.text = mediaUi.mainGenre
-        ratings.text = mediaUi.rating
+        title.setTextAndVisibility(mediaUi.title)
+        firstInfo.setTextAndVisibility(computeText(context.getString(mediaUi.mediaTypeStringRes), mediaUi.runtime, " "))
+        secondInfo.setTextAndVisibility(computeText(mediaUi.mainNationality, mediaUi.mediaReleaseYear, " "))
+        thirdInfo.setTextAndVisibility(mediaUi.mainGenre)
+        ratings.setTextAndVisibility(mediaUi.rating)
 
         with(Glide.with(this)) {
             clear(poster)

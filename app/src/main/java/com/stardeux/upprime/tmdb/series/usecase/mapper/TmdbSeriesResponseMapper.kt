@@ -5,7 +5,10 @@ import com.stardeux.upprime.tmdb.common.request.TmdbSeriesRequest
 import com.stardeux.upprime.tmdb.series.repository.model.TmdbSeriesDetailsResponse
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
-fun mapToSeriesDetails(tmdbSeriesDetailsResponse: TmdbSeriesDetailsResponse, tmdbSeriesRequest: TmdbSeriesRequest): SeriesDetails {
+fun mapToSeriesDetails(
+    tmdbSeriesDetailsResponse: TmdbSeriesDetailsResponse,
+    tmdbSeriesRequest: TmdbSeriesRequest
+): SeriesDetails {
     return with(tmdbSeriesDetailsResponse) {
         SeriesDetails(
             tmdbId = requireNotNull(tmdbId),
@@ -14,7 +17,7 @@ fun mapToSeriesDetails(tmdbSeriesDetailsResponse: TmdbSeriesDetailsResponse, tmd
             name = requireNotNull(name),
             posterUrl = requireNotNull(posterUrl),
             mediaReleaseDate = firstAirDate?.let { mapTmdbLocalDate(it) },
-            runtimeMinutes = episodeRuntime.getOrNull(0),
+            runtimeMinutes = episodeRuntime.firstOrNull { (it ?: 0) > 0 },
             genders = genres?.mapNotNull { it.name },
             nationalities = originCountry,
             averageRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
