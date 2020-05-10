@@ -12,7 +12,7 @@ import com.stardeux.upprime.latest.view.MediaItem
 
 class MediaAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(
     createAsyncDifferConfig(
-        MediaUiDiffUtil()
+        MediaAdapterDiffUtil()
     )
 ) {
 
