@@ -16,6 +16,7 @@ class MediaAdapterDiffUtil : DiffUtil.ItemCallback<Any>() {
         }
     }
 
+    @Suppress("USELESS_CAST")
     override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean {
         return if (oldItem is MediaUi && newItem is MediaUi) {
             oldItem as MediaUi == newItem as MediaUi

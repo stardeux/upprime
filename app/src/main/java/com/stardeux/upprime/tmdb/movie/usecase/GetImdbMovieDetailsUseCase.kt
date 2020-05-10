@@ -1,5 +1,7 @@
 package com.stardeux.upprime.tmdb.movie.usecase
 
+import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
+import com.stardeux.upprime.tmdb.common.request.mapToTmdbMovieRequest
 import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.error.MovieNotFoundException
@@ -11,27 +13,29 @@ class GetImdbMovieDetailsUseCase(
     private val searchMovieUseCase: SearchMovieUseCase
 ) {
 
-    suspend operator fun invoke(imdbId: String, title: String?): MovieDetails {
+    suspend operator fun invoke(imdbMediaRequest: ImdbMediaRequest): MovieDetails {
         return try {
-            getMovieDetailsUseCase.invoke(imdbId, null)
+            getMovieDetailsUseCase.invoke(mapToTmdbMovieRequest(imdbMediaRequest, null))
         } catch (exception: Exception) {
-            val a = searchMovie(imdbId, title)
-            return a ?: throw MovieNotFoundException(imdbId)
+            val a = searchMovie(imdbMediaRequest)
+            return a ?: throw MovieNotFoundException(imdbMediaRequest.imdbId)
         }
     }
 
-    private suspend fun searchMovie(imdbId: String, title: String?): MovieDetails? {
+    private suspend fun searchMovie(imdbMediaRequest: ImdbMediaRequest): MovieDetails? {
         //If first request failed, i think that findMovieByImdbId will necessarily fail
-        val tmdbId = findMovieUseCase.findMovieByImdbId(imdbId)?.tmdbId
+        val tmdbId = findMovieUseCase.findMovieByImdbId(imdbMediaRequest.imdbId)?.tmdbId
         return if (tmdbId != null) {
-            getMovieDetailsUseCase(imdbId, tmdbId)
+            getMovieDetailsUseCase(mapToTmdbMovieRequest(imdbMediaRequest, tmdbId))
         } else {
-            title?.let {
-                val searchResult = searchMovieUseCase.searchMovie(title)
+            imdbMediaRequest.name?.let { name ->
+                val searchResult = searchMovieUseCase.searchMovie(name)
                 if (searchResult.results.isNotEmpty()) {
-                    val matchingTitleIndex = searchResult.results.indexOfFirst { it.title?.toLowerCase() == title.toLowerCase() }
+                    val matchingTitleIndex =
+                        searchResult.results.indexOfFirst { it.title?.toLowerCase() == name.toLowerCase() }
                     val index = if (matchingTitleIndex == -1) 0 else matchingTitleIndex
-                    getMovieDetailsUseCase(imdbId, searchResult.results[index].tmdbId)
+
+                    getMovieDetailsUseCase(mapToTmdbMovieRequest(imdbMediaRequest, searchResult.results[index].tmdbId))
                 } else {
                     null
                 }

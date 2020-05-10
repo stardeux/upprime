@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.latest.ui.model.MediaUi
-import kotlinx.android.synthetic.main.latest_media_item.view.*
 
 class MediaItem : ConstraintLayout {
     constructor(context: Context?) : super(context)
@@ -39,7 +38,7 @@ class MediaItem : ConstraintLayout {
 
     fun bind(mediaUi: MediaUi) {
         title.text = mediaUi.title
-        dates.text = mediaUi.releaseYear + " " + mediaUi.runtime
+        dates.text = mediaUi.releaseDate + " " + mediaUi.runtime
         gender.text = context.getString(mediaUi.mediaTypeStringRes) + " " + mediaUi.mainGenre + " " + mediaUi.mainNationality
         ratings.text = mediaUi.rating?.toString()
 

@@ -6,3 +6,7 @@ import org.threeten.bp.format.DateTimeFormatter
 fun mapTmdbLocalDate(localDate: String): LocalDate {
     return DateTimeFormatter.ISO_LOCAL_DATE.parse(localDate, LocalDate::from)
 }
+
+fun mapAmazonLocalDate(localDate: String): LocalDate {
+    return DateTimeFormatter.ISO_LOCAL_DATE.parse(localDate, LocalDate::from)
+}

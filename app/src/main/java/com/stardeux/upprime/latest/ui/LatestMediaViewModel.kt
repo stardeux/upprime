@@ -1,14 +1,13 @@
 package com.stardeux.upprime.latest.ui
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.latest.ui.mapper.mapToMediaUi
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
+import com.stardeux.upprime.latest.usecase.model.Media
+import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import kotlinx.coroutines.launch
@@ -24,7 +23,12 @@ class LatestMediaViewModel(
     private val _mediaItems = MutableLiveData<List<MediaUi>>()
     val mediaItems: LiveData<List<MediaUi>> = _mediaItems
 
-    private val shortMediaItems = LinkedList<List<MediaUi>>()
+    /*
+    val datedMediaItems = Transformations.map(_mediaItems) {
+        groupByDate(it)
+    }*/
+
+    private val shortMediaItems = LinkedList<List<Media>>()
 
     fun load() {
         viewModelScope.launch {
@@ -32,7 +36,7 @@ class LatestMediaViewModel(
             val mediaUi = result.media.map(::mapToMediaUi)
             _mediaItems.value = mediaUi
 
-            shortMediaItems.add(mediaUi)
+            shortMediaItems.add(result.media)
             loadNextDetails()
         }
     }
@@ -40,11 +44,11 @@ class LatestMediaViewModel(
     private fun loadNextDetails() {
         shortMediaItems.poll()?.let { currentShortMediaItemsList ->
             viewModelScope.launch {
-                currentShortMediaItemsList.subList(0, min(2,currentShortMediaItemsList.size)).forEach { shortMediaUi ->
+                currentShortMediaItemsList.subList(0, min(2,currentShortMediaItemsList.size)).forEach { shortMedia ->
                     try {
-                        val completeMediaUi = when(shortMediaUi.type) {
-                            MediaType.MOVIE -> mapToMediaUi(getImdbMovieDetailsUseCase(shortMediaUi.imdbId, shortMediaUi.title), shortMediaUi)
-                            MediaType.SERIES -> mapToMediaUi(getImdbSeriesDetailsUseCase(shortMediaUi.imdbId, shortMediaUi.title), shortMediaUi)
+                        val completeMediaUi = when(shortMedia.type) {
+                            MediaType.MOVIE -> mapToMediaUi(getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia)))
+                            MediaType.SERIES -> mapToMediaUi(getImdbSeriesDetailsUseCase(mapToImdbMediaRequest(shortMedia)))
                         }
 
                         val currentList = _mediaItems.value?.toMutableList()
@@ -55,7 +59,7 @@ class LatestMediaViewModel(
 
                         _mediaItems.value = currentList
                     } catch (exception: Exception) {
-                        Log.e("Unfound", "ImdbId = ${shortMediaUi.imdbId}", exception)
+                        Log.e("Unfound", "ImdbId = ${shortMedia.imdbId}", exception)
                     }
                 }
             }

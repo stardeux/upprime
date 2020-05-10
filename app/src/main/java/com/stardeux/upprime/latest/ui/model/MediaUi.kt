@@ -15,10 +15,11 @@ data class MediaUi(
     val type: MediaType,
     val runtime: String?,
     val mainGenre: String?,
-    val releaseYear: String?,
+    val releaseDate: String?,
     val mainNationality: String?,
     val rating: Float?,
-    val posterUrl: String?
+    val posterUrl: String?,
+    val amazonReleaseDate: String
 ) {
     @StringRes
     val mediaTypeStringRes = mapToStringId(type)
