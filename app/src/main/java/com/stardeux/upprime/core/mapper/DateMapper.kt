@@ -28,5 +28,5 @@ fun mapToRatingString(rating: Float): String {
         maximumFractionDigits = 1
         minimumFractionDigits = 0
     }
-    return numberFormat.format(rating)
+    return numberFormat.format(rating) + " / 10"
 }

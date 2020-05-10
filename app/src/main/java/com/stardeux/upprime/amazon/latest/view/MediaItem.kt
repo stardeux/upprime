@@ -49,15 +49,15 @@ class MediaItem : CardView {
             clear(poster)
 
             mediaUi.posterUrl?.let {
-                load(it).error(R.drawable.ic_error_black_24dp).into(poster)
+                load(it).centerCrop().error(R.drawable.ic_error_black_24dp).into(poster)
             }
         }
     }
 
-    private fun computeText(firstText: String?, secondText: String?, separator: String) : String {
+    private fun computeText(firstText: String?, secondText: String?, separator: String) : String? {
         return if (firstText != null && secondText != null) {
             "$firstText $separator $secondText"
-        } else firstText ?: separator
+        } else firstText ?: secondText
     }
 
 }
