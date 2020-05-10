@@ -2,7 +2,7 @@ package com.stardeux.upprime.app
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.stardeux.upprime.latest.di.latestModule
+import com.stardeux.upprime.amazon.latest.di.latestModule
 import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
 import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
 import com.stardeux.upprime.tmdb.di.tmdbModule
