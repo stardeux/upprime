@@ -59,7 +59,7 @@ fun mapToMediaUi(seriesDetails: SeriesDetails): MediaUi {
             tmdbId = tmdbId,
             title = name,
             type = MediaType.SERIES,
-            runtime = runtimeMinutes?.let { mapRuntimeToString(runtimeMinutes) },
+            runtime = runtimeMinutes?.let { mapRuntimeToString(it) },
             mainGenre = genders?.getOrNull(0),
             mediaReleaseYear = mediaReleaseDate?.let { mapReleaseDateToYear(it) },
             mainNationality = nationalities?.getOrNull(0),
