@@ -1,9 +1,9 @@
-package com.stardeux.upprime.amazon.common.model.domain
+package com.stardeux.upprime.amazon.common.usecase.model
 
 import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
 import com.stardeux.upprime.core.mapper.mapToMediaType
-import com.stardeux.upprime.amazon.common.model.response.MediaResponse
-import com.stardeux.upprime.amazon.common.model.response.MediaPageResponse
+import com.stardeux.upprime.amazon.common.repository.model.MediaResponse
+import com.stardeux.upprime.amazon.common.repository.model.MediaPageResponse
 
 fun mapToMediaItem(mediaResponse: MediaResponse): Media {
     return Media(

@@ -2,8 +2,8 @@ package com.stardeux.upprime.amazon.latest.repository
 
 import com.google.gson.Gson
 import com.stardeux.upprime.amazon.latest.repository.api.LatestApi
-import com.stardeux.upprime.amazon.common.model.response.MediaPageResponse
-import com.stardeux.upprime.amazon.common.model.request.AmazonMediaRequest
+import com.stardeux.upprime.amazon.common.repository.model.MediaPageResponse
+import com.stardeux.upprime.amazon.common.usecase.model.AmazonMediaRequest
 
 class LatestMediaRepository(private val latestApi: LatestApi) {
 

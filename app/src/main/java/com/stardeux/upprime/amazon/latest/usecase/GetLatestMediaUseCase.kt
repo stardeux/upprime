@@ -1,9 +1,9 @@
 package com.stardeux.upprime.amazon.latest.usecase
 
 import com.stardeux.upprime.amazon.latest.repository.LatestMediaRepository
-import com.stardeux.upprime.amazon.common.model.request.AmazonMediaRequest
-import com.stardeux.upprime.amazon.common.model.domain.mapToMediaPage
-import com.stardeux.upprime.amazon.common.model.domain.MediaPage
+import com.stardeux.upprime.amazon.common.usecase.model.AmazonMediaRequest
+import com.stardeux.upprime.amazon.common.usecase.model.mapToMediaPage
+import com.stardeux.upprime.amazon.common.usecase.model.MediaPage
 
 class GetLatestMediaUseCase(private val latestMediaRepository: LatestMediaRepository) {
 
@@ -14,9 +14,7 @@ class GetLatestMediaUseCase(private val latestMediaRepository: LatestMediaReposi
         //TODO inject country
         val request =
             AmazonMediaRequest(
-                "gb",
-                30,
-                currentPage
+                "gb", 30, currentPage
             )
         return mapToMediaPage(
             latestMediaRepository.getNew(request)

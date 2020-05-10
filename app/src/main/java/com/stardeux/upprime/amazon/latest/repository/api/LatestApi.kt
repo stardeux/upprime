@@ -1,6 +1,6 @@
 package com.stardeux.upprime.amazon.latest.repository.api
 
-import com.stardeux.upprime.amazon.common.model.response.MediaPageResponse
+import com.stardeux.upprime.amazon.common.repository.model.MediaPageResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

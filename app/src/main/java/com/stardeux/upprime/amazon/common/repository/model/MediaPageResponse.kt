@@ -1,4 +1,4 @@
-package com.stardeux.upprime.amazon.common.model.response
+package com.stardeux.upprime.amazon.common.repository.model
 
 import com.google.gson.annotations.SerializedName
 

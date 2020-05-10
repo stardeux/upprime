@@ -1,6 +1,6 @@
 package com.stardeux.upprime.amazon.latest.ui
 
-import com.stardeux.upprime.amazon.common.model.domain.MediaPage
+import com.stardeux.upprime.amazon.common.usecase.model.MediaPage
 import com.stardeux.upprime.amazon.common.ui.AmazonMediaViewModel
 import com.stardeux.upprime.amazon.latest.usecase.GetLatestMediaUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase

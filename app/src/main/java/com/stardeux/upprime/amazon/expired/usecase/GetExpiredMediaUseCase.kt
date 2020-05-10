@@ -1,9 +1,9 @@
 package com.stardeux.upprime.amazon.expired.usecase
 
-import com.stardeux.upprime.amazon.common.model.request.AmazonMediaRequest
+import com.stardeux.upprime.amazon.common.usecase.model.AmazonMediaRequest
 import com.stardeux.upprime.amazon.expired.repository.ExpiredMediaRepository
-import com.stardeux.upprime.amazon.common.model.domain.mapToMediaPage
-import com.stardeux.upprime.amazon.common.model.domain.MediaPage
+import com.stardeux.upprime.amazon.common.usecase.model.mapToMediaPage
+import com.stardeux.upprime.amazon.common.usecase.model.MediaPage
 
 class GetExpiredMediaUseCase(private val expiredMediaRepository: ExpiredMediaRepository) {
 
@@ -14,9 +14,7 @@ class GetExpiredMediaUseCase(private val expiredMediaRepository: ExpiredMediaRep
         //TODO inject country
         val request =
             AmazonMediaRequest(
-                "gb",
-                30,
-                currentPage
+                "gb", 30, currentPage
             )
         return mapToMediaPage(
             expiredMediaRepository.getExpired(request)

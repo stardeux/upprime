@@ -1,8 +1,8 @@
-package com.stardeux.upprime.amazon.common.model.ui
+package com.stardeux.upprime.amazon.common.view
 
 import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.model.MediaType
-import com.stardeux.upprime.amazon.common.model.domain.Media
+import com.stardeux.upprime.amazon.common.usecase.model.Media
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 

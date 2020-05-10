@@ -1,4 +1,4 @@
-package com.stardeux.upprime.amazon.common.model.domain
+package com.stardeux.upprime.amazon.common.usecase.model
 
 import com.stardeux.upprime.core.model.AmazonId
 import com.stardeux.upprime.core.model.ImdbId

@@ -1,4 +1,4 @@
-package com.stardeux.upprime.amazon.common.model.request
+package com.stardeux.upprime.amazon.common.usecase.model
 
 data class AmazonMediaRequest(
     val country: String,

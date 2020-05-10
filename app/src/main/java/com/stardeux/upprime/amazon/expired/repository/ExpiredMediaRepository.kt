@@ -1,8 +1,8 @@
 package com.stardeux.upprime.amazon.expired.repository
 
 import com.google.gson.Gson
-import com.stardeux.upprime.amazon.common.model.request.AmazonMediaRequest
-import com.stardeux.upprime.amazon.common.model.response.MediaPageResponse
+import com.stardeux.upprime.amazon.common.usecase.model.AmazonMediaRequest
+import com.stardeux.upprime.amazon.common.repository.model.MediaPageResponse
 import com.stardeux.upprime.amazon.expired.repository.api.ExpiredApi
 
 class ExpiredMediaRepository(private val expiredApi: ExpiredApi) {
