@@ -11,6 +11,7 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.math.min
@@ -20,8 +21,12 @@ abstract class AmazonMediaViewModel(
     private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ) : ViewModel() {
 
+
     private val _mediaItems = MutableLiveData<List<MediaUi>>()
     val mediaItems: LiveData<List<MediaUi>> = _mediaItems
+
+    private val _loadingDataState = MutableLiveData<DataLoading>()
+    val loadingDataState: LiveData<DataLoading> = _loadingDataState
 
     val datedMediaItems: LiveData<List<Any>> = Transformations.map(_mediaItems) { medias ->
         val groupedMedia = medias.groupBy { it.amazonReleaseDate }
@@ -43,10 +48,20 @@ abstract class AmazonMediaViewModel(
     private val shortMediaItems = LinkedList<List<Media>>()
 
     fun load() {
-        viewModelScope.launch {
+        if (_mediaItems.value?.isEmpty() == true) {
+            _loadingDataState.value = DataLoading.Loading
+        }
+
+        val errorHandler = CoroutineExceptionHandler { _, exception ->
+            Log.e("Loading Error", "loading failed", exception)
+            _loadingDataState.value = DataLoading.Error
+        }
+
+        viewModelScope.launch(errorHandler) {
             val result = getAmazonMedia()
             val mediaUi = result.media.map(::mapToMediaUi)
             _mediaItems.value = mediaUi
+            _loadingDataState.value = DataLoading.Success
 
             shortMediaItems.add(result.media)
             loadNextDetails()
@@ -87,5 +102,11 @@ abstract class AmazonMediaViewModel(
         }
     }
 
-    abstract suspend fun getAmazonMedia() : MediaPage
+    sealed class DataLoading {
+        object Loading : DataLoading()
+        object Success : DataLoading()
+        object Error : DataLoading()
+    }
+
+    abstract suspend fun getAmazonMedia(): MediaPage
 }
