@@ -7,17 +7,9 @@ import com.stardeux.upprime.amazon.common.usecase.model.MediaPage
 
 class GetLatestMediaUseCase(private val latestMediaRepository: LatestMediaRepository) {
 
-    private var currentPage = 0
-
-    suspend fun getLatest(): MediaPage {
-        currentPage++
+    suspend fun getLatest(page: Int): MediaPage {
         //TODO inject country
-        val request =
-            AmazonMediaRequest(
-                "gb", 30, currentPage
-            )
-        return mapToMediaPage(
-            latestMediaRepository.getNew(request)
-        )
+        val request = AmazonMediaRequest("gb", 30, page)
+        return mapToMediaPage(latestMediaRepository.getNew(request))
     }
 }

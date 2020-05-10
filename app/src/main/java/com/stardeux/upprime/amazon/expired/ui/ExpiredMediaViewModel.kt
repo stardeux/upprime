@@ -12,7 +12,7 @@ class ExpiredMediaViewModel(
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ) : AmazonMediaViewModel(getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase) {
 
-    override suspend fun getAmazonMedia(): MediaPage {
-        return getExpiredMediaUseCase.getExpired()
+    override suspend fun getAmazonMedia(page: Int): MediaPage {
+        return getExpiredMediaUseCase.getExpired(page)
     }
 }

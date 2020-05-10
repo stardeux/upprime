@@ -7,17 +7,8 @@ import com.stardeux.upprime.amazon.common.usecase.model.MediaPage
 
 class GetExpiredMediaUseCase(private val expiredMediaRepository: ExpiredMediaRepository) {
 
-    private var currentPage = 0
-
-    suspend fun getExpired(): MediaPage {
-        currentPage++
-        //TODO inject country
-        val request =
-            AmazonMediaRequest(
-                "gb", 30, currentPage
-            )
-        return mapToMediaPage(
-            expiredMediaRepository.getExpired(request)
-        )
+    suspend fun getExpired(page: Int): MediaPage {
+        val request = AmazonMediaRequest("gb", 30, page)
+        return mapToMediaPage(expiredMediaRepository.getExpired(request))
     }
 }

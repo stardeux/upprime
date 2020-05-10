@@ -12,7 +12,7 @@ class LatestMediaViewModel(
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ) : AmazonMediaViewModel(getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase) {
 
-    override suspend fun getAmazonMedia(): MediaPage {
-        return getLatestMediaUseCase.getLatest()
+    override suspend fun getAmazonMedia(page: Int): MediaPage {
+        return getLatestMediaUseCase.getLatest(page)
     }
 }

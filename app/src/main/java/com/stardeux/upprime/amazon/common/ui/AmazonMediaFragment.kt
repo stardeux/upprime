@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.amazon.latest.ui.adapter.MediaAdapter
 import com.stardeux.upprime.core.extension.observeNotNull
+import com.stardeux.upprime.core.ui.EndlessRecyclerViewScrollListener
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import kotlinx.android.synthetic.main.fragment_media_listing.*
 
@@ -19,9 +20,15 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val linearLayoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         mediaListingRecycler.adapter = MediaAdapter()
-        mediaListingRecycler.layoutManager =
-            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        mediaListingRecycler.layoutManager = linearLayoutManager
+
+        mediaListingRecycler.addOnScrollListener(object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                latestViewModel.loadNext()
+            }
+        })
 
         val decoration =
             SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.media_list_item_spacing))
@@ -33,7 +40,7 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
 
         latestViewModel.loadingDataState.observeNotNull(viewLifecycleOwner, ::onDataLoadingState)
 
-        latestViewModel.load()
+        latestViewModel.loadNext()
     }
 
     private fun onDataLoadingState(dataLoading: AmazonMediaViewModel.DataLoading) {

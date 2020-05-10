@@ -47,7 +47,9 @@ abstract class AmazonMediaViewModel(
 
     private val shortMediaItems = LinkedList<List<Media>>()
 
-    fun load() {
+    private var page = 0
+
+    fun loadNext() {
         if (_mediaItems.value?.isEmpty() == true) {
             _loadingDataState.value = DataLoading.Loading
         }
@@ -58,9 +60,11 @@ abstract class AmazonMediaViewModel(
         }
 
         viewModelScope.launch(errorHandler) {
-            val result = getAmazonMedia()
+            page++
+            val result = getAmazonMedia(page)
             val mediaUi = result.media.map(::mapToMediaUi)
-            _mediaItems.value = mediaUi
+            _mediaItems.value =  (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
+
             _loadingDataState.value = DataLoading.Success
 
             shortMediaItems.add(result.media)
@@ -108,5 +112,5 @@ abstract class AmazonMediaViewModel(
         object Error : DataLoading()
     }
 
-    abstract suspend fun getAmazonMedia(): MediaPage
+    abstract suspend fun getAmazonMedia(page: Int): MediaPage
 }
