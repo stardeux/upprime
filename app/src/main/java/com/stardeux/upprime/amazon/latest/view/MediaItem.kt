@@ -21,6 +21,7 @@ class MediaItem : ConstraintLayout {
     private val title: TextView by lazy { findViewById<TextView>(R.id.title) }
     private val dates: TextView by lazy { findViewById<TextView>(R.id.dates) }
     private val gender: TextView by lazy { findViewById<TextView>(R.id.gender) }
+    private val nationality: TextView by lazy { findViewById<TextView>(R.id.nationality) }
     private val ratings: TextView by lazy { findViewById<TextView>(R.id.ratings) }
     private val poster: ImageView by lazy { findViewById<ImageView>(R.id.poster) }
 
@@ -39,7 +40,8 @@ class MediaItem : ConstraintLayout {
     fun bind(mediaUi: MediaUi) {
         title.text = mediaUi.title
         dates.text = computeDateText(mediaUi.mediaReleaseYear, mediaUi.runtime)
-        gender.text = context.getString(mediaUi.mediaTypeStringRes) + " " + mediaUi.mainGenre + " " + mediaUi.mainNationality
+        gender.text = context.getString(mediaUi.mediaTypeStringRes) + " " + mediaUi.mainGenre
+        nationality.text = mediaUi.mainNationality
         ratings.text = mediaUi.rating?.toString()
 
         with(Glide.with(this)) {
