@@ -1,8 +1,8 @@
 package com.stardeux.upprime.amazon.latest.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.stardeux.upprime.amazon.latest.ui.model.DateSeparatorUi
-import com.stardeux.upprime.amazon.latest.ui.model.MediaUi
+import com.stardeux.upprime.amazon.common.model.ui.DateSeparatorUi
+import com.stardeux.upprime.amazon.common.model.ui.MediaUi
 
 class MediaAdapterDiffUtil : DiffUtil.ItemCallback<Any>() {
 

@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.core.extension.createAsyncDifferConfig
 import com.stardeux.upprime.core.extension.exhaustive
-import com.stardeux.upprime.amazon.latest.ui.model.DateSeparatorUi
-import com.stardeux.upprime.amazon.latest.ui.model.MediaUi
+import com.stardeux.upprime.amazon.common.model.ui.DateSeparatorUi
+import com.stardeux.upprime.amazon.common.model.ui.MediaUi
 import com.stardeux.upprime.amazon.latest.view.DateSeparatorItem
 import com.stardeux.upprime.amazon.latest.view.MediaItem
 

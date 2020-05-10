@@ -1,4 +1,4 @@
-package com.stardeux.upprime.amazon.latest.ui.model
+package com.stardeux.upprime.amazon.common.model.ui
 
 import androidx.annotation.StringRes
 import com.stardeux.upprime.core.mapper.mapToStringId

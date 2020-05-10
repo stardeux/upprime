@@ -9,7 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
-import com.stardeux.upprime.amazon.latest.ui.model.MediaUi
+import com.stardeux.upprime.amazon.common.model.ui.MediaUi
 
 class MediaItem : ConstraintLayout {
     constructor(context: Context?) : super(context)

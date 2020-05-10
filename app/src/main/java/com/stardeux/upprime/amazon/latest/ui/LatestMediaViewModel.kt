@@ -3,9 +3,9 @@ package com.stardeux.upprime.amazon.latest.ui
 import android.util.Log
 import androidx.lifecycle.*
 import com.stardeux.upprime.core.model.MediaType
-import com.stardeux.upprime.amazon.latest.ui.mapper.mapToMediaUi
-import com.stardeux.upprime.amazon.latest.ui.model.DateSeparatorUi
-import com.stardeux.upprime.amazon.latest.ui.model.MediaUi
+import com.stardeux.upprime.amazon.common.model.ui.mapToMediaUi
+import com.stardeux.upprime.amazon.common.model.ui.DateSeparatorUi
+import com.stardeux.upprime.amazon.common.model.ui.MediaUi
 import com.stardeux.upprime.amazon.latest.usecase.GetLatestMediaUseCase
 import com.stardeux.upprime.amazon.common.model.domain.Media
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
@@ -30,7 +30,11 @@ class LatestMediaViewModel(
         val orderedMedia = mutableListOf<Any>()
 
         groupedMedia.keys.forEach {
-            orderedMedia.add(DateSeparatorUi(it))
+            orderedMedia.add(
+                DateSeparatorUi(
+                    it
+                )
+            )
             orderedMedia.addAll(groupedMedia.getValue(it))
         }
 
