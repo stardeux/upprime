@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <ImageView
+        android:id="@+id/countryFlag"
+        android:layout_width="@dimen/item_country_flag_size"
+        android:layout_height="@dimen/item_country_flag_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/countryName"
+        android:layout_width="0dp"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/item_country_name_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/countryFlag"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="USA" />
+</merge>

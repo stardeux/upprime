@@ -28,7 +28,7 @@ class MediaItem : CardView {
     private val poster: ImageView by lazy { findViewById<ImageView>(R.id.poster) }
 
     init {
-        setLayout(R.layout.item_latest_media)
+        setLayout(R.layout.item_media)
         initLayout()
     }
 
