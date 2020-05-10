@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
-import com.stardeux.upprime.latest.ui.model.MediaAdapter
+import com.stardeux.upprime.latest.ui.adapter.MediaAdapter
 import kotlinx.android.synthetic.main.fragment_latest.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,7 +19,8 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerMedia.adapter = MediaAdapter()
+        recyclerMedia.adapter =
+            MediaAdapter()
         recyclerMedia.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 

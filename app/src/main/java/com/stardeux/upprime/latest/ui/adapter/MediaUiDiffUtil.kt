@@ -1,6 +1,7 @@
-package com.stardeux.upprime.latest.ui.model
+package com.stardeux.upprime.latest.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
+import com.stardeux.upprime.latest.ui.model.MediaUi
 
 class MediaUiDiffUtil : DiffUtil.ItemCallback<MediaUi>() {
 
