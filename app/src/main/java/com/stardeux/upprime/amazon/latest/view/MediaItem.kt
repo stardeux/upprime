@@ -38,7 +38,7 @@ class MediaItem : ConstraintLayout {
 
     fun bind(mediaUi: MediaUi) {
         title.text = mediaUi.title
-        dates.text = mediaUi.mediaReleaseYear + " " + mediaUi.runtime
+        dates.text = computeDateText(mediaUi.mediaReleaseYear, mediaUi.runtime)
         gender.text = context.getString(mediaUi.mediaTypeStringRes) + " " + mediaUi.mainGenre + " " + mediaUi.mainNationality
         ratings.text = mediaUi.rating?.toString()
 
@@ -49,5 +49,11 @@ class MediaItem : ConstraintLayout {
                 load(it).error(R.drawable.ic_error_black_24dp).into(poster)
             }
         }
+    }
+
+    private fun computeDateText(releaseYear : String?, duration: String?) : String? {
+        return if (releaseYear != null && duration != null) {
+            "$releaseYear - $duration"
+        } else releaseYear ?: duration
     }
 }
