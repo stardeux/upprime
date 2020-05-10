@@ -2,6 +2,7 @@ package com.stardeux.upprime.country.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +23,15 @@ class CountryItem : ConstraintLayout {
 
     init {
         setLayout(R.layout.item_country)
+        initLayout()
+    }
+
+    private fun initLayout() {
+        val layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        setLayoutParams(layoutParams)
     }
 
     fun bind(countryUi: CountryUi) {
