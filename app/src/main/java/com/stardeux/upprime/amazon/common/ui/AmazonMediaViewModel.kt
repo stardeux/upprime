@@ -1,4 +1,4 @@
-package com.stardeux.upprime.amazon.common.viewmodel
+package com.stardeux.upprime.amazon.common.ui
 
 import android.util.Log
 import androidx.lifecycle.*

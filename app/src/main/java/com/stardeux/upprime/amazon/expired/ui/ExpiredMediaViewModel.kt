@@ -1,7 +1,7 @@
 package com.stardeux.upprime.amazon.expired.ui
 
 import com.stardeux.upprime.amazon.common.model.domain.MediaPage
-import com.stardeux.upprime.amazon.common.viewmodel.AmazonMediaViewModel
+import com.stardeux.upprime.amazon.common.ui.AmazonMediaViewModel
 import com.stardeux.upprime.amazon.expired.usecase.GetExpiredMediaUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase

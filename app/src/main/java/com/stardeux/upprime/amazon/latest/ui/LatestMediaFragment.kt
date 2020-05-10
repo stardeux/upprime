@@ -19,13 +19,11 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerMedia.adapter =
-            MediaAdapter()
+        recyclerMedia.adapter = MediaAdapter()
         recyclerMedia.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
-        val decoration =
-            SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.media_list_item_spacing))
+        val decoration = SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.media_list_item_spacing))
         recyclerMedia.addItemDecoration(decoration)
 
         latestViewModel.datedMediaItems.observeNotNull(viewLifecycleOwner) {

@@ -2,6 +2,7 @@ package com.stardeux.upprime.app
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.stardeux.upprime.amazon.expired.di.expiredModule
 import com.stardeux.upprime.amazon.latest.di.latestModule
 import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
 import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
@@ -37,6 +38,7 @@ abstract class UpPrimeApplication : Application() {
              * Features
              */
             modules(latestModule)
+            modules(expiredModule)
         }
     }
 }
