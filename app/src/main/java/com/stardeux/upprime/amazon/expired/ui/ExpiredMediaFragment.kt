@@ -1,17 +1,20 @@
 package com.stardeux.upprime.amazon.expired.ui
 
-import androidx.fragment.app.Fragment
-import com.stardeux.upprime.R
-import com.stardeux.upprime.amazon.latest.ui.LatestMediaFragment
+import com.stardeux.upprime.amazon.common.ui.AmazonMediaFragment
+import com.stardeux.upprime.amazon.common.ui.AmazonMediaViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ExpiredMediaFragment : Fragment(R.layout.fragment_latest) {
+class ExpiredMediaFragment : AmazonMediaFragment() {
 
     private val expiredViewModel: ExpiredMediaViewModel by viewModel()
 
+    override fun getViewModel(): AmazonMediaViewModel {
+        return expiredViewModel
+    }
+
     companion object {
-        fun newInstance(): LatestMediaFragment {
-            return LatestMediaFragment()
+        fun newInstance(): ExpiredMediaFragment {
+            return ExpiredMediaFragment()
         }
     }
 }
