@@ -1,6 +1,7 @@
 package com.stardeux.upprime.latest.usecase.mapper
 
-import com.stardeux.upprime.core.mapper.mapDateStringToLocaleDateTime
+import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
+import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDateTime
 import com.stardeux.upprime.core.mapper.mapToMediaType
 import com.stardeux.upprime.latest.repository.model.MediaResponse
 import com.stardeux.upprime.latest.repository.model.MediaPageResponse
@@ -12,7 +13,7 @@ fun mapToMediaItem(mediaResponse: MediaResponse): Media {
         title = mediaResponse.title,
         amazonId = requireNotNull(mediaResponse.amazonId),
         imdbId = requireNotNull(mediaResponse.imdbId),
-        dateAdded = mapDateStringToLocaleDateTime(requireNotNull(mediaResponse.dateAdded)),
+        dateAdded = mapAmazonDateStringToLocaleDate(requireNotNull(mediaResponse.dateAdded)),
         type = mapToMediaType(requireNotNull(mediaResponse.type))
     )
 }

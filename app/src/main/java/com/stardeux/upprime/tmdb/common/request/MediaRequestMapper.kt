@@ -8,7 +8,7 @@ fun mapToImdbMediaRequest(media: Media): ImdbMediaRequest {
         ImdbMediaRequest(
             imdbId = imdbId,
             amazonId = amazonId,
-            amazonReleaseDate = dateAdded.toLocalDate(),
+            amazonReleaseDate = dateAdded,
             name = title
         )
     }
