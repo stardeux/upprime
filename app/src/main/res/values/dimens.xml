@@ -11,6 +11,6 @@
     <dimen name="media_list_item_spacing">12dp</dimen>
 
     <!-- Country -->
-    <dimen name="item_country_flag_size">48dp</dimen>
+    <dimen name="item_country_flag_size">64dp</dimen>
     <dimen name="item_country_name_margin">12dp</dimen>
 </resources>
