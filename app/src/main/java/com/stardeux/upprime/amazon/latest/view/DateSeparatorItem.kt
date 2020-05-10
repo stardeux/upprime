@@ -19,7 +19,7 @@ class DateSeparatorItem : ConstraintLayout {
     private val dateSeparatorText: TextView by lazy { findViewById<TextView>(R.id.dateSeparatorText) }
 
     init {
-        setLayout(R.layout.date_separator_item)
+        setLayout(R.layout.item_date_separator)
         initLayout()
     }
 

@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
@@ -29,7 +28,7 @@ class MediaItem : CardView {
     private val poster: ImageView by lazy { findViewById<ImageView>(R.id.poster) }
 
     init {
-        setLayout(R.layout.latest_media_item)
+        setLayout(R.layout.item_latest_media)
         initLayout()
     }
 
