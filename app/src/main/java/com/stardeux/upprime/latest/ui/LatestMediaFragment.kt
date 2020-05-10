@@ -28,7 +28,7 @@ class LatestMediaFragment : Fragment(R.layout.fragment_latest) {
             SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.media_list_item_spacing))
         recyclerMedia.addItemDecoration(decoration)
 
-        latestViewModel.mediaItems.observeNotNull(viewLifecycleOwner) {
+        latestViewModel.datedMediaItems.observeNotNull(viewLifecycleOwner) {
             getMediaAdapter().submitList(it)
         }
 

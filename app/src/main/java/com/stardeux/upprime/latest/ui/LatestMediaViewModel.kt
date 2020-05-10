@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.latest.ui.mapper.mapToMediaUi
+import com.stardeux.upprime.latest.ui.model.DateSeparatorUi
 import com.stardeux.upprime.latest.ui.model.MediaUi
 import com.stardeux.upprime.latest.usecase.GetLatestUseCase
 import com.stardeux.upprime.latest.usecase.model.Media
@@ -23,10 +24,18 @@ class LatestMediaViewModel(
     private val _mediaItems = MutableLiveData<List<MediaUi>>()
     val mediaItems: LiveData<List<MediaUi>> = _mediaItems
 
-    /*
-    val datedMediaItems = Transformations.map(_mediaItems) {
-        groupByDate(it)
-    }*/
+    val datedMediaItems: LiveData<List<Any>> = Transformations.map(_mediaItems) { medias ->
+        val groupedMedia = medias.groupBy { it.amazonReleaseDate }
+
+        val orderedMedia = mutableListOf<Any>()
+
+        groupedMedia.keys.forEach {
+            orderedMedia.add(DateSeparatorUi(it))
+            orderedMedia.addAll(groupedMedia.getValue(it))
+        }
+
+        orderedMedia
+    }
 
     private val shortMediaItems = LinkedList<List<Media>>()
 
@@ -44,24 +53,33 @@ class LatestMediaViewModel(
     private fun loadNextDetails() {
         shortMediaItems.poll()?.let { currentShortMediaItemsList ->
             viewModelScope.launch {
-                currentShortMediaItemsList.subList(0, min(2,currentShortMediaItemsList.size)).forEach { shortMedia ->
-                    try {
-                        val completeMediaUi = when(shortMedia.type) {
-                            MediaType.MOVIE -> mapToMediaUi(getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia)))
-                            MediaType.SERIES -> mapToMediaUi(getImdbSeriesDetailsUseCase(mapToImdbMediaRequest(shortMedia)))
+                currentShortMediaItemsList.subList(0, min(2, currentShortMediaItemsList.size))
+                    .forEach { shortMedia ->
+                        try {
+                            val completeMediaUi = when (shortMedia.type) {
+                                MediaType.MOVIE -> mapToMediaUi(
+                                    getImdbMovieDetailsUseCase(
+                                        mapToImdbMediaRequest(shortMedia)
+                                    )
+                                )
+                                MediaType.SERIES -> mapToMediaUi(
+                                    getImdbSeriesDetailsUseCase(
+                                        mapToImdbMediaRequest(shortMedia)
+                                    )
+                                )
+                            }
+
+                            val currentList = _mediaItems.value?.toMutableList()
+                            currentList?.set(
+                                currentList.indexOfFirst { it.imdbId == completeMediaUi.imdbId },
+                                completeMediaUi
+                            )
+
+                            _mediaItems.value = currentList
+                        } catch (exception: Exception) {
+                            Log.e("Unfound", "ImdbId = ${shortMedia.imdbId}", exception)
                         }
-
-                        val currentList = _mediaItems.value?.toMutableList()
-                        currentList?.set(
-                            currentList.indexOfFirst { it.imdbId == completeMediaUi.imdbId },
-                            completeMediaUi
-                        )
-
-                        _mediaItems.value = currentList
-                    } catch (exception: Exception) {
-                        Log.e("Unfound", "ImdbId = ${shortMedia.imdbId}", exception)
                     }
-                }
             }
         }
     }
