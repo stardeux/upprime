@@ -1,4 +1,4 @@
-package com.stardeux.upprime.amazon.latest.repository.model
+package com.stardeux.upprime.amazon.common.model.request
 
 data class ReleaseRequest(
     val country: String,

@@ -2,8 +2,8 @@ package com.stardeux.upprime.amazon.latest.usecase.mapper
 
 import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
 import com.stardeux.upprime.core.mapper.mapToMediaType
-import com.stardeux.upprime.amazon.latest.repository.model.MediaResponse
-import com.stardeux.upprime.amazon.latest.repository.model.MediaPageResponse
+import com.stardeux.upprime.amazon.common.model.response.MediaResponse
+import com.stardeux.upprime.amazon.common.model.response.MediaPageResponse
 import com.stardeux.upprime.amazon.latest.usecase.model.Media
 import com.stardeux.upprime.amazon.latest.usecase.model.MediaPage
 
