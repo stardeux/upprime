@@ -1,9 +1,10 @@
-package com.stardeux.upprime.country.ui.model
+package com.stardeux.upprime.country.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.stardeux.upprime.country.ui.model.CountryUi
 import com.stardeux.upprime.country.usecase.GetAvailableCountryUseCase
 import com.stardeux.upprime.country.usecase.GetFlagUrlUseCase
 import com.stardeux.upprime.country.usecase.mapper.mapToCountryUi
