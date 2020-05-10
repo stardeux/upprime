@@ -38,7 +38,7 @@ class MediaItem : ConstraintLayout {
 
     fun bind(mediaUi: MediaUi) {
         title.text = mediaUi.title
-        dates.text = mediaUi.releaseDate + " " + mediaUi.runtime
+        dates.text = mediaUi.mediaReleaseYear + " " + mediaUi.runtime
         gender.text = context.getString(mediaUi.mediaTypeStringRes) + " " + mediaUi.mainGenre + " " + mediaUi.mainNationality
         ratings.text = mediaUi.rating?.toString()
 

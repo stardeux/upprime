@@ -3,6 +3,7 @@ package com.stardeux.upprime.amazon.common.view
 import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.amazon.common.usecase.model.Media
+import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
@@ -16,7 +17,7 @@ fun mapToMediaUi(media: Media): MediaUi {
             type = type,
             runtime = null,
             mainGenre = null,
-            releaseDate = null,
+            mediaReleaseYear = null,
             mainNationality = null,
             rating = null,
             posterUrl = null,
@@ -38,7 +39,7 @@ fun mapToMediaUi(movieDetails: MovieDetails): MediaUi {
             type = MediaType.MOVIE,
             runtime = runtimeMinutes?.let { mapRuntimeToString(runtimeMinutes) },
             mainGenre = genders?.getOrNull(0),
-            releaseDate = mediaReleaseDate?.toString(),
+            mediaReleaseYear = mediaReleaseDate?.let { mapReleaseDateToYear(it) },
             mainNationality = nationalities?.getOrNull(0),
             rating = averageRating,
             posterUrl = posterUrl,
@@ -60,7 +61,7 @@ fun mapToMediaUi(seriesDetails: SeriesDetails): MediaUi {
             type = MediaType.SERIES,
             runtime = runtimeMinutes?.let { mapRuntimeToString(runtimeMinutes) },
             mainGenre = genders?.getOrNull(0),
-            releaseDate = mediaReleaseDate?.toString(),
+            mediaReleaseYear = mediaReleaseDate?.let { mapReleaseDateToYear(it) },
             mainNationality = nationalities?.getOrNull(0),
             rating = averageRating,
             posterUrl = posterUrl,
