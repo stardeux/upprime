@@ -6,7 +6,7 @@ import com.stardeux.upprime.amazon.expired.repository.api.ExpiredApi
 
 class ExpiredRepository(private val expiredApi: ExpiredApi) {
 
-    suspend fun expired(amazonMediaRequest: AmazonMediaRequest): MediaPageResponse {
+    suspend fun getExpired(amazonMediaRequest: AmazonMediaRequest): MediaPageResponse {
         return expiredApi.expired(
             amazonMediaRequest.country,
             amazonMediaRequest.days,

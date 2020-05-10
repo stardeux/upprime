@@ -3,7 +3,7 @@ package com.stardeux.upprime.amazon.latest.ui.mapper
 import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.amazon.latest.ui.model.MediaUi
-import com.stardeux.upprime.amazon.latest.usecase.model.Media
+import com.stardeux.upprime.amazon.common.model.domain.Media
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 

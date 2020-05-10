@@ -6,8 +6,8 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.amazon.latest.ui.mapper.mapToMediaUi
 import com.stardeux.upprime.amazon.latest.ui.model.DateSeparatorUi
 import com.stardeux.upprime.amazon.latest.ui.model.MediaUi
-import com.stardeux.upprime.amazon.latest.usecase.GetLatestUseCase
-import com.stardeux.upprime.amazon.latest.usecase.model.Media
+import com.stardeux.upprime.amazon.latest.usecase.GetLatestMediaUseCase
+import com.stardeux.upprime.amazon.common.model.domain.Media
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
@@ -16,7 +16,7 @@ import java.util.*
 import kotlin.math.min
 
 class LatestMediaViewModel(
-    private val getLatestUseCase: GetLatestUseCase,
+    private val getLatestMediaUseCase: GetLatestMediaUseCase,
     private val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ) : ViewModel() {
@@ -41,7 +41,7 @@ class LatestMediaViewModel(
 
     fun load() {
         viewModelScope.launch {
-            val result = getLatestUseCase.getLatest()
+            val result = getLatestMediaUseCase.getLatest()
             val mediaUi = result.media.map(::mapToMediaUi)
             _mediaItems.value = mediaUi
 

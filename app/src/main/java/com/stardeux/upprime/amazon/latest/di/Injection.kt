@@ -3,7 +3,7 @@ package com.stardeux.upprime.amazon.latest.di
 import com.stardeux.upprime.amazon.latest.repository.LatestRepository
 import com.stardeux.upprime.amazon.latest.repository.api.LatestApi
 import com.stardeux.upprime.amazon.latest.ui.LatestMediaViewModel
-import com.stardeux.upprime.amazon.latest.usecase.GetLatestUseCase
+import com.stardeux.upprime.amazon.latest.usecase.GetLatestMediaUseCase
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
@@ -27,17 +27,17 @@ private fun provideLatestRepository(latestApi: LatestApi): LatestRepository {
     return LatestRepository(latestApi)
 }
 
-private fun provideLatestUseCase(latestRepository: LatestRepository): GetLatestUseCase {
-    return GetLatestUseCase(latestRepository)
+private fun provideLatestUseCase(latestRepository: LatestRepository): GetLatestMediaUseCase {
+    return GetLatestMediaUseCase(latestRepository)
 }
 
 private fun provideLatestMediaViewModel(
-    getLatestUseCase: GetLatestUseCase,
+    getLatestMediaUseCase: GetLatestMediaUseCase,
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ): LatestMediaViewModel {
     return LatestMediaViewModel(
-        getLatestUseCase,
+        getLatestMediaUseCase,
         getImdbMovieDetailsUseCase,
         getImdbSeriesDetailsUseCase
     )
