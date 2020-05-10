@@ -9,7 +9,7 @@ class GetExpiredMediaUseCase(private val expiredRepository: ExpiredRepository) {
 
     private var currentPage = 0
 
-    suspend fun getLatest(): MediaPage {
+    suspend fun getExpired(): MediaPage {
         currentPage++
         //TODO inject country
         val request =
