@@ -14,12 +14,9 @@ fun mapAmazonDateStringToLocaleDate(dateString: String): LocalDate {
 }
 
 fun mapRuntimeToString(runtimeMinute: Int): String {
-    return String.format("%dh %02dm", runtimeMinute / 60, runtimeMinute % 60)
+    return String.format("%dh%02dm", runtimeMinute / 60, runtimeMinute % 60)
 }
 
 fun mapReleaseDateToYear(localDate: LocalDate): String {
     return localDate.get(ChronoField.YEAR).toString()
 }
-
-
-private const val RUNTIME_FORMAT = "HH'h' MM'm'"
