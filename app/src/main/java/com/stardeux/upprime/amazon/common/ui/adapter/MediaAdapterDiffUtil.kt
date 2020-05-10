@@ -1,4 +1,4 @@
-package com.stardeux.upprime.amazon.latest.ui.adapter
+package com.stardeux.upprime.amazon.common.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.stardeux.upprime.amazon.common.view.DateSeparatorUi

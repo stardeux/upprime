@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
-import com.stardeux.upprime.amazon.latest.ui.adapter.MediaAdapter
+import com.stardeux.upprime.amazon.common.ui.adapter.MediaAdapter
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.EndlessRecyclerViewScrollListener
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
