@@ -21,6 +21,8 @@ abstract class AmazonMediaViewModel(
     private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ) : ViewModel() {
 
+    private var page = 0
+    private var totalCount = 0
 
     private val _mediaItems = MutableLiveData<List<MediaUi>>()
     val mediaItems: LiveData<List<MediaUi>> = _mediaItems
@@ -28,27 +30,29 @@ abstract class AmazonMediaViewModel(
     private val _loadingDataState = MutableLiveData<DataLoading>()
     val loadingDataState: LiveData<DataLoading> = _loadingDataState
 
+    private val shortMediaItems = LinkedList<List<Media>>()
+
     val datedMediaItems: LiveData<List<Any>> = Transformations.map(_mediaItems) { medias ->
         val groupedMedia = medias.groupBy { it.amazonReleaseDate }
 
-        val orderedMedia = mutableListOf<Any>()
-
-        groupedMedia.keys.forEach {
-            orderedMedia.add(DateSeparatorUi(it))
-            orderedMedia.addAll(groupedMedia.getValue(it))
+        mutableListOf<Any>().apply {
+            groupedMedia.keys.forEach {
+                add(DateSeparatorUi(it))
+                addAll(groupedMedia.getValue(it))
+            }
         }
-
-        orderedMedia
     }
 
-    private val shortMediaItems = LinkedList<List<Media>>()
-
-    private var page = 0
-
     fun loadNext() {
+        Log.d("coucu", "loadnext")
+        if (totalCount > 0 && _mediaItems.value?.size?: 0 >= totalCount) {
+            return
+        }
+
         if (_mediaItems.value?.isEmpty() == true) {
             _loadingDataState.value = DataLoading.Loading
         }
+
 
         val errorHandler = CoroutineExceptionHandler { _, exception ->
             Log.e("Loading Error", "loading failed", exception)
@@ -58,6 +62,8 @@ abstract class AmazonMediaViewModel(
         viewModelScope.launch(errorHandler) {
             page++
             val result = getAmazonMedia(page)
+            totalCount = result.count
+
             val mediaUi = result.media.map(::mapToMediaUi)
             _mediaItems.value =
                 (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
