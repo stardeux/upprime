@@ -1,11 +1,11 @@
 package com.stardeux.upprime.amazon.latest.usecase
 
-import com.stardeux.upprime.amazon.latest.repository.LatestRepository
+import com.stardeux.upprime.amazon.latest.repository.LatestMediaRepository
 import com.stardeux.upprime.amazon.common.model.request.AmazonMediaRequest
 import com.stardeux.upprime.amazon.common.model.domain.mapToMediaPage
 import com.stardeux.upprime.amazon.common.model.domain.MediaPage
 
-class GetLatestMediaUseCase(private val latestRepository: LatestRepository) {
+class GetLatestMediaUseCase(private val latestMediaRepository: LatestMediaRepository) {
 
     private var currentPage = 0
 
@@ -19,7 +19,7 @@ class GetLatestMediaUseCase(private val latestRepository: LatestRepository) {
                 currentPage
             )
         return mapToMediaPage(
-            latestRepository.getNew(request)
+            latestMediaRepository.getNew(request)
         )
     }
 }

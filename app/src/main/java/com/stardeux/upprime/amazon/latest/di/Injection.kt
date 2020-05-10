@@ -1,6 +1,6 @@
 package com.stardeux.upprime.amazon.latest.di
 
-import com.stardeux.upprime.amazon.latest.repository.LatestRepository
+import com.stardeux.upprime.amazon.latest.repository.LatestMediaRepository
 import com.stardeux.upprime.amazon.latest.repository.api.LatestApi
 import com.stardeux.upprime.amazon.latest.ui.LatestMediaViewModel
 import com.stardeux.upprime.amazon.latest.usecase.GetLatestMediaUseCase
@@ -23,12 +23,12 @@ private fun provideLatestApi(retrofit: Retrofit): LatestApi {
     return retrofit.create(LatestApi::class.java)
 }
 
-private fun provideLatestRepository(latestApi: LatestApi): LatestRepository {
-    return LatestRepository(latestApi)
+private fun provideLatestRepository(latestApi: LatestApi): LatestMediaRepository {
+    return LatestMediaRepository(latestApi)
 }
 
-private fun provideLatestUseCase(latestRepository: LatestRepository): GetLatestMediaUseCase {
-    return GetLatestMediaUseCase(latestRepository)
+private fun provideLatestUseCase(latestMediaRepository: LatestMediaRepository): GetLatestMediaUseCase {
+    return GetLatestMediaUseCase(latestMediaRepository)
 }
 
 private fun provideLatestMediaViewModel(

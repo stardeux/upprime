@@ -8,8 +8,8 @@ import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 
 class ExpiredMediaViewModel(
     private val getExpiredMediaUseCase: GetExpiredMediaUseCase,
-    private val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
-    private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
+    getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
+    getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ) : AmazonMediaViewModel(getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase) {
 
     override suspend fun getAmazonMedia(): MediaPage {
