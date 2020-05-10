@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface ExpiredApi {
 
-    @GET("expired")
+    @GET("deleted")
     suspend fun expired(
         @Query("country") country: String, @Query("days") days: Int, @Query("page") page: Int
     ): MediaPageResponse

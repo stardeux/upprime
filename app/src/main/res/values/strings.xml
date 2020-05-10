@@ -6,4 +6,8 @@
     <string name="release_type_expiring">Expiring</string>
     <string name="movie">Movie</string>
     <string name="series">Series</string>
+
+
+    <!-- Debug -->
+    <string name="debug_error">Error</string>
 </resources>
