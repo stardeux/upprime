@@ -17,7 +17,7 @@ data class MediaUi(
     val mainGenre: String?,
     val mediaReleaseYear: String?,
     val mainNationality: String?,
-    val rating: Float?,
+    val rating: String?,
     val posterUrl: String?,
     val amazonReleaseDate: String
 ) {

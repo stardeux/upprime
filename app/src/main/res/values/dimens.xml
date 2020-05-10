@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Cell media -->
-    <dimen name="cell_media_poster_height">120dp</dimen>
-    <dimen name="cell_media_poster_width">88dp</dimen>
+    <dimen name="cell_media_poster_height">140dp</dimen>
+    <dimen name="cell_media_poster_width">100dp</dimen>
     <dimen name="cell_media_data_margin">8dp</dimen>
 
     <!-- Media list -->
-    <dimen name="media_list_item_spacing">8dp</dimen>
+    <dimen name="media_list_item_spacing">12dp</dimen>
 </resources>

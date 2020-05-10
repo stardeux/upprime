@@ -4,6 +4,7 @@ import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.amazon.common.usecase.model.Media
 import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
+import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
@@ -41,7 +42,7 @@ fun mapToMediaUi(movieDetails: MovieDetails): MediaUi {
             mainGenre = genders?.getOrNull(0),
             mediaReleaseYear = mediaReleaseDate?.let { mapReleaseDateToYear(it) },
             mainNationality = nationalities?.getOrNull(0),
-            rating = averageRating,
+            rating = averageRating?.let { mapToRatingString(it) },
             posterUrl = posterUrl,
             amazonReleaseDate = amazonReleaseDate.toString()
         )
@@ -63,7 +64,7 @@ fun mapToMediaUi(seriesDetails: SeriesDetails): MediaUi {
             mainGenre = genders?.getOrNull(0),
             mediaReleaseYear = mediaReleaseDate?.let { mapReleaseDateToYear(it) },
             mainNationality = nationalities?.getOrNull(0),
-            rating = averageRating,
+            rating = averageRating?.let { mapToRatingString(it) },
             posterUrl = posterUrl,
             amazonReleaseDate = amazonReleaseDate.toString()
         )

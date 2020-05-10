@@ -5,23 +5,24 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.amazon.common.view.MediaUi
 
-class MediaItem : ConstraintLayout {
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+class MediaItem : CardView {
+
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context, attrs, defStyleAttr
     )
 
     private val title: TextView by lazy { findViewById<TextView>(R.id.title) }
-    private val dates: TextView by lazy { findViewById<TextView>(R.id.dates) }
-    private val gender: TextView by lazy { findViewById<TextView>(R.id.gender) }
-    private val nationality: TextView by lazy { findViewById<TextView>(R.id.nationality) }
+    private val firstInfo: TextView by lazy { findViewById<TextView>(R.id.firstInfo) }
+    private val secondInfo: TextView by lazy { findViewById<TextView>(R.id.secondInfo) }
+    private val thirdInfo: TextView by lazy { findViewById<TextView>(R.id.thirdInfo) }
     private val ratings: TextView by lazy { findViewById<TextView>(R.id.ratings) }
     private val poster: ImageView by lazy { findViewById<ImageView>(R.id.poster) }
 
@@ -39,10 +40,10 @@ class MediaItem : ConstraintLayout {
 
     fun bind(mediaUi: MediaUi) {
         title.text = mediaUi.title
-        dates.text = computeDateText(mediaUi.mediaReleaseYear, mediaUi.runtime)
-        gender.text = context.getString(mediaUi.mediaTypeStringRes) + " " + mediaUi.mainGenre
-        nationality.text = mediaUi.mainNationality
-        ratings.text = mediaUi.rating?.toString()
+        firstInfo.text = computeText(context.getString(mediaUi.mediaTypeStringRes), mediaUi.runtime, " ")
+        secondInfo.text = computeText(mediaUi.mainNationality, mediaUi.mediaReleaseYear, " ")
+        thirdInfo.text = mediaUi.mainGenre
+        ratings.text = mediaUi.rating
 
         with(Glide.with(this)) {
             clear(poster)
@@ -53,9 +54,10 @@ class MediaItem : ConstraintLayout {
         }
     }
 
-    private fun computeDateText(releaseYear : String?, duration: String?) : String? {
-        return if (releaseYear != null && duration != null) {
-            "$releaseYear - $duration"
-        } else releaseYear ?: duration
+    private fun computeText(firstText: String?, secondText: String?, separator: String) : String {
+        return if (firstText != null && secondText != null) {
+            "$firstText $separator $secondText"
+        } else firstText ?: separator
     }
+
 }
