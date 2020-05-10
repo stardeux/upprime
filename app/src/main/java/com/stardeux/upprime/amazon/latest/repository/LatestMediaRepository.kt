@@ -42,7 +42,7 @@ class LatestMediaRepository(private val latestApi: LatestApi) {
                 Gson().fromJson(six, MediaPageResponse::class.java)
             }
             else -> {
-                MediaPageResponse(null, null)
+                MediaPageResponse(2, null)
             }
         }
 

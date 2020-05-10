@@ -34,11 +34,7 @@ abstract class AmazonMediaViewModel(
         val orderedMedia = mutableListOf<Any>()
 
         groupedMedia.keys.forEach {
-            orderedMedia.add(
-                DateSeparatorUi(
-                    it
-                )
-            )
+            orderedMedia.add(DateSeparatorUi(it))
             orderedMedia.addAll(groupedMedia.getValue(it))
         }
 
@@ -63,7 +59,8 @@ abstract class AmazonMediaViewModel(
             page++
             val result = getAmazonMedia(page)
             val mediaUi = result.media.map(::mapToMediaUi)
-            _mediaItems.value =  (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
+            _mediaItems.value =
+                (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
 
             _loadingDataState.value = DataLoading.Success
 
