@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Cell media -->
-    <dimen name="cell_media_poster_height">140dp</dimen>
-    <dimen name="cell_media_poster_width">100dp</dimen>
+    <dimen name="cell_media_poster_height">160dp</dimen>
+    <dimen name="cell_media_poster_width">120dp</dimen>
     <dimen name="cell_media_data_margin">12dp</dimen>
     <dimen name="cell_media_info_margin_up_down">8dp</dimen>
     <dimen name="cell_media_rating_icon_padding">4dp</dimen>

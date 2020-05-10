@@ -78,7 +78,7 @@ abstract class AmazonMediaViewModel(
     private fun loadNextDetails() {
         shortMediaItems.poll()?.let { currentShortMediaItemsList ->
             viewModelScope.launch {
-                currentShortMediaItemsList.subList(0, min(20, currentShortMediaItemsList.size))
+                currentShortMediaItemsList.subList(0, min(2, currentShortMediaItemsList.size))
                     .forEach { shortMedia ->
                         try {
                             val completeMediaUi = when (shortMedia.type) {
