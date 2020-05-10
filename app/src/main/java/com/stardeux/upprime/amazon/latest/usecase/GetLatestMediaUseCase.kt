@@ -9,7 +9,7 @@ class GetLatestMediaUseCase(private val latestMediaRepository: LatestMediaReposi
 
     suspend fun getLatest(page: Int): MediaPage {
         //TODO inject country
-        val request = AmazonMediaRequest("gb", 30, page)
+        val request = AmazonMediaRequest("gb", page)
         return mapToMediaPage(latestMediaRepository.getNew(request))
     }
 }
