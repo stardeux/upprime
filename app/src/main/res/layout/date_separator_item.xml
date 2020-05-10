@@ -8,7 +8,10 @@
 
     <TextView
         android:id="@+id/dateSeparatorText"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="0dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
