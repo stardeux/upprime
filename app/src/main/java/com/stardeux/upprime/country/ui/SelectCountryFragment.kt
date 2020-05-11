@@ -10,6 +10,7 @@ import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import com.stardeux.upprime.country.ui.adapter.CountryAdapter
 import com.stardeux.upprime.country.ui.model.CountryUi
+import com.stardeux.upprime.home.ui.HomeActivity
 import kotlinx.android.synthetic.main.fragment_country.*
 import kotlinx.android.synthetic.main.fragment_media_listing.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,11 +32,13 @@ class SelectCountryFragment : Fragment(R.layout.fragment_country) {
         }
 
         selectCountryViewModel.countries.observeNotNull(viewLifecycleOwner, ::onCountries)
-        selectCountryViewModel.selectedCountry.observeNotNull(viewLifecycleOwner, ::onCountrySelected)
+        selectCountryViewModel.selectedCountry.observeNotNull(
+            viewLifecycleOwner, ::onCountrySelected
+        )
     }
 
     private fun onCountrySelected(countryUi: CountryUi) {
-
+        startActivity(HomeActivity.newIntent(requireContext()))
     }
 
     private fun onCountries(countriesUi: List<CountryUi>) {

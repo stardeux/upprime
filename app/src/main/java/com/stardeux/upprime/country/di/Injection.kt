@@ -5,12 +5,12 @@ import com.stardeux.upprime.country.repository.UserLocaleRepository
 import com.stardeux.upprime.country.ui.SelectCountryViewModel
 import com.stardeux.upprime.country.usecase.GetAvailableCountryUseCase
 import com.stardeux.upprime.country.usecase.GetFlagUrlUseCase
-import com.stardeux.upprime.country.usecase.SelectedUserLocaleUseCase
+import com.stardeux.upprime.country.usecase.SelectedUserCountryUseCase
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val countryModule = module {
-    viewModel { provideSelectCountryViewModel(get(), get()) }
+    viewModel { provideSelectCountryViewModel(get(), get(), get()) }
     factory { provideGetAvailableCountryUseCase() }
     factory { provideGetFlagUrlUseCase() }
 
@@ -18,8 +18,8 @@ val countryModule = module {
     factory { provideSelectedUserLocaleUseCase(get()) }
 }
 
-private fun provideSelectedUserLocaleUseCase(userLocaleRepository: UserLocaleRepository): SelectedUserLocaleUseCase {
-    return SelectedUserLocaleUseCase(userLocaleRepository)
+private fun provideSelectedUserLocaleUseCase(userLocaleRepository: UserLocaleRepository): SelectedUserCountryUseCase {
+    return SelectedUserCountryUseCase(userLocaleRepository)
 }
 
 private fun provideUserLocaleRepository(sharedPreferences: SharedPreferences): UserLocaleRepository {
@@ -27,9 +27,15 @@ private fun provideUserLocaleRepository(sharedPreferences: SharedPreferences): U
 }
 
 private fun provideSelectCountryViewModel(
-    getAvailableCountryUseCase: GetAvailableCountryUseCase, getFlagUrlUseCase: GetFlagUrlUseCase
+    getAvailableCountryUseCase: GetAvailableCountryUseCase,
+    selectedUserCountryUseCase: SelectedUserCountryUseCase,
+    getFlagUrlUseCase: GetFlagUrlUseCase
 ): SelectCountryViewModel {
-    return SelectCountryViewModel(getAvailableCountryUseCase, getFlagUrlUseCase)
+    return SelectCountryViewModel(
+        getAvailableCountryUseCase,
+        selectedUserCountryUseCase,
+        getFlagUrlUseCase
+    )
 }
 
 private fun provideGetAvailableCountryUseCase(): GetAvailableCountryUseCase {

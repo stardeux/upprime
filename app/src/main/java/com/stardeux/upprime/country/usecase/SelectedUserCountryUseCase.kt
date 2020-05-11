@@ -3,7 +3,7 @@ package com.stardeux.upprime.country.usecase
 import com.stardeux.upprime.country.repository.UserLocaleRepository
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 
-class SelectedUserLocaleUseCase(private val userLocaleRepository: UserLocaleRepository) {
+class SelectedUserCountryUseCase(private val userLocaleRepository: UserLocaleRepository) {
 
     fun getSelectedCountry(): AvailableCountry? {
         val userLocaleStr = userLocaleRepository.getUserLocale()
