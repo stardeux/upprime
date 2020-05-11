@@ -9,6 +9,7 @@ import com.stardeux.upprime.country.usecase.GetAvailableCountryUseCase
 import com.stardeux.upprime.country.usecase.GetFlagUrlUseCase
 import com.stardeux.upprime.country.ui.mapper.mapToCountryUi
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
+import fr.stardeux.autosc.util.SingleLiveEvent
 
 class SelectCountryViewModel(
     private val getAvailableCountryUseCase: GetAvailableCountryUseCase,
@@ -19,7 +20,7 @@ class SelectCountryViewModel(
         emit(getAvailableCountryUseCase().map(::toCountryUi))
     }
 
-    private val _selectedCountry = MutableLiveData<CountryUi>()
+    private val _selectedCountry = SingleLiveEvent<CountryUi>()
     val selectedCountry: LiveData<CountryUi> = _selectedCountry
 
     private fun toCountryUi(availableCountry: AvailableCountry): CountryUi {

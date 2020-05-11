@@ -31,6 +31,11 @@ class SelectCountryFragment : Fragment(R.layout.fragment_country) {
         }
 
         selectCountryViewModel.countries.observeNotNull(viewLifecycleOwner, ::onCountries)
+        selectCountryViewModel.selectedCountry.observeNotNull(viewLifecycleOwner, ::onCountrySelected)
+    }
+
+    private fun onCountrySelected(countryUi: CountryUi) {
+
     }
 
     private fun onCountries(countriesUi: List<CountryUi>) {
