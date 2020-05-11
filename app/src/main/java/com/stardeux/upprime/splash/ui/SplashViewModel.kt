@@ -8,7 +8,7 @@ import fr.stardeux.autosc.util.SingleLiveEvent
 class SplashViewModel (private val selectedUserCountryUseCase: SelectedUserCountryUseCase) : ViewModel() {
 
     private val _navigationEvent = SingleLiveEvent<NavigationEvent>().apply {
-        value = if (selectedUserCountryUseCase.getSelectedCountry() == null) NavigationEvent.Countries else NavigationEvent.Home
+        value = if (selectedUserCountryUseCase.getSelectedCountry() != null) NavigationEvent.Countries else NavigationEvent.Home
     }
     val navigationEvent: LiveData<NavigationEvent> = _navigationEvent
 

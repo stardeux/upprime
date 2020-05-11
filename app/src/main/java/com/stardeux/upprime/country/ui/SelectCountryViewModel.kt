@@ -1,6 +1,7 @@
 package com.stardeux.upprime.country.ui
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.stardeux.upprime.country.ui.model.CountryUi
@@ -17,15 +18,21 @@ class SelectCountryViewModel(
     private val getFlagUrlUseCase: GetFlagUrlUseCase
 ) : ViewModel() {
 
-    val countries = liveData {
-        emit(getAvailableCountryUseCase().map(::toCountryUi))
+    private val _countries = MutableLiveData<List<CountryUi>>().apply {
+        value = getAvailableCountryUseCase().map(::toCountryUi)
     }
+    val countries: LiveData<List<CountryUi>> = _countries
+
 
     private val _selectedCountry = SingleLiveEvent<CountryUi>()
     val selectedCountry: LiveData<CountryUi> = _selectedCountry
 
     private fun toCountryUi(availableCountry: AvailableCountry): CountryUi {
-        return mapToCountryUi(availableCountry, getFlagUrlUseCase(availableCountry), ::onFlagClicked)
+        return mapToCountryUi(
+            availableCountry,
+            getFlagUrlUseCase(availableCountry),
+            ::onFlagClicked
+        )
     }
 
     private fun onFlagClicked(countryUi: CountryUi) {
