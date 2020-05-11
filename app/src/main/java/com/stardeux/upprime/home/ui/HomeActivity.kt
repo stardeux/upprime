@@ -1,5 +1,7 @@
 package com.stardeux.upprime.home.ui
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
@@ -15,6 +17,12 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
         supportFragmentManager.commit {
             replace(R.id.mainContent, ReleaseTabListingFragment.newInstance())
+        }
+    }
+
+    companion object {
+        fun newIntent(context: Context) : Intent {
+            return Intent(context, HomeActivity::class.java)
         }
     }
 }

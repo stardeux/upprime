@@ -4,9 +4,11 @@ import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.stardeux.upprime.amazon.expired.di.expiredModule
 import com.stardeux.upprime.amazon.latest.di.latestModule
+import com.stardeux.upprime.core.di.coreModule
 import com.stardeux.upprime.country.di.countryModule
 import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
 import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
+import com.stardeux.upprime.splash.di.splashModule
 import com.stardeux.upprime.tmdb.di.tmdbModule
 import com.stardeux.upprime.tools.flipper.flipperModule
 import org.koin.android.ext.koin.androidContext
@@ -28,19 +30,19 @@ abstract class UpPrimeApplication : Application() {
             androidContext(this@UpPrimeApplication)
 
             /**
+             * Core
+             */
+            modules(coreModule)
+
+            /**
              * Mid core
              */
-            modules(flipperModule)
-            modules(fullAmazonNetwork)
-            modules(fullTmdbNetwork)
-            modules(tmdbModule)
+            modules(flipperModule, fullAmazonNetwork, fullTmdbNetwork, tmdbModule)
 
             /**
              * Features
              */
-            modules(latestModule)
-            modules(expiredModule)
-            modules(countryModule)
+            modules(splashModule, latestModule, expiredModule, countryModule)
         }
     }
 }
