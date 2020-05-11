@@ -8,6 +8,7 @@
     <string name="series">Series</string>
 
     <!-- Country -->
+    <string name="country_caption">Select your country</string>
     <string name="country_us_name">United States</string>
     <string name="country_uk_name">United Kingdom</string>
     <string name="country_de_name">Germany</string>
