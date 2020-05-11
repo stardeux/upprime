@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
@@ -37,7 +36,7 @@ class CountryItem : CardView {
     }
 
     fun bind(countryUi: CountryUi) {
-        countryNameTextView.text = countryUi.name
+        countryNameTextView.text = context.getString(countryUi.nameResId)
         with(Glide.with(context)) {
             clear(countryNameTextView)
             load(countryUi.flagUrl).into(flagImageView)

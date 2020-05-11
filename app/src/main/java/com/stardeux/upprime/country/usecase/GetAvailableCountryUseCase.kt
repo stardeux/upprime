@@ -1,10 +1,10 @@
 package com.stardeux.upprime.country.usecase
 
-import java.util.*
+import com.stardeux.upprime.country.usecase.model.AvailableCountry
 
 class GetAvailableCountryUseCase {
 
-    operator fun invoke(): List<Locale> {
-        return listOf(Locale.US, Locale.UK, Locale.GERMANY)
+    operator fun invoke(): List<AvailableCountry> {
+        return AvailableCountry.values().toList()
     }
 }

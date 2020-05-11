@@ -7,8 +7,8 @@ import androidx.lifecycle.liveData
 import com.stardeux.upprime.country.ui.model.CountryUi
 import com.stardeux.upprime.country.usecase.GetAvailableCountryUseCase
 import com.stardeux.upprime.country.usecase.GetFlagUrlUseCase
-import com.stardeux.upprime.country.usecase.mapper.mapToCountryUi
-import java.util.*
+import com.stardeux.upprime.country.ui.mapper.mapToCountryUi
+import com.stardeux.upprime.country.usecase.model.AvailableCountry
 
 class SelectCountryViewModel(
     private val getAvailableCountryUseCase: GetAvailableCountryUseCase,
@@ -22,8 +22,8 @@ class SelectCountryViewModel(
     private val _selectedCountry = MutableLiveData<CountryUi>()
     val selectedCountry: LiveData<CountryUi> = _selectedCountry
 
-    private fun toCountryUi(locale: Locale): CountryUi {
-        return mapToCountryUi(locale, getFlagUrlUseCase(locale), ::onFlagClicked)
+    private fun toCountryUi(availableCountry: AvailableCountry): CountryUi {
+        return mapToCountryUi(availableCountry, getFlagUrlUseCase(availableCountry), ::onFlagClicked)
     }
 
     private fun onFlagClicked(countryUi: CountryUi) {
