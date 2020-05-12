@@ -15,11 +15,11 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val latestModule = module {
-    single { provideLatestApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
+    single { provideLatestApi(get(named(AMAZON_NAMED_QUALIFIER))) }
     factory { provideLatestRepository(get()) }
 
     factory { provideLatestUseCase(get(), getUserScope().get()) }
-    factory { provideLatestMediaViewModel(getUserScope().get(), get(), get()) }
+    factory { provideLatestMediaViewModel(get(), get(), get()) }
 }
 
 
