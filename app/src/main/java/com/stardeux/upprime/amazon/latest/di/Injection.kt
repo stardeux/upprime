@@ -4,7 +4,6 @@ import com.stardeux.upprime.amazon.latest.repository.LatestMediaRepository
 import com.stardeux.upprime.amazon.latest.repository.api.LatestApi
 import com.stardeux.upprime.amazon.latest.ui.LatestMediaViewModel
 import com.stardeux.upprime.amazon.latest.usecase.GetLatestMediaUseCase
-import com.stardeux.upprime.country.di.USER_COUNTRY_SCOPE
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
@@ -18,8 +17,11 @@ val latestModule = module {
     single { provideLatestApi(get(named(AMAZON_NAMED_QUALIFIER))) }
     factory { provideLatestRepository(get()) }
 
-    factory { provideLatestUseCase(get(), getUserScope().get()) }
-    factory { provideLatestMediaViewModel(get(), get(), get()) }
+    factory { provideLatestMediaViewModel(getUserScope().get(), get(), get()) }
+
+    scope<AvailableCountry> {
+        factory { provideLatestUseCase(get(), get()) }
+    }
 }
 
 
