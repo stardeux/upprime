@@ -8,12 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
+import com.stardeux.upprime.country.di.USER_COUNTRY_SCOPE
 import com.stardeux.upprime.country.ui.adapter.CountryAdapter
 import com.stardeux.upprime.country.ui.model.CountryUi
+import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.home.ui.HomeActivity
 import kotlinx.android.synthetic.main.fragment_country.*
-import kotlinx.android.synthetic.main.fragment_media_listing.*
+import org.koin.android.ext.android.getKoin
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.Koin
+import org.koin.core.context.KoinContextHandler.get
+import org.koin.core.qualifier.named
+import org.koin.ext.getOrCreateScope
 
 class SelectCountryFragment : Fragment(R.layout.fragment_country) {
 
