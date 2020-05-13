@@ -13,6 +13,9 @@
     <string name="country_uk_name">United Kingdom</string>
     <string name="country_de_name">Germany</string>
 
+    <!-- Settings -->
+    <string name="settings_menu_item_name">Settings</string>
+
     <!-- Debug -->
     <string name="debug_error">Error</string>
 </resources>
