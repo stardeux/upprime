@@ -4,7 +4,6 @@ import com.google.gson.Gson
 import com.stardeux.upprime.media.latest.repository.api.LatestApi
 import com.stardeux.upprime.media.common.repository.model.MediaPageResponse
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
-import kotlinx.coroutines.delay
 
 class LatestMediaRepository(private val latestApi: LatestApi) {
 

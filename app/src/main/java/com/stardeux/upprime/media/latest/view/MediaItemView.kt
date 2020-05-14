@@ -12,7 +12,7 @@ import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.media.common.view.MediaUi
 import com.stardeux.upprime.core.extension.setTextAndVisibility
 
-class MediaItem : CardView {
+class MediaItemView : CardView {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
