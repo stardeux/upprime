@@ -7,8 +7,8 @@ import com.stardeux.upprime.core.extension.createAsyncDifferConfig
 import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
 import com.stardeux.upprime.media.common.ui.model.MediaUi
-import com.stardeux.upprime.media.latest.view.DateSeparatorItem
-import com.stardeux.upprime.media.latest.view.MediaItemView
+import com.stardeux.upprime.media.common.view.DateSeparatorItemView
+import com.stardeux.upprime.media.common.view.MediaItemView
 
 class MediaAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(
     createAsyncDifferConfig(
@@ -27,7 +27,7 @@ class MediaAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             MEDIA_UI_VIEW_TYPE -> MediaViewHolder(MediaItemView(parent.context))
-            DATE_SEPARATOR_UI_VIEW_TYPE -> DateSeparatorViewHolder(DateSeparatorItem(parent.context))
+            DATE_SEPARATOR_UI_VIEW_TYPE -> DateSeparatorViewHolder(DateSeparatorItemView(parent.context))
             else -> throw IllegalStateException("Unknown view type for $viewType")
         }
     }

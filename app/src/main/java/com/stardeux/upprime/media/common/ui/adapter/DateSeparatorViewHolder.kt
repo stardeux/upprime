@@ -2,13 +2,13 @@ package com.stardeux.upprime.media.common.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
-import com.stardeux.upprime.media.latest.view.DateSeparatorItem
+import com.stardeux.upprime.media.common.view.DateSeparatorItemView
 
-class DateSeparatorViewHolder(private val dateSeparatorItem: DateSeparatorItem) :
-    RecyclerView.ViewHolder(dateSeparatorItem) {
+class DateSeparatorViewHolder(private val dateSeparatorItemView: DateSeparatorItemView) :
+    RecyclerView.ViewHolder(dateSeparatorItemView) {
 
     fun bind(dateSeparatorUi: DateSeparatorUi) {
-        dateSeparatorItem.bind(dateSeparatorUi)
+        dateSeparatorItemView.bind(dateSeparatorUi)
     }
 
 }

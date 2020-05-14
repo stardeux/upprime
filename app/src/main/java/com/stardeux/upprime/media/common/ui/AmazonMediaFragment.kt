@@ -1,5 +1,7 @@
 package com.stardeux.upprime.media.common.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -20,11 +22,13 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val linearLayoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        val linearLayoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         mediaListingRecycler.adapter = MediaAdapter()
         mediaListingRecycler.layoutManager = linearLayoutManager
 
-        mediaListingRecycler.addOnScrollListener(object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
+        mediaListingRecycler.addOnScrollListener(object :
+            EndlessRecyclerViewScrollListener(linearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 latestViewModel.loadNext()
             }
@@ -34,6 +38,7 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
             SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.media_list_item_spacing))
         mediaListingRecycler.addItemDecoration(decoration)
 
+        latestViewModel.navigationEvent.observeNotNull(viewLifecycleOwner, ::handleNavigationEvent)
         latestViewModel.datedMediaItems.observeNotNull(viewLifecycleOwner) {
             getMediaAdapter().submitList(it)
         }
@@ -41,6 +46,25 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
         latestViewModel.loadingDataState.observeNotNull(viewLifecycleOwner, ::onDataLoadingState)
 
         latestViewModel.loadNext()
+    }
+
+    private fun handleNavigationEvent(navigationEvent: AmazonMediaViewModel.NavigationEvent) {
+        when (navigationEvent) {
+            is AmazonMediaViewModel.NavigationEvent.MediaDetailsFiche -> {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.amazon.com/dp/${navigationEvent.mediaUi.amazonId}")
+                )
+                startActivity(intent)
+            }
+            is AmazonMediaViewModel.NavigationEvent.MinimalMediaDetailsFiche -> {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.amazon.com/dp/${navigationEvent.media.amazonId}")
+                )
+                startActivity(intent)
+            }
+        }
     }
 
     private fun onDataLoadingState(dataLoading: AmazonMediaViewModel.DataLoading) {

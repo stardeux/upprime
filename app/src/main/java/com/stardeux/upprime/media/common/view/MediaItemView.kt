@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.latest.view
+package com.stardeux.upprime.media.common.view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -53,6 +53,8 @@ class MediaItemView : CardView {
                 load(it).centerCrop().error(R.drawable.ic_error_black_24dp).into(poster)
             }
         }
+
+        setOnClickListener { mediaUi.onCardClicked(mediaUi) }
     }
 
     private fun computeText(firstText: String?, secondText: String?, separator: String) : String? {

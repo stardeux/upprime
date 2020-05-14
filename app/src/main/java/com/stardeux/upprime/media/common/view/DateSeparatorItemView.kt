@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.latest.view
+package com.stardeux.upprime.media.common.view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -9,7 +9,7 @@ import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
 
-class DateSeparatorItem : ConstraintLayout {
+class DateSeparatorItemView : ConstraintLayout {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(

@@ -9,7 +9,9 @@ import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
-fun mapToMediaUi(media: Media): MediaUi {
+fun mapToMediaUi(
+    media: Media, onFullCardClicked: (MediaUi) -> Unit
+): MediaUi {
     return with(media) {
         MediaUi(
             amazonId = amazonId,
@@ -23,12 +25,16 @@ fun mapToMediaUi(media: Media): MediaUi {
             mainNationality = null,
             rating = null,
             posterUrl = null,
-            amazonReleaseDate = mapToHumanReadableMonthDay(dateAdded)
+            amazonReleaseDate = mapToHumanReadableMonthDay(dateAdded),
+            onCardClicked = onFullCardClicked
         )
     }
 }
 
-fun mapToMediaUi(movieDetails: MovieDetails): MediaUi {
+fun mapToMediaUi(
+    movieDetails: MovieDetails,
+    onFullCardClicked: (MediaUi) -> Unit
+): MediaUi {
     /**
      * Get ids from shortMediaUi because they are assuredly present
      */
@@ -45,12 +51,16 @@ fun mapToMediaUi(movieDetails: MovieDetails): MediaUi {
             mainNationality = nationalities?.getOrNull(0),
             rating = averageRating?.let { mapToRatingString(it) },
             posterUrl = posterUrl,
-            amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate)
+            amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
+            onCardClicked = onFullCardClicked
         )
     }
 }
 
-fun mapToMediaUi(seriesDetails: SeriesDetails): MediaUi {
+fun mapToMediaUi(
+    seriesDetails: SeriesDetails,
+    onFullCardClicked: (MediaUi) -> Unit
+): MediaUi {
     /**
      * Get ids from shortMediaUi because they are assuredly present
      */
@@ -67,7 +77,8 @@ fun mapToMediaUi(seriesDetails: SeriesDetails): MediaUi {
             mainNationality = nationalities?.getOrNull(0),
             rating = averageRating?.let { mapToRatingString(it) },
             posterUrl = posterUrl,
-            amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate)
+            amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
+            onCardClicked = onFullCardClicked
         )
     }
 }

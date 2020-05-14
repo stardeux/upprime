@@ -11,6 +11,7 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
+import fr.stardeux.autosc.util.SingleLiveEvent
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import java.util.*
@@ -30,6 +31,9 @@ abstract class AmazonMediaViewModel(
     private val _loadingDataState = MutableLiveData<DataLoading>()
     val loadingDataState: LiveData<DataLoading> = _loadingDataState
 
+    private val _navigationEvent = SingleLiveEvent<NavigationEvent>()
+    val navigationEvent: LiveData<NavigationEvent> = _navigationEvent
+
     private val shortMediaItems = LinkedList<List<Media>>()
 
     val datedMediaItems: LiveData<List<Any>> = Transformations.map(_mediaItems) { medias ->
@@ -44,8 +48,7 @@ abstract class AmazonMediaViewModel(
     }
 
     fun loadNext() {
-        Log.d("coucu", "loadnext")
-        if (totalCount > 0 && _mediaItems.value?.size?: 0 >= totalCount) {
+        if (totalCount > 0 && _mediaItems.value?.size ?: 0 >= totalCount) {
             return
         }
 
@@ -64,7 +67,8 @@ abstract class AmazonMediaViewModel(
             val result = getAmazonMedia(page)
             totalCount = result.count
 
-            val mediaUi = result.media.map(::mapToMediaUi)
+            val mediaUi =
+                result.media.map { mapToMediaUi(it, ::onFullCardClicked) }
             _mediaItems.value =
                 (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
 
@@ -75,6 +79,11 @@ abstract class AmazonMediaViewModel(
         }
     }
 
+
+    private fun onFullCardClicked(mediaUi: MediaUi) {
+        _navigationEvent.value = NavigationEvent.MediaDetailsFiche(mediaUi)
+    }
+
     private fun loadNextDetails() {
         shortMediaItems.poll()?.let { currentShortMediaItemsList ->
             viewModelScope.launch {
@@ -82,15 +91,16 @@ abstract class AmazonMediaViewModel(
                     .forEach { shortMedia ->
                         try {
                             val completeMediaUi = when (shortMedia.type) {
-                                MediaType.MOVIE -> mapToMediaUi(
-                                    getImdbMovieDetailsUseCase(
-                                        mapToImdbMediaRequest(shortMedia)
+                                MediaType.MOVIE -> {
+                                    mapToMediaUi(
+                                        getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia)),
+                                        ::onFullCardClicked
                                     )
-                                )
+                                }
+
                                 MediaType.SERIES -> mapToMediaUi(
-                                    getImdbSeriesDetailsUseCase(
-                                        mapToImdbMediaRequest(shortMedia)
-                                    )
+                                    getImdbSeriesDetailsUseCase(mapToImdbMediaRequest(shortMedia)),
+                                    ::onFullCardClicked
                                 )
                             }
 
@@ -107,6 +117,10 @@ abstract class AmazonMediaViewModel(
                     }
             }
         }
+    }
+
+    sealed class NavigationEvent {
+        class MediaDetailsFiche(val mediaUi: MediaUi) : NavigationEvent()
     }
 
     sealed class DataLoading {
