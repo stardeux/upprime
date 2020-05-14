@@ -27,6 +27,7 @@
         </activity>
 
         <activity android:name=".home.ui.HomeActivity" />
+        <activity android:name=".media.fiche.MediaFicheActivity" />
         <activity
             android:name=".country.ui.SelectCountryActivity"
             android:noHistory="true" />
