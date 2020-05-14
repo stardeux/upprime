@@ -1,5 +1,7 @@
 package com.stardeux.upprime.media.expired.di
 
+import com.stardeux.upprime.country.di.getUserScope
+import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.media.expired.repository.ExpiredMediaRepository
 import com.stardeux.upprime.media.expired.repository.api.ExpiredApi
 import com.stardeux.upprime.media.expired.ui.ExpiredMediaViewModel
@@ -14,8 +16,11 @@ import retrofit2.Retrofit
 val expiredModule = module {
     single { provideExpiredApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
     factory { provideExpiredRepository(get()) }
-    factory { provideExpiredUseCase(get()) }
-    factory { provideExpiredMediaViewModel(get(), get(), get()) }
+    factory { provideExpiredMediaViewModel(getUserScope().get(), get(), get()) }
+
+    scope<AvailableCountry> {
+        factory { provideExpiredUseCase(get(), get()) }
+    }
 }
 
 
@@ -27,8 +32,11 @@ private fun provideExpiredRepository(expiredApi: ExpiredApi): ExpiredMediaReposi
     return ExpiredMediaRepository(expiredApi)
 }
 
-private fun provideExpiredUseCase(expiredMediaRepository: ExpiredMediaRepository): GetExpiredMediaUseCase {
-    return GetExpiredMediaUseCase(expiredMediaRepository)
+private fun provideExpiredUseCase(
+    expiredMediaRepository: ExpiredMediaRepository,
+    availableCountry: AvailableCountry
+): GetExpiredMediaUseCase {
+    return GetExpiredMediaUseCase(expiredMediaRepository, availableCountry)
 }
 
 private fun provideExpiredMediaViewModel(

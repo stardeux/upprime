@@ -5,6 +5,7 @@ import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 import com.stardeux.upprime.media.common.usecase.model.mapToMediaPage
 import com.stardeux.upprime.media.common.usecase.model.MediaPage
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
+import com.stardeux.upprime.media.common.usecase.model.mapAvailableCountryToApiValue
 
 class GetLatestMediaUseCase(
     private val latestMediaRepository: LatestMediaRepository,
@@ -12,8 +13,7 @@ class GetLatestMediaUseCase(
 ) {
 
     suspend fun getLatest(page: Int): MediaPage {
-        //TODO inject country
-        val request = AmazonMediaRequest("gb", page)
+        val request = AmazonMediaRequest(mapAvailableCountryToApiValue(availableCountry), page)
         return mapToMediaPage(latestMediaRepository.getNew(request))
     }
 }
