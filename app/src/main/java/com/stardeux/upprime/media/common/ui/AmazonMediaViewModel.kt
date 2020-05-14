@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.stardeux.upprime.media.common.usecase.model.Media
 import com.stardeux.upprime.media.common.usecase.model.MediaPage
-import com.stardeux.upprime.media.common.view.DateSeparatorUi
-import com.stardeux.upprime.media.common.view.MediaUi
-import com.stardeux.upprime.media.common.view.mapToMediaUi
+import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
+import com.stardeux.upprime.media.common.ui.model.MediaUi
+import com.stardeux.upprime.media.common.ui.model.mapToMediaUi
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase

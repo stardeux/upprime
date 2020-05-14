@@ -1,8 +1,8 @@
 package com.stardeux.upprime.media.common.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.stardeux.upprime.media.common.view.DateSeparatorUi
-import com.stardeux.upprime.media.common.view.MediaUi
+import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
+import com.stardeux.upprime.media.common.ui.model.MediaUi
 
 class MediaAdapterDiffUtil : DiffUtil.ItemCallback<Any>() {
 

@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.core.extension.createAsyncDifferConfig
 import com.stardeux.upprime.core.extension.exhaustive
-import com.stardeux.upprime.media.common.view.DateSeparatorUi
-import com.stardeux.upprime.media.common.view.MediaUi
+import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
+import com.stardeux.upprime.media.common.ui.model.MediaUi
 import com.stardeux.upprime.media.latest.view.DateSeparatorItem
 import com.stardeux.upprime.media.latest.view.MediaItemView
 

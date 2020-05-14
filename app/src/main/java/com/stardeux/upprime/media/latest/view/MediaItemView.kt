@@ -9,7 +9,7 @@ import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
-import com.stardeux.upprime.media.common.view.MediaUi
+import com.stardeux.upprime.media.common.ui.model.MediaUi
 import com.stardeux.upprime.core.extension.setTextAndVisibility
 
 class MediaItemView : CardView {

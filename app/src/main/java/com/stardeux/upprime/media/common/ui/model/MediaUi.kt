@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.common.view
+package com.stardeux.upprime.media.common.ui.model
 
 import androidx.annotation.StringRes
 import com.stardeux.upprime.core.mapper.mapToStringId

@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.common.view
+package com.stardeux.upprime.media.common.ui.model
 
 import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.model.MediaType

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
-import com.stardeux.upprime.media.common.view.DateSeparatorUi
+import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
 
 class DateSeparatorItem : ConstraintLayout {
     constructor(context: Context?) : super(context)
