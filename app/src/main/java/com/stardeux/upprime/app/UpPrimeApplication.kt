@@ -2,8 +2,8 @@ package com.stardeux.upprime.app
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.stardeux.upprime.amazon.expired.di.expiredModule
-import com.stardeux.upprime.amazon.latest.di.latestModule
+import com.stardeux.upprime.media.expired.di.expiredModule
+import com.stardeux.upprime.media.latest.di.latestModule
 import com.stardeux.upprime.core.di.coreModule
 import com.stardeux.upprime.country.di.countryModule
 import com.stardeux.upprime.network.okhttp.fullAmazonNetwork

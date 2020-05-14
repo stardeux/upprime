@@ -1,7 +1,7 @@
 package com.stardeux.upprime.tmdb.common.request
 
 import com.stardeux.upprime.core.model.TmdbId
-import com.stardeux.upprime.amazon.common.usecase.model.Media
+import com.stardeux.upprime.media.common.usecase.model.Media
 
 fun mapToImdbMediaRequest(media: Media): ImdbMediaRequest {
     return with(media) {
