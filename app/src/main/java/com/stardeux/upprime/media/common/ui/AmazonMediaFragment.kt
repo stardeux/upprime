@@ -57,13 +57,6 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
                 )
                 startActivity(intent)
             }
-            is AmazonMediaViewModel.NavigationEvent.MinimalMediaDetailsFiche -> {
-                val intent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://www.amazon.com/dp/${navigationEvent.media.amazonId}")
-                )
-                startActivity(intent)
-            }
         }
     }
 
