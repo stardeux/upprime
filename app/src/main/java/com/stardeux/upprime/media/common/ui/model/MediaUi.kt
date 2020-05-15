@@ -1,12 +1,9 @@
 package com.stardeux.upprime.media.common.ui.model
 
-import androidx.annotation.StringRes
-import com.stardeux.upprime.core.mapper.mapToStringId
 import com.stardeux.upprime.core.model.AmazonId
 import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.model.TmdbId
-import com.stardeux.upprime.media.common.usecase.model.Media
 
 data class MediaUi(
     val amazonId: AmazonId,
@@ -24,7 +21,4 @@ data class MediaUi(
     val synopsis: String?,
     val backdropPath: String?,
     val onCardClicked: (MediaUi) -> Unit
-) {
-    @StringRes
-    val mediaTypeStringRes = mapToStringId(type)
-}
+)

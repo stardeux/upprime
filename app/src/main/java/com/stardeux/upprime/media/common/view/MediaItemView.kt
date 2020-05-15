@@ -11,6 +11,7 @@ import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.media.common.ui.model.MediaUi
 import com.stardeux.upprime.core.extension.setTextAndVisibility
+import com.stardeux.upprime.core.mapper.mapMediaTypeToStringId
 
 class MediaItemView : CardView {
 
@@ -41,7 +42,7 @@ class MediaItemView : CardView {
 
     fun bind(mediaUi: MediaUi) {
         title.setTextAndVisibility(mediaUi.title)
-        firstInfo.setTextAndVisibility(computeText(context.getString(mediaUi.mediaTypeStringRes), mediaUi.runtime, " "))
+        firstInfo.setTextAndVisibility(computeText(context.getString(mapMediaTypeToStringId(mediaUi.type)), mediaUi.runtime, " "))
         secondInfo.setTextAndVisibility(computeText(mediaUi.mainNationality, mediaUi.mediaReleaseYear, " "))
         thirdInfo.setTextAndVisibility(mediaUi.mainGenre)
         ratings.setTextAndVisibility(mediaUi.rating)
