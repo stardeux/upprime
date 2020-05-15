@@ -2,8 +2,7 @@ package com.stardeux.upprime.tmdb.movie.usecase.mapper
 
 import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
 import com.stardeux.upprime.tmdb.common.request.TmdbMovieRequest
-import com.stardeux.upprime.tmdb.common.request.TmdbSeriesRequest
-import com.stardeux.upprime.tmdb.movie.repository.model.TmdbMovieDetailsResponse
+import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieDetailsResponse
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 
 fun mapToMovieDetails(

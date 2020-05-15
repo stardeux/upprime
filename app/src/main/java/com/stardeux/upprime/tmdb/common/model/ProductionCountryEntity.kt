@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.stardeux.upprime.tmdb.common.model.ProductionCountryEntity.Companion.TABLE_PRODUCTION_COUNTRY_NAME
 
 @Entity(tableName = TABLE_PRODUCTION_COUNTRY_NAME)
-class ProductionCountryEntity(
+data class ProductionCountryEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = COL_PRODUCTION_COUNTRY_ID) val id: Int = 0,
     @ColumnInfo(name = COL_PRODUCTION_COUNTRY_ISO) val isoCode: String?,
     @ColumnInfo(name = COL_PRODUCTION_COUNTRY_NAME) val name: String?

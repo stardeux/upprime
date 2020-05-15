@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.stardeux.upprime.tmdb.common.model.GenreEntity.Companion.TABLE_GENRE_NAME
 
 @Entity(tableName = TABLE_GENRE_NAME)
-class GenreEntity(
+data class GenreEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = COL_GENRE_ID) val id: Int = 0,
     @ColumnInfo(name = COL_GENRE_TMDB_ID) val tmdbId: String?,
     @ColumnInfo(name = COL_GENRE_NAME) val name: String?

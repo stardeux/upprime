@@ -1,7 +1,7 @@
 package com.stardeux.upprime.tmdb.movie.repository
 
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
-import com.stardeux.upprime.tmdb.movie.repository.model.TmdbMovieDetailsResponse
+import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieDetailsResponse
 
 class MovieRepository(private val tmdbMovieApi: TmdbMovieApi) {
 
