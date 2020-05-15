@@ -1,8 +1,8 @@
 package com.stardeux.upprime.tmdb.movie.repository.api
 
 import com.google.gson.annotations.SerializedName
-import com.stardeux.upprime.tmdb.common.model.GenreResponse
-import com.stardeux.upprime.tmdb.common.model.ProductionCountryResponse
+import com.stardeux.upprime.tmdb.common.model.network.GenreResponse
+import com.stardeux.upprime.tmdb.common.model.network.ProductionCountryResponse
 
 data class TmdbMovieDetailsResponse(
     @SerializedName("id") val tmdbId: String?,

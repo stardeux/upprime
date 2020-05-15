@@ -1,9 +1,9 @@
-package com.stardeux.upprime.tmdb.common.model
+package com.stardeux.upprime.tmdb.common.model.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.stardeux.upprime.tmdb.common.model.GenreEntity.Companion.TABLE_GENRE_NAME
+import com.stardeux.upprime.tmdb.common.model.database.GenreEntity.Companion.TABLE_GENRE_NAME
 
 @Entity(tableName = TABLE_GENRE_NAME)
 data class GenreEntity(

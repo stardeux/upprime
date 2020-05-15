@@ -1,9 +1,9 @@
-package com.stardeux.upprime.tmdb.common.model
+package com.stardeux.upprime.tmdb.common.model.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.stardeux.upprime.tmdb.common.model.ProductionCountryEntity.Companion.TABLE_PRODUCTION_COUNTRY_NAME
+import com.stardeux.upprime.tmdb.common.model.database.ProductionCountryEntity.Companion.TABLE_PRODUCTION_COUNTRY_NAME
 
 @Entity(tableName = TABLE_PRODUCTION_COUNTRY_NAME)
 data class ProductionCountryEntity(
