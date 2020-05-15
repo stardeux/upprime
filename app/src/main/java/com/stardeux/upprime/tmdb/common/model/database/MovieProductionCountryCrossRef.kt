@@ -3,11 +3,10 @@ package com.stardeux.upprime.tmdb.common.model.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import com.stardeux.upprime.tmdb.common.model.database.MovieProductionCountryCrossRef.Companion.TABLE_MOVIE_PRODUCTION_COUNTRY_CROSS_REF_NAME
-import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
 
 @Entity(
     tableName = TABLE_MOVIE_PRODUCTION_COUNTRY_CROSS_REF_NAME,
-    primaryKeys = [MovieDetailsEntity.COL_MOVIE_ID, ProductionCountryEntity.COL_PRODUCTION_COUNTRY_ID]
+    primaryKeys = [MovieProductionCountryCrossRef.COL_MOVIE_ID, MovieProductionCountryCrossRef.COL_PRODUCTION_COUNTRY_ID]
 )
 data class MovieProductionCountryCrossRef(
     @ColumnInfo(name = COL_MOVIE_ID) val movieId: Long,
