@@ -15,5 +15,6 @@ data class TmdbSeriesDetailsResponse(
     @SerializedName("origin_country") val originCountry: List<String>?,
     @SerializedName("vote_average") val voteAverage: Float?,
     @SerializedName("vote_count") val voteCount: Int?,
-    @SerializedName("overview") val synopsis: String?
+    @SerializedName("overview") val synopsis: String?,
+    @SerializedName("backdrop_path") val backdropPath: String?
 )

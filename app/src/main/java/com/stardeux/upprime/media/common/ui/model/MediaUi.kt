@@ -22,6 +22,7 @@ data class MediaUi(
     val posterUrl: String?,
     val amazonReleaseDate: String,
     val synopsis: String?,
+    val backdropPath: String?,
     val onCardClicked: (MediaUi) -> Unit
 ) {
     @StringRes

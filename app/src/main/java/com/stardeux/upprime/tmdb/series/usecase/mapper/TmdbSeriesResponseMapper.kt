@@ -22,7 +22,8 @@ fun mapToSeriesDetails(
             nationalities = originCountry,
             averageRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
             amazonReleaseDate = tmdbSeriesRequest.amazonReleaseDate,
-            synopsis = synopsis
+            synopsis = synopsis,
+            backdropPath = backdropPath
         )
     }
 }

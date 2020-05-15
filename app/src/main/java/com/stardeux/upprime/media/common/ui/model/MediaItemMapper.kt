@@ -27,6 +27,7 @@ fun mapToMediaUi(
             posterUrl = null,
             amazonReleaseDate = mapToHumanReadableMonthDay(dateAdded),
             synopsis = null,
+            backdropPath = null,
             onCardClicked = onFullCardClicked
         )
     }
@@ -54,6 +55,7 @@ fun mapToMediaUi(
             posterUrl = posterUrl,
             amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
+            backdropPath = backdropPath,
             onCardClicked = onFullCardClicked
         )
     }
@@ -81,6 +83,7 @@ fun mapToMediaUi(
             posterUrl = posterUrl,
             amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
+            backdropPath = backdropPath,
             onCardClicked = onFullCardClicked
         )
     }

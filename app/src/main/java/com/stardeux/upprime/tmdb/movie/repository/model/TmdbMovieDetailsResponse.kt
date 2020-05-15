@@ -16,5 +16,6 @@ data class TmdbMovieDetailsResponse(
     @SerializedName("production_countries") val productionCountries: List<ProductionCountriesResponse>?,
     @SerializedName("vote_average") val voteAverage: Float?,
     @SerializedName("vote_count") val voteCount: Int?,
-    @SerializedName("overview") val synopsis: String?
+    @SerializedName("overview") val synopsis: String?,
+    @SerializedName("backdrop_path") val backdropPath: String?
 )
