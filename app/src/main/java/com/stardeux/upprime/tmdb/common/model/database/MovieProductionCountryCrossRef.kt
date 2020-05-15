@@ -13,7 +13,7 @@ data class MovieProductionCountryCrossRef(
     @ColumnInfo(name = COL_PRODUCTION_COUNTRY_ID) val productionCountryId: Long
 ) {
     companion object {
-        const val TABLE_MOVIE_PRODUCTION_COUNTRY_CROSS_REF_NAME = "movies_production_country"
+        const val TABLE_MOVIE_PRODUCTION_COUNTRY_CROSS_REF_NAME = "movie_production_country"
 
         const val COL_MOVIE_ID = "movie_id"
         const val COL_PRODUCTION_COUNTRY_ID = "production_country_id"
