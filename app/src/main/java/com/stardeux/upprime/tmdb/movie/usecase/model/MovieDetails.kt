@@ -16,5 +16,6 @@ data class MovieDetails(
     val genders: List<String>?,
     val nationalities: List<String>?,
     val averageRating: Float?,
-    val amazonReleaseDate: LocalDate
+    val amazonReleaseDate: LocalDate,
+    val synopsis: String?
 )

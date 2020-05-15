@@ -21,7 +21,8 @@ fun mapToSeriesDetails(
             genders = genres?.mapNotNull { it.name },
             nationalities = originCountry,
             averageRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
-            amazonReleaseDate = tmdbSeriesRequest.amazonReleaseDate
+            amazonReleaseDate = tmdbSeriesRequest.amazonReleaseDate,
+            synopsis = synopsis
         )
     }
 }

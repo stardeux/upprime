@@ -21,7 +21,8 @@ fun mapToMovieDetails(
             genders = genres?.mapNotNull { it.name },
             nationalities = productionCountries?.mapNotNull { it.name },
             averageRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
-            amazonReleaseDate = tmdbMovieRequest.amazonReleaseDate
+            amazonReleaseDate = tmdbMovieRequest.amazonReleaseDate,
+            synopsis = synopsis
         )
     }
 }

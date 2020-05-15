@@ -14,5 +14,6 @@ data class TmdbSeriesDetailsResponse(
     @SerializedName("genres") val genres: List<GenreResponse>?,
     @SerializedName("origin_country") val originCountry: List<String>?,
     @SerializedName("vote_average") val voteAverage: Float?,
-    @SerializedName("vote_count") val voteCount: Int?
+    @SerializedName("vote_count") val voteCount: Int?,
+    @SerializedName("overview") val synopsis: String?
 )
