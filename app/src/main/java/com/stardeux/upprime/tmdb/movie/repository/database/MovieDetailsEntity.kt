@@ -3,8 +3,6 @@ package com.stardeux.upprime.tmdb.movie.repository.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.stardeux.upprime.tmdb.common.model.network.GenreResponse
-import com.stardeux.upprime.tmdb.common.model.network.ProductionCountryResponse
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity.Companion.TABLE_MOVIE_NAME
 
 @Entity(tableName = TABLE_MOVIE_NAME)
@@ -22,9 +20,7 @@ data class MovieDetailsEntity(
     @ColumnInfo(name = COL_MOVIE_RUNTIME) val runtime: Int?,
     @ColumnInfo(name = COL_MOVIE_TMDB_RATING) val tmdbRating: Float?,
     @ColumnInfo(name = COL_MOVIE_TMDB_SYNOPSIS) val synopsis: String?,
-    @ColumnInfo(name = COL_MOVIE_BACKDROP_PATH) val backdropPath: String?,
-
-    @ColumnInfo(name = "production_countries") val productionCountries: List<ProductionCountryResponse>?
+    @ColumnInfo(name = COL_MOVIE_BACKDROP_PATH) val backdropPath: String?
 ) {
 
     companion object {
