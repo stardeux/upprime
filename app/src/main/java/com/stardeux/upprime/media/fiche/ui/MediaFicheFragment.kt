@@ -22,9 +22,9 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     companion object {
         private const val MEDIA_UI_ARG = "MEDIA_UI_ARG"
 
-        fun newInstance(mediaItemUi: MediaItemUi): MediaFicheFragment {
+        fun newInstance(mediaFicheUi: MediaFicheUi): MediaFicheFragment {
             return MediaFicheFragment().apply {
-                arguments = bundleOf(MEDIA_UI_ARG to mediaItemUi)
+                arguments = bundleOf(MEDIA_UI_ARG to mediaFicheUi)
             }
         }
     }
