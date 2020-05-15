@@ -5,7 +5,7 @@ import androidx.lifecycle.*
 import com.stardeux.upprime.media.common.usecase.model.Media
 import com.stardeux.upprime.media.common.usecase.model.MediaPage
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
-import com.stardeux.upprime.media.common.ui.model.MediaUi
+import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 import com.stardeux.upprime.media.common.ui.model.mapToMediaUi
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
@@ -25,8 +25,8 @@ abstract class AmazonMediaViewModel(
     private var page = 0
     private var totalCount = 0
 
-    private val _mediaItems = MutableLiveData<List<MediaUi>>()
-    val mediaItems: LiveData<List<MediaUi>> = _mediaItems
+    private val _mediaItems = MutableLiveData<List<MediaItemUi>>()
+    val mediaItems: LiveData<List<MediaItemUi>> = _mediaItems
 
     private val _loadingDataState = MutableLiveData<DataLoading>()
     val loadingDataState: LiveData<DataLoading> = _loadingDataState
@@ -80,8 +80,8 @@ abstract class AmazonMediaViewModel(
     }
 
 
-    private fun onFullCardClicked(mediaUi: MediaUi) {
-        _navigationEvent.value = NavigationEvent.MediaDetailsFiche(mediaUi)
+    private fun onFullCardClicked(mediaItemUi: MediaItemUi) {
+        _navigationEvent.value = NavigationEvent.MediaDetailsFiche(mediaItemUi)
     }
 
     private fun loadNextDetails() {
@@ -120,7 +120,7 @@ abstract class AmazonMediaViewModel(
     }
 
     sealed class NavigationEvent {
-        class MediaDetailsFiche(val mediaUi: MediaUi) : NavigationEvent()
+        class MediaDetailsFiche(val mediaItemUi: MediaItemUi) : NavigationEvent()
     }
 
     sealed class DataLoading {

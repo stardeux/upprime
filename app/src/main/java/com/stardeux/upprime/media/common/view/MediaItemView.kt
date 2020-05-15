@@ -9,7 +9,7 @@ import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
-import com.stardeux.upprime.media.common.ui.model.MediaUi
+import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 import com.stardeux.upprime.core.extension.setTextAndVisibility
 import com.stardeux.upprime.core.mapper.mapMediaTypeToStringId
 
@@ -40,22 +40,22 @@ class MediaItemView : CardView {
         setLayoutParams(layoutParams)
     }
 
-    fun bind(mediaUi: MediaUi) {
-        title.setTextAndVisibility(mediaUi.title)
-        firstInfo.setTextAndVisibility(computeText(context.getString(mapMediaTypeToStringId(mediaUi.type)), mediaUi.runtime, " "))
-        secondInfo.setTextAndVisibility(computeText(mediaUi.mainNationality, mediaUi.mediaReleaseYear, " "))
-        thirdInfo.setTextAndVisibility(mediaUi.mainGenre)
-        ratings.setTextAndVisibility(mediaUi.rating)
+    fun bind(mediaItemUi: MediaItemUi) {
+        title.setTextAndVisibility(mediaItemUi.title)
+        firstInfo.setTextAndVisibility(computeText(context.getString(mapMediaTypeToStringId(mediaItemUi.type)), mediaItemUi.runtime, " "))
+        secondInfo.setTextAndVisibility(computeText(mediaItemUi.mainNationality, mediaItemUi.mediaReleaseYear, " "))
+        thirdInfo.setTextAndVisibility(mediaItemUi.mainGenre)
+        ratings.setTextAndVisibility(mediaItemUi.rating)
 
         with(Glide.with(this)) {
             clear(poster)
 
-            mediaUi.posterUrl?.let {
+            mediaItemUi.posterUrl?.let {
                 load(it).centerCrop().error(R.drawable.ic_error_black_24dp).into(poster)
             }
         }
 
-        setOnClickListener { mediaUi.onCardClicked(mediaUi) }
+        setOnClickListener { mediaItemUi.onCardClicked(mediaItemUi) }
     }
 
     private fun computeText(firstText: String?, secondText: String?, separator: String) : String? {

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.commit
 import com.stardeux.upprime.R
-import com.stardeux.upprime.media.common.ui.model.MediaUi
+import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 
 class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
 
@@ -19,7 +19,7 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
     companion object {
         private const val MEDIA_UI_ARG = "MEDIA_UI_ARG"
 
-        fun newIntent(context: Context, mediaUi: MediaUi): Intent {
+        fun newIntent(context: Context, mediaItemUi: MediaItemUi): Intent {
             return Intent(context, MediaFicheActivity::class.java).apply {
                 //putExtra(MEDIA_UI_ARG, mediaUi)
             }

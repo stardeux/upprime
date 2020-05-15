@@ -10,10 +10,10 @@ import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 fun mapToMediaUi(
-    media: Media, onFullCardClicked: (MediaUi) -> Unit
-): MediaUi {
+    media: Media, onFullCardClicked: (MediaItemUi) -> Unit
+): MediaItemUi {
     return with(media) {
-        MediaUi(
+        MediaItemUi(
             amazonId = amazonId,
             imdbId = imdbId,
             tmdbId = null,
@@ -35,13 +35,13 @@ fun mapToMediaUi(
 
 fun mapToMediaUi(
     movieDetails: MovieDetails,
-    onFullCardClicked: (MediaUi) -> Unit
-): MediaUi {
+    onFullCardClicked: (MediaItemUi) -> Unit
+): MediaItemUi {
     /**
      * Get ids from shortMediaUi because they are assuredly present
      */
     return with(movieDetails) {
-        MediaUi(
+        MediaItemUi(
             amazonId = amazonId,
             imdbId = imdbId,
             tmdbId = tmdbId,
@@ -63,13 +63,13 @@ fun mapToMediaUi(
 
 fun mapToMediaUi(
     seriesDetails: SeriesDetails,
-    onFullCardClicked: (MediaUi) -> Unit
-): MediaUi {
+    onFullCardClicked: (MediaItemUi) -> Unit
+): MediaItemUi {
     /**
      * Get ids from shortMediaUi because they are assuredly present
      */
     return with(seriesDetails) {
-        MediaUi(
+        MediaItemUi(
             amazonId = amazonId,
             imdbId = imdbId,
             tmdbId = tmdbId,

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.stardeux.upprime.R
-import com.stardeux.upprime.media.common.ui.model.MediaUi
+import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 
 class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
@@ -15,16 +15,16 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
     }
 
-    private fun bindFiche(mediaUi: MediaUi) {
+    private fun bindFiche(mediaItemUi: MediaItemUi) {
 
     }
 
     companion object {
         private const val MEDIA_UI_ARG = "MEDIA_UI_ARG"
 
-        fun newInstance(mediaUi: MediaUi): MediaFicheFragment {
+        fun newInstance(mediaItemUi: MediaItemUi): MediaFicheFragment {
             return MediaFicheFragment().apply {
-                arguments = bundleOf(MEDIA_UI_ARG to mediaUi)
+                arguments = bundleOf(MEDIA_UI_ARG to mediaItemUi)
             }
         }
     }

@@ -5,7 +5,7 @@ import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.model.TmdbId
 
-data class MediaUi(
+data class MediaItemUi(
     val amazonId: AmazonId,
     val imdbId: ImdbId,
     val tmdbId: TmdbId?,
@@ -20,5 +20,5 @@ data class MediaUi(
     val amazonReleaseDate: String,
     val synopsis: String?,
     val backdropPath: String?,
-    val onCardClicked: (MediaUi) -> Unit
+    val onCardClicked: (MediaItemUi) -> Unit
 )
