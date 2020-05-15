@@ -26,6 +26,7 @@ fun mapToMediaUi(
             rating = null,
             posterUrl = null,
             amazonReleaseDate = mapToHumanReadableMonthDay(dateAdded),
+            synopsis = null,
             onCardClicked = onFullCardClicked
         )
     }
@@ -52,6 +53,7 @@ fun mapToMediaUi(
             rating = averageRating?.let { mapToRatingString(it) },
             posterUrl = posterUrl,
             amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
+            synopsis = synopsis,
             onCardClicked = onFullCardClicked
         )
     }
@@ -78,6 +80,7 @@ fun mapToMediaUi(
             rating = averageRating?.let { mapToRatingString(it) },
             posterUrl = posterUrl,
             amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
+            synopsis = synopsis,
             onCardClicked = onFullCardClicked
         )
     }

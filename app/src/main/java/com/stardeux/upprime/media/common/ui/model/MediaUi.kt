@@ -21,6 +21,7 @@ data class MediaUi(
     val rating: String?,
     val posterUrl: String?,
     val amazonReleaseDate: String,
+    val synopsis: String?,
     val onCardClicked: (MediaUi) -> Unit
 ) {
     @StringRes
