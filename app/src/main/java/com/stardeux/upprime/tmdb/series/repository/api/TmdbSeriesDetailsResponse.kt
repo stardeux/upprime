@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.series.repository.model
+package com.stardeux.upprime.tmdb.series.repository.api
 
 import com.google.gson.annotations.SerializedName
 import com.stardeux.upprime.tmdb.common.model.network.GenreResponse

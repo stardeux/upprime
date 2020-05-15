@@ -2,7 +2,7 @@ package com.stardeux.upprime.tmdb.series.repository
 
 import com.stardeux.upprime.core.model.TmdbId
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
-import com.stardeux.upprime.tmdb.series.repository.model.TmdbSeriesDetailsResponse
+import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesDetailsResponse
 
 class SeriesRepository(private val tmdbSeriesApi: TmdbSeriesApi) {
 

@@ -14,7 +14,7 @@ data class MovieDetailsEntity(
     @ColumnInfo(name = COL_MOVIE_AMAZON_ID) val amazonId: String?,
     @ColumnInfo(name = COL_MOVIE_AMAZON_RELEASE_DATE) val amazonReleaseDate: String?,
     @ColumnInfo(name = COL_MOVIE_TITLE) val title: String?,
-    @ColumnInfo(name = COL_MOVIE_ORIGINAL_TITLE) val original_title: String?,
+    @ColumnInfo(name = COL_MOVIE_ORIGINAL_TITLE) val originalTitle: String?,
     @ColumnInfo(name = COL_MOVIE_POSTER_PATH) val posterUrl: String?,
     @ColumnInfo(name = COL_MOVIE_RELEASE_DATE) val releaseDate: String?,
     @ColumnInfo(name = COL_MOVIE_RUNTIME) val runtime: Int?,

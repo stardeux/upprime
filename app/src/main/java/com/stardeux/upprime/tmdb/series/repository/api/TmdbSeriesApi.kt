@@ -1,6 +1,5 @@
 package com.stardeux.upprime.tmdb.series.repository.api
 
-import com.stardeux.upprime.tmdb.series.repository.model.TmdbSeriesDetailsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

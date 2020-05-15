@@ -4,7 +4,6 @@ import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 import com.stardeux.upprime.tmdb.common.model.database.GenreEntity
-import com.stardeux.upprime.tmdb.common.model.database.GenreEntity.Companion.COL_GENRE_ID
 import com.stardeux.upprime.tmdb.common.model.database.MovieGenreCrossRef
 import com.stardeux.upprime.tmdb.common.model.database.MovieProductionCountryCrossRef
 import com.stardeux.upprime.tmdb.common.model.database.ProductionCountryEntity

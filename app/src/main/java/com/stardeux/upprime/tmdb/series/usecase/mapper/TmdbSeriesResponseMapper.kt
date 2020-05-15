@@ -2,7 +2,7 @@ package com.stardeux.upprime.tmdb.series.usecase.mapper
 
 import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
 import com.stardeux.upprime.tmdb.common.request.TmdbSeriesRequest
-import com.stardeux.upprime.tmdb.series.repository.model.TmdbSeriesDetailsResponse
+import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesDetailsResponse
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 fun mapToSeriesDetails(
