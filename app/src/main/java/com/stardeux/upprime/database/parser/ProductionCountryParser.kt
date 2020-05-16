@@ -6,6 +6,6 @@ fun parseDatabaseProductionCountries(productionCountries: String): List<String> 
     return productionCountries.split("#")
 }
 
-fun formatDatabaseProductionCountries(productionCountries: List<String>): String {
-    return productionCountries.joinToString("#")
+fun formatDatabaseProductionCountries(productionCountries: List<String>): String? {
+    return productionCountries.takeIf { it.isNotEmpty() }?.joinToString("#")
 }

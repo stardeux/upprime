@@ -69,7 +69,7 @@ fun mapToSeriesDetails(
             nationalities = originCountry,
             tmdbRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
             amazonReleaseDate = tmdbSeriesRequest.amazonReleaseDate,
-            synopsis = synopsis,
+            synopsis = synopsis.takeIf { it?.isNotBlank() == true },
             backdropPath = backdropPath
         )
     }

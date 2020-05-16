@@ -6,7 +6,7 @@ fun parseDatabaseGenres(genres: String): List<String> {
     return genres.split(SEPARATOR)
 }
 
-fun formatDatabaseGenres(genres: List<String>): String {
-    return genres.joinToString(SEPARATOR)
+fun formatDatabaseGenres(genres: List<String>): String? {
+    return genres.takeIf { it.isNotEmpty() }?.joinToString(SEPARATOR)
 }
 

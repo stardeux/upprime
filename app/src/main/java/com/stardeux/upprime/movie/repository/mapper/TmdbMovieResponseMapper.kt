@@ -67,7 +67,7 @@ fun mapToMovieDetails(
             nationalities = productionCountries?.mapNotNull { it.name },
             tmdbRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
             amazonReleaseDate = tmdbMovieRequest.amazonReleaseDate,
-            synopsis = synopsis,
+            synopsis = synopsis.takeIf { it?.isNotBlank() == true },
             backdropPath = backdropPath
         )
     }
