@@ -20,7 +20,8 @@ data class SeriesDetailsEntity(
     @ColumnInfo(name = COL_SERIES_RUNTIME) val runtime: Int?,
     @ColumnInfo(name = COL_SERIES_TMDB_RATING) val tmdbRating: Float?,
     @ColumnInfo(name = COL_SERIES_TMDB_SYNOPSIS) val synopsis: String?,
-    @ColumnInfo(name = COL_SERIES_BACKDROP_PATH) val backdropPath: String?
+    @ColumnInfo(name = COL_SERIES_BACKDROP_PATH) val backdropPath: String?,
+    @ColumnInfo(name = COL_SERIES_GENRES) val genres: String?
 ) {
 
     companion object {
@@ -38,7 +39,7 @@ data class SeriesDetailsEntity(
         const val COL_SERIES_TMDB_RATING = "tmdb_rating"
         const val COL_SERIES_TMDB_SYNOPSIS = "synopsis"
         const val COL_SERIES_BACKDROP_PATH = "backdrop_path"
-
+        const val COL_SERIES_GENRES = "genres"
     }
 
 }
