@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.series.repository.api
+package com.stardeux.upprime.series.repository.api
 
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,8 +1,8 @@
-package com.stardeux.upprime.tmdb.series.repository
+package com.stardeux.upprime.series.repository
 
 import com.stardeux.upprime.core.model.TmdbId
-import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
-import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesDetailsResponse
+import com.stardeux.upprime.series.repository.api.TmdbSeriesApi
+import com.stardeux.upprime.series.repository.api.TmdbSeriesDetailsResponse
 
 class SeriesRepository(private val tmdbSeriesApi: TmdbSeriesApi) {
 

@@ -1,9 +1,9 @@
-package com.stardeux.upprime.tmdb.series.repository.database
+package com.stardeux.upprime.series.repository.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity.Companion.TABLE_SERIES_NAME
+import com.stardeux.upprime.series.repository.database.SeriesDetailsEntity.Companion.TABLE_SERIES_NAME
 
 @Entity(tableName = TABLE_SERIES_NAME)
 data class SeriesDetailsEntity(

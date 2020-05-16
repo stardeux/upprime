@@ -1,8 +1,8 @@
-package com.stardeux.upprime.tmdb.series.usecase
+package com.stardeux.upprime.series.usecase
 
 import com.stardeux.upprime.tmdb.common.request.TmdbSeriesRequest
 import com.stardeux.upprime.tmdb.configuration.usecase.GetTmdbConfigurationUseCase
-import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
+import com.stardeux.upprime.series.usecase.model.SeriesDetails
 
 class GetSeriesDetailsUseCase(
     private val getUnconfiguredSeriesDetailsUseCase: GetUnconfiguredSeriesDetailsUseCase,

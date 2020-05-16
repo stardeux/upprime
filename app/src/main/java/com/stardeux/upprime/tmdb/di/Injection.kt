@@ -15,11 +15,11 @@ import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
-import com.stardeux.upprime.tmdb.series.repository.SeriesRepository
-import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
-import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
-import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
-import com.stardeux.upprime.tmdb.series.usecase.GetUnconfiguredSeriesDetailsUseCase
+import com.stardeux.upprime.series.repository.SeriesRepository
+import com.stardeux.upprime.series.repository.api.TmdbSeriesApi
+import com.stardeux.upprime.series.usecase.GetImdbSeriesDetailsUseCase
+import com.stardeux.upprime.series.usecase.GetSeriesDetailsUseCase
+import com.stardeux.upprime.series.usecase.GetUnconfiguredSeriesDetailsUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
