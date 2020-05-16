@@ -2,8 +2,192 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e4d654fd593a97087a56bb13eda3ea58",
+    "identityHash": "62609f70be08019dc471be54bb8c751e",
     "entities": [
+      {
+        "tableName": "series",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`series_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT, `imdb_id` TEXT, `amazon_id` TEXT, `amazon_release_date` TEXT, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "series_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tmdbId",
+            "columnName": "tmdb_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imdbId",
+            "columnName": "imdb_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amazonId",
+            "columnName": "amazon_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amazonReleaseDate",
+            "columnName": "amazon_release_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "originalTitle",
+            "columnName": "original_title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "posterUrl",
+            "columnName": "poster_path",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "releaseDate",
+            "columnName": "release_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "runtime",
+            "columnName": "runtime",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tmdbRating",
+            "columnName": "tmdb_rating",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "synopsis",
+            "columnName": "synopsis",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "backdropPath",
+            "columnName": "backdrop_path",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "series_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "movies",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movie_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT, `imdb_id` TEXT, `amazon_id` TEXT, `amazon_release_date` TEXT, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "movie_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tmdbId",
+            "columnName": "tmdb_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imdbId",
+            "columnName": "imdb_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amazonId",
+            "columnName": "amazon_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amazonReleaseDate",
+            "columnName": "amazon_release_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "originalTitle",
+            "columnName": "original_title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "posterUrl",
+            "columnName": "poster_path",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "releaseDate",
+            "columnName": "release_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "runtime",
+            "columnName": "runtime",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tmdbRating",
+            "columnName": "tmdb_rating",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "synopsis",
+            "columnName": "synopsis",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "backdropPath",
+            "columnName": "backdrop_path",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "movie_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
       {
         "tableName": "genres",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`genre_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `genre_tmdb_id` TEXT, `genre_name` TEXT)",
@@ -64,26 +248,26 @@
         "foreignKeys": []
       },
       {
-        "tableName": "movie_production_country",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movie_id` INTEGER NOT NULL, `production_country_id` INTEGER NOT NULL, PRIMARY KEY(`movie_id`, `production_country_id`))",
+        "tableName": "series_genre",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`series_id` INTEGER NOT NULL, `genre_id` INTEGER NOT NULL, PRIMARY KEY(`series_id`, `genre_id`))",
         "fields": [
           {
-            "fieldPath": "movieId",
-            "columnName": "movie_id",
+            "fieldPath": "seriesId",
+            "columnName": "series_id",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "productionCountryId",
-            "columnName": "production_country_id",
+            "fieldPath": "genreId",
+            "columnName": "genre_id",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "movie_id",
-            "production_country_id"
+            "series_id",
+            "genre_id"
           ],
           "autoGenerate": false
         },
@@ -123,26 +307,26 @@
         "foreignKeys": []
       },
       {
-        "tableName": "series_genre",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`series_id` INTEGER NOT NULL, `genre_id` INTEGER NOT NULL, PRIMARY KEY(`series_id`, `genre_id`))",
+        "tableName": "movie_production_country",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movie_id` INTEGER NOT NULL, `production_country_id` INTEGER NOT NULL, PRIMARY KEY(`movie_id`, `production_country_id`))",
         "fields": [
           {
-            "fieldPath": "seriesId",
-            "columnName": "series_id",
+            "fieldPath": "movieId",
+            "columnName": "movie_id",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "genreId",
-            "columnName": "genre_id",
+            "fieldPath": "productionCountryId",
+            "columnName": "production_country_id",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "series_id",
-            "genre_id"
+            "movie_id",
+            "production_country_id"
           ],
           "autoGenerate": false
         },
@@ -180,7 +364,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e4d654fd593a97087a56bb13eda3ea58')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '62609f70be08019dc471be54bb8c751e')"
     ]
   }
 }

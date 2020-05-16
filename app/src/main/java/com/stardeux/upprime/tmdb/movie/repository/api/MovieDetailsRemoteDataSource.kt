@@ -1,6 +1,6 @@
 package com.stardeux.upprime.tmdb.movie.repository.api
 
-class MovieRemoteDataSource(
+class MovieDetailsRemoteDataSource(
     private val tmdbMovieApi: TmdbMovieApi
 ) {
     suspend fun getMovieDetails(

@@ -26,6 +26,6 @@ data class MovieDetailsEntityWithGenreAndProductionCountry(
         entityColumn = ProductionCountryEntity.COL_PRODUCTION_COUNTRY_ID,
         associateBy = Junction(MovieProductionCountryCrossRef::class)
     )
-    val productionCountries: List<ProductionCountryResponse>?
+    val productionCountries: List<ProductionCountryEntity>?
 
 )

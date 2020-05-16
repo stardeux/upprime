@@ -10,8 +10,7 @@ class GetUnconfiguredMovieDetailsUseCase(
 ) {
 
     suspend operator fun invoke(tmdbMovieRequest: TmdbMovieRequest): MovieDetails {
-        val id = tmdbMovieRequest.tmdbId ?: tmdbMovieRequest.imdbId
-        return mapToMovieDetails(movieRepository.getMovieDetails(id, "fr"), tmdbMovieRequest)
+        return movieRepository.getMovieDetails(tmdbMovieRequest, "fr")
     }
 
 }

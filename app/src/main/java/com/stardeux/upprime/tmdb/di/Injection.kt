@@ -1,5 +1,6 @@
 package com.stardeux.upprime.tmdb.di
 
+import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.configuration.repository.TmdbConfigurationRepository
 import com.stardeux.upprime.tmdb.configuration.repository.api.TmdbConfigurationApi
@@ -15,6 +16,9 @@ import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
+import com.stardeux.upprime.tmdb.movie.repository.api.MovieDetailsRemoteDataSource
+import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailDao
+import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailLocalDataSource
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetUnconfiguredMovieDetailsUseCase
@@ -33,9 +37,13 @@ val tmdbModule = module {
     single { provideGetTmdbConfigurationUseCase(get()) }    //single to keep configuration cache
 
     factory { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    factory { provideMovieRepository(get()) }
+    factory { provideMovieDetailRemoteDataSource(get()) }
+    factory { provideMovieDetailLocalDataSource(get()) }
+    factory { provideMovieDetailDao(get()) }
+    factory { provideMovieRepository(get(), get()) }
     factory { provideGetUnconfiguredMovieDetailsUseCase(get()) }
     factory { provideGetMovieDetailsUseCase(get(), get()) }
+
     factory { provideTmdbFindApi(get(named(TMDB_NAMED_QUALIFIER))) }
     factory { provideFindMediaRepository(get()) }
     factory { provideFindMovieUseCase(get()) }
@@ -111,8 +119,23 @@ private fun provideTmdbMovieApi(retrofit: Retrofit): TmdbMovieApi {
     return retrofit.create(TmdbMovieApi::class.java)
 }
 
-private fun provideMovieRepository(tmdbMovieApi: TmdbMovieApi): MovieRepository {
-    return MovieRepository(tmdbMovieApi)
+private fun provideMovieRepository(
+    movieDetailLocalDataSource: MovieDetailLocalDataSource,
+    movieDetailsRemoteDataSource: MovieDetailsRemoteDataSource
+): MovieRepository {
+    return MovieRepository(movieDetailsRemoteDataSource, movieDetailLocalDataSource)
+}
+
+private fun provideMovieDetailRemoteDataSource(tmdbMovieApi: TmdbMovieApi): MovieDetailsRemoteDataSource {
+    return MovieDetailsRemoteDataSource(tmdbMovieApi)
+}
+
+private fun provideMovieDetailLocalDataSource(movieDetailDao: MovieDetailDao): MovieDetailLocalDataSource {
+    return MovieDetailLocalDataSource(movieDetailDao)
+}
+
+private fun provideMovieDetailDao(upPrimeDatabase: UpPrimeDatabase): MovieDetailDao {
+    return upPrimeDatabase.movieDetailsDao()
 }
 
 private fun provideGetUnconfiguredMovieDetailsUseCase(
