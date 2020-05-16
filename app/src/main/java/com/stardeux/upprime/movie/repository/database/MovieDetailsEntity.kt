@@ -9,10 +9,10 @@ import com.stardeux.upprime.movie.repository.database.MovieDetailsEntity.Compani
 data class MovieDetailsEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = COL_MOVIE_ID) val id: Int = 0,
 
-    @ColumnInfo(name = COL_MOVIE_TMDB_ID) val tmdbId: String?,
-    @ColumnInfo(name = COL_MOVIE_IMDB_ID) val imdbId: String?,
-    @ColumnInfo(name = COL_MOVIE_AMAZON_ID) val amazonId: String?,
-    @ColumnInfo(name = COL_MOVIE_AMAZON_RELEASE_DATE) val amazonReleaseDate: String?,
+    @ColumnInfo(name = COL_MOVIE_TMDB_ID) val tmdbId: String,
+    @ColumnInfo(name = COL_MOVIE_IMDB_ID) val imdbId: String,
+    @ColumnInfo(name = COL_MOVIE_AMAZON_ID) val amazonId: String,
+    @ColumnInfo(name = COL_MOVIE_AMAZON_RELEASE_DATE) val amazonReleaseDate: String,
     @ColumnInfo(name = COL_MOVIE_TITLE) val title: String?,
     @ColumnInfo(name = COL_MOVIE_ORIGINAL_TITLE) val originalTitle: String?,
     @ColumnInfo(name = COL_MOVIE_POSTER_PATH) val posterUrl: String?,

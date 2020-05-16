@@ -51,7 +51,7 @@ fun mapToMediaUi(
             mainGenre = genders?.getOrNull(0),
             mediaReleaseYear = mediaReleaseDate?.let { mapReleaseDateToYear(it) },
             mainNationality = nationalities?.getOrNull(0),
-            rating = averageRating?.let { mapToRatingString(it) },
+            rating = tmdbRating?.let { mapToRatingString(it) },
             posterUrl = posterUrl,
             amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
