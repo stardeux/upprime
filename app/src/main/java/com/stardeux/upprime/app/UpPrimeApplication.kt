@@ -10,6 +10,7 @@ import com.stardeux.upprime.database.di.databaseModule
 import com.stardeux.upprime.movie.di.movieModule
 import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
 import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
+import com.stardeux.upprime.series.di.seriesModule
 import com.stardeux.upprime.splash.di.splashModule
 import com.stardeux.upprime.tmdb.di.tmdbModule
 import com.stardeux.upprime.tools.flipper.flipperModule
@@ -44,7 +45,7 @@ abstract class UpPrimeApplication : Application() {
             /**
              * Features
              */
-            modules(splashModule, latestModule, expiredModule, countryModule, movieModule)
+            modules(splashModule, latestModule, expiredModule, countryModule, movieModule, seriesModule)
         }
     }
 }

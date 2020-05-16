@@ -40,10 +40,7 @@ val tmdbModule = module {
     factory { provideSearchMovieUseCase(get()) }
     factory { provideSearchSeriesUseCase(get()) }
 
-    factory { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    factory { provideSeriesRepository(get()) }
-    factory { provideGetUnconfiguredSeriesDetailsUseCase(get()) }
-    factory { provideGetSeriesDetailUseCase(get(), get()) }
+
 
     factory { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
     factory { provideGetImdbMovieDetailsUseCase(get(), get(), get()) }
@@ -100,26 +97,6 @@ private fun provideFindSeriesUseCase(findMediaRepository: FindMediaRepository): 
     return FindSeriesUseCase(findMediaRepository)
 }
 
-private fun provideSeriesApi(retrofit: Retrofit): TmdbSeriesApi {
-    return retrofit.create(TmdbSeriesApi::class.java)
-}
-
-private fun provideSeriesRepository(tmdbSeriesApi: TmdbSeriesApi): SeriesRepository {
-    return SeriesRepository(tmdbSeriesApi)
-}
-
-private fun provideGetUnconfiguredSeriesDetailsUseCase(
-    seriesRepository: SeriesRepository
-): GetUnconfiguredSeriesDetailsUseCase {
-    return GetUnconfiguredSeriesDetailsUseCase(seriesRepository)
-}
-
-private fun provideGetSeriesDetailUseCase(
-    getUnconfiguredSeriesDetailsUseCase: GetUnconfiguredSeriesDetailsUseCase,
-    configurationUseCase: GetTmdbConfigurationUseCase
-): GetSeriesDetailsUseCase {
-    return GetSeriesDetailsUseCase(getUnconfiguredSeriesDetailsUseCase, configurationUseCase)
-}
 
 private fun provideGetImdbSeriesDetailsUseCase(
     findSeriesUseCase: FindSeriesUseCase,
