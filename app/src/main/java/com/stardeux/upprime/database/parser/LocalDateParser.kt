@@ -5,6 +5,10 @@ import org.threeten.bp.format.DateTimeFormatter
 
 private val formatter = DateTimeFormatter.ISO_DATE
 
-fun getDatabaseLocalDate(localDate: String): LocalDate {
+fun parseDatabaseLocalDate(localDate: String): LocalDate {
     return formatter.parse(localDate, LocalDate::from)
+}
+
+fun formatDatabaseLocalDate(localDate: LocalDate): String {
+    return formatter.format(localDate)
 }

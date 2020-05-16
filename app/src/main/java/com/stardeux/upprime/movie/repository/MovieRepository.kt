@@ -4,6 +4,7 @@ import com.stardeux.upprime.tmdb.common.request.TmdbMovieRequest
 import com.stardeux.upprime.movie.repository.api.MovieDetailsRemoteDataSource
 import com.stardeux.upprime.movie.repository.database.MovieDetailLocalDataSource
 import com.stardeux.upprime.movie.repository.mapper.mapToMovieDetails
+import com.stardeux.upprime.movie.repository.mapper.mapToMovieDetailsEntity
 import com.stardeux.upprime.movie.usecase.model.MovieDetails
 
 class MovieRepository(
@@ -15,13 +16,13 @@ class MovieRepository(
         tmdbMovieRequest: TmdbMovieRequest, language: String
     ): MovieDetails {
         val cached = movieDetailLocalDataSource.getMovieDetails(tmdbMovieRequest.imdbId)
-        if (cached != null) {
-            return mapToMovieDetails(cached)
+        return if (cached != null) {
+            mapToMovieDetails(cached)
+        } else {
+            mapToMovieDetails(
+                movieDetailsRemoteDataSource.getMovieDetails(tmdbMovieRequest.imdbId, language),
+                tmdbMovieRequest
+            ).also { movieDetailLocalDataSource.insert(mapToMovieDetailsEntity(it)) }
         }
-
-        return mapToMovieDetails(
-            movieDetailsRemoteDataSource.getMovieDetails(tmdbMovieRequest.imdbId, language),
-            tmdbMovieRequest
-        )
     }
 }

@@ -48,7 +48,7 @@ fun mapToMediaUi(
             title = title,
             type = MediaType.MOVIE,
             runtime = runtimeMinutes?.let { mapRuntimeToString(runtimeMinutes) },
-            mainGenre = genders?.getOrNull(0),
+            mainGenre = genres?.getOrNull(0),
             mediaReleaseYear = mediaReleaseDate?.let { mapReleaseDateToYear(it) },
             mainNationality = nationalities?.getOrNull(0),
             rating = tmdbRating?.let { mapToRatingString(it) },
