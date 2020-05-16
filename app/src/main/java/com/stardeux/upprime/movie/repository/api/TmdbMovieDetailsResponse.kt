@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.movie.repository.api
+package com.stardeux.upprime.movie.repository.api
 
 import com.google.gson.annotations.SerializedName
 import com.stardeux.upprime.tmdb.common.model.network.GenreResponse

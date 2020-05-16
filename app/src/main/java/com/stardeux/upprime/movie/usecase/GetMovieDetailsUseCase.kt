@@ -1,8 +1,8 @@
-package com.stardeux.upprime.tmdb.movie.usecase
+package com.stardeux.upprime.movie.usecase
 
 import com.stardeux.upprime.tmdb.common.request.TmdbMovieRequest
 import com.stardeux.upprime.tmdb.configuration.usecase.GetTmdbConfigurationUseCase
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.movie.usecase.model.MovieDetails
 
 class GetMovieDetailsUseCase(
     private val getUnconfiguredMovieDetailsUseCase: GetUnconfiguredMovieDetailsUseCase,

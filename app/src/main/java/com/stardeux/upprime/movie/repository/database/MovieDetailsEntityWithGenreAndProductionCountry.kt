@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.movie.repository.database
+package com.stardeux.upprime.movie.repository.database
 
 import androidx.room.Embedded
 import androidx.room.Junction
@@ -7,7 +7,6 @@ import com.stardeux.upprime.tmdb.common.model.database.GenreEntity
 import com.stardeux.upprime.tmdb.common.model.database.MovieGenreCrossRef
 import com.stardeux.upprime.tmdb.common.model.database.MovieProductionCountryCrossRef
 import com.stardeux.upprime.tmdb.common.model.database.ProductionCountryEntity
-import com.stardeux.upprime.tmdb.common.model.network.ProductionCountryResponse
 
 data class MovieDetailsEntityWithGenreAndProductionCountry(
 

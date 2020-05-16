@@ -6,6 +6,8 @@ import com.stardeux.upprime.media.expired.di.expiredModule
 import com.stardeux.upprime.media.latest.di.latestModule
 import com.stardeux.upprime.core.di.coreModule
 import com.stardeux.upprime.country.di.countryModule
+import com.stardeux.upprime.database.di.databaseModule
+import com.stardeux.upprime.movie.di.movieModule
 import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
 import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
 import com.stardeux.upprime.splash.di.splashModule
@@ -37,12 +39,12 @@ abstract class UpPrimeApplication : Application() {
             /**
              * Mid core
              */
-            modules(flipperModule, fullAmazonNetwork, fullTmdbNetwork, tmdbModule)
+            modules(flipperModule, fullAmazonNetwork, fullTmdbNetwork, tmdbModule, databaseModule)
 
             /**
              * Features
              */
-            modules(splashModule, latestModule, expiredModule, countryModule)
+            modules(splashModule, latestModule, expiredModule, countryModule, movieModule)
         }
     }
 }

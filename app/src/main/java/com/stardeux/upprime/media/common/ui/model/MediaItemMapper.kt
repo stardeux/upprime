@@ -6,7 +6,7 @@ import com.stardeux.upprime.media.common.usecase.model.Media
 import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
 import com.stardeux.upprime.core.mapper.mapToHumanReadableMonthDay
 import com.stardeux.upprime.core.mapper.mapToRatingString
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 fun mapToMediaUi(

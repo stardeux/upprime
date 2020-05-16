@@ -9,7 +9,7 @@ import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 import com.stardeux.upprime.media.common.ui.model.mapToMediaUi
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
-import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
+import com.stardeux.upprime.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import fr.stardeux.autosc.util.SingleLiveEvent
 import kotlinx.coroutines.CoroutineExceptionHandler

@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.movie.repository.api
+package com.stardeux.upprime.movie.repository.api
 
 class MovieDetailsRemoteDataSource(
     private val tmdbMovieApi: TmdbMovieApi

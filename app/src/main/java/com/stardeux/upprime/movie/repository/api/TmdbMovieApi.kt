@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.movie.repository.api
+package com.stardeux.upprime.movie.repository.api
 
 import retrofit2.http.GET
 import retrofit2.http.Path

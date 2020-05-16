@@ -1,6 +1,7 @@
 package com.stardeux.upprime.tmdb.di
 
-import com.stardeux.upprime.database.UpPrimeDatabase
+import com.stardeux.upprime.movie.usecase.GetImdbMovieDetailsUseCase
+import com.stardeux.upprime.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.configuration.repository.TmdbConfigurationRepository
 import com.stardeux.upprime.tmdb.configuration.repository.api.TmdbConfigurationApi
@@ -14,14 +15,6 @@ import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
-import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
-import com.stardeux.upprime.tmdb.movie.repository.MovieRepository
-import com.stardeux.upprime.tmdb.movie.repository.api.MovieDetailsRemoteDataSource
-import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailDao
-import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailLocalDataSource
-import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
-import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
-import com.stardeux.upprime.tmdb.movie.usecase.GetUnconfiguredMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.repository.SeriesRepository
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
@@ -35,14 +28,6 @@ val tmdbModule = module {
     factory { provideTmdbConfigurationApi(get(named(TMDB_NAMED_QUALIFIER))) }
     factory { provideTmdbConfigurationRepository(get()) }
     single { provideGetTmdbConfigurationUseCase(get()) }    //single to keep configuration cache
-
-    factory { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    factory { provideMovieDetailRemoteDataSource(get()) }
-    factory { provideMovieDetailLocalDataSource(get()) }
-    factory { provideMovieDetailDao(get()) }
-    factory { provideMovieRepository(get(), get()) }
-    factory { provideGetUnconfiguredMovieDetailsUseCase(get()) }
-    factory { provideGetMovieDetailsUseCase(get(), get()) }
 
     factory { provideTmdbFindApi(get(named(TMDB_NAMED_QUALIFIER))) }
     factory { provideFindMediaRepository(get()) }
@@ -113,42 +98,6 @@ private fun provideFindMovieUseCase(findMediaRepository: FindMediaRepository): F
 
 private fun provideFindSeriesUseCase(findMediaRepository: FindMediaRepository): FindSeriesUseCase {
     return FindSeriesUseCase(findMediaRepository)
-}
-
-private fun provideTmdbMovieApi(retrofit: Retrofit): TmdbMovieApi {
-    return retrofit.create(TmdbMovieApi::class.java)
-}
-
-private fun provideMovieRepository(
-    movieDetailLocalDataSource: MovieDetailLocalDataSource,
-    movieDetailsRemoteDataSource: MovieDetailsRemoteDataSource
-): MovieRepository {
-    return MovieRepository(movieDetailsRemoteDataSource, movieDetailLocalDataSource)
-}
-
-private fun provideMovieDetailRemoteDataSource(tmdbMovieApi: TmdbMovieApi): MovieDetailsRemoteDataSource {
-    return MovieDetailsRemoteDataSource(tmdbMovieApi)
-}
-
-private fun provideMovieDetailLocalDataSource(movieDetailDao: MovieDetailDao): MovieDetailLocalDataSource {
-    return MovieDetailLocalDataSource(movieDetailDao)
-}
-
-private fun provideMovieDetailDao(upPrimeDatabase: UpPrimeDatabase): MovieDetailDao {
-    return upPrimeDatabase.movieDetailsDao()
-}
-
-private fun provideGetUnconfiguredMovieDetailsUseCase(
-    movieRepository: MovieRepository
-): GetUnconfiguredMovieDetailsUseCase {
-    return GetUnconfiguredMovieDetailsUseCase(movieRepository)
-}
-
-private fun provideGetMovieDetailsUseCase(
-    getUnconfiguredMovieDetailsUseCase: GetUnconfiguredMovieDetailsUseCase,
-    configurationUseCase: GetTmdbConfigurationUseCase
-): GetMovieDetailsUseCase {
-    return GetMovieDetailsUseCase(getUnconfiguredMovieDetailsUseCase, configurationUseCase)
 }
 
 private fun provideSeriesApi(retrofit: Retrofit): TmdbSeriesApi {

@@ -3,9 +3,6 @@ package com.stardeux.upprime.tmdb.common.model.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import com.stardeux.upprime.tmdb.common.model.database.MovieGenreCrossRef.Companion.TABLE_MOVIE_GENRE_REF_NAME
-import com.stardeux.upprime.tmdb.common.model.database.SeriesGenreCrossRef.Companion.TABLE_SERIES_GENRE_REF_NAME
-import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
-import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
 
 @Entity(
     tableName = TABLE_MOVIE_GENRE_REF_NAME,

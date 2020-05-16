@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.movie.repository.database
+package com.stardeux.upprime.movie.repository.database
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.movie.repository.database
+package com.stardeux.upprime.movie.repository.database
 
 import com.stardeux.upprime.core.model.ImdbId
 

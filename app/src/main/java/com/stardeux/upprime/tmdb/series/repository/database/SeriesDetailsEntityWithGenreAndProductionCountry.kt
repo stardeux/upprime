@@ -5,7 +5,6 @@ import androidx.room.Junction
 import androidx.room.Relation
 import com.stardeux.upprime.tmdb.common.model.database.*
 import com.stardeux.upprime.tmdb.common.model.network.ProductionCountryResponse
-import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
 
 data class SeriesDetailsEntityWithGenreAndProductionCountry(
 

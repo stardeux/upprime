@@ -1,11 +1,11 @@
-package com.stardeux.upprime.tmdb.movie.usecase
+package com.stardeux.upprime.movie.usecase
 
 import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
 import com.stardeux.upprime.tmdb.common.request.mapToTmdbMovieRequest
 import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.error.MovieNotFoundException
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.movie.usecase.model.MovieDetails
 
 class GetImdbMovieDetailsUseCase(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,

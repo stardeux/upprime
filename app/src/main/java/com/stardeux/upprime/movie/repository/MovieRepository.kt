@@ -1,10 +1,10 @@
-package com.stardeux.upprime.tmdb.movie.repository
+package com.stardeux.upprime.movie.repository
 
 import com.stardeux.upprime.tmdb.common.request.TmdbMovieRequest
-import com.stardeux.upprime.tmdb.movie.repository.api.MovieDetailsRemoteDataSource
-import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailLocalDataSource
-import com.stardeux.upprime.tmdb.movie.usecase.mapper.mapToMovieDetails
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.movie.repository.api.MovieDetailsRemoteDataSource
+import com.stardeux.upprime.movie.repository.database.MovieDetailLocalDataSource
+import com.stardeux.upprime.movie.usecase.mapper.mapToMovieDetails
+import com.stardeux.upprime.movie.usecase.model.MovieDetails
 
 class MovieRepository(
     private val movieDetailsRemoteDataSource: MovieDetailsRemoteDataSource,

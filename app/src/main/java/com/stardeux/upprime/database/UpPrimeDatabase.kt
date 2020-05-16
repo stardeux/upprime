@@ -3,8 +3,8 @@ package com.stardeux.upprime.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.stardeux.upprime.tmdb.common.model.database.*
-import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailDao
-import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
+import com.stardeux.upprime.movie.repository.database.MovieDetailDao
+import com.stardeux.upprime.movie.repository.database.MovieDetailsEntity
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
 
 @Database(
