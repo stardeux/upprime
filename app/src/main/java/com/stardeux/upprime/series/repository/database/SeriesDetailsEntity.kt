@@ -9,10 +9,10 @@ import com.stardeux.upprime.series.repository.database.SeriesDetailsEntity.Compa
 data class SeriesDetailsEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = COL_SERIES_ID) val id: Int = 0,
 
-    @ColumnInfo(name = COL_SERIES_TMDB_ID) val tmdbId: String?,
-    @ColumnInfo(name = COL_SERIES_IMDB_ID) val imdbId: String?,
-    @ColumnInfo(name = COL_SERIES_AMAZON_ID) val amazonId: String?,
-    @ColumnInfo(name = COL_SERIES_AMAZON_RELEASE_DATE) val amazonReleaseDate: String?,
+    @ColumnInfo(name = COL_SERIES_TMDB_ID) val tmdbId: String,
+    @ColumnInfo(name = COL_SERIES_IMDB_ID) val imdbId: String,
+    @ColumnInfo(name = COL_SERIES_AMAZON_ID) val amazonId: String,
+    @ColumnInfo(name = COL_SERIES_AMAZON_RELEASE_DATE) val amazonReleaseDate: String,
     @ColumnInfo(name = COL_SERIES_TITLE) val title: String?,
     @ColumnInfo(name = COL_SERIES_ORIGINAL_TITLE) val originalTitle: String?,
     @ColumnInfo(name = COL_SERIES_POSTER_PATH) val posterUrl: String?,
