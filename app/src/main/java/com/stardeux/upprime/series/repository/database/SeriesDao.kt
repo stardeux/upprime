@@ -9,7 +9,7 @@ import com.stardeux.upprime.core.model.ImdbId
 interface SeriesDao {
 
     @Query(value = "SELECT * FROM ${SeriesDetailsEntity.TABLE_SERIES_NAME} WHERE ${SeriesDetailsEntity.COL_SERIES_IMDB_ID} = :imdbId")
-    suspend fun getMovieDetails(imdbId: ImdbId): SeriesDetailsEntity?
+    suspend fun getSeries(imdbId: ImdbId): SeriesDetailsEntity?
 
     @Insert
     suspend fun insert(seriesDetailsEntity: SeriesDetailsEntity): Long
