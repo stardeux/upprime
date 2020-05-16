@@ -20,7 +20,9 @@ data class MovieDetailsEntity(
     @ColumnInfo(name = COL_MOVIE_RUNTIME) val runtime: Int?,
     @ColumnInfo(name = COL_MOVIE_TMDB_RATING) val tmdbRating: Float?,
     @ColumnInfo(name = COL_MOVIE_TMDB_SYNOPSIS) val synopsis: String?,
-    @ColumnInfo(name = COL_MOVIE_BACKDROP_PATH) val backdropPath: String?
+    @ColumnInfo(name = COL_MOVIE_BACKDROP_PATH) val backdropPath: String?,
+    @ColumnInfo(name = COL_MOVIE_GENRES) val genres: String?,
+    @ColumnInfo(name = COL_MOVIE_PRODUCTION_COUNTRIES) val productionCountries: String?
 ) {
 
     companion object {
@@ -38,7 +40,8 @@ data class MovieDetailsEntity(
         const val COL_MOVIE_TMDB_RATING = "tmdb_rating"
         const val COL_MOVIE_TMDB_SYNOPSIS = "synopsis"
         const val COL_MOVIE_BACKDROP_PATH = "backdrop_path"
-
+        const val COL_MOVIE_GENRES = "genres"
+        const val COL_MOVIE_PRODUCTION_COUNTRIES = "production_countries"
     }
 
 }

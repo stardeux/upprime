@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3e337c74c198f52a93df8c19d3bcce75",
+    "identityHash": "ad365440081864e90730151d0ae608c2",
     "entities": [
       {
         "tableName": "series",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`series_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT, `imdb_id` TEXT, `amazon_id` TEXT, `amazon_release_date` TEXT, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT, `genres` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`series_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT, `imdb_id` TEXT, `amazon_id` TEXT, `amazon_release_date` TEXT, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT, `genres` TEXT, `production_countries` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -91,6 +91,12 @@
             "columnName": "genres",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "productionCountries",
+            "columnName": "production_countries",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -104,7 +110,7 @@
       },
       {
         "tableName": "movies",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movie_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT, `imdb_id` TEXT, `amazon_id` TEXT, `amazon_release_date` TEXT, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movie_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT, `imdb_id` TEXT, `amazon_id` TEXT, `amazon_release_date` TEXT, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT, `genres` TEXT, `production_countries` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -183,6 +189,18 @@
             "columnName": "backdrop_path",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "genres",
+            "columnName": "genres",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "productionCountries",
+            "columnName": "production_countries",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -198,7 +216,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3e337c74c198f52a93df8c19d3bcce75')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ad365440081864e90730151d0ae608c2')"
     ]
   }
 }
