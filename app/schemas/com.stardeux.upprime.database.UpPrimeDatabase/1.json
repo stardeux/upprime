@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "95319950906a94cda38f9bd33b829ef5",
+    "identityHash": "5cb69fb131df86e81ef95b9706333773",
     "entities": [
       {
         "tableName": "series",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`series_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT, `imdb_id` TEXT, `amazon_id` TEXT, `amazon_release_date` TEXT, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT, `genres` TEXT, `production_countries` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`series_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT NOT NULL, `imdb_id` TEXT NOT NULL, `amazon_id` TEXT NOT NULL, `amazon_release_date` TEXT NOT NULL, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT, `genres` TEXT, `production_countries` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -18,25 +18,25 @@
             "fieldPath": "tmdbId",
             "columnName": "tmdb_id",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "imdbId",
             "columnName": "imdb_id",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "amazonId",
             "columnName": "amazon_id",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "amazonReleaseDate",
             "columnName": "amazon_release_date",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "title",
@@ -216,7 +216,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '95319950906a94cda38f9bd33b829ef5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5cb69fb131df86e81ef95b9706333773')"
     ]
   }
 }

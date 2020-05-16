@@ -16,7 +16,7 @@ import retrofit2.Retrofit
 
 val seriesModule = module {
     factory { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    factory { provideSeriesRepository(get()) }
+    factory { provideSeriesRepository(get(), get()) }
     factory { provideGetUnconfiguredSeriesDetailsUseCase(get()) }
     factory { provideGetSeriesDetailUseCase(get(), get()) }
     factory { provideSeriesDao(get()) }
@@ -40,8 +40,11 @@ private fun provideSeriesApi(retrofit: Retrofit): TmdbSeriesApi {
     return retrofit.create(TmdbSeriesApi::class.java)
 }
 
-private fun provideSeriesRepository(tmdbSeriesApi: TmdbSeriesApi): SeriesRepository {
-    return SeriesRepository(tmdbSeriesApi)
+private fun provideSeriesRepository(
+    seriesLocalDataSource: SeriesLocalDataSource,
+    seriesRemoteDataSource: SeriesRemoteDataSource
+): SeriesRepository {
+    return SeriesRepository(seriesLocalDataSource, seriesRemoteDataSource)
 }
 
 private fun provideGetUnconfiguredSeriesDetailsUseCase(

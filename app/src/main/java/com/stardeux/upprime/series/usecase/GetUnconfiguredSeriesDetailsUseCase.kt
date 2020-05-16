@@ -10,7 +10,7 @@ class GetUnconfiguredSeriesDetailsUseCase(
 ) {
 
     suspend operator fun invoke(tmdbSeriesRequest: TmdbSeriesRequest): SeriesDetails {
-        return mapToSeriesDetails(seriesRepository.getSeriesDetails(tmdbSeriesRequest.tmdbId, "fr"), tmdbSeriesRequest)
+        return seriesRepository.getSeriesDetails(tmdbSeriesRequest, "fr")
     }
 
 }
