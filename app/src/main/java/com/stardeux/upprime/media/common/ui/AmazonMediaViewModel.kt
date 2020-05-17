@@ -85,17 +85,6 @@ abstract class AmazonMediaViewModel(
         }
     }
 
-    private fun groupByDate(medias : List<MediaItemUi>): MutableList<Any> {
-        val groupedMedia = medias.groupBy { it.amazonReleaseDate }
-
-        return mutableListOf<Any>().apply {
-            groupedMedia.keys.forEach {
-                add(DateSeparatorUi(it))
-                addAll(groupedMedia.getValue(it))
-            }
-        }
-    }
-
 
     private suspend fun updateViewFullMedia(shortMedia: Media) {
         try {
@@ -127,6 +116,16 @@ abstract class AmazonMediaViewModel(
         }
     }
 
+    private fun groupByDate(medias: List<MediaItemUi>): MutableList<Any> {
+        val groupedMedia = medias.groupBy { it.amazonReleaseDate }
+
+        return mutableListOf<Any>().apply {
+            groupedMedia.keys.forEach {
+                add(DateSeparatorUi(it))
+                addAll(groupedMedia.getValue(it))
+            }
+        }
+    }
 
     sealed class NavigationEvent {
         class MediaDetailsFiche(val mediaItemUi: MediaItemUi) : NavigationEvent()
