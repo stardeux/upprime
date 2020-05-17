@@ -30,7 +30,7 @@ class SeriesDetailsMapper(private val posterMapper: PosterMapper) {
                 tmdbRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
                 amazonReleaseDate = tmdbSeriesRequest.amazonReleaseDate,
                 synopsis = synopsis.takeIf { it?.isNotBlank() == true },
-                backdropPath = backdropPath
+                backdropPath = posterMapper.getCompletePosterUrl(backdropPath)
             )
         }
     }
