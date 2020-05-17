@@ -19,7 +19,11 @@ class MovieRepository(
     ): MovieDetails {
         val cached = getCachedMovieDetails(tmdbMovieRequest.imdbId)
         return cached ?: getRemoteMovieDetails(tmdbMovieRequest, language)
-            .also { movieDetailLocalDataSource.insert(mapToMovieDetailsEntity(it)) }
+            .also { cacheMovieDetails(it) }
+    }
+
+    suspend fun cacheMovieDetails(movieDetails: MovieDetails) {
+        movieDetailLocalDataSource.insert(mapToMovieDetailsEntity(movieDetails))
     }
 
     suspend fun getCachedMovieDetails(imdbId: ImdbId): MovieDetails? {

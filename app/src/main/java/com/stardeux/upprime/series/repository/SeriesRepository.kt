@@ -2,7 +2,6 @@ package com.stardeux.upprime.series.repository
 
 import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.series.repository.api.SeriesRemoteDataSource
-import com.stardeux.upprime.series.repository.database.SeriesDao
 import com.stardeux.upprime.series.repository.database.SeriesLocalDataSource
 import com.stardeux.upprime.series.repository.mapper.SeriesDetailsMapper
 import com.stardeux.upprime.series.repository.mapper.mapToSeriesDetailsEntity
