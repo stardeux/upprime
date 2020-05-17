@@ -15,13 +15,20 @@ class GetImdbSeriesDetailsUseCase(
 ) {
 
     suspend operator fun invoke(imdbMediaRequest: ImdbMediaRequest): SeriesDetails {
-        val findResults =
-            findSeriesUseCase.findSeriesByImdbId(imdbMediaRequest.imdbId) ?: imdbMediaRequest.name?.let { searchSeries(it) }
-        val tmdbId = findResults?.tmdbId
+        val cachedSeriesDetails =
+            getSeriesDetailsUseCase.getCachedSeriesDetails(imdbMediaRequest.imdbId)
 
-        return tmdbId?.let {
-            getSeriesDetailsUseCase(mapToTmdbSeriesRequest(imdbMediaRequest, it))
-        } ?: throw SeriesNotFoundException(imdbMediaRequest.imdbId)
+        return if (cachedSeriesDetails != null) {
+            cachedSeriesDetails
+        } else {
+            val tmdbId = findSeriesUseCase.findSeriesByImdbId(imdbMediaRequest.imdbId)?.tmdbId
+                ?: imdbMediaRequest.name?.let { searchSeries(it) }?.tmdbId
+
+            return tmdbId?.let {
+                getSeriesDetailsUseCase(mapToTmdbSeriesRequest(imdbMediaRequest, it))
+            } ?: throw SeriesNotFoundException(imdbMediaRequest.imdbId)
+        }
+
     }
 
     private suspend fun searchSeries(name: String): FindSeries? {
