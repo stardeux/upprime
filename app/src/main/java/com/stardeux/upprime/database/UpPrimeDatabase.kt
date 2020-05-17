@@ -2,10 +2,10 @@ package com.stardeux.upprime.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.stardeux.upprime.movie.repository.database.MovieDetailDao
-import com.stardeux.upprime.movie.repository.database.MovieDetailsEntity
-import com.stardeux.upprime.series.repository.database.SeriesDao
-import com.stardeux.upprime.series.repository.database.SeriesDetailsEntity
+import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailDao
+import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
+import com.stardeux.upprime.tmdb.series.repository.database.SeriesDao
+import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
 
 @Database(
     entities = [SeriesDetailsEntity::class, MovieDetailsEntity::class],

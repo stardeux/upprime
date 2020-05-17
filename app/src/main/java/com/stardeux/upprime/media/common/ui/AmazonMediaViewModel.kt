@@ -9,14 +9,13 @@ import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 import com.stardeux.upprime.media.common.ui.model.mapToMediaUi
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
-import com.stardeux.upprime.movie.usecase.GetImdbMovieDetailsUseCase
-import com.stardeux.upprime.series.usecase.GetImdbSeriesDetailsUseCase
+import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import fr.stardeux.autosc.util.SingleLiveEvent
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.math.min
 
 abstract class AmazonMediaViewModel(
     private val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,

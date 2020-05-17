@@ -7,8 +7,8 @@ import com.stardeux.upprime.media.latest.usecase.GetLatestMediaUseCase
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
-import com.stardeux.upprime.movie.usecase.GetImdbMovieDetailsUseCase
-import com.stardeux.upprime.series.usecase.GetImdbSeriesDetailsUseCase
+import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit

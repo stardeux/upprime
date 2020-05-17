@@ -3,8 +3,8 @@ package com.stardeux.upprime.media.expired.ui
 import com.stardeux.upprime.media.common.usecase.model.MediaPage
 import com.stardeux.upprime.media.common.ui.AmazonMediaViewModel
 import com.stardeux.upprime.media.expired.usecase.GetExpiredMediaUseCase
-import com.stardeux.upprime.movie.usecase.GetImdbMovieDetailsUseCase
-import com.stardeux.upprime.series.usecase.GetImdbSeriesDetailsUseCase
+import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 
 class ExpiredMediaViewModel(
     private val getExpiredMediaUseCase: GetExpiredMediaUseCase,
