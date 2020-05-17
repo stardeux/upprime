@@ -17,8 +17,8 @@ class GetImdbMovieDetailsUseCase(
         return try {
             getMovieDetailsUseCase.invoke(mapToTmdbMovieRequest(imdbMediaRequest, null))
         } catch (exception: Exception) {
-            val a = searchMovie(imdbMediaRequest)
-            return a ?: throw MovieNotFoundException(imdbMediaRequest.imdbId)
+            val movieDetails = searchMovie(imdbMediaRequest)
+            return movieDetails ?: throw MovieNotFoundException(imdbMediaRequest.imdbId)
         }
     }
 

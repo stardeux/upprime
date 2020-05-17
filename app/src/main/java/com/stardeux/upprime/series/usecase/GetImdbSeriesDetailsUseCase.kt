@@ -15,6 +15,7 @@ class GetImdbSeriesDetailsUseCase(
 ) {
 
     suspend operator fun invoke(imdbMediaRequest: ImdbMediaRequest): SeriesDetails {
+
         val findResults =
             findSeriesUseCase.findSeriesByImdbId(imdbMediaRequest.imdbId) ?: imdbMediaRequest.name?.let { searchSeries(it) }
         val tmdbId = findResults?.tmdbId

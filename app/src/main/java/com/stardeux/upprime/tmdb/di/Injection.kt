@@ -15,11 +15,9 @@ import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
-import com.stardeux.upprime.series.repository.SeriesRepository
-import com.stardeux.upprime.series.repository.api.TmdbSeriesApi
 import com.stardeux.upprime.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.series.usecase.GetSeriesDetailsUseCase
-import com.stardeux.upprime.series.usecase.GetUnconfiguredSeriesDetailsUseCase
+import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -40,7 +38,7 @@ val tmdbModule = module {
     factory { provideSearchMovieUseCase(get()) }
     factory { provideSearchSeriesUseCase(get()) }
 
-
+    factory { providePosterMapper(get()) }
 
     factory { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
     factory { provideGetImdbMovieDetailsUseCase(get(), get(), get()) }
@@ -114,4 +112,8 @@ private fun provideGetImdbMovieDetailsUseCase(
     searchMovieUseCase: SearchMovieUseCase
 ): GetImdbMovieDetailsUseCase {
     return GetImdbMovieDetailsUseCase(getMovieDetailsUseCase, findMovieUseCase, searchMovieUseCase)
+}
+
+private fun providePosterMapper(getTmdbConfigurationUseCase: GetTmdbConfigurationUseCase): PosterMapper {
+    return PosterMapper(getTmdbConfigurationUseCase)
 }

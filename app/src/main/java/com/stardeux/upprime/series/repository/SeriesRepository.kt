@@ -18,7 +18,7 @@ class SeriesRepository(
             mapToSeriesDetails(cached)
         } else {
             mapToSeriesDetails(
-                seriesRemoteDataSource.getSeriesDetails(tmdbSeriesRequest.imdbId, language),
+                seriesRemoteDataSource.getSeriesDetails(tmdbSeriesRequest.tmdbId, language),
                 tmdbSeriesRequest
             ).also { seriesLocalDataSource.insert(mapToSeriesDetailsEntity(it)) }
         }
