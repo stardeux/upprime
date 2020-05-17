@@ -20,7 +20,7 @@ fun mapToMediaFicheUi(
             type = MediaType.MOVIE,
             runtime = mapRuntimeToString(runtimeMinutes),
             mainGenre = genres?.getOrNull(0),
-            mediaReleaseYear = mediaReleaseDate?.let { mapReleaseDateToYear(it) },
+            mediaReleaseYear = mapReleaseDateToYear(mediaReleaseDate),
             mainNationality = nationalities?.getOrNull(0),
             rating = tmdbRating?.let { mapToRatingString(it) },
             posterUrl = posterUrl,

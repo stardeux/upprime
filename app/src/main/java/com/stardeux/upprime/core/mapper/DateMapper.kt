@@ -21,7 +21,7 @@ fun mapRuntimeToString(runtimeMinute: Int?): String? {
 }
 
 fun mapReleaseDateToYear(localDate: LocalDate?): String? {
-    return localDate.get(ChronoField.YEAR).toString()
+    return localDate?.get(ChronoField.YEAR)?.toString()
 }
 
 fun mapToHumanReadableMonthDay(localDate: LocalDate): String {
