@@ -24,7 +24,7 @@ fun mapReleaseDateToYear(localDate: LocalDate?): String? {
     return localDate?.get(ChronoField.YEAR)?.toString()
 }
 
-fun mapToHumanReadableMonthDay(localDate: LocalDate): String {
+fun formatToHumanReadableMonthDay(localDate: LocalDate): String {
     return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(localDate)
 }
 

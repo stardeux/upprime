@@ -13,6 +13,10 @@ import com.stardeux.upprime.media.common.ui.adapter.MediaAdapter
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.EndlessRecyclerViewScrollListener
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
+import com.stardeux.upprime.media.common.ui.model.MediaItemUi
+import com.stardeux.upprime.media.fiche.ui.MediaFicheActivity
+import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
+import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import kotlinx.android.synthetic.main.fragment_media_listing.*
 
 abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
@@ -51,12 +55,19 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
     private fun handleNavigationEvent(navigationEvent: AmazonMediaViewModel.NavigationEvent) {
         when (navigationEvent) {
             is AmazonMediaViewModel.NavigationEvent.MediaDetailsFiche -> {
-                val intent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://www.amazon.com/dp/${navigationEvent.mediaItemUi.amazonId}")
-                )
-                startActivity(intent)
+                goToMediaFiche(navigationEvent)
             }
+        }
+    }
+
+    private fun goToMediaFiche(mediaDetailsFiche: AmazonMediaViewModel.NavigationEvent.MediaDetailsFiche) {
+        with(mediaDetailsFiche.mediaItemUi) {
+            /*
+            val imdbMediaRequest = mapToImdbMediaRequest(this)
+            val intent = MediaFicheActivity.newIntent(requireContext(), imdbMediaRequest, type)
+            startActivity(intent)
+
+             */
         }
     }
 

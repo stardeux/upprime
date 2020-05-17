@@ -4,7 +4,7 @@ import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.usecase.model.Media
 import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
-import com.stardeux.upprime.core.mapper.mapToHumanReadableMonthDay
+import com.stardeux.upprime.core.mapper.formatToHumanReadableMonthDay
 import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
@@ -25,7 +25,7 @@ fun mapToMediaUi(
             mainNationality = null,
             rating = null,
             posterUrl = null,
-            amazonReleaseDate = mapToHumanReadableMonthDay(dateAdded),
+            amazonReleaseDate = formatToHumanReadableMonthDay(dateAdded),
             synopsis = null,
             backdropPath = null,
             onCardClicked = onFullCardClicked
@@ -53,7 +53,7 @@ fun mapToMediaUi(
             mainNationality = nationalities?.getOrNull(0),
             rating = mapToRatingString(tmdbRating),
             posterUrl = posterUrl,
-            amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
+            amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
             backdropPath = backdropPath,
             onCardClicked = onFullCardClicked
@@ -81,7 +81,7 @@ fun mapToMediaUi(
             mainNationality = nationalities?.getOrNull(0),
             rating = mapToRatingString(tmdbRating),
             posterUrl = posterUrl,
-            amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
+            amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
             backdropPath = backdropPath,
             onCardClicked = onFullCardClicked

@@ -60,7 +60,7 @@ abstract class AmazonMediaViewModel(
             val result = getAmazonMedia(page)
             totalCount = result.count
 
-            val mediaUi = result.media.map { mapToMediaUi(it, ::onFullCardClicked) }
+            val mediaUi = result.media.map { mapToMediaUi(it, ::onCardClicked) }
             _mediaItems.value =
                 (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
 
@@ -72,7 +72,7 @@ abstract class AmazonMediaViewModel(
     }
 
 
-    private fun onFullCardClicked(mediaItemUi: MediaItemUi) {
+    private fun onCardClicked(mediaItemUi: MediaItemUi) {
         _navigationEvent.value = NavigationEvent.MediaDetailsFiche(mediaItemUi)
     }
 
@@ -114,11 +114,11 @@ abstract class AmazonMediaViewModel(
         return when (shortMedia.type) {
             MediaType.MOVIE -> {
                 val movieDetails = getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia))
-                mapToMediaUi(movieDetails, ::onFullCardClicked)
+                mapToMediaUi(movieDetails, ::onCardClicked)
             }
             MediaType.SERIES -> {
                 val seriesDetails = getImdbSeriesDetailsUseCase(mapToImdbMediaRequest(shortMedia))
-                mapToMediaUi(seriesDetails, ::onFullCardClicked)
+                mapToMediaUi(seriesDetails, ::onCardClicked)
             }
         }
     }
