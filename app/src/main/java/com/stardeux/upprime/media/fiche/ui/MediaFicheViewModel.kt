@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.model.MediaType
+import com.stardeux.upprime.media.common.usecase.model.Media
 import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
+import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import kotlinx.coroutines.launch
@@ -17,9 +19,10 @@ class MediaFicheViewModel : ViewModel() {
     private val _mediaItemUi = MutableLiveData<MediaFicheUi>()
     val mediaItemUi : LiveData<MediaFicheUi> = _mediaItemUi
 
-    fun load(imdbMediaRequest: ImdbMediaRequest, mediaType: MediaType) {
+    fun load(media: Media) {
         viewModelScope.launch {
-            val mediaFicheUi = when(mediaType) {
+            val imdbMediaRequest = mapToImdbMediaRequest(media)
+            val mediaFicheUi = when(media.type) {
                 MediaType.MOVIE -> loadMovieDetail(imdbMediaRequest)
                 MediaType.SERIES -> loadSeriesDetail(imdbMediaRequest)
             }.exhaustive

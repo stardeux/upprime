@@ -10,6 +10,7 @@ import com.stardeux.upprime.core.extension.enumFromOrdinal
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.ui.model.MediaItemUi
+import com.stardeux.upprime.media.common.usecase.model.Media
 import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
 import kotlinx.android.synthetic.main.fragment_media_fiche.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,15 +22,8 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val imdbMediaRequest: ImdbMediaRequest =
-            requireNotNull(arguments?.getParcelable(IMDB_MEDIA_REQUEST_ARG))
-
-        val mediaTypeOrdinal =
-            requireNotNull(arguments?.getInt(MEDIA_TYPE_ARG, -1).takeIf { it != -1 })
-
-        val mediaType = requireNotNull(enumFromOrdinal<MediaType>(mediaTypeOrdinal))
-
-        mediaFicheViewModel.load(imdbMediaRequest, mediaType)
+        val media: Media = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
+        mediaFicheViewModel.load(media)
         mediaFicheViewModel.mediaItemUi.observeNotNull(viewLifecycleOwner, ::bindFiche)
     }
 
@@ -39,16 +33,11 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     }
 
     companion object {
-        private const val IMDB_MEDIA_REQUEST_ARG = "IMDB_MEDIA_REQUEST_ARG"
-        private const val MEDIA_TYPE_ARG = "MEDIA_TYPE_ARG"
+        private const val MEDIA_ARG = "MEDIA_ARG"
 
-        fun newInstance(
-            imdbMediaRequest: ImdbMediaRequest, mediaType: MediaType
-        ): MediaFicheFragment {
+        fun newInstance(media: Media): MediaFicheFragment {
             return MediaFicheFragment().apply {
-                arguments = bundleOf(
-                    IMDB_MEDIA_REQUEST_ARG to imdbMediaRequest, MEDIA_TYPE_ARG to mediaType
-                )
+                arguments = bundleOf(MEDIA_ARG to media)
             }
         }
     }

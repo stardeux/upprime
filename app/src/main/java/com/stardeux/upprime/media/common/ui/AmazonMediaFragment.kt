@@ -62,12 +62,8 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
 
     private fun goToMediaFiche(mediaDetailsFiche: AmazonMediaViewModel.NavigationEvent.MediaDetailsFiche) {
         with(mediaDetailsFiche.mediaItemUi) {
-            /*
-            val imdbMediaRequest = mapToImdbMediaRequest(this)
-            val intent = MediaFicheActivity.newIntent(requireContext(), imdbMediaRequest, type)
+            val intent = MediaFicheActivity.newIntent(requireContext(), media)
             startActivity(intent)
-
-             */
         }
     }
 
