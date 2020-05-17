@@ -12,7 +12,7 @@ import com.stardeux.upprime.tmdb.common.request.TmdbMovieRequest
 
 class MovieDetailsMapper (private val posterMapper: PosterMapper) {
 
-    suspend fun mapToMovieDetails(movieDetailsEntity: MovieDetailsEntity): MovieDetails {
+    fun mapToMovieDetails(movieDetailsEntity: MovieDetailsEntity): MovieDetails {
         return with(movieDetailsEntity){
             MovieDetails(
                 tmdbId = tmdbId,
