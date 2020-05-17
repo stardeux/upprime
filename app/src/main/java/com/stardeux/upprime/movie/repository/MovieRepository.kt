@@ -35,8 +35,9 @@ class MovieRepository(
         tmdbMovieRequest: TmdbMovieRequest,
         language: String
     ): MovieDetails {
+        val movieId = tmdbMovieRequest.tmdbId ?: tmdbMovieRequest.imdbId
         return movieDetailsMapper.mapToMovieDetails(
-            movieDetailsRemoteDataSource.getMovieDetails(tmdbMovieRequest.imdbId, language),
+            movieDetailsRemoteDataSource.getMovieDetails(movieId, language),
             tmdbMovieRequest
         )
     }
