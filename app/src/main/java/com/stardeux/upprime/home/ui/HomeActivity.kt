@@ -15,13 +15,21 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
         setSupportActionBar(toolbar)
 
-        supportFragmentManager.commit {
-            replace(R.id.mainContent, ReleaseTabListingFragment.newInstance())
+        if (supportFragmentManager.findFragmentByTag(RELEASE_TAB_FRAGMENT_TAG) == null) {
+            supportFragmentManager.commit {
+                replace(
+                    R.id.mainContent,
+                    ReleaseTabListingFragment.newInstance(),
+                    RELEASE_TAB_FRAGMENT_TAG
+                )
+            }
         }
     }
 
     companion object {
-        fun newIntent(context: Context) : Intent {
+        private const val RELEASE_TAB_FRAGMENT_TAG = "RELEASE_TAB_FRAGMENT_TAG"
+
+        fun newIntent(context: Context): Intent {
             return Intent(context, HomeActivity::class.java)
         }
     }
