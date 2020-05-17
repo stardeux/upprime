@@ -67,8 +67,7 @@ abstract class AmazonMediaViewModel(
             val result = getAmazonMedia(page)
             totalCount = result.count
 
-            val mediaUi =
-                result.media.map { mapToMediaUi(it, ::onFullCardClicked) }
+            val mediaUi = result.media.map { mapToMediaUi(it, ::onFullCardClicked) }
             _mediaItems.value =
                 (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
 
@@ -85,39 +84,46 @@ abstract class AmazonMediaViewModel(
     }
 
     private fun loadNextDetails() {
-        shortMediaItems.poll()?.let { currentShortMediaItemsList ->
+        shortMediaItems.poll()?.let {
             viewModelScope.launch {
-                currentShortMediaItemsList.subList(0, min(2, currentShortMediaItemsList.size))
-                    .forEach { shortMedia ->
-                        try {
-                            val completeMediaUi = when (shortMedia.type) {
-                                MediaType.MOVIE -> {
-                                    mapToMediaUi(
-                                        getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia)),
-                                        ::onFullCardClicked
-                                    )
-                                }
-
-                                MediaType.SERIES -> mapToMediaUi(
-                                    getImdbSeriesDetailsUseCase(mapToImdbMediaRequest(shortMedia)),
-                                    ::onFullCardClicked
-                                )
-                            }
-
-                            val currentList = _mediaItems.value?.toMutableList()
-                            currentList?.set(
-                                currentList.indexOfFirst { it.imdbId == completeMediaUi.imdbId },
-                                completeMediaUi
-                            )
-
-                            _mediaItems.value = currentList
-                        } catch (exception: Exception) {
-                            Log.e("Unfound", "ImdbId = ${shortMedia.imdbId}", exception)
-                        }
-                    }
+                it.subList(0, min(2, it.size)).forEach { shortMedia ->
+                    updateViewFullMedia(shortMedia)
+                }
             }
         }
     }
+
+
+    private suspend fun updateViewFullMedia(shortMedia: Media) {
+        try {
+            val fullMedia = loadFullMedia(shortMedia)
+
+            val currentList = _mediaItems.value?.toMutableList()
+            currentList?.set(
+                currentList.indexOfFirst { it.imdbId == fullMedia.imdbId }, fullMedia
+            )
+
+            _mediaItems.value = currentList
+
+        } catch (exception: Exception) {
+            Log.e("Unfound", "ImdbId = ${shortMedia.imdbId}", exception)
+        }
+    }
+
+
+    private suspend fun loadFullMedia(shortMedia: Media): MediaItemUi {
+        return when (shortMedia.type) {
+            MediaType.MOVIE -> {
+                val movieDetails = getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia))
+                mapToMediaUi(movieDetails, ::onFullCardClicked)
+            }
+            MediaType.SERIES -> {
+                val seriesDetails = getImdbSeriesDetailsUseCase(mapToImdbMediaRequest(shortMedia))
+                mapToMediaUi(seriesDetails, ::onFullCardClicked)
+            }
+        }
+    }
+
 
     sealed class NavigationEvent {
         class MediaDetailsFiche(val mediaItemUi: MediaItemUi) : NavigationEvent()
