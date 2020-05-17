@@ -13,6 +13,7 @@ import com.stardeux.upprime.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.series.usecase.GetImdbSeriesDetailsUseCase
 import fr.stardeux.autosc.util.SingleLiveEvent
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.math.min
@@ -38,6 +39,7 @@ abstract class AmazonMediaViewModel(
 
     val datedMediaItems: LiveData<List<Any>> = Transformations.map(_mediaItems, ::groupByDate)
 
+    private var loadDetailsJob: Job? = null
 
     fun loadNext() {
         if (totalCount > 0 && _mediaItems.value?.size ?: 0 >= totalCount) {
@@ -76,12 +78,16 @@ abstract class AmazonMediaViewModel(
     }
 
     private fun loadNextDetails() {
+        if (loadDetailsJob?.isActive == true) {
+            return
+        }
+
         shortMediaItems.poll()?.let {
-            viewModelScope.launch {
-                it.subList(0, min(2, it.size)).forEach { shortMedia ->
+            loadDetailsJob = viewModelScope.launch {
+                it/*.subList(0, min(2, it.size))*/.forEach { shortMedia ->
                     updateViewFullMedia(shortMedia)
                 }
-            }
+            }.also { it.invokeOnCompletion { loadNextDetails() } }
         }
     }
 
