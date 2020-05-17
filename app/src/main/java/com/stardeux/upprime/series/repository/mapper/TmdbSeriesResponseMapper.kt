@@ -63,7 +63,7 @@ fun mapToSeriesDetails(
             name = name,
             originalName = originalName,
             posterUrl = requireNotNull(posterUrl),
-            mediaReleaseDate = firstAirDate?.let { mapTmdbLocalDate(it) },
+            mediaReleaseDate = mapTmdbLocalDate(firstAirDate),
             runtimeMinutes = episodeRuntime.firstOrNull { (it ?: 0) > 0 },
             genres = genres?.mapNotNull { it.name },
             nationalities = originCountry,

@@ -14,7 +14,7 @@ fun mapToFindMovie(tmdbFindMovieResponse: TmdbFindMovieResponse): FindMovie {
             originalTitle = originalTitle,
             posterPath = posterPath,
             originalLanguage = originalLanguage,
-            releaseDate = releaseDate?.let { mapTmdbLocalDate(it) },
+            releaseDate = mapTmdbLocalDate(releaseDate),
             voteAverage = voteAverage
         )
     }
@@ -29,7 +29,7 @@ fun mapToFindSeries(tmdbFindSeriesResponse: TmdbFindSeriesResponse): FindSeries 
             posterPath = posterPath,
             originalLanguage = originalLanguage,
             originCountry = originCountry,
-            firstAirDate = firstAirDate?.let { mapTmdbLocalDate(it) },
+            firstAirDate = mapTmdbLocalDate(firstAirDate),
             voteAverage = voteAverage
         )
     }

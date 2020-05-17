@@ -84,6 +84,8 @@ abstract class AmazonMediaViewModel(
 
         shortMediaItems.poll()?.let {
             loadDetailsJob = viewModelScope.launch {
+                Log.d("coucou start load", it[0].imdbId)
+
                 it/*.subList(0, min(2, it.size))*/.forEach { shortMedia ->
                     updateViewFullMedia(shortMedia)
                 }
