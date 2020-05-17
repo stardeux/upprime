@@ -99,7 +99,7 @@ abstract class AmazonMediaViewModel(
 
             val currentList = _mediaItems.value?.toMutableList()
             currentList?.set(
-                currentList.indexOfFirst { it.imdbId == fullMedia.imdbId }, fullMedia
+                currentList.indexOfFirst { it.media.imdbId == fullMedia.media.imdbId }, fullMedia
             )
 
             _mediaItems.value = currentList
@@ -114,11 +114,11 @@ abstract class AmazonMediaViewModel(
         return when (shortMedia.type) {
             MediaType.MOVIE -> {
                 val movieDetails = getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia))
-                mapToMediaUi(movieDetails, ::onCardClicked)
+                mapToMediaUi(shortMedia, movieDetails, ::onCardClicked)
             }
             MediaType.SERIES -> {
                 val seriesDetails = getImdbSeriesDetailsUseCase(mapToImdbMediaRequest(shortMedia))
-                mapToMediaUi(seriesDetails, ::onCardClicked)
+                mapToMediaUi(shortMedia, seriesDetails, ::onCardClicked)
             }
         }
     }

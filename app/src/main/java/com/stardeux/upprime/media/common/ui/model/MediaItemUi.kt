@@ -1,13 +1,11 @@
 package com.stardeux.upprime.media.common.ui.model
 
-import com.stardeux.upprime.core.model.AmazonId
-import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.model.TmdbId
+import com.stardeux.upprime.media.common.usecase.model.Media
 
 data class MediaItemUi(
-    val amazonId: AmazonId,
-    val imdbId: ImdbId,
+    val media: Media,
     val tmdbId: TmdbId?,
     val title: String?,
     val type: MediaType,

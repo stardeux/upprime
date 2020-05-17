@@ -8,7 +8,7 @@ class MediaAdapterDiffUtil : DiffUtil.ItemCallback<Any>() {
 
     override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
         return if (oldItem is MediaItemUi && newItem is MediaItemUi) {
-            oldItem.amazonId == newItem.amazonId
+            oldItem.media.amazonId == newItem.media.amazonId
         } else if (oldItem is DateSeparatorUi && newItem is DateSeparatorUi) {
             oldItem.date == newItem.date
         } else {

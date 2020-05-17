@@ -14,8 +14,7 @@ fun mapToMediaUi(
 ): MediaItemUi {
     return with(media) {
         MediaItemUi(
-            amazonId = amazonId,
-            imdbId = imdbId,
+            media = media,
             tmdbId = null,
             title = title,
             type = type,
@@ -34,6 +33,7 @@ fun mapToMediaUi(
 }
 
 fun mapToMediaUi(
+    shortMedia: Media,
     movieDetails: MovieDetails,
     onFullCardClicked: (MediaItemUi) -> Unit
 ): MediaItemUi {
@@ -42,8 +42,7 @@ fun mapToMediaUi(
      */
     return with(movieDetails) {
         MediaItemUi(
-            amazonId = amazonId,
-            imdbId = imdbId,
+            media = shortMedia,
             tmdbId = tmdbId,
             title = title,
             type = MediaType.MOVIE,
@@ -62,6 +61,7 @@ fun mapToMediaUi(
 }
 
 fun mapToMediaUi(
+    shortMedia: Media,
     seriesDetails: SeriesDetails,
     onFullCardClicked: (MediaItemUi) -> Unit
 ): MediaItemUi {
@@ -70,8 +70,7 @@ fun mapToMediaUi(
      */
     return with(seriesDetails) {
         MediaItemUi(
-            amazonId = amazonId,
-            imdbId = imdbId,
+            media = shortMedia,
             tmdbId = tmdbId,
             title = name,
             type = MediaType.SERIES,
