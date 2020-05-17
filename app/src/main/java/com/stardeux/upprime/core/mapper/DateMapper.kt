@@ -16,11 +16,11 @@ fun mapAmazonDateStringToLocaleDate(dateString: String): LocalDate {
     return mapAmazonDateStringToLocaleDateTime(dateString).toLocalDate()
 }
 
-fun mapRuntimeToString(runtimeMinute: Int): String {
-    return String.format("%dh%02dm", runtimeMinute / 60, runtimeMinute % 60)
+fun mapRuntimeToString(runtimeMinute: Int?): String? {
+    return runtimeMinute?.let { String.format("%dh%02dm", it / 60, it % 60) }
 }
 
-fun mapReleaseDateToYear(localDate: LocalDate): String {
+fun mapReleaseDateToYear(localDate: LocalDate?): String? {
     return localDate.get(ChronoField.YEAR).toString()
 }
 
