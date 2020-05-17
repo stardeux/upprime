@@ -19,9 +19,8 @@ class SeriesRepository(
         tmdbSeriesRequest: TmdbSeriesRequest, language: String
     ): SeriesDetails {
         val cached = getCachedSeriesDetails(tmdbSeriesRequest.imdbId)
-        return cached ?: getRemoteSeriesDetails(tmdbSeriesRequest, language).also {
-            cacheSeriesDetails(it)
-        }
+        return cached ?: getRemoteSeriesDetails(tmdbSeriesRequest, language)
+            .also { cacheSeriesDetails(it) }
     }
 
     suspend fun cacheSeriesDetails(seriesDetails: SeriesDetails) {
