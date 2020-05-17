@@ -28,10 +28,12 @@ fun mapToHumanReadableMonthDay(localDate: LocalDate): String {
     return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(localDate)
 }
 
-fun mapToRatingString(rating: Float): String {
-    val numberFormat = NumberFormat.getInstance(Locale.getDefault()).apply {
-        maximumFractionDigits = 1
-        minimumFractionDigits = 0
+fun mapToRatingString(rating: Float?): String? {
+    return rating?.let {
+        val numberFormat = NumberFormat.getInstance(Locale.getDefault()).apply {
+            maximumFractionDigits = 1
+            minimumFractionDigits = 0
+        }
+        return numberFormat.format(it) + " / 10"
     }
-    return numberFormat.format(rating) + " / 10"
 }

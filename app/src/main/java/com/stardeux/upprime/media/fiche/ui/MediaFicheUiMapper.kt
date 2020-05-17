@@ -22,7 +22,7 @@ fun mapToMediaFicheUi(
             mainGenre = genres?.getOrNull(0),
             mediaReleaseYear = mapReleaseDateToYear(mediaReleaseDate),
             mainNationality = nationalities?.getOrNull(0),
-            rating = tmdbRating?.let { mapToRatingString(it) },
+            rating = mapToRatingString(tmdbRating),
             posterUrl = posterUrl,
             amazonReleaseDate = mapToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
