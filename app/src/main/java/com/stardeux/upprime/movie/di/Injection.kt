@@ -7,10 +7,12 @@ import com.stardeux.upprime.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.movie.repository.database.MovieDetailDao
 import com.stardeux.upprime.movie.repository.database.MovieDetailLocalDataSource
 import com.stardeux.upprime.movie.repository.mapper.MovieDetailsMapper
+import com.stardeux.upprime.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
-import com.stardeux.upprime.tmdb.configuration.usecase.GetTmdbConfigurationUseCase
+import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
+import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -23,7 +25,9 @@ val movieModule = module {
     factory { provideMovieRepository(get(), get(), get()) }
     factory { provideGetMovieDetailsUseCase(get()) }
     factory { provideMovieDetailsMapper(get()) }
+    factory { provideGetImdbMovieDetailsUseCase(get(), get(), get()) }
 }
+
 
 private fun provideMovieDetailsMapper(posterMapper: PosterMapper): MovieDetailsMapper {
     return MovieDetailsMapper(posterMapper)
@@ -57,4 +61,12 @@ private fun provideGetMovieDetailsUseCase(
     movieRepository: MovieRepository
 ): GetMovieDetailsUseCase {
     return GetMovieDetailsUseCase(movieRepository)
+}
+
+private fun provideGetImdbMovieDetailsUseCase(
+    getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    findMovieUseCase: FindMovieUseCase,
+    searchMovieUseCase: SearchMovieUseCase
+): GetImdbMovieDetailsUseCase {
+    return GetImdbMovieDetailsUseCase(getMovieDetailsUseCase, findMovieUseCase, searchMovieUseCase)
 }

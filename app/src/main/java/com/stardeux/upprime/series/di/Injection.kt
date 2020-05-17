@@ -8,9 +8,11 @@ import com.stardeux.upprime.series.repository.api.TmdbSeriesApi
 import com.stardeux.upprime.series.repository.database.SeriesDao
 import com.stardeux.upprime.series.repository.database.SeriesLocalDataSource
 import com.stardeux.upprime.series.repository.mapper.SeriesDetailsMapper
+import com.stardeux.upprime.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.series.usecase.GetSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
-import com.stardeux.upprime.tmdb.configuration.usecase.GetTmdbConfigurationUseCase
+import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
+import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -23,6 +25,7 @@ val seriesModule = module {
     factory { provideSeriesLocalDataSource(get()) }
     factory { provideSeriesRemoteDataSource(get()) }
     factory { provideSeriesMapper(get()) }
+    factory { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
 }
 
 private fun provideSeriesRemoteDataSource(tmdbSeriesApi: TmdbSeriesApi): SeriesRemoteDataSource {
@@ -59,4 +62,14 @@ private fun provideSeriesMapper(
     posterMapper: PosterMapper
 ): SeriesDetailsMapper {
     return SeriesDetailsMapper(posterMapper)
+}
+
+private fun provideGetImdbSeriesDetailsUseCase(
+    findSeriesUseCase: FindSeriesUseCase,
+    searchSeriesUseCase: SearchSeriesUseCase,
+    getSeriesDetailsUseCase: GetSeriesDetailsUseCase
+): GetImdbSeriesDetailsUseCase {
+    return GetImdbSeriesDetailsUseCase(
+        findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase
+    )
 }

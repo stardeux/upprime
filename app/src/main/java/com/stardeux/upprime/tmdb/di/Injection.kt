@@ -39,9 +39,6 @@ val tmdbModule = module {
     factory { provideSearchSeriesUseCase(get()) }
 
     factory { providePosterMapper(get()) }
-
-    factory { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
-    factory { provideGetImdbMovieDetailsUseCase(get(), get(), get()) }
 }
 
 
@@ -96,23 +93,9 @@ private fun provideFindSeriesUseCase(findMediaRepository: FindMediaRepository): 
 }
 
 
-private fun provideGetImdbSeriesDetailsUseCase(
-    findSeriesUseCase: FindSeriesUseCase,
-    searchSeriesUseCase: SearchSeriesUseCase,
-    getSeriesDetailsUseCase: GetSeriesDetailsUseCase
-): GetImdbSeriesDetailsUseCase {
-    return GetImdbSeriesDetailsUseCase(
-        findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase
-    )
-}
 
-private fun provideGetImdbMovieDetailsUseCase(
-    getMovieDetailsUseCase: GetMovieDetailsUseCase,
-    findMovieUseCase: FindMovieUseCase,
-    searchMovieUseCase: SearchMovieUseCase
-): GetImdbMovieDetailsUseCase {
-    return GetImdbMovieDetailsUseCase(getMovieDetailsUseCase, findMovieUseCase, searchMovieUseCase)
-}
+
+
 
 private fun providePosterMapper(getTmdbConfigurationUseCase: GetTmdbConfigurationUseCase): PosterMapper {
     return PosterMapper(getTmdbConfigurationUseCase)
