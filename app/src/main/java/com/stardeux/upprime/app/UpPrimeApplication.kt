@@ -12,7 +12,8 @@ import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
 import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
 import com.stardeux.upprime.series.di.seriesModule
 import com.stardeux.upprime.splash.di.splashModule
-import com.stardeux.upprime.tmdb.di.tmdbModule
+import com.stardeux.upprime.tmdb.configuration.di.tmdbConfigurationModule
+import com.stardeux.upprime.tmdb.find.di.findModule
 import com.stardeux.upprime.tools.flipper.flipperModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -40,12 +41,21 @@ abstract class UpPrimeApplication : Application() {
             /**
              * Mid core
              */
-            modules(flipperModule, fullAmazonNetwork, fullTmdbNetwork, tmdbModule, databaseModule)
+            modules(flipperModule, fullAmazonNetwork, fullTmdbNetwork, databaseModule)
 
             /**
              * Features
              */
-            modules(splashModule, latestModule, expiredModule, countryModule, movieModule, seriesModule)
+            modules(
+                splashModule,
+                latestModule,
+                expiredModule,
+                countryModule,
+                movieModule,
+                seriesModule,
+                findModule,
+                tmdbConfigurationModule
+            )
         }
     }
 }

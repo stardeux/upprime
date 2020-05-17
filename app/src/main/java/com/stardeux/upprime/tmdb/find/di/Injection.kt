@@ -1,11 +1,6 @@
-package com.stardeux.upprime.tmdb.di
+package com.stardeux.upprime.tmdb.find.di
 
-import com.stardeux.upprime.movie.usecase.GetImdbMovieDetailsUseCase
-import com.stardeux.upprime.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
-import com.stardeux.upprime.tmdb.configuration.repository.TmdbConfigurationRepository
-import com.stardeux.upprime.tmdb.configuration.repository.api.TmdbConfigurationApi
-import com.stardeux.upprime.tmdb.configuration.usecase.GetTmdbConfigurationUseCase
 import com.stardeux.upprime.tmdb.find.repository.FindMediaRepository
 import com.stardeux.upprime.tmdb.find.repository.SearchMovieRepository
 import com.stardeux.upprime.tmdb.find.repository.SearchSeriesRepository
@@ -15,18 +10,11 @@ import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
-import com.stardeux.upprime.series.usecase.GetImdbSeriesDetailsUseCase
-import com.stardeux.upprime.series.usecase.GetSeriesDetailsUseCase
-import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-val tmdbModule = module {
-    factory { provideTmdbConfigurationApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    factory { provideTmdbConfigurationRepository(get()) }
-    single { provideGetTmdbConfigurationUseCase(get()) }    //single to keep configuration cache
-
+val findModule = module {
     factory { provideTmdbFindApi(get(named(TMDB_NAMED_QUALIFIER))) }
     factory { provideFindMediaRepository(get()) }
     factory { provideFindMovieUseCase(get()) }
@@ -37,22 +25,8 @@ val tmdbModule = module {
     factory { provideSearchSeriesRepository(get()) }
     factory { provideSearchMovieUseCase(get()) }
     factory { provideSearchSeriesUseCase(get()) }
-
-    factory { providePosterMapper(get()) }
 }
 
-
-private fun provideTmdbConfigurationApi(retrofit: Retrofit): TmdbConfigurationApi {
-    return retrofit.create(TmdbConfigurationApi::class.java)
-}
-
-private fun provideTmdbConfigurationRepository(tmdbConfigurationApi: TmdbConfigurationApi): TmdbConfigurationRepository {
-    return TmdbConfigurationRepository(tmdbConfigurationApi)
-}
-
-private fun provideGetTmdbConfigurationUseCase(tmdbConfigurationRepository: TmdbConfigurationRepository): GetTmdbConfigurationUseCase {
-    return GetTmdbConfigurationUseCase(tmdbConfigurationRepository)
-}
 
 
 private fun provideTmdbSearchApi(retrofit: Retrofit): TmdbSearchApi {
@@ -90,13 +64,4 @@ private fun provideFindMovieUseCase(findMediaRepository: FindMediaRepository): F
 
 private fun provideFindSeriesUseCase(findMediaRepository: FindMediaRepository): FindSeriesUseCase {
     return FindSeriesUseCase(findMediaRepository)
-}
-
-
-
-
-
-
-private fun providePosterMapper(getTmdbConfigurationUseCase: GetTmdbConfigurationUseCase): PosterMapper {
-    return PosterMapper(getTmdbConfigurationUseCase)
 }
