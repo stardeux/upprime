@@ -36,16 +36,8 @@ abstract class AmazonMediaViewModel(
 
     private val shortMediaItems = LinkedList<List<Media>>()
 
-    val datedMediaItems: LiveData<List<Any>> = Transformations.map(_mediaItems) { medias ->
-        val groupedMedia = medias.groupBy { it.amazonReleaseDate }
+    val datedMediaItems: LiveData<List<Any>> = Transformations.map(_mediaItems, ::groupByDate)
 
-        mutableListOf<Any>().apply {
-            groupedMedia.keys.forEach {
-                add(DateSeparatorUi(it))
-                addAll(groupedMedia.getValue(it))
-            }
-        }
-    }
 
     fun loadNext() {
         if (totalCount > 0 && _mediaItems.value?.size ?: 0 >= totalCount) {
@@ -89,6 +81,17 @@ abstract class AmazonMediaViewModel(
                 it.subList(0, min(2, it.size)).forEach { shortMedia ->
                     updateViewFullMedia(shortMedia)
                 }
+            }
+        }
+    }
+
+    private fun groupByDate(medias : List<MediaItemUi>): MutableList<Any> {
+        val groupedMedia = medias.groupBy { it.amazonReleaseDate }
+
+        return mutableListOf<Any>().apply {
+            groupedMedia.keys.forEach {
+                add(DateSeparatorUi(it))
+                addAll(groupedMedia.getValue(it))
             }
         }
     }
