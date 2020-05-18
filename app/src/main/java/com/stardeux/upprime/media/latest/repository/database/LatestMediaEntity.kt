@@ -10,7 +10,8 @@ import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity.C
 
 @Entity(tableName = TABLE_LATEST_NAME)
 data class LatestMediaEntity(
-    @PrimaryKey @ColumnInfo(name = COL_AMAZON_ID) val amazonId: AmazonId,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = COL_ID) val id: Long,
+    @ColumnInfo(name = COL_AMAZON_ID) val amazonId: AmazonId,
     @ColumnInfo(name = COL_TITLE) val title: String?,
     @ColumnInfo(name = COL_IMDB_ID) val imdbId: ImdbId,
     @ColumnInfo(name = COL_DATE_ADDED) val dateAdded: String,
@@ -19,6 +20,7 @@ data class LatestMediaEntity(
 
     companion object {
         const val TABLE_LATEST_NAME = "latest"
+        const val COL_ID = "id"
         const val COL_AMAZON_ID = "amazon_id"
         const val COL_TITLE = "title"
         const val COL_IMDB_ID = "imdb_id"
