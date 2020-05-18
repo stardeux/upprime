@@ -5,7 +5,7 @@ import com.stardeux.upprime.tmdb.configuration.usecase.GetTmdbConfigurationUseCa
 class PosterMapper(private val getTmdbConfigurationUseCase: GetTmdbConfigurationUseCase) {
 
     suspend fun getCompletePosterUrl(posterUrl: String?): String? {
-        return posterUrl?.let { getTmdbConfigurationUseCase().baseImageUrl + it }
+        return posterUrl?.let { getTmdbConfigurationUseCase().basePosterUrl + it }
     }
 
 }

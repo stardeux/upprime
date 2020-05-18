@@ -20,7 +20,7 @@ class GetTmdbConfigurationUseCase(private val tmdbConfigurationRepository: TmdbC
                 val posterSizeList = posterSizes ?: DEFAULT_CONFIGURATION.posterSizes
 
                 TmdbConfiguration(
-                    baseImageUrl = (secureBaseUrl ?: baseUrl ?: DEFAULT_CONFIGURATION.baseImageUrl) + posterSizeList[4],
+                    basePosterUrl = (secureBaseUrl ?: baseUrl ?: DEFAULT_CONFIGURATION.basePosterUrl) + posterSizeList[1],
                     backdropSizes = backdropSizes ?: DEFAULT_CONFIGURATION.backdropSizes,
                     logoSizes = logoSizes ?: DEFAULT_CONFIGURATION.logoSizes,
                     posterSizes = posterSizeList
@@ -33,7 +33,7 @@ class GetTmdbConfigurationUseCase(private val tmdbConfigurationRepository: TmdbC
 
     companion object {
         private val DEFAULT_CONFIGURATION = TmdbConfiguration(
-            baseImageUrl = "https://image.tmdb.org/t/p/",
+            basePosterUrl = "https://image.tmdb.org/t/p/",
             backdropSizes = listOf("w300", "w780", "w1280", "original"),
             logoSizes = listOf("w45", "w92", "w154", "w185", "w300", "w500", "original"),
             posterSizes = listOf("w92", "w154", "w185", "w342", "w500", "w780", "original")
