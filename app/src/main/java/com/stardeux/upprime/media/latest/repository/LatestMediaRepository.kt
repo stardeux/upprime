@@ -2,6 +2,7 @@ package com.stardeux.upprime.media.latest.repository
 
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 import com.stardeux.upprime.media.common.repository.model.MediaPage
+import com.stardeux.upprime.media.common.repository.model.mapShortMediaToLatestMediaEntity
 import com.stardeux.upprime.media.common.repository.model.mapToMediaPage
 import com.stardeux.upprime.media.latest.repository.api.LatestMediaRemoteDataSource
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaLocalDataSource
@@ -21,7 +22,7 @@ class LatestMediaRepository(
             mapToMediaPage(localResult)
         } else {
             mapToMediaPage(latestMediaRemoteDataSource.getLatest(amazonMediaRequest)).also {
-                //latestMediaLocalDataSource.insert(it)
+                latestMediaLocalDataSource.insert(it.shortMedia.map(::mapShortMediaToLatestMediaEntity))
                 latestMediaPreferences.setLatestMediaHasBeenRequested()
             }
         }
