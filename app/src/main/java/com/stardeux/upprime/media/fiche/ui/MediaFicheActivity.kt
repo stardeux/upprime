@@ -15,7 +15,7 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        toolbar.applyCommonBack()
+        applyCommonBack(toolbar)
 
         val shortMedia: ShortMedia = requireNotNull(intent.getParcelableExtra(MEDIA_ARG))
 
