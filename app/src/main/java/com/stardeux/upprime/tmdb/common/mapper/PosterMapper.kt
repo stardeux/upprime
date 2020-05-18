@@ -8,4 +8,8 @@ class PosterMapper(private val getTmdbConfigurationUseCase: GetTmdbConfiguration
         return posterUrl?.let { getTmdbConfigurationUseCase().basePosterUrl + it }
     }
 
+    suspend fun getCompleteBackdropUrl(posterUrl: String?): String? {
+        return posterUrl?.let { getTmdbConfigurationUseCase().baseBackdropUrl + it }
+    }
+
 }

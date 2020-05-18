@@ -50,7 +50,7 @@ class MovieDetailsMapper (private val posterMapper: PosterMapper) {
                 tmdbRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
                 amazonReleaseDate = tmdbMovieRequest.amazonReleaseDate,
                 synopsis = synopsis.takeIf { it?.isNotBlank() == true },
-                backdropPath = posterMapper.getCompletePosterUrl(backdropPath)
+                backdropPath = posterMapper.getCompleteBackdropUrl(backdropPath)
             )
         }
     }
