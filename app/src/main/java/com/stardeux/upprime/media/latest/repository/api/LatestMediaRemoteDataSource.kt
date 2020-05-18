@@ -1,12 +1,15 @@
 package com.stardeux.upprime.media.latest.repository.api
 
 import com.google.gson.Gson
+import com.stardeux.upprime.core.extension.logDebug
 import com.stardeux.upprime.media.common.repository.model.MediaPageResponse
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 
 class LatestMediaRemoteDataSource(private val latestApi: LatestApi) {
 
     suspend fun getLatest(amazonMediaRequest: AmazonMediaRequest): MediaPageResponse {
+        logDebug("request " + amazonMediaRequest.page.toString())
+
         val test = true
         return if (!test) {
             latestApi.new(amazonMediaRequest.country, amazonMediaRequest.days, amazonMediaRequest.page)

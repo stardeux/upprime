@@ -39,3 +39,16 @@ fun mapToMediaPage(latestMediaEntities: List<LatestMediaEntity>): MediaPage {
         count = latestMediaEntities.size, shortMedia = latestMediaEntities.map(::mapToMediaItem)
     )
 }
+
+fun mapShortMediaToLatestMediaEntity(shortMedia: ShortMedia): LatestMediaEntity {
+    return with(shortMedia) {
+        LatestMediaEntity(
+            id = 0,
+            amazonId = amazonId,
+            title = title,
+            imdbId = imdbId,
+            dateAdded = "",
+            type = type
+        )
+    }
+}

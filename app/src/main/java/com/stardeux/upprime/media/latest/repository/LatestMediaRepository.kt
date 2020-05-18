@@ -21,6 +21,7 @@ class LatestMediaRepository(
             mapToMediaPage(localResult)
         } else {
             mapToMediaPage(latestMediaRemoteDataSource.getLatest(amazonMediaRequest)).also {
+                latestMediaLocalDataSource.insert(it)
                 latestMediaPreferences.setLatestMediaHasBeenRequested()
             }
         }
