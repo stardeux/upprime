@@ -27,7 +27,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         with(mediaFicheUi) {
             Glide.with(requireContext()).load(backdropPath).centerCrop().into(mediaCouv)
             mediaTitle.text = title
-
+            mediaDetails.text = runtime
             mediaRatings.text = tmdbRating
             mediaSynopsis.text = synopsis
         }

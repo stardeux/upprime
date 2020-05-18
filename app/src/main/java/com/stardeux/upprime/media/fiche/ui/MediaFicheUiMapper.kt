@@ -7,6 +7,7 @@ import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
+import org.threeten.bp.Duration
 
 fun mapToMediaFicheUi(
     movieDetails: MovieDetails
