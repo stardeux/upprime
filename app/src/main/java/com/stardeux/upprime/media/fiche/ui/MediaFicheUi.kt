@@ -15,7 +15,7 @@ data class MediaFicheUi(
     val mainGenre: String?,
     val mediaReleaseYear: String?,
     val mainNationality: String?,
-    val rating: String?,
+    val tmdbRating: String?,
     val posterUrl: String?,
     val amazonReleaseDate: String,
     val synopsis: String?,

@@ -26,6 +26,9 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     private fun bindFiche(mediaFicheUi: MediaFicheUi) {
         Glide.with(requireContext()).load(mediaFicheUi.backdropPath).centerCrop().into(mediaCouv)
         mediaTitle.text = mediaFicheUi.title
+
+        mediaRatings.text = mediaFicheUi.tmdbRating
+
     }
 
     companion object {
