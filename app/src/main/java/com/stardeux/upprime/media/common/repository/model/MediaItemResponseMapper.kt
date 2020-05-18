@@ -23,20 +23,16 @@ fun mapToMediaPage(mediaPageResponse: MediaPageResponse): MediaPage {
 }
 
 fun mapToMediaItem(latestMediaEntity: LatestMediaEntity): ShortMedia {
-    return with (latestMediaEntity) {
+    return with(latestMediaEntity) {
         ShortMedia(
-            title = title,
-            amazonId = amazonId,
-            imdbId = imdbId,
-            dateAdded = dateAdded,
-            type = type
+            title = title, amazonId = amazonId, imdbId = imdbId, dateAdded = dateAdded, type = type
         )
     }
 }
 
 fun mapToMediaPage(latestMediaEntities: List<LatestMediaEntity>): MediaPage {
     return MediaPage(
-        count = latestMediaEntities.size, shortMedia = latestMediaEntities.map(::mapToMediaItem)
+        count = Integer.MAX_VALUE, shortMedia = latestMediaEntities.map(::mapToMediaItem)
     )
 }
 

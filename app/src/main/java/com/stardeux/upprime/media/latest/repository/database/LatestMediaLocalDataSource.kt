@@ -5,7 +5,7 @@ import com.stardeux.upprime.core.extension.logDebug
 class LatestMediaLocalDataSource(private val latestMediaDao: LatestMediaDao) {
 
     suspend fun getLatestMedia(fromId: Long, limit: Int): List<LatestMediaEntity> {
-        logDebug("dao")
+        logDebug("dao $fromId to $limit")
         return latestMediaDao.getLatestMedia(fromId, limit)
     }
 
