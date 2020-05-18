@@ -2,6 +2,7 @@ package com.stardeux.upprime.media.common.repository.model
 
 import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
 import com.stardeux.upprime.core.mapper.mapToMediaType
+import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
 fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia {
@@ -30,7 +31,7 @@ fun mapToMediaItem(latestMediaEntity: LatestMediaEntity): ShortMedia {
     }
 }
 
-fun mapToMediaPage(latestMediaEntities: List<LatestMediaEntity>): MediaPage {
+fun mapLatestToMediaPage(latestMediaEntities: List<LatestMediaEntity>): MediaPage {
     return MediaPage(
         count = Integer.MAX_VALUE, shortMedia = latestMediaEntities.map(::mapToMediaItem)
     )
@@ -39,6 +40,35 @@ fun mapToMediaPage(latestMediaEntities: List<LatestMediaEntity>): MediaPage {
 fun mapShortMediaToLatestMediaEntity(shortMedia: ShortMedia): LatestMediaEntity {
     return with(shortMedia) {
         LatestMediaEntity(
+            id = 0,
+            amazonId = amazonId,
+            title = title,
+            imdbId = imdbId,
+            dateAdded = dateAdded,
+            type = type
+        )
+    }
+}
+
+
+
+fun mapToMediaItem(expiredMediaEntity: ExpiredMediaEntity): ShortMedia {
+    return with(expiredMediaEntity) {
+        ShortMedia(
+            title = title, amazonId = amazonId, imdbId = imdbId, dateAdded = dateAdded, type = type
+        )
+    }
+}
+
+fun mapExpiredToMediaPage(expiredMediaEntities: List<ExpiredMediaEntity>): MediaPage {
+    return MediaPage(
+        count = Integer.MAX_VALUE, shortMedia = expiredMediaEntities.map(::mapToMediaItem)
+    )
+}
+
+fun mapShortMediaToExpiredMediaEntity(shortMedia: ShortMedia): ExpiredMediaEntity {
+    return with(shortMedia) {
+        ExpiredMediaEntity(
             id = 0,
             amazonId = amazonId,
             title = title,

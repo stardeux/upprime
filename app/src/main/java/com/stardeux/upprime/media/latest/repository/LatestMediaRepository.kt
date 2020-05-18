@@ -2,8 +2,10 @@ package com.stardeux.upprime.media.latest.repository
 
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 import com.stardeux.upprime.media.common.repository.model.MediaPage
+import com.stardeux.upprime.media.common.repository.model.MediaPageResponse
 import com.stardeux.upprime.media.common.repository.model.mapShortMediaToLatestMediaEntity
 import com.stardeux.upprime.media.common.repository.model.mapToMediaPage
+import com.stardeux.upprime.media.common.repository.model.mapLatestToMediaPage
 import com.stardeux.upprime.media.latest.repository.api.LatestMediaRemoteDataSource
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaLocalDataSource
 import com.stardeux.upprime.media.latest.repository.preferences.LatestMediaPreferences
@@ -15,10 +17,10 @@ class LatestMediaRepository(
 ) {
 
     suspend fun getLatest(amazonMediaRequest: AmazonMediaRequest): MediaPage {
-        val fromId = ((amazonMediaRequest.page - 1) * PAGE_SIZE).toLong()
-        val localResult = latestMediaLocalDataSource.getLatestMedia(fromId, PAGE_SIZE)
+        val fromId = ((amazonMediaRequest.page - 1) * MediaPageResponse.PAGE_SIZE).toLong()
+        val localResult = latestMediaLocalDataSource.getLatestMedia(fromId, MediaPageResponse.PAGE_SIZE)
         return if (localResult.isNotEmpty()) {
-            mapToMediaPage(localResult)
+            mapLatestToMediaPage(localResult)
         } else {
             mapToMediaPage(latestMediaRemoteDataSource.getLatest(amazonMediaRequest)).also {
                 latestMediaLocalDataSource.insert(it.shortMedia.map(::mapShortMediaToLatestMediaEntity))
@@ -31,8 +33,6 @@ class LatestMediaRepository(
         latestMediaLocalDataSource.clearTable()
     }
 
-    companion object {
-        private const val PAGE_SIZE = 100
-    }
+
 
 }

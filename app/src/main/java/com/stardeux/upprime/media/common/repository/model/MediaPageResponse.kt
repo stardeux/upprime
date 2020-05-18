@@ -8,4 +8,8 @@ data class MediaPageResponse(
 
     @SerializedName("Results")
     val results: List<MediaResponse>?
-)
+) {
+    companion object {
+        const val PAGE_SIZE = 100
+    }
+}

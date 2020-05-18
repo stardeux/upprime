@@ -5,6 +5,7 @@ import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.media.expired.repository.ExpiredMediaRepository
 import com.stardeux.upprime.media.expired.repository.api.ExpiredApi
+import com.stardeux.upprime.media.expired.repository.api.ExpiredMediaRemoteDataSource
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaDao
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaLocalDataSource
 import com.stardeux.upprime.media.expired.ui.ExpiredMediaViewModel
@@ -20,6 +21,7 @@ val expiredModule = module {
     single { provideExpiredApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
     factory { provideExpiredRepository(get()) }
     factory { provideExpiredMediaViewModel(getUserScope().get(), get(), get()) }
+    factory { provideExpiredMediaRemoteDataSource(get()) }
 
     factory { provideExpiredMediaDao(get()) }
     factory { provideExpiredMediaLocalDataSource(get()) }
@@ -27,6 +29,10 @@ val expiredModule = module {
     scope<AvailableCountry> {
         factory { provideExpiredUseCase(get(), get()) }
     }
+}
+
+private fun provideExpiredMediaRemoteDataSource(expiredApi: ExpiredApi): ExpiredMediaRemoteDataSource {
+    return ExpiredMediaRemoteDataSource(expiredApi)
 }
 
 private fun provideExpiredMediaLocalDataSource(expiredMediaDao: ExpiredMediaDao): ExpiredMediaLocalDataSource {
