@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.stardeux.upprime.R
-import com.stardeux.upprime.media.common.usecase.model.ShortMedia
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
 
 class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
 

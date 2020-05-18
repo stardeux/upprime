@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
-import com.stardeux.upprime.media.common.usecase.model.ShortMedia
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import kotlinx.android.synthetic.main.fragment_media_fiche.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

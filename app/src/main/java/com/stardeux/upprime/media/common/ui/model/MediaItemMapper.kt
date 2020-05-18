@@ -2,7 +2,7 @@ package com.stardeux.upprime.media.common.ui.model
 
 import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.model.MediaType
-import com.stardeux.upprime.media.common.usecase.model.ShortMedia
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
 import com.stardeux.upprime.core.mapper.formatToHumanReadableMonthDay
 import com.stardeux.upprime.core.mapper.mapToRatingString

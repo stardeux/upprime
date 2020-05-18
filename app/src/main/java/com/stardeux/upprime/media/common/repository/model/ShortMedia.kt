@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.common.usecase.model
+package com.stardeux.upprime.media.common.repository.model
 
 import android.os.Parcelable
 import com.stardeux.upprime.core.model.AmazonId

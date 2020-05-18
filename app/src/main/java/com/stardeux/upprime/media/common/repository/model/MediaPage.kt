@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.common.usecase.model
+package com.stardeux.upprime.media.common.repository.model
 
 data class MediaPage(
     val count: Int,

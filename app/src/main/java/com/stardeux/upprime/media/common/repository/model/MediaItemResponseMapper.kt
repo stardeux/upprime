@@ -2,8 +2,6 @@ package com.stardeux.upprime.media.common.repository.model
 
 import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
 import com.stardeux.upprime.core.mapper.mapToMediaType
-import com.stardeux.upprime.media.common.usecase.model.ShortMedia
-import com.stardeux.upprime.media.common.usecase.model.MediaPage
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
 fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia {

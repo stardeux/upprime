@@ -2,7 +2,7 @@ package com.stardeux.upprime.media.common.ui.model
 
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.model.TmdbId
-import com.stardeux.upprime.media.common.usecase.model.ShortMedia
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
 
 data class MediaItemUi(
     val shortMedia: ShortMedia,

@@ -1,7 +1,7 @@
 package com.stardeux.upprime.tmdb.common.request
 
 import com.stardeux.upprime.core.model.TmdbId
-import com.stardeux.upprime.media.common.usecase.model.ShortMedia
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
 
 fun mapToImdbMediaRequest(shortMedia: ShortMedia): ImdbMediaRequest {
     return with(shortMedia) {

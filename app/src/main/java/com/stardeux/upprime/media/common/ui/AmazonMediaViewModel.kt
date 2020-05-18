@@ -2,8 +2,8 @@ package com.stardeux.upprime.media.common.ui
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.stardeux.upprime.media.common.usecase.model.ShortMedia
-import com.stardeux.upprime.media.common.usecase.model.MediaPage
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
+import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
 import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 import com.stardeux.upprime.media.common.ui.model.mapToMediaUi
