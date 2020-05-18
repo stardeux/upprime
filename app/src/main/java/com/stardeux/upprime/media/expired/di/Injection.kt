@@ -2,8 +2,11 @@ package com.stardeux.upprime.media.expired.di
 
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
+import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.media.expired.repository.ExpiredMediaRepository
 import com.stardeux.upprime.media.expired.repository.api.ExpiredApi
+import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaDao
+import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaLocalDataSource
 import com.stardeux.upprime.media.expired.ui.ExpiredMediaViewModel
 import com.stardeux.upprime.media.expired.usecase.GetExpiredMediaUseCase
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
@@ -18,11 +21,21 @@ val expiredModule = module {
     factory { provideExpiredRepository(get()) }
     factory { provideExpiredMediaViewModel(getUserScope().get(), get(), get()) }
 
+    factory { provideExpiredMediaDao(get()) }
+    factory { provideExpiredMediaLocalDataSource(get()) }
+
     scope<AvailableCountry> {
         factory { provideExpiredUseCase(get(), get()) }
     }
 }
 
+private fun provideExpiredMediaLocalDataSource(expiredMediaDao: ExpiredMediaDao): ExpiredMediaLocalDataSource {
+    return ExpiredMediaLocalDataSource(expiredMediaDao)
+}
+
+private fun provideExpiredMediaDao(upPrimeDatabase: UpPrimeDatabase): ExpiredMediaDao {
+    return upPrimeDatabase.expiredMediaDao()
+}
 
 private fun provideExpiredApi(retrofit: Retrofit): ExpiredApi {
     return retrofit.create(ExpiredApi::class.java)
@@ -33,8 +46,7 @@ private fun provideExpiredRepository(expiredApi: ExpiredApi): ExpiredMediaReposi
 }
 
 private fun provideExpiredUseCase(
-    expiredMediaRepository: ExpiredMediaRepository,
-    availableCountry: AvailableCountry
+    expiredMediaRepository: ExpiredMediaRepository, availableCountry: AvailableCountry
 ): GetExpiredMediaUseCase {
     return GetExpiredMediaUseCase(expiredMediaRepository, availableCountry)
 }
@@ -45,8 +57,6 @@ private fun provideExpiredMediaViewModel(
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
 ): ExpiredMediaViewModel {
     return ExpiredMediaViewModel(
-        getExpiredMediaUseCase,
-        getImdbMovieDetailsUseCase,
-        getImdbSeriesDetailsUseCase
+        getExpiredMediaUseCase, getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase
     )
 }

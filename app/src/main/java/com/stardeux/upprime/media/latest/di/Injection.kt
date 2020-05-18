@@ -21,7 +21,7 @@ import retrofit2.Retrofit
 
 val latestModule = module {
     factory { provideLatestMediaDao(get()) }
-    factory { provideLatestMediaDataSource(get()) }
+    factory { provideLatestMediaLocalDataSource(get()) }
     factory { provideLatestMediaRemoteDataSource(get()) }
     factory { provideLatestMediaPreferences(get()) }
 
@@ -39,7 +39,7 @@ private fun provideLatestMediaRemoteDataSource(latestApi: LatestApi): LatestMedi
     return LatestMediaRemoteDataSource(latestApi)
 }
 
-private fun provideLatestMediaDataSource(latestMediaDao: LatestMediaDao): LatestMediaLocalDataSource {
+private fun provideLatestMediaLocalDataSource(latestMediaDao: LatestMediaDao): LatestMediaLocalDataSource {
     return LatestMediaLocalDataSource(latestMediaDao)
 }
 

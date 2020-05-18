@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.stardeux.upprime.media.common.repository.model.LocalDateTimeTypeConverter
 import com.stardeux.upprime.media.common.repository.model.MediaTypeTypeConverter
+import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaDao
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaDao
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailDao
@@ -23,6 +24,7 @@ abstract class UpPrimeDatabase : RoomDatabase() {
     abstract fun movieDetailsDao(): MovieDetailDao
     abstract fun seriesDetailsDao(): SeriesDao
     abstract fun latestMediaDao(): LatestMediaDao
+    abstract fun expiredMediaDao(): ExpiredMediaDao
 
     companion object {
         const val DB_NAME = "upprime.db"
