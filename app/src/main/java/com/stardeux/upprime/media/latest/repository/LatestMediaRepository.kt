@@ -5,10 +5,12 @@ import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.repository.model.mapToMediaPage
 import com.stardeux.upprime.media.latest.repository.api.LatestMediaRemoteDataSource
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaLocalDataSource
+import com.stardeux.upprime.media.latest.repository.preferences.LatestMediaPreferences
 
 class LatestMediaRepository(
     private val latestMediaRemoteDataSource: LatestMediaRemoteDataSource,
-    private val latestMediaLocalDataSource: LatestMediaLocalDataSource
+    private val latestMediaLocalDataSource: LatestMediaLocalDataSource,
+    private val latestMediaPreferences: LatestMediaPreferences
 ) {
 
     suspend fun getLatest(amazonMediaRequest: AmazonMediaRequest): MediaPage {
@@ -18,8 +20,14 @@ class LatestMediaRepository(
         return if (localResult.isNotEmpty()) {
             mapToMediaPage(localResult)
         } else {
-            mapToMediaPage(latestMediaRemoteDataSource.getLatest(amazonMediaRequest))
+            mapToMediaPage(latestMediaRemoteDataSource.getLatest(amazonMediaRequest)).also {
+                latestMediaPreferences.setLatestMediaHasBeenRequested()
+            }
         }
+    }
+
+    suspend fun clearCache() {
+        latestMediaLocalDataSource.clearTable()
     }
 
     companion object {

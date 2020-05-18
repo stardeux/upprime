@@ -9,4 +9,8 @@ class LatestMediaLocalDataSource(private val latestMediaDao: LatestMediaDao) {
     suspend fun insert(latestMedia: List<LatestMediaEntity>): List<Long> {
         return latestMediaDao.insertAll(latestMedia)
     }
+
+    suspend fun clearTable() {
+        latestMediaDao.clearTable()
+    }
 }

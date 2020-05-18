@@ -15,7 +15,7 @@ class LatestMediaPreferences(private val sharedPreferences: SharedPreferences) {
         }
     }
 
-    fun getLatestMediaRequestDate(): OffsetDateTime? {
+    fun getPreviousMediaRequestDate(): OffsetDateTime? {
         val latestMediaRequestDate = sharedPreferences.getString(LATEST_MEDIA_REQUEST_DATE, null)
         return latestMediaRequestDate?.let {
             LATEST_MEDIA_REQUEST_DATE_FORMATTER.parse(it, OffsetDateTime::from)

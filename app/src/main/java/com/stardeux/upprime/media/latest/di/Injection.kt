@@ -26,12 +26,12 @@ val latestModule = module {
     factory { provideLatestMediaPreferences(get()) }
 
     single { provideLatestApi(get(named(AMAZON_NAMED_QUALIFIER))) }
-    factory { provideLatestRepository(get(), get()) }
+    factory { provideLatestRepository(get(), get(), get()) }
 
     factory { provideLatestMediaViewModel(getUserScope().get(), get(), get()) }
 
     scope<AvailableCountry> {
-        factory { provideLatestUseCase(get(), get()) }
+        factory { provideLatestUseCase(get(), get(), get()) }
     }
 }
 
@@ -53,15 +53,22 @@ private fun provideLatestApi(retrofit: Retrofit): LatestApi {
 
 private fun provideLatestRepository(
     latestMediaRemoteDataSource: LatestMediaRemoteDataSource,
-    latestMediaLocalDataSource: LatestMediaLocalDataSource
+    latestMediaLocalDataSource: LatestMediaLocalDataSource,
+    latestMediaPreferences: LatestMediaPreferences
 ): LatestMediaRepository {
-    return LatestMediaRepository(latestMediaRemoteDataSource, latestMediaLocalDataSource)
+    return LatestMediaRepository(
+        latestMediaRemoteDataSource,
+        latestMediaLocalDataSource,
+        latestMediaPreferences
+    )
 }
 
 private fun provideLatestUseCase(
-    latestMediaRepository: LatestMediaRepository, availableCountry: AvailableCountry
+    latestMediaPreferences: LatestMediaPreferences,
+    latestMediaRepository: LatestMediaRepository,
+    availableCountry: AvailableCountry
 ): GetLatestMediaUseCase {
-    return GetLatestMediaUseCase(latestMediaRepository, availableCountry)
+    return GetLatestMediaUseCase(latestMediaPreferences, latestMediaRepository, availableCountry)
 }
 
 private fun provideLatestMediaViewModel(

@@ -12,4 +12,7 @@ interface LatestMediaDao {
 
     @Insert
     suspend fun insertAll(latestMedia: List<LatestMediaEntity>): List<Long>
+
+    @Query("DELETE FROM ${LatestMediaEntity.TABLE_LATEST_NAME}")
+    suspend fun clearTable()
 }
