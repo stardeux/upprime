@@ -16,8 +16,7 @@ class LatestMediaRepository(
 
     suspend fun getLatest(amazonMediaRequest: AmazonMediaRequest): MediaPage {
         val fromId = ((amazonMediaRequest.page - 1) * PAGE_SIZE).toLong()
-        val limit = amazonMediaRequest.page * PAGE_SIZE
-        val localResult = latestMediaLocalDataSource.getLatestMedia(fromId, limit)
+        val localResult = latestMediaLocalDataSource.getLatestMedia(fromId, PAGE_SIZE)
         return if (localResult.isNotEmpty()) {
             mapToMediaPage(localResult)
         } else {
