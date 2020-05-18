@@ -2,6 +2,7 @@ package com.stardeux.upprime.media.common.ui
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.stardeux.upprime.core.extension.logDebug
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
@@ -83,8 +84,6 @@ abstract class AmazonMediaViewModel(
 
         shortMediaItems.poll()?.let {
             loadDetailsJob = viewModelScope.launch {
-                Log.d("details", it[0].imdbId)
-
                 it/*.subList(0, min(2, it.size))*/.forEach { shortMedia ->
                     updateViewFullMedia(shortMedia)
                 }

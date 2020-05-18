@@ -10,13 +10,13 @@ object LocalDateTimeTypeConverter {
 
     @TypeConverter
     @JvmStatic
-    fun formatLocalDate(localDate: LocalDate): String {
-        return localDate.format(formatter)
+    fun formatLocalDate(localDate: LocalDate?): String? {
+        return localDate?.format(formatter)
     }
 
     @TypeConverter
     @JvmStatic
-    fun parseLocalDate(localDate: String): LocalDate {
-        return formatter.parse(localDate, LocalDate::from)
+    fun parseLocalDate(localDate: String?): LocalDate? {
+        return localDate?.let { formatter.parse(it, LocalDate::from) }
     }
 }
