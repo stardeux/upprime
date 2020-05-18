@@ -1,5 +1,6 @@
 package com.stardeux.upprime.media.latest.di
 
+import android.content.SharedPreferences
 import com.stardeux.upprime.media.latest.repository.LatestMediaRepository
 import com.stardeux.upprime.media.latest.repository.api.LatestApi
 import com.stardeux.upprime.media.latest.ui.LatestMediaViewModel
@@ -10,6 +11,7 @@ import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.media.latest.repository.api.LatestMediaRemoteDataSource
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaDao
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaLocalDataSource
+import com.stardeux.upprime.media.latest.repository.preferences.LatestMediaPreferences
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
@@ -21,6 +23,7 @@ val latestModule = module {
     factory { provideLatestMediaDao(get()) }
     factory { provideLatestMediaDataSource(get()) }
     factory { provideLatestMediaRemoteDataSource(get()) }
+    factory { provideLatestMediaPreferences(get()) }
 
     single { provideLatestApi(get(named(AMAZON_NAMED_QUALIFIER))) }
     factory { provideLatestRepository(get(), get()) }
@@ -69,4 +72,8 @@ private fun provideLatestMediaViewModel(
     return LatestMediaViewModel(
         getLatestMediaUseCase, getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase
     )
+}
+
+private fun provideLatestMediaPreferences(sharedPreferences: SharedPreferences): LatestMediaPreferences {
+    return LatestMediaPreferences(sharedPreferences)
 }
