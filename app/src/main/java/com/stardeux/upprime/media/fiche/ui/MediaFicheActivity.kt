@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.stardeux.upprime.R
+import com.stardeux.upprime.core.extension.applyCommonBack
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import kotlinx.android.synthetic.main.activity_media_fiche.*
 
@@ -14,10 +15,7 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        with(toolbar) {
-            setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-            setNavigationOnClickListener { finish() }
-        }
+        toolbar.applyCommonBack()
 
         val shortMedia: ShortMedia = requireNotNull(intent.getParcelableExtra(MEDIA_ARG))
 
