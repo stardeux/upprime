@@ -6,9 +6,7 @@ class LatestMediaLocalDataSource(private val latestMediaDao: LatestMediaDao) {
 
     suspend fun getLatestMedia(fromId: Long, limit: Int): List<LatestMediaEntity> {
         logDebug("dao $fromId to $limit")
-        return latestMediaDao.getLatestMedia(fromId, limit).also {
-            logDebug("dao result size " + it.size.toString())
-        }
+        return latestMediaDao.getLatestMedia(fromId, limit)
     }
 
     suspend fun insert(latestMedia: List<LatestMediaEntity>): List<Long> {
