@@ -1,11 +1,10 @@
 package com.stardeux.upprime.tmdb.common.request
 
 import com.stardeux.upprime.core.model.TmdbId
-import com.stardeux.upprime.media.common.ui.model.MediaItemUi
-import com.stardeux.upprime.media.common.usecase.model.Media
+import com.stardeux.upprime.media.common.usecase.model.ShortMedia
 
-fun mapToImdbMediaRequest(media: Media): ImdbMediaRequest {
-    return with(media) {
+fun mapToImdbMediaRequest(shortMedia: ShortMedia): ImdbMediaRequest {
+    return with(shortMedia) {
         ImdbMediaRequest(
             imdbId = imdbId,
             amazonId = amazonId,

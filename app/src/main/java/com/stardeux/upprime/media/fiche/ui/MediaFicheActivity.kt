@@ -6,20 +6,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.stardeux.upprime.R
-import com.stardeux.upprime.core.extension.enumFromOrdinal
-import com.stardeux.upprime.core.model.MediaType
-import com.stardeux.upprime.media.common.usecase.model.Media
-import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
+import com.stardeux.upprime.media.common.usecase.model.ShortMedia
 
 class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val media: Media = requireNotNull(intent.getParcelableExtra(MEDIA_ARG))
+        val shortMedia: ShortMedia = requireNotNull(intent.getParcelableExtra(MEDIA_ARG))
 
         supportFragmentManager.commit {
-            replace(R.id.ficheContent, MediaFicheFragment.newInstance(media))
+            replace(R.id.ficheContent, MediaFicheFragment.newInstance(shortMedia))
         }
 
     }
@@ -27,9 +24,9 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
     companion object {
         private const val MEDIA_ARG = "MEDIA_ARG"
 
-        fun newIntent(context: Context, media: Media): Intent {
+        fun newIntent(context: Context, shortMedia: ShortMedia): Intent {
             return Intent(context, MediaFicheActivity::class.java).apply {
-                putExtra(MEDIA_ARG, media)
+                putExtra(MEDIA_ARG, shortMedia)
             }
         }
     }

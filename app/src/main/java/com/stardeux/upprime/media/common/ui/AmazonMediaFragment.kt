@@ -1,7 +1,5 @@
 package com.stardeux.upprime.media.common.ui
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -13,10 +11,7 @@ import com.stardeux.upprime.media.common.ui.adapter.MediaAdapter
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.EndlessRecyclerViewScrollListener
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
-import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 import com.stardeux.upprime.media.fiche.ui.MediaFicheActivity
-import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
-import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import kotlinx.android.synthetic.main.fragment_media_listing.*
 
 abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
@@ -62,7 +57,7 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
 
     private fun goToMediaFiche(mediaDetailsFiche: AmazonMediaViewModel.NavigationEvent.MediaDetailsFiche) {
         with(mediaDetailsFiche.mediaItemUi) {
-            val intent = MediaFicheActivity.newIntent(requireContext(), media)
+            val intent = MediaFicheActivity.newIntent(requireContext(), shortMedia)
             startActivity(intent)
         }
     }

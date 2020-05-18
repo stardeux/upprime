@@ -2,7 +2,7 @@ package com.stardeux.upprime.media.common.ui.model
 
 import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.model.MediaType
-import com.stardeux.upprime.media.common.usecase.model.Media
+import com.stardeux.upprime.media.common.usecase.model.ShortMedia
 import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
 import com.stardeux.upprime.core.mapper.formatToHumanReadableMonthDay
 import com.stardeux.upprime.core.mapper.mapToRatingString
@@ -10,11 +10,11 @@ import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 fun mapToMediaUi(
-    media: Media, onFullCardClicked: (MediaItemUi) -> Unit
+    shortMedia: ShortMedia, onFullCardClicked: (MediaItemUi) -> Unit
 ): MediaItemUi {
-    return with(media) {
+    return with(shortMedia) {
         MediaItemUi(
-            media = media,
+            shortMedia = shortMedia,
             tmdbId = null,
             title = title,
             type = type,
@@ -33,7 +33,7 @@ fun mapToMediaUi(
 }
 
 fun mapToMediaUi(
-    shortMedia: Media,
+    shortMedia: ShortMedia,
     movieDetails: MovieDetails,
     onFullCardClicked: (MediaItemUi) -> Unit
 ): MediaItemUi {
@@ -42,7 +42,7 @@ fun mapToMediaUi(
      */
     return with(movieDetails) {
         MediaItemUi(
-            media = shortMedia,
+            shortMedia = shortMedia,
             tmdbId = tmdbId,
             title = title,
             type = MediaType.MOVIE,
@@ -61,7 +61,7 @@ fun mapToMediaUi(
 }
 
 fun mapToMediaUi(
-    shortMedia: Media,
+    shortMedia: ShortMedia,
     seriesDetails: SeriesDetails,
     onFullCardClicked: (MediaItemUi) -> Unit
 ): MediaItemUi {
@@ -70,7 +70,7 @@ fun mapToMediaUi(
      */
     return with(seriesDetails) {
         MediaItemUi(
-            media = shortMedia,
+            shortMedia = shortMedia,
             tmdbId = tmdbId,
             title = name,
             type = MediaType.SERIES,

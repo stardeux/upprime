@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 import org.threeten.bp.LocalDate
 
 @Parcelize
-data class Media(
+data class ShortMedia(
     val title : String?,
     val amazonId: AmazonId,
     val imdbId: ImdbId,

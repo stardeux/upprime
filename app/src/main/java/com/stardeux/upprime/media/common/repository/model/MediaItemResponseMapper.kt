@@ -2,12 +2,12 @@ package com.stardeux.upprime.media.common.repository.model
 
 import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
 import com.stardeux.upprime.core.mapper.mapToMediaType
-import com.stardeux.upprime.media.common.usecase.model.Media
+import com.stardeux.upprime.media.common.usecase.model.ShortMedia
 import com.stardeux.upprime.media.common.usecase.model.MediaPage
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
-fun mapToMediaItem(mediaResponse: MediaResponse): Media {
-    return Media(
+fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia {
+    return ShortMedia(
         title = mediaResponse.title,
         amazonId = requireNotNull(mediaResponse.amazonId),
         imdbId = requireNotNull(mediaResponse.imdbId),
@@ -19,14 +19,14 @@ fun mapToMediaItem(mediaResponse: MediaResponse): Media {
 fun mapToMediaPage(mediaPageResponse: MediaPageResponse): MediaPage {
     return MediaPage(
         count = requireNotNull(mediaPageResponse.count),
-        media = requireNotNull(mediaPageResponse.results).map(::mapToMediaItem)
+        shortMedia = requireNotNull(mediaPageResponse.results).map(::mapToMediaItem)
 
     )
 }
 
-fun mapToMediaItem(latestMediaEntity: LatestMediaEntity): Media {
+fun mapToMediaItem(latestMediaEntity: LatestMediaEntity): ShortMedia {
     return with (latestMediaEntity) {
-        Media(
+        ShortMedia(
             title = title,
             amazonId = amazonId,
             imdbId = imdbId,
@@ -38,6 +38,6 @@ fun mapToMediaItem(latestMediaEntity: LatestMediaEntity): Media {
 
 fun mapToMediaPage(latestMediaEntities: List<LatestMediaEntity>): MediaPage {
     return MediaPage(
-        count = latestMediaEntities.size, media = latestMediaEntities.map(::mapToMediaItem)
+        count = latestMediaEntities.size, shortMedia = latestMediaEntities.map(::mapToMediaItem)
     )
 }

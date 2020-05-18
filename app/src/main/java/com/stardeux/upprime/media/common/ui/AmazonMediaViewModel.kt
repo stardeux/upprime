@@ -2,7 +2,7 @@ package com.stardeux.upprime.media.common.ui
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.stardeux.upprime.media.common.usecase.model.Media
+import com.stardeux.upprime.media.common.usecase.model.ShortMedia
 import com.stardeux.upprime.media.common.usecase.model.MediaPage
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
 import com.stardeux.upprime.media.common.ui.model.MediaItemUi
@@ -34,7 +34,7 @@ abstract class AmazonMediaViewModel(
     private val _navigationEvent = SingleLiveEvent<NavigationEvent>()
     val navigationEvent: LiveData<NavigationEvent> = _navigationEvent
 
-    private val shortMediaItems = LinkedList<List<Media>>()
+    private val shortMediaItems = LinkedList<List<ShortMedia>>()
 
     val datedMediaItems: LiveData<List<Any>> = Transformations.map(_mediaItems, ::groupByDate)
 
@@ -60,13 +60,13 @@ abstract class AmazonMediaViewModel(
             val result = getAmazonMedia(page)
             totalCount = result.count
 
-            val mediaUi = result.media.map { mapToMediaUi(it, ::onCardClicked) }
+            val mediaUi = result.shortMedia.map { mapToMediaUi(it, ::onCardClicked) }
             _mediaItems.value =
                 (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
 
             _loadingDataState.value = DataLoading.Success
 
-            shortMediaItems.add(result.media)
+            shortMediaItems.add(result.shortMedia)
             loadNextDetails()
         }
     }
@@ -93,13 +93,13 @@ abstract class AmazonMediaViewModel(
     }
 
 
-    private suspend fun updateViewFullMedia(shortMedia: Media) {
+    private suspend fun updateViewFullMedia(shortMedia: ShortMedia) {
         try {
             val fullMedia = loadFullMedia(shortMedia)
 
             val currentList = _mediaItems.value?.toMutableList()
             currentList?.set(
-                currentList.indexOfFirst { it.media.imdbId == fullMedia.media.imdbId }, fullMedia
+                currentList.indexOfFirst { it.shortMedia.imdbId == fullMedia.shortMedia.imdbId }, fullMedia
             )
 
             _mediaItems.value = currentList
@@ -110,7 +110,7 @@ abstract class AmazonMediaViewModel(
     }
 
 
-    private suspend fun loadFullMedia(shortMedia: Media): MediaItemUi {
+    private suspend fun loadFullMedia(shortMedia: ShortMedia): MediaItemUi {
         return when (shortMedia.type) {
             MediaType.MOVIE -> {
                 val movieDetails = getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia))
