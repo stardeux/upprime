@@ -6,6 +6,7 @@ import androidx.room.TypeConverters
 import com.stardeux.upprime.media.common.repository.model.LocalDateTimeTypeConverter
 import com.stardeux.upprime.media.common.repository.model.MediaTypeTypeConverter
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaDao
+import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaDao
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailDao
@@ -14,7 +15,7 @@ import com.stardeux.upprime.tmdb.series.repository.database.SeriesDao
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
 
 @Database(
-    entities = [SeriesDetailsEntity::class, MovieDetailsEntity::class, LatestMediaEntity::class],
+    entities = [SeriesDetailsEntity::class, MovieDetailsEntity::class, LatestMediaEntity::class, ExpiredMediaEntity::class],
     exportSchema = true,
     version = 1
 )

@@ -32,7 +32,4 @@ class LatestMediaRepository(
     suspend fun clearCache() {
         latestMediaLocalDataSource.clearTable()
     }
-
-
-
 }
