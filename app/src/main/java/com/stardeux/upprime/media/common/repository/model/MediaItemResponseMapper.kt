@@ -1,9 +1,9 @@
-package com.stardeux.upprime.media.common.usecase.model
+package com.stardeux.upprime.media.common.repository.model
 
 import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
 import com.stardeux.upprime.core.mapper.mapToMediaType
-import com.stardeux.upprime.media.common.repository.model.MediaResponse
-import com.stardeux.upprime.media.common.repository.model.MediaPageResponse
+import com.stardeux.upprime.media.common.usecase.model.Media
+import com.stardeux.upprime.media.common.usecase.model.MediaPage
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
 fun mapToMediaItem(mediaResponse: MediaResponse): Media {
@@ -38,7 +38,6 @@ fun mapToMediaItem(latestMediaEntity: LatestMediaEntity): Media {
 
 fun mapToMediaPage(latestMediaEntities: List<LatestMediaEntity>): MediaPage {
     return MediaPage(
-        count = latestMediaEntities.size,
-        media = latestMediaEntities.map(::mapToMediaItem)
+        count = latestMediaEntities.size, media = latestMediaEntities.map(::mapToMediaItem)
     )
 }
