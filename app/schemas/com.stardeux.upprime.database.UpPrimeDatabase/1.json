@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "020cb620450a4eb008a8bbdbb4c4a04b",
+    "identityHash": "4d64ed9e676a051a0841353297014def",
     "entities": [
       {
         "tableName": "series",
@@ -214,8 +214,14 @@
       },
       {
         "tableName": "latest",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`amazon_id` TEXT NOT NULL, `title` TEXT, `imdb_id` TEXT NOT NULL, `date_added` TEXT NOT NULL, `media_type` TEXT NOT NULL, PRIMARY KEY(`amazon_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `amazon_id` TEXT NOT NULL, `title` TEXT, `imdb_id` TEXT NOT NULL, `date_added` TEXT NOT NULL, `media_type` TEXT NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "amazonId",
             "columnName": "amazon_id",
@@ -249,9 +255,9 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "amazon_id"
+            "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -260,7 +266,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '020cb620450a4eb008a8bbdbb4c4a04b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4d64ed9e676a051a0841353297014def')"
     ]
   }
 }

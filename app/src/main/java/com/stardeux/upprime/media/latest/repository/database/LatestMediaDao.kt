@@ -7,8 +7,8 @@ import androidx.room.Query
 @Dao
 interface LatestMediaDao {
 
-    @Query(value = "SELECT * FROM ${LatestMediaEntity.TABLE_LATEST_NAME}")
-    suspend fun getLatestMedia(): List<LatestMediaEntity>
+    @Query(value = "SELECT * FROM ${LatestMediaEntity.TABLE_LATEST_NAME} WHERE ${LatestMediaEntity.COL_ID} > :fromId ORDER BY ${LatestMediaEntity.COL_ID} LIMIT :limit")
+    suspend fun getLatestMedia(fromId: Long, limit: Int): List<LatestMediaEntity>
 
     @Insert
     suspend fun insertAll(latestMedia: List<LatestMediaEntity>): List<Long>

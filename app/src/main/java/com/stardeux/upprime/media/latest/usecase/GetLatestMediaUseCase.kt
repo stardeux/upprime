@@ -14,6 +14,6 @@ class GetLatestMediaUseCase(
 
     suspend fun getLatest(page: Int): MediaPage {
         val request = AmazonMediaRequest(mapAvailableCountryToApiValue(availableCountry), page)
-        return mapToMediaPage(latestMediaRepository.getNew(request))
+        return latestMediaRepository.getLatest(request)
     }
 }

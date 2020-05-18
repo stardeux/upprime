@@ -4,6 +4,7 @@ import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
 import com.stardeux.upprime.core.mapper.mapToMediaType
 import com.stardeux.upprime.media.common.repository.model.MediaResponse
 import com.stardeux.upprime.media.common.repository.model.MediaPageResponse
+import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
 fun mapToMediaItem(mediaResponse: MediaResponse): Media {
     return Media(
@@ -20,5 +21,24 @@ fun mapToMediaPage(mediaPageResponse: MediaPageResponse): MediaPage {
         count = requireNotNull(mediaPageResponse.count),
         media = requireNotNull(mediaPageResponse.results).map(::mapToMediaItem)
 
+    )
+}
+
+fun mapToMediaItem(latestMediaEntity: LatestMediaEntity): Media {
+    return with (latestMediaEntity) {
+        Media(
+            title = title,
+            amazonId = amazonId,
+            imdbId = imdbId,
+            dateAdded = mapAmazonDateStringToLocaleDate(dateAdded),
+            type = type
+        )
+    }
+}
+
+fun mapToMediaPage(latestMediaEntities: List<LatestMediaEntity>): MediaPage {
+    return MediaPage(
+        count = latestMediaEntities.size,
+        media = latestMediaEntities.map(::mapToMediaItem)
     )
 }
