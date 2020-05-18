@@ -24,11 +24,13 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     }
 
     private fun bindFiche(mediaFicheUi: MediaFicheUi) {
-        Glide.with(requireContext()).load(mediaFicheUi.backdropPath).centerCrop().into(mediaCouv)
-        mediaTitle.text = mediaFicheUi.title
+        with(mediaFicheUi) {
+            Glide.with(requireContext()).load(backdropPath).centerCrop().into(mediaCouv)
+            mediaTitle.text = title
 
-        mediaRatings.text = mediaFicheUi.tmdbRating
-
+            mediaRatings.text = tmdbRating
+            mediaSynopsis.text = synopsis
+        }
     }
 
     companion object {

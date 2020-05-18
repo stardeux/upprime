@@ -12,7 +12,7 @@ data class MediaFicheUi(
     val title: String?,
     val type: MediaType,
     val runtime: String?,
-    val mainGenre: String?,
+    val genres: List<String>?,
     val mediaReleaseYear: String?,
     val mainNationality: String?,
     val tmdbRating: String?,
