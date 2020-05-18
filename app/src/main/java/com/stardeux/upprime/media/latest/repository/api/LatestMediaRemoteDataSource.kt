@@ -6,7 +6,7 @@ import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 
 class LatestMediaRemoteDataSource(private val latestApi: LatestApi) {
 
-    suspend fun getNew(amazonMediaRequest: AmazonMediaRequest): MediaPageResponse {
+    suspend fun getLatest(amazonMediaRequest: AmazonMediaRequest): MediaPageResponse {
         val test = true
         return if (!test) {
             latestApi.new(amazonMediaRequest.country, amazonMediaRequest.days, amazonMediaRequest.page)
@@ -52,10 +52,5 @@ class LatestMediaRemoteDataSource(private val latestApi: LatestApi) {
                 }
             }
         }
-    }
-
-
-    suspend fun getLatest(amazonMediaRequest: AmazonMediaRequest): MediaPageResponse {
-        return latestApi.new(amazonMediaRequest.country, amazonMediaRequest.days, amazonMediaRequest.page)
     }
 }
