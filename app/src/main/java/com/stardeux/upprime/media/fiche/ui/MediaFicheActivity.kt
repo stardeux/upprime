@@ -19,13 +19,15 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
 
         val shortMedia: ShortMedia = requireNotNull(intent.getParcelableExtra(MEDIA_ARG))
 
-        supportFragmentManager.commit {
-            replace(R.id.ficheContent, MediaFicheFragment.newInstance(shortMedia))
+        if (supportFragmentManager.findFragmentByTag(MEDIA_FICHE_FRAGMENT_TAG) == null) {
+            supportFragmentManager.commit {
+                replace(R.id.ficheContent, MediaFicheFragment.newInstance(shortMedia), MEDIA_FICHE_FRAGMENT_TAG)
+            }
         }
-
     }
 
     companion object {
+        private const val MEDIA_FICHE_FRAGMENT_TAG = "MEDIA_FICHE_FRAGMENT_TAG"
         private const val MEDIA_ARG = "MEDIA_ARG"
 
         fun newIntent(context: Context, shortMedia: ShortMedia): Intent {
