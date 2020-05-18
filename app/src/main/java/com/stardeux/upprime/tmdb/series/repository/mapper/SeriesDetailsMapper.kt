@@ -1,7 +1,6 @@
 package com.stardeux.upprime.tmdb.series.repository.mapper
 
 import com.stardeux.upprime.database.parser.parseDatabaseGenres
-import com.stardeux.upprime.database.parser.parseDatabaseLocalDate
 import com.stardeux.upprime.database.parser.parseDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesDetailsResponse
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
@@ -45,12 +44,12 @@ class SeriesDetailsMapper(private val posterMapper: PosterMapper) {
                 name = title,
                 originalName = originalTitle,
                 posterUrl = posterUrl,
-                mediaReleaseDate = releaseDate?.let(::parseDatabaseLocalDate),
+                mediaReleaseDate = releaseDate,
                 runtimeMinutes = runtime,
                 genres = genres?.let(::parseDatabaseGenres),
                 nationalities = productionCountries?.let(::parseDatabaseProductionCountries),
                 tmdbRating = tmdbRating,
-                amazonReleaseDate = parseDatabaseLocalDate(amazonReleaseDate),
+                amazonReleaseDate = amazonReleaseDate,
                 synopsis = synopsis,
                 backdropPath = backdropPath
             )

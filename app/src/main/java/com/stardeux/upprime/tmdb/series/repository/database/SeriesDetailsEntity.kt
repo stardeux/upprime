@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity.Companion.TABLE_SERIES_NAME
+import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 
 @Entity(tableName = TABLE_SERIES_NAME)
 data class SeriesDetailsEntity(
@@ -12,11 +14,11 @@ data class SeriesDetailsEntity(
     @ColumnInfo(name = COL_SERIES_TMDB_ID) val tmdbId: String,
     @ColumnInfo(name = COL_SERIES_IMDB_ID) val imdbId: String,
     @ColumnInfo(name = COL_SERIES_AMAZON_ID) val amazonId: String,
-    @ColumnInfo(name = COL_SERIES_AMAZON_RELEASE_DATE) val amazonReleaseDate: String,
+    @ColumnInfo(name = COL_SERIES_AMAZON_RELEASE_DATE) val amazonReleaseDate: LocalDate,
     @ColumnInfo(name = COL_SERIES_TITLE) val title: String?,
     @ColumnInfo(name = COL_SERIES_ORIGINAL_TITLE) val originalTitle: String?,
     @ColumnInfo(name = COL_SERIES_POSTER_PATH) val posterUrl: String?,
-    @ColumnInfo(name = COL_SERIES_RELEASE_DATE) val releaseDate: String?,
+    @ColumnInfo(name = COL_SERIES_RELEASE_DATE) val releaseDate: LocalDate?,
     @ColumnInfo(name = COL_SERIES_RUNTIME) val runtime: Int?,
     @ColumnInfo(name = COL_SERIES_TMDB_RATING) val tmdbRating: Float?,
     @ColumnInfo(name = COL_SERIES_TMDB_SYNOPSIS) val synopsis: String?,

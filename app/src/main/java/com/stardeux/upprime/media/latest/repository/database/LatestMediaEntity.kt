@@ -7,6 +7,7 @@ import com.stardeux.upprime.core.model.AmazonId
 import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity.Companion.TABLE_LATEST_NAME
+import org.threeten.bp.LocalDate
 
 @Entity(tableName = TABLE_LATEST_NAME)
 data class LatestMediaEntity(
@@ -14,7 +15,7 @@ data class LatestMediaEntity(
     @ColumnInfo(name = COL_AMAZON_ID) val amazonId: AmazonId,
     @ColumnInfo(name = COL_TITLE) val title: String?,
     @ColumnInfo(name = COL_IMDB_ID) val imdbId: ImdbId,
-    @ColumnInfo(name = COL_DATE_ADDED) val dateAdded: String,
+    @ColumnInfo(name = COL_DATE_ADDED) val dateAdded: LocalDate,
     @ColumnInfo(name = COL_MEDIA_TYPE) val type: MediaType
 ) {
 

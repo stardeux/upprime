@@ -13,12 +13,12 @@ fun mapToMovieDetailsEntity(movieDetails: MovieDetails): MovieDetailsEntity {
             title = title,
             originalTitle = originalTitle,
             posterUrl = posterUrl,
-            releaseDate = mediaReleaseDate?.let(::formatDatabaseLocalDate),
+            releaseDate = mediaReleaseDate,
             runtime = runtimeMinutes,
             genres = genres?.let (::formatDatabaseGenres),
             productionCountries = nationalities?.let(::formatDatabaseProductionCountries),
             tmdbRating = tmdbRating,
-            amazonReleaseDate = formatDatabaseLocalDate(amazonReleaseDate),
+            amazonReleaseDate = amazonReleaseDate,
             synopsis = synopsis,
             backdropPath = backdropPath
         )

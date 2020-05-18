@@ -28,7 +28,7 @@ fun mapToMediaItem(latestMediaEntity: LatestMediaEntity): ShortMedia {
             title = title,
             amazonId = amazonId,
             imdbId = imdbId,
-            dateAdded = mapAmazonDateStringToLocaleDate(dateAdded),
+            dateAdded = dateAdded,
             type = type
         )
     }
@@ -47,7 +47,7 @@ fun mapShortMediaToLatestMediaEntity(shortMedia: ShortMedia): LatestMediaEntity 
             amazonId = amazonId,
             title = title,
             imdbId = imdbId,
-            dateAdded = "",
+            dateAdded = dateAdded,
             type = type
         )
     }

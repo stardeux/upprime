@@ -1,7 +1,6 @@
 package com.stardeux.upprime.tmdb.movie.repository.mapper
 
 import com.stardeux.upprime.database.parser.parseDatabaseGenres
-import com.stardeux.upprime.database.parser.parseDatabaseLocalDate
 import com.stardeux.upprime.database.parser.parseDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieDetailsResponse
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
@@ -21,12 +20,12 @@ class MovieDetailsMapper (private val posterMapper: PosterMapper) {
                 title = title,
                 originalTitle = originalTitle,
                 posterUrl = posterUrl,
-                mediaReleaseDate = releaseDate?.let(::parseDatabaseLocalDate),
+                mediaReleaseDate = releaseDate,
                 runtimeMinutes = runtime,
                 genres = genres?.let (::parseDatabaseGenres),
                 nationalities = productionCountries?.let(::parseDatabaseProductionCountries),
                 tmdbRating = tmdbRating,
-                amazonReleaseDate = parseDatabaseLocalDate(amazonReleaseDate),
+                amazonReleaseDate = amazonReleaseDate,
                 synopsis = synopsis,
                 backdropPath = backdropPath
             )
