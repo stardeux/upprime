@@ -5,11 +5,9 @@ import com.google.gson.GsonBuilder
 import com.stardeux.upprime.network.amazon.AmazonApiConst
 import com.stardeux.upprime.network.amazon.AmazonAuthenticatorInterceptor
 import com.stardeux.upprime.network.amazon.LocalDateTimeJsonDeserializer
-import com.stardeux.upprime.network.tmdb.LocalDateJsonDeserializer
 import okhttp3.OkHttpClient
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,7 +16,12 @@ val amazonNetworkModule = module {
     factory { provideAmazonAuthenticatorInterceptor() }
     factory(named(AMAZON_NAMED_QUALIFIER)) { provideGson() }
     factory(named(AMAZON_NAMED_QUALIFIER)) { provideAmazonOkHttpBuilder(get()) }
-    single(named(AMAZON_NAMED_QUALIFIER)) { provideAmazonRetrofit(get(named(AMAZON_NAMED_QUALIFIER)), get(named(AMAZON_NAMED_QUALIFIER))) }
+    single(named(AMAZON_NAMED_QUALIFIER)) {
+        provideAmazonRetrofit(
+            get(named(AMAZON_NAMED_QUALIFIER)),
+            get(named(AMAZON_NAMED_QUALIFIER))
+        )
+    }
 }
 
 private fun provideAmazonAuthenticatorInterceptor(): AmazonAuthenticatorInterceptor {
