@@ -1,6 +1,5 @@
 package com.stardeux.upprime.media.common.repository.model
 
-import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
 import com.stardeux.upprime.core.mapper.mapToMediaType
 import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.repository.api.MediaResponse
@@ -12,7 +11,7 @@ fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia {
         title = mediaResponse.title,
         amazonId = requireNotNull(mediaResponse.amazonId),
         imdbId = requireNotNull(mediaResponse.imdbId),
-        dateAdded = mapAmazonDateStringToLocaleDate(requireNotNull(mediaResponse.dateAdded)),
+        dateAdded = requireNotNull(mediaResponse.dateAdded).toLocalDate(),
         type = mapToMediaType(requireNotNull(mediaResponse.type))
     )
 }
