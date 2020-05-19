@@ -2,7 +2,7 @@ package com.stardeux.upprime.media.latest.repository.api
 
 import com.google.gson.Gson
 import com.stardeux.upprime.core.extension.logDebug
-import com.stardeux.upprime.media.common.repository.model.MediaPageResponse
+import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 
 class LatestMediaRemoteDataSource(private val latestApi: LatestApi) {
@@ -51,7 +51,10 @@ class LatestMediaRemoteDataSource(private val latestApi: LatestApi) {
                     Gson().fromJson(six, MediaPageResponse::class.java)
                 }
                 else -> {
-                    MediaPageResponse(null, null)
+                    MediaPageResponse(
+                        null,
+                        null
+                    )
                 }
             }
         }

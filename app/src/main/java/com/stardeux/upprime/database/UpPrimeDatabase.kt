@@ -3,8 +3,8 @@ package com.stardeux.upprime.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.stardeux.upprime.media.common.repository.model.LocalDateTimeTypeConverter
-import com.stardeux.upprime.media.common.repository.model.MediaTypeTypeConverter
+import com.stardeux.upprime.media.common.repository.database.LocalDateTimeTypeConverter
+import com.stardeux.upprime.media.common.repository.database.MediaTypeTypeConverter
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaDao
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaDao

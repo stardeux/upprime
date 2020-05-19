@@ -2,6 +2,8 @@ package com.stardeux.upprime.media.common.repository.model
 
 import com.stardeux.upprime.core.mapper.mapAmazonDateStringToLocaleDate
 import com.stardeux.upprime.core.mapper.mapToMediaType
+import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
+import com.stardeux.upprime.media.common.repository.api.MediaResponse
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 

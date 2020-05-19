@@ -2,7 +2,7 @@ package com.stardeux.upprime.media.latest.repository
 
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 import com.stardeux.upprime.media.common.repository.model.MediaPage
-import com.stardeux.upprime.media.common.repository.model.MediaPageResponse
+import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.repository.model.mapShortMediaToLatestMediaEntity
 import com.stardeux.upprime.media.common.repository.model.mapToMediaPage
 import com.stardeux.upprime.media.common.repository.model.mapLatestToMediaPage

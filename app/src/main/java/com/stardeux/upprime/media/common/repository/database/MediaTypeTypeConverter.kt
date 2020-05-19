@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.common.repository.model
+package com.stardeux.upprime.media.common.repository.database
 
 import androidx.room.TypeConverter
 import com.stardeux.upprime.core.model.MediaType

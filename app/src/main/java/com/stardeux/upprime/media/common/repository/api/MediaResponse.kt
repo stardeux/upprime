@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.common.repository.model
+package com.stardeux.upprime.media.common.repository.api
 
 import com.google.gson.annotations.SerializedName
 

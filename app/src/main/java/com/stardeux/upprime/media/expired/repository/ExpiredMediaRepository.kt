@@ -1,5 +1,6 @@
 package com.stardeux.upprime.media.expired.repository
 
+import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.repository.model.*
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 import com.stardeux.upprime.media.expired.repository.api.ExpiredMediaRemoteDataSource
