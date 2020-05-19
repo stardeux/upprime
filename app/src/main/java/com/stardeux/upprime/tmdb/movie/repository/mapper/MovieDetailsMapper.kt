@@ -6,7 +6,6 @@ import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieDetailsResponse
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
-import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
 import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieRequest
 
 class MovieDetailsMapper (private val posterMapper: PosterMapper) {
@@ -43,7 +42,7 @@ class MovieDetailsMapper (private val posterMapper: PosterMapper) {
                 title = title,
                 originalTitle = originalTitle,
                 posterUrl = posterMapper.getCompletePosterUrl(posterUrl),
-                mediaReleaseDate = mapTmdbLocalDate(releaseDate),
+                mediaReleaseDate = releaseDate,
                 runtimeMinutes = runtime?.takeIf { it > 0 },
                 genres = genres?.mapNotNull { it.name },
                 nationalities = productionCountries?.mapNotNull { it.name },

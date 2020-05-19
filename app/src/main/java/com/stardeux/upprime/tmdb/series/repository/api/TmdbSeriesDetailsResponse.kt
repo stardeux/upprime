@@ -2,6 +2,7 @@ package com.stardeux.upprime.tmdb.series.repository.api
 
 import com.google.gson.annotations.SerializedName
 import com.stardeux.upprime.tmdb.common.model.network.GenreResponse
+import org.threeten.bp.LocalDate
 
 data class TmdbSeriesDetailsResponse(
     @SerializedName("id") val tmdbId: String?,
@@ -9,7 +10,7 @@ data class TmdbSeriesDetailsResponse(
     @SerializedName("name") val name: String?,
     @SerializedName("original_name") val originalName: String?,
     @SerializedName("poster_path") val posterUrl: String?,
-    @SerializedName("first_air_date") val firstAirDate: String?,
+    @SerializedName("first_air_date") val firstAirDate: LocalDate?,
     @SerializedName("episode_run_time") val episodeRuntime: List<Int?>,
     @SerializedName("genres") val genres: List<GenreResponse>?,
     @SerializedName("origin_country") val originCountry: List<String>?,

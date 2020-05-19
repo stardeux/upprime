@@ -6,7 +6,6 @@ import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesDetailsResponse
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
-import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
 import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesRequest
 
 class SeriesDetailsMapper(private val posterMapper: PosterMapper) {
@@ -22,7 +21,7 @@ class SeriesDetailsMapper(private val posterMapper: PosterMapper) {
                 name = name,
                 originalName = originalName,
                 posterUrl = posterMapper.getCompletePosterUrl(posterUrl),
-                mediaReleaseDate = mapTmdbLocalDate(firstAirDate),
+                mediaReleaseDate = firstAirDate,
                 runtimeMinutes = episodeRuntime.firstOrNull { (it ?: 0) > 0 },
                 genres = genres?.mapNotNull { it.name },
                 nationalities = originCountry,
