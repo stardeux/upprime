@@ -1,7 +1,7 @@
 package com.stardeux.upprime.tmdb.movie.repository
 
 import com.stardeux.upprime.core.model.ImdbId
-import com.stardeux.upprime.tmdb.common.request.TmdbMovieRequest
+import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieRequest
 import com.stardeux.upprime.tmdb.movie.repository.api.MovieDetailsRemoteDataSource
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailLocalDataSource
 import com.stardeux.upprime.tmdb.movie.repository.mapper.MovieDetailsMapper

@@ -10,6 +10,7 @@ import com.stardeux.upprime.tmdb.movie.repository.mapper.MovieDetailsMapper
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
+import com.stardeux.upprime.tmdb.common.mapper.ImdbMediaRequestMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
@@ -25,7 +26,7 @@ val movieModule = module {
     factory { provideMovieRepository(get(), get(), get()) }
     factory { provideGetMovieDetailsUseCase(get()) }
     factory { provideMovieDetailsMapper(get()) }
-    factory { provideGetImdbMovieDetailsUseCase(get(), get(), get()) }
+    factory { provideGetImdbMovieDetailsUseCase(get(), get(), get(), get()) }
 }
 
 
@@ -42,7 +43,11 @@ private fun provideMovieRepository(
     movieDetailsRemoteDataSource: MovieDetailsRemoteDataSource,
     movieDetailsMapper: MovieDetailsMapper
 ): MovieRepository {
-    return MovieRepository(movieDetailsRemoteDataSource, movieDetailLocalDataSource, movieDetailsMapper)
+    return MovieRepository(
+        movieDetailsRemoteDataSource,
+        movieDetailLocalDataSource,
+        movieDetailsMapper
+    )
 }
 
 private fun provideMovieDetailRemoteDataSource(tmdbMovieApi: TmdbMovieApi): MovieDetailsRemoteDataSource {
@@ -66,7 +71,13 @@ private fun provideGetMovieDetailsUseCase(
 private fun provideGetImdbMovieDetailsUseCase(
     getMovieDetailsUseCase: GetMovieDetailsUseCase,
     findMovieUseCase: FindMovieUseCase,
-    searchMovieUseCase: SearchMovieUseCase
+    searchMovieUseCase: SearchMovieUseCase,
+    imdbMediaRequestMapper: ImdbMediaRequestMapper
 ): GetImdbMovieDetailsUseCase {
-    return GetImdbMovieDetailsUseCase(getMovieDetailsUseCase, findMovieUseCase, searchMovieUseCase)
+    return GetImdbMovieDetailsUseCase(
+        getMovieDetailsUseCase,
+        findMovieUseCase,
+        searchMovieUseCase,
+        imdbMediaRequestMapper
+    )
 }

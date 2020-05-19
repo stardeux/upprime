@@ -7,7 +7,7 @@ import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.common.mapper.mapTmdbLocalDate
-import com.stardeux.upprime.tmdb.common.request.TmdbMovieRequest
+import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieRequest
 
 class MovieDetailsMapper (private val posterMapper: PosterMapper) {
 

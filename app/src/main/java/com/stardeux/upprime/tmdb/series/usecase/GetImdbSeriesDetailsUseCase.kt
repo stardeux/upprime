@@ -1,7 +1,7 @@
 package com.stardeux.upprime.tmdb.series.usecase
 
+import com.stardeux.upprime.tmdb.common.mapper.ImdbMediaRequestMapper
 import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
-import com.stardeux.upprime.tmdb.common.request.mapToTmdbSeriesRequest
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.error.SeriesNotFoundException
@@ -11,7 +11,8 @@ import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 class GetImdbSeriesDetailsUseCase(
     private val findSeriesUseCase: FindSeriesUseCase,
     private val searchSeriesUseCase: SearchSeriesUseCase,
-    private val getSeriesDetailsUseCase: GetSeriesDetailsUseCase
+    private val getSeriesDetailsUseCase: GetSeriesDetailsUseCase,
+    private val imdbMediaRequestMapper: ImdbMediaRequestMapper
 ) {
 
     suspend operator fun invoke(imdbMediaRequest: ImdbMediaRequest): SeriesDetails {
@@ -25,7 +26,12 @@ class GetImdbSeriesDetailsUseCase(
                 ?: imdbMediaRequest.name?.let { searchSeries(it) }?.tmdbId
 
             return tmdbId?.let {
-                getSeriesDetailsUseCase(mapToTmdbSeriesRequest(imdbMediaRequest, it))
+                getSeriesDetailsUseCase(
+                    imdbMediaRequestMapper.mapToTmdbSeriesRequest(
+                        imdbMediaRequest,
+                        it
+                    )
+                )
             } ?: throw SeriesNotFoundException(imdbMediaRequest.imdbId)
         }
 

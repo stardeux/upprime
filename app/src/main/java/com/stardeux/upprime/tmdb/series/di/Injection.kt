@@ -2,6 +2,7 @@ package com.stardeux.upprime.tmdb.series.di
 
 import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
+import com.stardeux.upprime.tmdb.common.mapper.ImdbMediaRequestMapper
 import com.stardeux.upprime.tmdb.series.repository.SeriesRepository
 import com.stardeux.upprime.tmdb.series.repository.api.SeriesRemoteDataSource
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
@@ -25,7 +26,7 @@ val seriesModule = module {
     factory { provideSeriesLocalDataSource(get()) }
     factory { provideSeriesRemoteDataSource(get()) }
     factory { provideSeriesMapper(get()) }
-    factory { provideGetImdbSeriesDetailsUseCase(get(), get(), get()) }
+    factory { provideGetImdbSeriesDetailsUseCase(get(), get(), get(), get()) }
 }
 
 private fun provideSeriesRemoteDataSource(tmdbSeriesApi: TmdbSeriesApi): SeriesRemoteDataSource {
@@ -67,9 +68,13 @@ private fun provideSeriesMapper(
 private fun provideGetImdbSeriesDetailsUseCase(
     findSeriesUseCase: FindSeriesUseCase,
     searchSeriesUseCase: SearchSeriesUseCase,
-    getSeriesDetailsUseCase: GetSeriesDetailsUseCase
+    getSeriesDetailsUseCase: GetSeriesDetailsUseCase,
+    imdbMediaRequestMapper: ImdbMediaRequestMapper
 ): GetImdbSeriesDetailsUseCase {
     return GetImdbSeriesDetailsUseCase(
-        findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase
+        findSeriesUseCase,
+        searchSeriesUseCase,
+        getSeriesDetailsUseCase,
+        imdbMediaRequestMapper
     )
 }

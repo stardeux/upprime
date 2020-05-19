@@ -6,7 +6,7 @@ import com.stardeux.upprime.tmdb.series.repository.database.SeriesLocalDataSourc
 import com.stardeux.upprime.tmdb.series.repository.mapper.SeriesDetailsMapper
 import com.stardeux.upprime.tmdb.series.repository.mapper.mapToSeriesDetailsEntity
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
-import com.stardeux.upprime.tmdb.common.request.TmdbSeriesRequest
+import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesRequest
 
 class SeriesRepository(
     private val seriesLocalDataSource: SeriesLocalDataSource,

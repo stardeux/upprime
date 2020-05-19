@@ -1,6 +1,7 @@
 package com.stardeux.upprime.tmdb.configuration.di
 
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
+import com.stardeux.upprime.tmdb.common.mapper.ImdbMediaRequestMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.configuration.repository.TmdbConfigurationRepository
 import com.stardeux.upprime.tmdb.configuration.repository.api.TmdbConfigurationApi
@@ -8,14 +9,20 @@ import com.stardeux.upprime.tmdb.configuration.usecase.GetTmdbConfigurationUseCa
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import java.util.*
 
 val tmdbConfigurationModule = module {
     factory { provideTmdbConfigurationApi(get(named(TMDB_NAMED_QUALIFIER))) }
     factory { provideTmdbConfigurationRepository(get()) }
     single { provideGetTmdbConfigurationUseCase(get()) }    //single to keep configuration cache
     factory { providePosterMapper(get()) }
+
+    factory { provideImdbMediaRequestMapper(get()) }
 }
 
+private fun provideImdbMediaRequestMapper(locale: Locale): ImdbMediaRequestMapper {
+    return ImdbMediaRequestMapper(locale)
+}
 
 private fun provideTmdbConfigurationApi(retrofit: Retrofit): TmdbConfigurationApi {
     return retrofit.create(TmdbConfigurationApi::class.java)

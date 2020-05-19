@@ -10,7 +10,3 @@ fun mapTmdbLocalDate(localDate: String?): LocalDate? {
 private fun doMapTmdbLocalDate(localDate: String): LocalDate {
     return DateTimeFormatter.ISO_LOCAL_DATE.parse(localDate, LocalDate::from)
 }
-
-fun mapAmazonLocalDate(localDate: String): LocalDate {
-    return DateTimeFormatter.ISO_LOCAL_DATE.parse(localDate, LocalDate::from)
-}
