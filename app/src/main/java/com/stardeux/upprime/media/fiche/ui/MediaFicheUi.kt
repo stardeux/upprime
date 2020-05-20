@@ -8,7 +8,7 @@ import com.stardeux.upprime.core.model.TmdbId
 data class MediaFicheUi(
     val amazonId: AmazonId,
     val imdbId: ImdbId,
-    val tmdbId: TmdbId?,
+    val tmdbId: TmdbId,
     val title: String?,
     val type: MediaType,
     val runtime: String?,
