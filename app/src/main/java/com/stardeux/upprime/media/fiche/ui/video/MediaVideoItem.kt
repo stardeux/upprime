@@ -29,7 +29,7 @@ class MediaVideoItem : ConstraintLayout {
         setLayoutParams(layoutParams)
     }
 
-    private fun bind(mediaVideoUi: MediaVideoUi) {
+    fun bind(mediaVideoUi: MediaVideoUi) {
         with(Glide.with(this)) {
             clear(videoImage)
             load(mediaVideoUi.thumbnailUrl).into(videoImage)
