@@ -17,6 +17,7 @@ import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import java.util.*
 
 val movieModule = module {
     factory { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
@@ -24,7 +25,7 @@ val movieModule = module {
     factory { provideMovieDetailLocalDataSource(get()) }
     factory { provideMovieDetailDao(get()) }
     factory { provideMovieRepository(get(), get(), get()) }
-    factory { provideGetMovieDetailsUseCase(get()) }
+    factory { provideGetMovieDetailsUseCase(get(), get()) }
     factory { provideMovieDetailsMapper(get()) }
     factory { provideGetImdbMovieDetailsUseCase(get(), get(), get(), get()) }
 }
@@ -63,9 +64,10 @@ private fun provideMovieDetailDao(upPrimeDatabase: UpPrimeDatabase): MovieDetail
 }
 
 private fun provideGetMovieDetailsUseCase(
-    movieRepository: MovieRepository
+    movieRepository: MovieRepository,
+    locale: Locale
 ): GetMovieDetailsUseCase {
-    return GetMovieDetailsUseCase(movieRepository)
+    return GetMovieDetailsUseCase(movieRepository, locale)
 }
 
 private fun provideGetImdbMovieDetailsUseCase(

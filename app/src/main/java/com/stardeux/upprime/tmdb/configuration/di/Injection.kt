@@ -17,11 +17,11 @@ val tmdbConfigurationModule = module {
     single { provideGetTmdbConfigurationUseCase(get()) }    //single to keep configuration cache
     factory { providePosterMapper(get()) }
 
-    factory { provideImdbMediaRequestMapper(get()) }
+    factory { provideImdbMediaRequestMapper() }
 }
 
-private fun provideImdbMediaRequestMapper(locale: Locale): ImdbMediaRequestMapper {
-    return ImdbMediaRequestMapper(locale)
+private fun provideImdbMediaRequestMapper(): ImdbMediaRequestMapper {
+    return ImdbMediaRequestMapper()
 }
 
 private fun provideTmdbConfigurationApi(retrofit: Retrofit): TmdbConfigurationApi {

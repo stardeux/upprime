@@ -10,6 +10,5 @@ data class TmdbMovieRequest(
     val amazonId: AmazonId,
     val tmdbId: TmdbId?,
     val amazonReleaseDate: LocalDate,
-    val name: String?,
-    val language: String
+    val name: String?
 )

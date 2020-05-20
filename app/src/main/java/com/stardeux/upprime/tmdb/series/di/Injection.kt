@@ -17,11 +17,12 @@ import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import java.util.*
 
 val seriesModule = module {
     factory { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
     factory { provideSeriesRepository(get(), get(), get()) }
-    factory { provideGetSeriesDetailUseCase(get()) }
+    factory { provideGetSeriesDetailUseCase(get(), get()) }
     factory { provideSeriesDao(get()) }
     factory { provideSeriesLocalDataSource(get()) }
     factory { provideSeriesRemoteDataSource(get()) }
@@ -54,9 +55,10 @@ private fun provideSeriesRepository(
 }
 
 private fun provideGetSeriesDetailUseCase(
-    seriesRepository: SeriesRepository
+    seriesRepository: SeriesRepository,
+    locale: Locale
 ): GetSeriesDetailsUseCase {
-    return GetSeriesDetailsUseCase(seriesRepository)
+    return GetSeriesDetailsUseCase(seriesRepository, locale)
 }
 
 private fun provideSeriesMapper(
