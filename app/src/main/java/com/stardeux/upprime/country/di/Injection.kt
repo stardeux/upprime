@@ -53,10 +53,6 @@ private fun provideGetFlagUrlUseCase(): GetFlagUrlUseCase {
     return GetFlagUrlUseCase()
 }
 
-fun Scope.getUserScope(): Scope {
-    return getKoin().get<AvailableCountry>().getOrCreateScope()
-}
-
 fun getUserScope(): Scope {
     return getKoin().get<AvailableCountry>().getOrCreateScope()
 }
