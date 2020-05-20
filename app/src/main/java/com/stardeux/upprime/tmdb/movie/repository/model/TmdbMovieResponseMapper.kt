@@ -1,8 +1,7 @@
-package com.stardeux.upprime.tmdb.movie.repository.mapper
+package com.stardeux.upprime.tmdb.movie.repository.model
 
 import com.stardeux.upprime.database.parser.*
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 
 fun mapToMovieDetailsEntity(movieDetails: MovieDetails): MovieDetailsEntity {
     return with(movieDetails) {

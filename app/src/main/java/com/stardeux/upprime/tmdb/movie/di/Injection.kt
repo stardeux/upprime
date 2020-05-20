@@ -6,7 +6,7 @@ import com.stardeux.upprime.tmdb.movie.repository.api.MovieDetailsRemoteDataSour
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailDao
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailLocalDataSource
-import com.stardeux.upprime.tmdb.movie.repository.mapper.MovieDetailsMapper
+import com.stardeux.upprime.tmdb.movie.repository.model.MovieDetailsMapper
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
