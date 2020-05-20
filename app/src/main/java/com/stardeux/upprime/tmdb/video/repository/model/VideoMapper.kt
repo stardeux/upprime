@@ -15,6 +15,7 @@ class VideoMapper {
             Video(
                 id = id,
                 iso_639 = iso_639,
+                thumbnailUrl = key?.let { getThumbnailUrl(it) },
                 key = key,
                 name = name,
                 site = site,
@@ -22,5 +23,13 @@ class VideoMapper {
                 type = type
             )
         }
+    }
+
+    private fun getThumbnailUrl(videoKey: String): String {
+        return String.format(THUMBNAIL_URL, videoKey)
+    }
+
+    companion object {
+        private const val THUMBNAIL_URL = "https://i.ytimg.com/vi/%s/hqdefault.jpg"
     }
 }
