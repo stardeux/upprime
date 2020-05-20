@@ -13,18 +13,19 @@ import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import java.util.*
 
 val findModule = module {
     factory { provideTmdbFindApi(get(named(TMDB_NAMED_QUALIFIER))) }
     factory { provideFindMediaRepository(get()) }
-    factory { provideFindMovieUseCase(get()) }
-    factory { provideFindSeriesUseCase(get()) }
+    factory { provideFindMovieUseCase(get(), get()) }
+    factory { provideFindSeriesUseCase(get(), get()) }
 
     factory { provideTmdbSearchApi(get(named(TMDB_NAMED_QUALIFIER))) }
     factory { provideSearchMovieRepository(get()) }
     factory { provideSearchSeriesRepository(get()) }
-    factory { provideSearchMovieUseCase(get()) }
-    factory { provideSearchSeriesUseCase(get()) }
+    factory { provideSearchMovieUseCase(get(), get()) }
+    factory { provideSearchSeriesUseCase(get(), get()) }
 }
 
 
@@ -42,12 +43,12 @@ private fun provideSearchSeriesRepository(tmdbSearchApi: TmdbSearchApi): SearchS
 }
 
 
-private fun provideSearchMovieUseCase(searchMovieRepository: SearchMovieRepository): SearchMovieUseCase {
-    return SearchMovieUseCase(searchMovieRepository)
+private fun provideSearchMovieUseCase(searchMovieRepository: SearchMovieRepository, locale: Locale): SearchMovieUseCase {
+    return SearchMovieUseCase(searchMovieRepository, locale)
 }
 
-private fun provideSearchSeriesUseCase(searchSeriesRepository: SearchSeriesRepository): SearchSeriesUseCase {
-    return SearchSeriesUseCase(searchSeriesRepository)
+private fun provideSearchSeriesUseCase(searchSeriesRepository: SearchSeriesRepository, locale: Locale): SearchSeriesUseCase {
+    return SearchSeriesUseCase(searchSeriesRepository, locale)
 }
 
 private fun provideTmdbFindApi(retrofit: Retrofit): TmdbFindApi {
@@ -58,10 +59,10 @@ private fun provideFindMediaRepository(tmdbFindApi: TmdbFindApi): FindMediaRepos
     return FindMediaRepository(tmdbFindApi)
 }
 
-private fun provideFindMovieUseCase(findMediaRepository: FindMediaRepository): FindMovieUseCase {
-    return FindMovieUseCase(findMediaRepository)
+private fun provideFindMovieUseCase(findMediaRepository: FindMediaRepository, locale: Locale): FindMovieUseCase {
+    return FindMovieUseCase(findMediaRepository, locale)
 }
 
-private fun provideFindSeriesUseCase(findMediaRepository: FindMediaRepository): FindSeriesUseCase {
-    return FindSeriesUseCase(findMediaRepository)
+private fun provideFindSeriesUseCase(findMediaRepository: FindMediaRepository, locale: Locale): FindSeriesUseCase {
+    return FindSeriesUseCase(findMediaRepository, locale)
 }
