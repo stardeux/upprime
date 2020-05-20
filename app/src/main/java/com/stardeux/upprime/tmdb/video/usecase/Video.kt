@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.video.repository.model
+package com.stardeux.upprime.tmdb.video.usecase
 
 import com.stardeux.upprime.tmdb.video.repository.api.VideoType
 

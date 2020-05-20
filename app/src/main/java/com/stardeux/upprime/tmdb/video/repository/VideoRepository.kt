@@ -3,7 +3,7 @@ package com.stardeux.upprime.tmdb.video.repository
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.model.TmdbId
 import com.stardeux.upprime.tmdb.video.repository.api.TmdbVideoApi
-import com.stardeux.upprime.tmdb.video.repository.model.Video
+import com.stardeux.upprime.tmdb.video.usecase.Video
 import com.stardeux.upprime.tmdb.video.repository.model.VideoMapper
 import java.util.*
 

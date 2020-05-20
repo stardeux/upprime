@@ -3,6 +3,7 @@ package com.stardeux.upprime.tmdb.series.repository.model
 import com.stardeux.upprime.database.parser.formatDatabaseGenres
 import com.stardeux.upprime.database.parser.formatDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
+import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 
 fun mapToSeriesDetailsEntity(seriesDetails: SeriesDetails): SeriesDetailsEntity {

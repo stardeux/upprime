@@ -5,6 +5,7 @@ import com.stardeux.upprime.database.parser.parseDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesDetailsResponse
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
+import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesRequest
 
 class SeriesDetailsMapper(private val posterMapper: PosterMapper) {

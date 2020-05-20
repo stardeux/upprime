@@ -5,8 +5,8 @@ import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.mapper.formatToHumanReadableMonthDay
 import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.core.model.MediaType
-import com.stardeux.upprime.tmdb.movie.repository.model.MovieDetails
-import com.stardeux.upprime.tmdb.series.repository.model.SeriesDetails
+import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 fun mapToMediaFicheUi(
     movieDetails: MovieDetails

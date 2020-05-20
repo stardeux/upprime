@@ -6,7 +6,7 @@ import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.error.SeriesNotFoundException
 import com.stardeux.upprime.tmdb.find.usecase.model.FindSeries
-import com.stardeux.upprime.tmdb.series.repository.model.SeriesDetails
+import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 class GetImdbSeriesDetailsUseCase(
     private val findSeriesUseCase: FindSeriesUseCase,

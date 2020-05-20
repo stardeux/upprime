@@ -5,6 +5,7 @@ import com.stardeux.upprime.database.parser.parseDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieDetailsResponse
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
+import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieRequest
 
 class MovieDetailsMapper (private val posterMapper: PosterMapper) {

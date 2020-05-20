@@ -8,7 +8,7 @@ import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.usecase.GetImdbMediaDetailsUseCase
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
-import com.stardeux.upprime.tmdb.video.repository.model.Video
+import com.stardeux.upprime.tmdb.video.usecase.Video
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
 import kotlinx.coroutines.launch
 

@@ -6,7 +6,7 @@ import com.stardeux.upprime.tmdb.movie.repository.api.MovieDetailsRemoteDataSour
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailLocalDataSource
 import com.stardeux.upprime.tmdb.movie.repository.model.MovieDetailsMapper
 import com.stardeux.upprime.tmdb.movie.repository.model.mapToMovieDetailsEntity
-import com.stardeux.upprime.tmdb.movie.repository.model.MovieDetails
+import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 
 class MovieRepository(
     private val movieDetailsRemoteDataSource: MovieDetailsRemoteDataSource,

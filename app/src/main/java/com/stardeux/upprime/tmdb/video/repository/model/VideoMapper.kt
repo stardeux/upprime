@@ -2,6 +2,7 @@ package com.stardeux.upprime.tmdb.video.repository.model
 
 import com.stardeux.upprime.tmdb.video.repository.api.TmdbVideoContainerResponse
 import com.stardeux.upprime.tmdb.video.repository.api.TmdbVideoResponse
+import com.stardeux.upprime.tmdb.video.usecase.Video
 
 class VideoMapper {
 

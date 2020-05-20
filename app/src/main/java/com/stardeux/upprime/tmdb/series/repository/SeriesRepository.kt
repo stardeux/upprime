@@ -5,7 +5,7 @@ import com.stardeux.upprime.tmdb.series.repository.api.SeriesRemoteDataSource
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesLocalDataSource
 import com.stardeux.upprime.tmdb.series.repository.model.SeriesDetailsMapper
 import com.stardeux.upprime.tmdb.series.repository.model.mapToSeriesDetailsEntity
-import com.stardeux.upprime.tmdb.series.repository.model.SeriesDetails
+import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesRequest
 
 class SeriesRepository(
