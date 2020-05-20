@@ -15,6 +15,7 @@ import com.stardeux.upprime.tmdb.series.di.seriesModule
 import com.stardeux.upprime.splash.di.splashModule
 import com.stardeux.upprime.tmdb.configuration.di.tmdbConfigurationModule
 import com.stardeux.upprime.tmdb.find.di.findModule
+import com.stardeux.upprime.tmdb.video.di.videoModule
 import com.stardeux.upprime.tools.flipper.flipperModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -55,7 +56,8 @@ abstract class UpPrimeApplication : Application() {
                 movieModule,
                 seriesModule,
                 findModule,
-                ficheModule
+                ficheModule,
+                videoModule
             )
         }
     }
