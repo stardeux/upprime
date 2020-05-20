@@ -15,6 +15,11 @@
     <dimen name="item_country_name_margin">12dp</dimen>
     <dimen name="country_list_item_spacing">24dp</dimen>
 
+    <!-- Video -->
+    <dimen name="video_item_width">80dp</dimen>
+    <dimen name="video_item_height">40dp</dimen>
+    <dimen name="video_play_size">24dp</dimen>
+
     <!-- Common -->
     <dimen name="small_margin">4dp</dimen>
     <dimen name="medium_margin">8dp</dimen>
