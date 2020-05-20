@@ -1,10 +1,9 @@
-package com.stardeux.upprime.tmdb.series.repository.mapper
+package com.stardeux.upprime.tmdb.series.repository.model
 
 import com.stardeux.upprime.database.parser.parseDatabaseGenres
 import com.stardeux.upprime.database.parser.parseDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesDetailsResponse
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
-import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesRequest
 

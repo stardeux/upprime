@@ -8,7 +8,7 @@ import com.stardeux.upprime.tmdb.series.repository.api.SeriesRemoteDataSource
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDao
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesLocalDataSource
-import com.stardeux.upprime.tmdb.series.repository.mapper.SeriesDetailsMapper
+import com.stardeux.upprime.tmdb.series.repository.model.SeriesDetailsMapper
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper

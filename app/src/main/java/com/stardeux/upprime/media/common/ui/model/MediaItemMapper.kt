@@ -7,7 +7,7 @@ import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
 import com.stardeux.upprime.core.mapper.formatToHumanReadableMonthDay
 import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.tmdb.movie.repository.model.MovieDetails
-import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
+import com.stardeux.upprime.tmdb.series.repository.model.SeriesDetails
 
 fun mapToMediaUi(
     shortMedia: ShortMedia, onFullCardClicked: (MediaItemUi) -> Unit

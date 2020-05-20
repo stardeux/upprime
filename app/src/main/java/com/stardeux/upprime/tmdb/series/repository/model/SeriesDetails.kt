@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.series.usecase.model
+package com.stardeux.upprime.tmdb.series.repository.model
 
 import com.stardeux.upprime.core.model.AmazonId
 import com.stardeux.upprime.core.model.ImdbId
