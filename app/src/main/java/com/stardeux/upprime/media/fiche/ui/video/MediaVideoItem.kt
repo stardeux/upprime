@@ -9,7 +9,7 @@ import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import kotlinx.android.synthetic.main.item_video.view.*
 
-class VideoItem : ConstraintLayout {
+class MediaVideoItem : ConstraintLayout {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
