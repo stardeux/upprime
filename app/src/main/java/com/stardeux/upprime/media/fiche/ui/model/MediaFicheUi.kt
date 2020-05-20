@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.fiche.ui
+package com.stardeux.upprime.media.fiche.ui.model
 
 import com.stardeux.upprime.core.model.AmazonId
 import com.stardeux.upprime.core.model.ImdbId

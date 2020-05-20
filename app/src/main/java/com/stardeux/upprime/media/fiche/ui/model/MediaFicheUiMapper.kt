@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.fiche.ui
+package com.stardeux.upprime.media.fiche.ui.model
 
 import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
 import com.stardeux.upprime.core.mapper.mapRuntimeToString

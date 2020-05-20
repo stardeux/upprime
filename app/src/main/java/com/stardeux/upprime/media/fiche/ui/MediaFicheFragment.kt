@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
+import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import kotlinx.android.synthetic.main.fragment_media_fiche.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
