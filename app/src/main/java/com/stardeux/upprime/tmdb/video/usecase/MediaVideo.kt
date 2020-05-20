@@ -2,7 +2,7 @@ package com.stardeux.upprime.tmdb.video.usecase
 
 import com.stardeux.upprime.tmdb.video.repository.api.VideoType
 
-data class Video(
+data class MediaVideo(
     val id: String?,
     val iso_639: String?,
     val thumbnailUrl: String?,

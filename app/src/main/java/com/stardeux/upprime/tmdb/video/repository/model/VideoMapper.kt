@@ -2,17 +2,17 @@ package com.stardeux.upprime.tmdb.video.repository.model
 
 import com.stardeux.upprime.tmdb.video.repository.api.TmdbVideoContainerResponse
 import com.stardeux.upprime.tmdb.video.repository.api.TmdbVideoResponse
-import com.stardeux.upprime.tmdb.video.usecase.Video
+import com.stardeux.upprime.tmdb.video.usecase.MediaVideo
 
 class VideoMapper {
 
-    fun mapToVideoList(videoResponse: TmdbVideoContainerResponse): List<Video>? {
+    fun mapToVideoList(videoResponse: TmdbVideoContainerResponse): List<MediaVideo>? {
         return videoResponse.results?.map(::mapToVideo)
     }
 
-    fun mapToVideo(videoResponse: TmdbVideoResponse): Video {
+    fun mapToVideo(videoResponse: TmdbVideoResponse): MediaVideo {
         return with(videoResponse) {
-            Video(
+            MediaVideo(
                 id = id,
                 iso_639 = iso_639,
                 thumbnailUrl = key?.let { getThumbnailUrl(it) },
