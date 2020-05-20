@@ -14,9 +14,8 @@ interface TmdbMovieApi {
         @Path("imdbOrTmdbMovieId") imdbMovieId: String, @Query("language") language: String
     ): TmdbMovieDetailsResponse
 
-    /*
     @GET("movie/{imdbOrTmdbMovieId}/videos")
     suspend fun movieVideos(
         @Path("imdbOrTmdbMovieId") imdbMovieId: String, @Query("language") language: String
-    ): TmdbMovieDetailsResponse*/
+    ): TmdbMovieDetailsResponse
 }
