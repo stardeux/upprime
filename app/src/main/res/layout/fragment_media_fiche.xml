@@ -34,7 +34,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.97" />
 
-
         <TextView
             android:id="@+id/mediaTitle"
             style="@style/TextAppearance.MaterialComponents.Headline4"
@@ -51,10 +50,11 @@
         <TextView
             android:id="@+id/mediaDetails"
             style="@style/TextAppearance.MaterialComponents.Body1"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             app:layout_constraintEnd_toStartOf="@id/mediaRatings"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@id/startGuideline"
             app:layout_constraintTop_toBottomOf="@id/mediaTitle"
             tools:text="2020 - 1h23min" />
@@ -64,6 +64,7 @@
             style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:drawableStart="@drawable/ic_star_black_24dp"
             android:drawablePadding="@dimen/cell_media_rating_icon_padding"
             android:drawableTint="@color/rating_star_color"
