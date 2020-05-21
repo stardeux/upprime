@@ -13,6 +13,8 @@ import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
+import com.stardeux.upprime.tmdb.credit.ui.list.CreditItemAdapter
+import com.stardeux.upprime.tmdb.credit.ui.model.CreditUi
 import com.stardeux.upprime.tmdb.video.ui.list.MediaVideoAdapter
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import kotlinx.android.synthetic.main.fragment_media_fiche.*
@@ -31,16 +33,27 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             adapter = MediaVideoAdapter()
         }
 
+        with(mediaCredits) {
+            layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+            adapter = CreditItemAdapter()
+        }
+
         val shortMedia: ShortMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
         mediaFicheViewModel.load(shortMedia)
         mediaFicheViewModel.mediaItemUi.observeNotNull(viewLifecycleOwner, ::bindFiche)
         mediaFicheViewModel.videos.observeNotNull(viewLifecycleOwner, ::bindVideos)
         mediaFicheViewModel.videoClicked.observeNotNull(viewLifecycleOwner, ::onVideoClicked)
+        mediaFicheViewModel.credits.observeNotNull(viewLifecycleOwner, ::bindCredits)
     }
 
     private fun onVideoClicked(mediaVideoUi: MediaVideoUi) {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mediaVideoUi.videoUrl)))
     }
+
+    private fun bindCredits(mediaCreditList: List<CreditUi>) {
+        (mediaCredits.adapter as CreditItemAdapter).submitList(mediaCreditList)
+    }
+
 
     private fun bindVideos(mediaVideosList: List<MediaVideoUi>) {
         (mediaVideos.adapter as MediaVideoAdapter).submitList(mediaVideosList)

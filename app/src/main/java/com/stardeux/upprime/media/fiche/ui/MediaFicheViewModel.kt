@@ -11,12 +11,15 @@ import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
+import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
+import com.stardeux.upprime.tmdb.credit.ui.model.CreditUi
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
 import kotlinx.coroutines.launch
 
 class MediaFicheViewModel(
     private val getImdbMediaDetailsUseCaseFacade: GetImdbMediaDetailsUseCaseFacade,
     private val videoUseCase: VideoUseCase,
+    private val creditUseCaseFacade: CreditUseCaseFacade,
     private val mediaVideoMapper: MediaVideoMapper
 ) : ViewModel() {
 
@@ -25,6 +28,9 @@ class MediaFicheViewModel(
 
     private val _videos = MutableLiveData<List<MediaVideoUi>>()
     val videos: LiveData<List<MediaVideoUi>> = _videos
+
+    private val _credits = MutableLiveData<List<CreditUi>>()
+    val credits: LiveData<List<CreditUi>> = _credits
 
     private val _videoClicked = SingleLiveEvent<MediaVideoUi>()
     val videoClicked : LiveData<MediaVideoUi> = _videoClicked
@@ -41,6 +47,9 @@ class MediaFicheViewModel(
             _videos.value = mediaVideos?.map {
                 mediaVideoMapper.mapToMediaVideoUi(it, ::onMediaVideoUiClicked)
             }
+
+            val mediaCredits = creditUseCaseFacade.getCredits(shortMedia.type, mediaDetails.tmdbId)
+            _credits.value = mediaCredits
         }
     }
 

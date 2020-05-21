@@ -18,9 +18,9 @@ class CreditItemView : ConstraintLayout {
         context, attrs, defStyleAttr
     )
 
-    private val creditImage: ImageView by lazy { findViewById(R.id.creditImage) }
-    private val creditName: TextView by lazy { findViewById(R.id.creditName) }
-    private val creditRole: TextView by lazy { findViewById(R.id.creditRole) }
+    private val creditImage: ImageView by lazy { findViewById<ImageView>(R.id.creditImage) }
+    private val creditName: TextView by lazy { findViewById<TextView>(R.id.creditName) }
+    private val creditRole: TextView by lazy { findViewById<TextView>(R.id.creditRole) }
 
     init {
         setLayout(R.layout.item_credit)

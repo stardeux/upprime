@@ -22,4 +22,5 @@
     <!-- Fiche -->
     <string name="synopsis_section_title">Synopsis</string>
     <string name="videos_section_title">Videos</string>
+    <string name="credits_section_title">Credits</string>
 </resources>

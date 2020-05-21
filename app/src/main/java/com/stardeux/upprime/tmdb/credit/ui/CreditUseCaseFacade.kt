@@ -8,7 +8,7 @@ import com.stardeux.upprime.tmdb.credit.usecase.MovieCreditUseCase
 import com.stardeux.upprime.tmdb.credit.usecase.SeriesCreditsUseCase
 import org.koin.java.KoinJavaComponent.getKoin
 
-class MediaCreditUseCaseFacade(private val creditUiMapper: CreditUiMapper) {
+class CreditUseCaseFacade(private val creditUiMapper: CreditUiMapper) {
 
     suspend fun getCredits(mediaType: MediaType, tmdbId: TmdbId): List<CreditUi> {
         return when (mediaType) {
