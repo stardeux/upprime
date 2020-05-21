@@ -1,5 +1,7 @@
 package com.stardeux.upprime.media.fiche.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -13,9 +15,9 @@ import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.media.fiche.ui.video.MediaVideoAdapter
 import com.stardeux.upprime.media.fiche.ui.video.MediaVideoUi
-import com.stardeux.upprime.tmdb.video.usecase.MediaVideo
 import kotlinx.android.synthetic.main.fragment_media_fiche.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
@@ -24,7 +26,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(mediaVideos){
+        with(mediaVideos) {
             layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             adapter = MediaVideoAdapter()
         }
@@ -37,7 +39,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     }
 
     private fun onVideoClicked(mediaVideoUi: MediaVideoUi) {
-
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mediaVideoUi.videoUrl)))
     }
 
     private fun bindVideos(mediaVideosList: List<MediaVideoUi>) {
