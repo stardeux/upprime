@@ -1,6 +1,6 @@
 package com.stardeux.upprime.media.fiche.di
 
-import com.stardeux.upprime.media.common.usecase.GetImdbMediaDetailsUseCase
+import com.stardeux.upprime.media.common.usecase.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.MediaFicheViewModel
 import com.stardeux.upprime.media.fiche.ui.video.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
@@ -12,11 +12,11 @@ val ficheModule = module {
 }
 
 private fun provideMediaFicheViewModel(
-    getImdbMediaDetailsUseCase: GetImdbMediaDetailsUseCase,
+    getImdbMediaDetailsUseCaseFacade: GetImdbMediaDetailsUseCaseFacade,
     videoUseCase: VideoUseCase,
     mediaVideoMapper: MediaVideoMapper
 ): MediaFicheViewModel {
-    return MediaFicheViewModel(getImdbMediaDetailsUseCase, videoUseCase, mediaVideoMapper)
+    return MediaFicheViewModel(getImdbMediaDetailsUseCaseFacade, videoUseCase, mediaVideoMapper)
 }
 
 private fun provideMediaVideoMapper(): MediaVideoMapper {

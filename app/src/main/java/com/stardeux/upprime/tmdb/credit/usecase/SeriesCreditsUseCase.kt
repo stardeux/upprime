@@ -10,7 +10,7 @@ class SeriesCreditsUseCase(
     private val seriesCreatorUseCase: SeriesCreatorUseCase
 ) : CreditUseCase {
 
-    suspend fun getMediaCredit(tmdbId: TmdbId): MediaCredits {
+    override suspend fun getMediaCredit(tmdbId: TmdbId): MediaCredits {
         val credit = mediaCreditRepository.getCredits(MediaType.SERIES, tmdbId)
         val creator = seriesCreatorUseCase.getCreator(tmdbId)
 

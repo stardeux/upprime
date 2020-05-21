@@ -8,7 +8,7 @@ import com.stardeux.upprime.tmdb.credit.usecase.model.MediaCredits
 
 class MovieCreditUseCase(private val mediaCreditRepository: MediaCreditRepository) : CreditUseCase {
 
-    suspend fun getMediaCredit(tmdbId: TmdbId): MediaCredits {
+    override suspend fun getMediaCredit(tmdbId: TmdbId): MediaCredits {
         return with(mediaCreditRepository.getCredits(MediaType.MOVIE, tmdbId)) {
             copy(casting = filerCasting(casting), crew = filerCrew(crew))
         }
