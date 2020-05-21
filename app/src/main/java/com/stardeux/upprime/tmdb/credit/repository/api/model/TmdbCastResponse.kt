@@ -10,5 +10,5 @@ data class TmdbCastResponse(
     @SerializedName("gender") val gender: Int?,
     @SerializedName("name") val name: String?,
     @SerializedName("order") val order: Int?,
-    @SerializedName("profile_path") val picturePath: String?
+    @SerializedName("profile_path") val profilePath: String?
 )

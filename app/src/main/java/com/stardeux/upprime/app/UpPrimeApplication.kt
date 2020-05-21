@@ -15,6 +15,7 @@ import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
 import com.stardeux.upprime.tmdb.series.di.seriesModule
 import com.stardeux.upprime.splash.di.splashModule
 import com.stardeux.upprime.tmdb.configuration.di.tmdbConfigurationModule
+import com.stardeux.upprime.tmdb.credit.di.creditModule
 import com.stardeux.upprime.tmdb.find.di.findModule
 import com.stardeux.upprime.tmdb.video.di.videoModule
 import com.stardeux.upprime.tools.flipper.flipperModule
@@ -65,7 +66,8 @@ abstract class UpPrimeApplication : Application() {
                 seriesModule,
                 findModule,
                 ficheModule,
-                videoModule
+                videoModule,
+                creditModule
             )
         }
     }
