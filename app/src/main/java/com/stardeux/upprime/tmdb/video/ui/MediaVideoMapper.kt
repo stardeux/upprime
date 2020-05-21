@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.fiche.ui.video
+package com.stardeux.upprime.tmdb.video.ui
 
 import com.stardeux.upprime.tmdb.video.usecase.MediaVideo
 

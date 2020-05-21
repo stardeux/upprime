@@ -1,11 +1,10 @@
-package com.stardeux.upprime.media.fiche.ui.video
+package com.stardeux.upprime.tmdb.video.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.stardeux.upprime.R
