@@ -5,6 +5,7 @@ import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.repository.MediaCreditRepository
 import com.stardeux.upprime.tmdb.credit.repository.MediaCreditMapper
 import com.stardeux.upprime.tmdb.credit.repository.api.TmdbCreditApi
+import com.stardeux.upprime.tmdb.credit.usecase.MediaCreditUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -16,7 +17,7 @@ val creditModule = module {
 }
 
 
-private fun provideTmdbCreditApi(retrofit: Retrofit) : TmdbCreditApi {
+private fun provideTmdbCreditApi(retrofit: Retrofit): TmdbCreditApi {
     return retrofit.create(TmdbCreditApi::class.java)
 }
 
@@ -24,6 +25,13 @@ private fun provideMediaCreditMapper(posterMapper: PosterMapper): MediaCreditMap
     return MediaCreditMapper(posterMapper)
 }
 
-private fun provideMediaCreditRepository(creditApi: TmdbCreditApi, mediaCreditMapper: MediaCreditMapper) : MediaCreditRepository {
+private fun provideMediaCreditRepository(
+    creditApi: TmdbCreditApi,
+    mediaCreditMapper: MediaCreditMapper
+): MediaCreditRepository {
     return MediaCreditRepository(creditApi, mediaCreditMapper)
+}
+
+private fun provideMediaCreditUseCase(mediaCreditRepository: MediaCreditRepository): MediaCreditUseCase {
+    return MediaCreditUseCase(mediaCreditRepository)
 }
