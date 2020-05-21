@@ -26,7 +26,7 @@ val seriesModule = module {
     factory { provideSeriesDao(get()) }
     factory { provideSeriesLocalDataSource(get()) }
     factory { provideSeriesRemoteDataSource(get()) }
-    factory { provideSeriesMapper(get()) }
+    factory { provideSeriesMapper() }
     factory { provideGetImdbSeriesDetailsUseCase(get(), get(), get(), get()) }
 }
 
@@ -55,16 +55,13 @@ private fun provideSeriesRepository(
 }
 
 private fun provideGetSeriesDetailUseCase(
-    seriesRepository: SeriesRepository,
-    locale: Locale
+    seriesRepository: SeriesRepository, locale: Locale
 ): GetSeriesDetailsUseCase {
     return GetSeriesDetailsUseCase(seriesRepository, locale)
 }
 
-private fun provideSeriesMapper(
-    posterMapper: PosterMapper
-): SeriesDetailsMapper {
-    return SeriesDetailsMapper(posterMapper)
+private fun provideSeriesMapper(): SeriesDetailsMapper {
+    return SeriesDetailsMapper()
 }
 
 private fun provideGetImdbSeriesDetailsUseCase(
@@ -74,9 +71,6 @@ private fun provideGetImdbSeriesDetailsUseCase(
     imdbMediaRequestMapper: ImdbMediaRequestMapper
 ): GetImdbSeriesDetailsUseCase {
     return GetImdbSeriesDetailsUseCase(
-        findSeriesUseCase,
-        searchSeriesUseCase,
-        getSeriesDetailsUseCase,
-        imdbMediaRequestMapper
+        findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase, imdbMediaRequestMapper
     )
 }

@@ -26,13 +26,13 @@ val movieModule = module {
     factory { provideMovieDetailDao(get()) }
     factory { provideMovieRepository(get(), get(), get()) }
     factory { provideGetMovieDetailsUseCase(get(), get()) }
-    factory { provideMovieDetailsMapper(get()) }
+    factory { provideMovieDetailsMapper() }
     factory { provideGetImdbMovieDetailsUseCase(get(), get(), get(), get()) }
 }
 
 
-private fun provideMovieDetailsMapper(posterMapper: PosterMapper): MovieDetailsMapper {
-    return MovieDetailsMapper(posterMapper)
+private fun provideMovieDetailsMapper(): MovieDetailsMapper {
+    return MovieDetailsMapper()
 }
 
 private fun provideTmdbMovieApi(retrofit: Retrofit): TmdbMovieApi {

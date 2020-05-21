@@ -17,7 +17,7 @@ import java.util.*
 
 val creditModule = module {
     factory { provideTmdbCreditApi(get(named(TMDB_NAMED_QUALIFIER))) }
-    factory { provideMediaCreditMapper(get()) }
+    factory { provideMediaCreditMapper() }
     factory { provideMediaCreditRepository(get(), get()) }
     factory { provideMovieCreditUseCase(get()) }
 
@@ -51,8 +51,8 @@ private fun provideTmdbCreditApi(retrofit: Retrofit): TmdbCreditApi {
     return retrofit.create(TmdbCreditApi::class.java)
 }
 
-private fun provideMediaCreditMapper(posterMapper: PosterMapper): MediaCreditMapper {
-    return MediaCreditMapper(posterMapper)
+private fun provideMediaCreditMapper(): MediaCreditMapper {
+    return MediaCreditMapper()
 }
 
 private fun provideMediaCreditRepository(

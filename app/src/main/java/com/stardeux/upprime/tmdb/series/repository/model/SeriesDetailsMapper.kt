@@ -4,13 +4,12 @@ import com.stardeux.upprime.database.parser.parseDatabaseGenres
 import com.stardeux.upprime.database.parser.parseDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesDetailsResponse
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
-import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesRequest
 
-class SeriesDetailsMapper(private val posterMapper: PosterMapper) {
+class SeriesDetailsMapper {
 
-    suspend fun mapToSeriesDetails(
+    fun mapToSeriesDetails(
         tmdbSeriesDetailsResponse: TmdbSeriesDetailsResponse, tmdbSeriesRequest: TmdbSeriesRequest
     ): SeriesDetails {
         return with(tmdbSeriesDetailsResponse) {
@@ -20,7 +19,7 @@ class SeriesDetailsMapper(private val posterMapper: PosterMapper) {
                 amazonId = tmdbSeriesRequest.amazonId,
                 name = name,
                 originalName = originalName,
-                posterUrl = posterMapper.getCompletePosterUrl(posterUrl),
+                posterUrl = posterUrl,
                 mediaReleaseDate = firstAirDate,
                 runtimeMinutes = episodeRuntime.firstOrNull { (it ?: 0) > 0 },
                 genres = genres?.mapNotNull { it.name },
@@ -28,7 +27,7 @@ class SeriesDetailsMapper(private val posterMapper: PosterMapper) {
                 tmdbRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
                 amazonReleaseDate = tmdbSeriesRequest.amazonReleaseDate,
                 synopsis = synopsis.takeIf { it?.isNotBlank() == true },
-                backdropPath = posterMapper.getCompleteBackdropUrl(backdropPath)
+                backdropPath = backdropPath
             )
         }
     }

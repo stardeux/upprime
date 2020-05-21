@@ -1,6 +1,5 @@
 package com.stardeux.upprime.tmdb.credit.repository
 
-import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.repository.api.model.TmdbCastResponse
 import com.stardeux.upprime.tmdb.credit.repository.api.model.TmdbCreditContainerResponse
 import com.stardeux.upprime.tmdb.credit.repository.api.model.TmdbCrewResponse
@@ -8,7 +7,7 @@ import com.stardeux.upprime.tmdb.credit.usecase.model.Casting
 import com.stardeux.upprime.tmdb.credit.usecase.model.Crew
 import com.stardeux.upprime.tmdb.credit.usecase.model.MediaCredits
 
-class MediaCreditMapper (private val posterMapper: PosterMapper) {
+class MediaCreditMapper {
 
     suspend fun mapToMediaCredits(tmdbCreditContainerResponse: TmdbCreditContainerResponse) : MediaCredits {
         return with(tmdbCreditContainerResponse) {
@@ -24,7 +23,7 @@ class MediaCreditMapper (private val posterMapper: PosterMapper) {
         return with(creditResponse) {
             Casting(
                 name = name,
-                posterUrl = profilePath?.let { posterMapper.getCompletePosterUrl(it) },
+                posterUrl = profilePath,
                 role = character
             )
         }
@@ -34,7 +33,7 @@ class MediaCreditMapper (private val posterMapper: PosterMapper) {
         return with(creditResponse) {
             Crew(
                 name = name,
-                posterUrl = profilePath?.let { posterMapper.getCompletePosterUrl(it) },
+                posterUrl = profilePath,
                 job = job
             )
         }

@@ -8,7 +8,7 @@ import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieRequest
 
-class MovieDetailsMapper (private val posterMapper: PosterMapper) {
+class MovieDetailsMapper {
 
     fun mapToMovieDetails(movieDetailsEntity: MovieDetailsEntity): MovieDetails {
         return with(movieDetailsEntity){
@@ -41,7 +41,7 @@ class MovieDetailsMapper (private val posterMapper: PosterMapper) {
                 amazonId = tmdbMovieRequest.amazonId,
                 title = title,
                 originalTitle = originalTitle,
-                posterUrl = posterMapper.getCompletePosterUrl(posterUrl),
+                posterUrl = posterUrl,
                 mediaReleaseDate = releaseDate,
                 runtimeMinutes = runtime?.takeIf { it > 0 },
                 genres = genres?.mapNotNull { it.name },
@@ -49,7 +49,7 @@ class MovieDetailsMapper (private val posterMapper: PosterMapper) {
                 tmdbRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
                 amazonReleaseDate = tmdbMovieRequest.amazonReleaseDate,
                 synopsis = synopsis.takeIf { it?.isNotBlank() == true },
-                backdropPath = posterMapper.getCompleteBackdropUrl(backdropPath)
+                backdropPath = backdropPath
             )
         }
     }
