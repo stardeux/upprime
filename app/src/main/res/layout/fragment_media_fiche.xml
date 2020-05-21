@@ -48,6 +48,7 @@
 
         <TextView
             android:id="@+id/mediaDetails"
+            style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -58,6 +59,7 @@
 
         <TextView
             android:id="@+id/mediaRatings"
+            style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_star_black_24dp"
@@ -72,6 +74,7 @@
 
         <TextView
             android:id="@+id/mediaGenres"
+            style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"

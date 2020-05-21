@@ -5,6 +5,9 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
 import kotlinx.android.synthetic.main.item_video.view.*
@@ -31,8 +34,11 @@ class MediaVideoItem : ConstraintLayout {
 
     fun bind(mediaVideoUi: MediaVideoUi) {
         with(Glide.with(this)) {
+            val videoCornerRadius = context.resources.getDimensionPixelOffset(R.dimen.video_corner_radius)
             clear(videoImage)
-            load(mediaVideoUi.thumbnailUrl).centerCrop().into(videoImage)
+            load(mediaVideoUi.thumbnailUrl)
+                .transform(RoundedCorners(videoCornerRadius), CenterInside())
+                .into(videoImage)
         }
 
         setOnClickListener { mediaVideoUi.onMediaVideoClicked(mediaVideoUi) }

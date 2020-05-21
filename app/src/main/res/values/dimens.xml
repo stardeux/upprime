@@ -16,9 +16,9 @@
     <dimen name="country_list_item_spacing">24dp</dimen>
 
     <!-- Video -->
-    <dimen name="video_item_width">176dp</dimen>
-    <dimen name="video_item_height">99dp</dimen>
-    <dimen name="video_play_size">24dp</dimen>
+    <dimen name="video_item_width">132dp</dimen>
+    <dimen name="video_item_height">100dp</dimen>
+    <dimen name="video_corner_radius">8dp</dimen>
 
     <!-- Common -->
     <dimen name="small_margin">4dp</dimen>
