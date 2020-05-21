@@ -4,14 +4,23 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.model.TmdbId
 import com.stardeux.upprime.tmdb.credit.repository.MediaCreditRepository
 import com.stardeux.upprime.tmdb.credit.usecase.model.MediaCredits
-import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
 
-class SeriesCreditsUseCase (
+class SeriesCreditsUseCase(
     private val mediaCreditRepository: MediaCreditRepository,
-    private val getSeriesDetailsUseCase: GetSeriesDetailsUseCase
-) {
+    private val seriesCreatorUseCase: SeriesCreatorUseCase
+) : CreditUseCase {
 
     suspend fun getMediaCredit(tmdbId: TmdbId): MediaCredits {
-        return mediaCreditRepository.getCredits(MediaType.SERIES, tmdbId)
+        val credit = mediaCreditRepository.getCredits(MediaType.SERIES, tmdbId)
+        val creator = seriesCreatorUseCase.getCreator(tmdbId)
+
+        return with(credit) {
+            copy(
+                casting = filerCasting(casting),
+                crew = creator
+            )
+        }
     }
+
+
 }

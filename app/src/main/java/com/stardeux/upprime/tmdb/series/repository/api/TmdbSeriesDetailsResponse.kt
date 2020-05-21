@@ -2,6 +2,8 @@ package com.stardeux.upprime.tmdb.series.repository.api
 
 import com.google.gson.annotations.SerializedName
 import com.stardeux.upprime.tmdb.common.model.network.GenreResponse
+import com.stardeux.upprime.tmdb.credit.repository.api.model.TmdbCrewResponse
+import com.stardeux.upprime.tmdb.credit.usecase.model.Crew
 import org.threeten.bp.LocalDate
 
 data class TmdbSeriesDetailsResponse(
@@ -17,5 +19,6 @@ data class TmdbSeriesDetailsResponse(
     @SerializedName("vote_average") val voteAverage: Float?,
     @SerializedName("vote_count") val voteCount: Int?,
     @SerializedName("overview") val synopsis: String?,
-    @SerializedName("backdrop_path") val backdropPath: String?
+    @SerializedName("backdrop_path") val backdropPath: String?,
+    @SerializedName("created_by") val createdBy: List<TmdbCrewResponse>?
 )
