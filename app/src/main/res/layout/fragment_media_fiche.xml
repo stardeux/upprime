@@ -41,6 +41,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/endGuideline"
             app:layout_constraintStart_toStartOf="@id/startGuideline"
             app:layout_constraintTop_toBottomOf="@id/mediaCouv"
@@ -48,7 +50,7 @@
 
         <TextView
             android:id="@+id/mediaDetails"
-            style="@style/TextAppearance.MaterialComponents.Body2"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -59,7 +61,7 @@
 
         <TextView
             android:id="@+id/mediaRatings"
-            style="@style/TextAppearance.MaterialComponents.Body2"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_star_black_24dp"
@@ -74,7 +76,7 @@
 
         <TextView
             android:id="@+id/mediaGenres"
-            style="@style/TextAppearance.MaterialComponents.Body2"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
