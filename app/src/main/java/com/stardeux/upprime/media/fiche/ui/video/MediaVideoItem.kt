@@ -32,7 +32,7 @@ class MediaVideoItem : ConstraintLayout {
     fun bind(mediaVideoUi: MediaVideoUi) {
         with(Glide.with(this)) {
             clear(videoImage)
-            load(mediaVideoUi.thumbnailUrl).into(videoImage)
+            load(mediaVideoUi.thumbnailUrl).centerCrop().into(videoImage)
         }
 
         setOnClickListener { mediaVideoUi.onMediaVideoClicked(mediaVideoUi) }
