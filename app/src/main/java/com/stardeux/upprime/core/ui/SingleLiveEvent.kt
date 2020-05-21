@@ -1,4 +1,4 @@
-package fr.stardeux.autosc.util
+package com.stardeux.upprime.core.ui
 
 import android.util.Log
 import androidx.annotation.MainThread

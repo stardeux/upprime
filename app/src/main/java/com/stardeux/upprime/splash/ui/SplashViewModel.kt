@@ -3,7 +3,7 @@ package com.stardeux.upprime.splash.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.stardeux.upprime.country.usecase.SelectedUserCountryUseCase
-import fr.stardeux.autosc.util.SingleLiveEvent
+import com.stardeux.upprime.core.ui.SingleLiveEvent
 
 class SplashViewModel (private val selectedUserCountryUseCase: SelectedUserCountryUseCase) : ViewModel() {
 

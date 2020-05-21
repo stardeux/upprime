@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
+import com.stardeux.upprime.media.fiche.ui.video.MediaVideoAdapter
+import com.stardeux.upprime.media.fiche.ui.video.MediaVideoUi
+import com.stardeux.upprime.tmdb.video.usecase.MediaVideo
 import kotlinx.android.synthetic.main.fragment_media_fiche.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,9 +24,24 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        with(mediaVideos){
+            layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+            adapter = MediaVideoAdapter()
+        }
+
         val shortMedia: ShortMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
         mediaFicheViewModel.load(shortMedia)
         mediaFicheViewModel.mediaItemUi.observeNotNull(viewLifecycleOwner, ::bindFiche)
+        mediaFicheViewModel.videos.observeNotNull(viewLifecycleOwner, ::bindVideos)
+        mediaFicheViewModel.videoClicked.observeNotNull(viewLifecycleOwner, ::onVideoClicked)
+    }
+
+    private fun onVideoClicked(mediaVideoUi: MediaVideoUi) {
+
+    }
+
+    private fun bindVideos(mediaVideosList: List<MediaVideoUi>) {
+        (mediaVideos.adapter as MediaVideoAdapter).submitList(mediaVideosList)
     }
 
     private fun bindFiche(mediaFicheUi: MediaFicheUi) {

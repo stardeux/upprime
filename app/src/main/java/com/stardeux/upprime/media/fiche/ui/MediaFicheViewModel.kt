@@ -4,36 +4,48 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.usecase.GetImdbMediaDetailsUseCase
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
+import com.stardeux.upprime.media.fiche.ui.video.MediaVideoMapper
+import com.stardeux.upprime.media.fiche.ui.video.MediaVideoUi
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
-import com.stardeux.upprime.tmdb.video.usecase.MediaVideo
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
 import kotlinx.coroutines.launch
 
 class MediaFicheViewModel(
-    private val getImdbMediaDetailsUseCase: GetImdbMediaDetailsUseCase,
-    private val videoUseCase: VideoUseCase
+    private val getImdbMediaDetailsFacade: GetImdbMediaDetailsUseCase,
+    private val videoUseCase: VideoUseCase,
+    private val mediaVideoMapper: MediaVideoMapper
 ) : ViewModel() {
 
     private val _mediaItemUi = MutableLiveData<MediaFicheUi>()
-    val mediaItemUi : LiveData<MediaFicheUi> = _mediaItemUi
+    val mediaItemUi: LiveData<MediaFicheUi> = _mediaItemUi
 
-    private val _videos = MutableLiveData<List<MediaVideo>>()
-    val videos : LiveData<List<MediaVideo>> = _videos
+    private val _videos = MutableLiveData<List<MediaVideoUi>>()
+    val videos: LiveData<List<MediaVideoUi>> = _videos
+
+    private val _videoClicked = SingleLiveEvent<MediaVideoUi>()
+    val videoClicked : LiveData<MediaVideoUi> = _videoClicked
 
     fun load(shortMedia: ShortMedia) {
         viewModelScope.launch {
             val imdbMediaRequest = mapToImdbMediaRequest(shortMedia)
 
-            val mediaDetails = getImdbMediaDetailsUseCase.getDetails(shortMedia.type, imdbMediaRequest)
+            val mediaDetails =
+                getImdbMediaDetailsFacade.getDetails(shortMedia.type, imdbMediaRequest)
             _mediaItemUi.value = mediaDetails
 
             val mediaVideos = videoUseCase.getVideos(shortMedia.type, mediaDetails.tmdbId)
-            _videos.value = mediaVideos
+            _videos.value = mediaVideos?.map {
+                mediaVideoMapper.mapToMediaVideoUi(it, ::onMediaVideoUiClicked)
+            }
         }
     }
 
+    private fun onMediaVideoUiClicked(mediaVideoUi: MediaVideoUi) {
+        _videoClicked.value = mediaVideoUi
+    }
 
 }
