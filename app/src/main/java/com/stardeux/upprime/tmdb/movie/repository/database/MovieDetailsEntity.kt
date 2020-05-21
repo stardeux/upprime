@@ -17,7 +17,7 @@ data class MovieDetailsEntity(
     @ColumnInfo(name = COL_MOVIE_AMAZON_RELEASE_DATE) val amazonReleaseDate: LocalDate,
     @ColumnInfo(name = COL_MOVIE_TITLE) val title: String?,
     @ColumnInfo(name = COL_MOVIE_ORIGINAL_TITLE) val originalTitle: String?,
-    @ColumnInfo(name = COL_MOVIE_POSTER_PATH) val posterUrl: String?,
+    @ColumnInfo(name = COL_MOVIE_POSTER_PATH) val posterPath: String?,
     @ColumnInfo(name = COL_MOVIE_RELEASE_DATE) val releaseDate: LocalDate?,
     @ColumnInfo(name = COL_MOVIE_RUNTIME) val runtime: Int?,
     @ColumnInfo(name = COL_MOVIE_TMDB_RATING) val tmdbRating: Float?,

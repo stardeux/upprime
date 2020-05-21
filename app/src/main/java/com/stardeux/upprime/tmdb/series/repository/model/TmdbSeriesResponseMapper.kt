@@ -14,7 +14,7 @@ fun mapToSeriesDetailsEntity(seriesDetails: SeriesDetails): SeriesDetailsEntity 
             amazonId = amazonId,
             title = name,
             originalTitle = originalName,
-            posterUrl = posterUrl,
+            posterPath = posterPath,
             releaseDate = mediaReleaseDate,
             runtime = runtimeMinutes,
             genres = genres?.let (::formatDatabaseGenres),

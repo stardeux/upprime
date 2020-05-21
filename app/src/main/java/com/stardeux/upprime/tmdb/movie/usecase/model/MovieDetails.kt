@@ -11,7 +11,7 @@ data class MovieDetails(
     val amazonId: AmazonId,
     val title: String?,
     val originalTitle: String?,
-    val posterUrl: String?,
+    val posterPath: String?,
     val mediaReleaseDate: LocalDate?,
     val runtimeMinutes: Int?,
     val genres: List<String>?,

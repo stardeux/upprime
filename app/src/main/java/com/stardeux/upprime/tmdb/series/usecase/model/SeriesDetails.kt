@@ -11,7 +11,7 @@ data class SeriesDetails(
     val amazonId: AmazonId,
     val name: String?,
     val originalName: String?,
-    val posterUrl: String?,
+    val posterPath: String?,
     val mediaReleaseDate: LocalDate?,
     val runtimeMinutes: Int?,
     val genres: List<String>?,

@@ -23,7 +23,7 @@ fun mapToMediaFicheUi(
             mediaReleaseYear = mapReleaseDateToYear(mediaReleaseDate),
             mainNationality = nationalities?.getOrNull(0),
             tmdbRating = mapToRatingString(tmdbRating),
-            posterUrl = posterUrl,
+            posterUrl = posterPath,
             amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
             backdropPath = backdropPath
@@ -46,7 +46,7 @@ fun mapToMediaFicheUi(
             mediaReleaseYear = mapReleaseDateToYear(mediaReleaseDate),
             mainNationality = nationalities?.getOrNull(0),
             tmdbRating = mapToRatingString(tmdbRating),
-            posterUrl = posterUrl,
+            posterUrl = posterPath,
             amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
             backdropPath = backdropPath

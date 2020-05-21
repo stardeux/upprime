@@ -10,7 +10,7 @@ data class TmdbMovieDetailsResponse(
     @SerializedName("imdb_id") val imdbId: String?,
     @SerializedName("title") val title: String?,
     @SerializedName("original_title") val originalTitle: String?,
-    @SerializedName("poster_path") val posterUrl: String?,
+    @SerializedName("poster_path") val posterPath: String?,
     @SerializedName("release_date") val releaseDate: LocalDate?,
     @SerializedName("runtime") val runtime: Int?,
     @SerializedName("genres") val genres: List<GenreResponse>?,

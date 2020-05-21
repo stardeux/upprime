@@ -4,7 +4,6 @@ import com.stardeux.upprime.database.parser.parseDatabaseGenres
 import com.stardeux.upprime.database.parser.parseDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieDetailsResponse
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
-import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieRequest
 
@@ -18,7 +17,7 @@ class MovieDetailsMapper {
                 amazonId = amazonId,
                 title = title,
                 originalTitle = originalTitle,
-                posterUrl = posterUrl,
+                posterPath = posterPath,
                 mediaReleaseDate = releaseDate,
                 runtimeMinutes = runtime,
                 genres = genres?.let(::parseDatabaseGenres),
@@ -41,7 +40,7 @@ class MovieDetailsMapper {
                 amazonId = tmdbMovieRequest.amazonId,
                 title = title,
                 originalTitle = originalTitle,
-                posterUrl = posterUrl,
+                posterPath = posterPath,
                 mediaReleaseDate = releaseDate,
                 runtimeMinutes = runtime?.takeIf { it > 0 },
                 genres = genres?.mapNotNull { it.name },

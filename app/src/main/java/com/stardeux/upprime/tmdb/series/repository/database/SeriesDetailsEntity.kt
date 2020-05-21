@@ -17,7 +17,7 @@ data class SeriesDetailsEntity(
     @ColumnInfo(name = COL_SERIES_AMAZON_RELEASE_DATE) val amazonReleaseDate: LocalDate,
     @ColumnInfo(name = COL_SERIES_TITLE) val title: String?,
     @ColumnInfo(name = COL_SERIES_ORIGINAL_TITLE) val originalTitle: String?,
-    @ColumnInfo(name = COL_SERIES_POSTER_PATH) val posterUrl: String?,
+    @ColumnInfo(name = COL_SERIES_POSTER_PATH) val posterPath: String?,
     @ColumnInfo(name = COL_SERIES_RELEASE_DATE) val releaseDate: LocalDate?,
     @ColumnInfo(name = COL_SERIES_RUNTIME) val runtime: Int?,
     @ColumnInfo(name = COL_SERIES_TMDB_RATING) val tmdbRating: Float?,

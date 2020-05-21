@@ -12,7 +12,7 @@ fun mapToMovieDetailsEntity(movieDetails: MovieDetails): MovieDetailsEntity {
             amazonId = amazonId,
             title = title,
             originalTitle = originalTitle,
-            posterUrl = posterUrl,
+            posterPath = posterPath,
             releaseDate = mediaReleaseDate,
             runtime = runtimeMinutes,
             genres = genres?.let (::formatDatabaseGenres),
