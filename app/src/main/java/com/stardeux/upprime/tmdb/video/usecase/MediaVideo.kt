@@ -1,6 +1,6 @@
 package com.stardeux.upprime.tmdb.video.usecase
 
-import com.stardeux.upprime.tmdb.video.repository.api.VideoType
+import com.stardeux.upprime.tmdb.video.repository.api.model.VideoType
 
 data class MediaVideo(
     val id: String?,

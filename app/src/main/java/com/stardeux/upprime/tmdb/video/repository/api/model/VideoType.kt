@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.video.repository.api
+package com.stardeux.upprime.tmdb.video.repository.api.model
 
 enum class VideoType {
     TRAILER,

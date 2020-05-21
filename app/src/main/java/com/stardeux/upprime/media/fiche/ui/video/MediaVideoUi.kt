@@ -1,6 +1,6 @@
 package com.stardeux.upprime.media.fiche.ui.video
 
-import com.stardeux.upprime.tmdb.video.repository.api.VideoType
+import com.stardeux.upprime.tmdb.video.repository.api.model.VideoType
 
 data class MediaVideoUi(
     val key: String?,

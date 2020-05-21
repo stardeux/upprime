@@ -4,7 +4,6 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.model.TmdbId
 import com.stardeux.upprime.tmdb.video.repository.api.TmdbVideoApi
 import com.stardeux.upprime.tmdb.video.usecase.MediaVideo
-import com.stardeux.upprime.tmdb.video.repository.model.VideoMapper
 import java.util.*
 
 class VideoRepository(

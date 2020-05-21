@@ -1,6 +1,6 @@
 package com.stardeux.upprime.tmdb.credit.repository.api
 
-import com.stardeux.upprime.tmdb.video.repository.api.TmdbVideoContainerResponse
+import com.stardeux.upprime.tmdb.video.repository.api.model.TmdbVideoContainerResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
