@@ -53,6 +53,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             mediaDetails.text = runtime
             mediaRatings.text = tmdbRating
             mediaSynopsis.text = synopsis
+            mediaGenres.text = mediaFicheUi.genres?.joinToString(" ")
         }
     }
 

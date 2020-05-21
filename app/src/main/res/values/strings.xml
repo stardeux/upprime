@@ -19,6 +19,7 @@
     <!-- Debug -->
     <string name="debug_error">Error</string>
 
-    <!-- Videos -->
+    <!-- Fiche -->
+    <string name="synopsis_section_title">Synopsis</string>
     <string name="videos_section_title">Videos</string>
 </resources>
