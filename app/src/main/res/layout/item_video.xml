@@ -10,6 +10,7 @@
         android:id="@+id/videoImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:foreground="?attr/selectableItemBackground"
         tools:background="@color/colorPrimary" />
 
     <ImageView
