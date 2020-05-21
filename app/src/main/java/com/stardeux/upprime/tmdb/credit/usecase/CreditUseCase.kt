@@ -9,10 +9,8 @@ interface CreditUseCase {
 
     suspend fun getMediaCredit(tmdbId: TmdbId): MediaCredits
 
-    fun filerCasting(casting: List<Casting>?): List<Casting>? {
-        return casting?.let {
-            it.subList(0, min(MAX_CAST_MEMBER, it.size))
-        }
+    fun filerCasting(casting: List<Casting>): List<Casting> {
+        return casting.subList(0, min(MAX_CAST_MEMBER, casting.size))
     }
 
     companion object {

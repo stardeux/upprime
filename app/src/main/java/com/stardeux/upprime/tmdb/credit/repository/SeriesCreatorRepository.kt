@@ -9,9 +9,9 @@ class SeriesCreatorRepository(
     private val mediaCreditMapper: MediaCreditMapper
 ) {
 
-    suspend fun getCreator(tmdbId: TmdbId, language: String): List<Crew>? {
+    suspend fun getCreator(tmdbId: TmdbId, language: String): List<Crew> {
         return seriesRemoteDataSource.getSeriesDetails(tmdbId, language).createdBy?.map {
             mediaCreditMapper.mapToCrew(it)
-        }
+        } ?: emptyList()
     }
 }

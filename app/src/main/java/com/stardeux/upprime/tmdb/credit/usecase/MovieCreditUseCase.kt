@@ -14,10 +14,8 @@ class MovieCreditUseCase(private val mediaCreditRepository: MediaCreditRepositor
         }
     }
 
-    private fun filerCrew(crew: List<Crew>?): List<Crew>? {
-        return crew?.let { crewList ->
-            crewList.filter { JOB_KEPT.contains(it.job?.toLowerCase()) }
-        }
+    private fun filerCrew(crew: List<Crew>): List<Crew> {
+        return crew.filter { JOB_KEPT.contains(it.job?.toLowerCase()) }
     }
 
     companion object {

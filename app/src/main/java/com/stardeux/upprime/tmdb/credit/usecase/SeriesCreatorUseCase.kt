@@ -10,7 +10,7 @@ class SeriesCreatorUseCase(
     private val locale: Locale
 ) {
 
-    suspend fun getCreator(tmdbId: TmdbId): List<Crew>? {
+    suspend fun getCreator(tmdbId: TmdbId): List<Crew> {
         return seriesCreatorRepository.getCreator(tmdbId, locale.language)
     }
 }

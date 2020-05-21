@@ -12,8 +12,8 @@ class MediaCreditMapper {
     suspend fun mapToMediaCredits(tmdbCreditContainerResponse: TmdbCreditContainerResponse) : MediaCredits {
         return with(tmdbCreditContainerResponse) {
             MediaCredits(
-                casting = cast?.map { mapToCasting(it) },
-                crew = crew?.map { mapToCrew(it) }
+                casting = cast?.map { mapToCasting(it) } ?: emptyList(),
+                crew = crew?.map { mapToCrew(it) } ?: emptyList()
             )
         }
     }

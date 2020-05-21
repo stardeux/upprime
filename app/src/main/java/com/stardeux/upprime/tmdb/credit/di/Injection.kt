@@ -6,6 +6,7 @@ import com.stardeux.upprime.tmdb.credit.repository.MediaCreditRepository
 import com.stardeux.upprime.tmdb.credit.repository.MediaCreditMapper
 import com.stardeux.upprime.tmdb.credit.repository.SeriesCreatorRepository
 import com.stardeux.upprime.tmdb.credit.repository.api.TmdbCreditApi
+import com.stardeux.upprime.tmdb.credit.ui.model.CreditUiMapper
 import com.stardeux.upprime.tmdb.credit.usecase.MovieCreditUseCase
 import com.stardeux.upprime.tmdb.credit.usecase.SeriesCreatorUseCase
 import com.stardeux.upprime.tmdb.credit.usecase.SeriesCreditsUseCase
@@ -25,6 +26,11 @@ val creditModule = module {
     factory { provideSeriesCreatorUseCase(get(), get()) }
     factory { provideSeriesCreatorRepository(get(), get()) }
 
+    factory { provideCreditUiMapper(get()) }
+}
+
+private fun provideCreditUiMapper(posterMapper: PosterMapper) : CreditUiMapper {
+    return CreditUiMapper(posterMapper)
 }
 
 private fun provideSeriesCreatorRepository(
