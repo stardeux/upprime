@@ -2,15 +2,13 @@ package com.stardeux.upprime.media.common.usecase
 
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
-import com.stardeux.upprime.media.fiche.ui.model.mapToMediaFicheUi
+import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUiMapper
 import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
-import org.koin.core.context.KoinContextHandler.get
-import org.koin.java.KoinJavaComponent
 import org.koin.java.KoinJavaComponent.getKoin
 
-class GetImdbMediaDetailsUseCaseFacade {
+class GetImdbMediaDetailsUseCaseFacade(private val mediaFicheUiMapper: MediaFicheUiMapper) {
 
     suspend fun getDetails(mediaType: MediaType, imdbMediaRequest: ImdbMediaRequest): MediaFicheUi {
         return when (mediaType) {
@@ -20,15 +18,15 @@ class GetImdbMediaDetailsUseCaseFacade {
     }
 
     private suspend fun loadSeriesDetail(imdbMediaRequest: ImdbMediaRequest): MediaFicheUi {
-        val getImdbSeriesDetailsUseCase : GetImdbSeriesDetailsUseCase = getKoin().get()
-        return mapToMediaFicheUi(
+        val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase = getKoin().get()
+        return mediaFicheUiMapper.mapToMediaFicheUi(
             getImdbSeriesDetailsUseCase(imdbMediaRequest)
         )
     }
 
     private suspend fun loadMovieDetail(imdbMediaRequest: ImdbMediaRequest): MediaFicheUi {
-        val getImdbMovieDetailsUseCase : GetImdbMovieDetailsUseCase = getKoin().get()
-        return mapToMediaFicheUi(
+        val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase = getKoin().get()
+        return mediaFicheUiMapper.mapToMediaFicheUi(
             getImdbMovieDetailsUseCase(imdbMediaRequest)
         )
     }
