@@ -1,7 +1,7 @@
 package com.stardeux.upprime.media.common.di
 
 import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
-import com.stardeux.upprime.media.common.usecase.GetImdbMediaDetailsUseCaseFacade
+import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUiMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import org.koin.dsl.module
@@ -16,5 +16,7 @@ private fun provideMediaDetailsMapper(posterMapper: PosterMapper): MediaDetailsM
 }
 
 private fun provideGetImdbMediaDetailsUseCaseFacade(mediaFicheUiMapper: MediaFicheUiMapper): GetImdbMediaDetailsUseCaseFacade {
-    return GetImdbMediaDetailsUseCaseFacade(mediaFicheUiMapper)
+    return GetImdbMediaDetailsUseCaseFacade(
+        mediaFicheUiMapper
+    )
 }

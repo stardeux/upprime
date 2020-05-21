@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
-import com.stardeux.upprime.media.common.usecase.GetImdbMediaDetailsUseCaseFacade
+import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi

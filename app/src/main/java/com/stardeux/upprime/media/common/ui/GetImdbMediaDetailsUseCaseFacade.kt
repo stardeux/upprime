@@ -1,4 +1,4 @@
-package com.stardeux.upprime.media.common.usecase
+package com.stardeux.upprime.media.common.ui
 
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi

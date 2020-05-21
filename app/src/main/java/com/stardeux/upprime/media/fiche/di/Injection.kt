@@ -1,6 +1,6 @@
 package com.stardeux.upprime.media.fiche.di
 
-import com.stardeux.upprime.media.common.usecase.GetImdbMediaDetailsUseCaseFacade
+import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.MediaFicheViewModel
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUiMapper
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
