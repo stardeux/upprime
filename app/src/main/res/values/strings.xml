@@ -18,4 +18,7 @@
 
     <!-- Debug -->
     <string name="debug_error">Error</string>
+
+    <!-- Videos -->
+    <string name="videos_section_title">Videos</string>
 </resources>
