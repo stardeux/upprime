@@ -1,7 +1,9 @@
-package com.stardeux.upprime.tmdb.video.ui
+package com.stardeux.upprime.tmdb.video.ui.list
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.stardeux.upprime.tmdb.video.ui.MediaVideoItem
+import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 
 class MediaVideoAdapter : RecyclerView.Adapter<MediaVideoViewHolder>() {
 

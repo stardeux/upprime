@@ -19,21 +19,21 @@ class MediaCreditMapper {
     }
 
 
-    suspend fun mapToCasting(creditResponse: TmdbCastResponse) : Casting {
+    fun mapToCasting(creditResponse: TmdbCastResponse) : Casting {
         return with(creditResponse) {
             Casting(
                 name = name,
-                posterUrl = profilePath,
-                role = character
+                posterPath = profilePath,
+                character = character
             )
         }
     }
 
-    suspend fun mapToCrew(creditResponse: TmdbCrewResponse) : Crew {
+    fun mapToCrew(creditResponse: TmdbCrewResponse) : Crew {
         return with(creditResponse) {
             Crew(
                 name = name,
-                posterUrl = profilePath,
+                posterPath = profilePath,
                 job = job
             )
         }

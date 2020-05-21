@@ -1,6 +1,6 @@
-package com.stardeux.upprime.tmdb.credit.usecase.model
+package com.stardeux.upprime.tmdb.credit.ui.model
 
-data class Crew(
+data class CreditUi(
     val name: String?,
     val posterPath: String?,
     val job: String?

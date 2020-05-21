@@ -9,6 +9,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.setLayout
+import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import kotlinx.android.synthetic.main.item_video.view.*
 
 class MediaVideoItem : ConstraintLayout {
