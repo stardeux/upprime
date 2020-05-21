@@ -18,13 +18,13 @@ class CreditUseCaseFacade(private val creditUiMapper: CreditUiMapper) {
     }
 
     private suspend fun getSeriesCredits(tmdbId: TmdbId): List<CreditUi> {
-        val movieCreditUseCase: MovieCreditUseCase = getKoin().get()
-        return creditUiMapper.mapToCreditUiList(movieCreditUseCase.getMediaCredit(tmdbId))
+        val seriesCreditsUseCase: SeriesCreditsUseCase = getKoin().get()
+        return creditUiMapper.mapToCreditUiList(seriesCreditsUseCase.getMediaCredit(tmdbId))
     }
 
     private suspend fun getMovieCredits(tmdbId: TmdbId): List<CreditUi> {
-        val seriesCreditsUseCase: SeriesCreditsUseCase = getKoin().get()
-        return creditUiMapper.mapToCreditUiList(seriesCreditsUseCase.getMediaCredit(tmdbId))
+        val movieCreditUseCase: MovieCreditUseCase = getKoin().get()
+        return creditUiMapper.mapToCreditUiList(movieCreditUseCase.getMediaCredit(tmdbId))
     }
 
 }
