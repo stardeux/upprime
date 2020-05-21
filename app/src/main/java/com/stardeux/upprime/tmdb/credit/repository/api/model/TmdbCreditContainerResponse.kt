@@ -1,4 +1,4 @@
-package com.stardeux.upprime.tmdb.credit.repository.api
+package com.stardeux.upprime.tmdb.credit.repository.api.model
 
 import com.google.gson.annotations.SerializedName
 
