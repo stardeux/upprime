@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.database.UpPrimeDatabase
+import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
 import com.stardeux.upprime.media.expired.repository.ExpiredMediaRepository
 import com.stardeux.upprime.media.expired.repository.api.ExpiredApi
 import com.stardeux.upprime.media.expired.repository.api.ExpiredMediaRemoteDataSource
@@ -22,7 +23,7 @@ import retrofit2.Retrofit
 val expiredModule = module {
     single { provideExpiredApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
     factory { provideExpiredRepository(get(), get(), get()) }
-    factory { provideExpiredMediaViewModel(getUserScope().get(), get(), get()) }
+    factory { provideExpiredMediaViewModel(getUserScope().get(), get(), get(), get()) }
     factory { provideExpiredMediaRemoteDataSource(get()) }
     factory { provideExpiredMediaPreferences(get()) }
 
@@ -75,9 +76,10 @@ private fun provideExpiredUseCase(
 private fun provideExpiredMediaViewModel(
     getExpiredMediaUseCase: GetExpiredMediaUseCase,
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
-    getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
+    getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
+    mediaDetailsMapper: MediaDetailsMapper
 ): ExpiredMediaViewModel {
     return ExpiredMediaViewModel(
-        getExpiredMediaUseCase, getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase
+        getExpiredMediaUseCase, getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase, mediaDetailsMapper
     )
 }

@@ -26,7 +26,7 @@ fun mapToMediaFicheUi(
             posterUrl = posterPath,
             amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
-            backdropPath = backdropPath
+            backdropUrl = backdropPath
         )
     }
 }
@@ -49,7 +49,7 @@ fun mapToMediaFicheUi(
             posterUrl = posterPath,
             amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
             synopsis = synopsis,
-            backdropPath = backdropPath
+            backdropUrl = backdropPath
         )
     }
 }

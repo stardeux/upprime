@@ -8,6 +8,7 @@ import com.stardeux.upprime.media.latest.usecase.GetLatestMediaUseCase
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.database.UpPrimeDatabase
+import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
 import com.stardeux.upprime.media.latest.repository.api.LatestMediaRemoteDataSource
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaDao
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaLocalDataSource
@@ -28,7 +29,7 @@ val latestModule = module {
     single { provideLatestApi(get(named(AMAZON_NAMED_QUALIFIER))) }
     factory { provideLatestRepository(get(), get(), get()) }
 
-    factory { provideLatestMediaViewModel(getUserScope().get(), get(), get()) }
+    factory { provideLatestMediaViewModel(getUserScope().get(), get(), get(), get()) }
 
     scope<AvailableCountry> {
         factory { provideLatestUseCase(get(), get(), get()) }
@@ -57,9 +58,7 @@ private fun provideLatestRepository(
     latestMediaPreferences: LatestMediaPreferences
 ): LatestMediaRepository {
     return LatestMediaRepository(
-        latestMediaRemoteDataSource,
-        latestMediaLocalDataSource,
-        latestMediaPreferences
+        latestMediaRemoteDataSource, latestMediaLocalDataSource, latestMediaPreferences
     )
 }
 
@@ -74,10 +73,14 @@ private fun provideLatestUseCase(
 private fun provideLatestMediaViewModel(
     getLatestMediaUseCase: GetLatestMediaUseCase,
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
-    getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
+    getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
+    mediaDetailsMapper: MediaDetailsMapper
 ): LatestMediaViewModel {
     return LatestMediaViewModel(
-        getLatestMediaUseCase, getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase
+        getLatestMediaUseCase,
+        getImdbMovieDetailsUseCase,
+        getImdbSeriesDetailsUseCase,
+        mediaDetailsMapper
     )
 }
 

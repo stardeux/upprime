@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
@@ -50,7 +48,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
     private fun bindFiche(mediaFicheUi: MediaFicheUi) {
         with(mediaFicheUi) {
-            Glide.with(requireContext()).load(backdropPath).centerCrop().into(mediaCouv)
+            Glide.with(requireContext()).load(backdropUrl).centerCrop().into(mediaCouv)
 
             mediaTitle.text = title
             mediaDetails.text = runtime

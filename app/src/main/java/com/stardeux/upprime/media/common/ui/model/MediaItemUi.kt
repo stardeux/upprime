@@ -17,6 +17,6 @@ data class MediaItemUi(
     val posterUrl: String?,
     val amazonReleaseDate: String,
     val synopsis: String?,
-    val backdropPath: String?,
+    val backdropUrl: String?,
     val onCardClicked: (MediaItemUi) -> Unit
 )

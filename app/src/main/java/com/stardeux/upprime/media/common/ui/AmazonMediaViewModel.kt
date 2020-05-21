@@ -7,12 +7,12 @@ import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
 import com.stardeux.upprime.media.common.ui.model.MediaItemUi
-import com.stardeux.upprime.media.common.ui.model.mapToMediaUi
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.core.ui.SingleLiveEvent
+import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -20,7 +20,8 @@ import java.util.*
 
 abstract class AmazonMediaViewModel(
     private val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
-    private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase
+    private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
+    private val mediaDetailsMapper: MediaDetailsMapper
 ) : ViewModel() {
 
     private var page = 0
@@ -61,7 +62,7 @@ abstract class AmazonMediaViewModel(
             val result = getAmazonMedia(page)
             totalCount = result.count
 
-            val mediaUi = result.shortMedia.map { mapToMediaUi(it, ::onCardClicked) }
+            val mediaUi = result.shortMedia.map { mediaDetailsMapper.mapToMediaUi(it, ::onCardClicked) }
             _mediaItems.value =
                 (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
 
@@ -114,11 +115,11 @@ abstract class AmazonMediaViewModel(
         return when (shortMedia.type) {
             MediaType.MOVIE -> {
                 val movieDetails = getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia))
-                mapToMediaUi(shortMedia, movieDetails, ::onCardClicked)
+                mediaDetailsMapper.mapToMediaUi(shortMedia, movieDetails, ::onCardClicked)
             }
             MediaType.SERIES -> {
                 val seriesDetails = getImdbSeriesDetailsUseCase(mapToImdbMediaRequest(shortMedia))
-                mapToMediaUi(shortMedia, seriesDetails, ::onCardClicked)
+                mediaDetailsMapper.mapToMediaUi(shortMedia, seriesDetails, ::onCardClicked)
             }
         }
     }
