@@ -8,7 +8,7 @@ import com.stardeux.upprime.tmdb.credit.usecase.model.Crew
 import com.stardeux.upprime.tmdb.credit.usecase.model.MediaCredits
 import kotlin.math.min
 
-class MediaCreditUseCase(private val mediaCreditRepository: MediaCreditRepository) {
+class MovieCreditUseCase(private val mediaCreditRepository: MediaCreditRepository) {
 
     suspend fun getMediaCredit(mediaType: MediaType, tmdbId: TmdbId): MediaCredits {
         return with(mediaCreditRepository.getCredits(mediaType, tmdbId)) {

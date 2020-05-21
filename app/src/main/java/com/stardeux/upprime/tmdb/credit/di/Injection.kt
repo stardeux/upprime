@@ -5,7 +5,7 @@ import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.repository.MediaCreditRepository
 import com.stardeux.upprime.tmdb.credit.repository.MediaCreditMapper
 import com.stardeux.upprime.tmdb.credit.repository.api.TmdbCreditApi
-import com.stardeux.upprime.tmdb.credit.usecase.MediaCreditUseCase
+import com.stardeux.upprime.tmdb.credit.usecase.MovieCreditUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -32,6 +32,6 @@ private fun provideMediaCreditRepository(
     return MediaCreditRepository(creditApi, mediaCreditMapper)
 }
 
-private fun provideMediaCreditUseCase(mediaCreditRepository: MediaCreditRepository): MediaCreditUseCase {
-    return MediaCreditUseCase(mediaCreditRepository)
+private fun provideMediaCreditUseCase(mediaCreditRepository: MediaCreditRepository): MovieCreditUseCase {
+    return MovieCreditUseCase(mediaCreditRepository)
 }
