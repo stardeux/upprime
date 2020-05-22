@@ -1,25 +1,26 @@
 package com.stardeux.upprime.media.common.repository.model
 
-import com.stardeux.upprime.core.mapper.mapToMediaType
 import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.repository.api.MediaResponse
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
-fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia {
-    return ShortMedia(
-        title = mediaResponse.title,
-        amazonId = requireNotNull(mediaResponse.amazonId),
-        imdbId = requireNotNull(mediaResponse.imdbId),
-        dateAdded = requireNotNull(mediaResponse.dateAdded).toLocalDate(),
-        type = mapToMediaType(requireNotNull(mediaResponse.type))
-    )
+fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia? {
+    return mediaResponse.type?.let {
+        ShortMedia(
+            title = mediaResponse.title,
+            amazonId = requireNotNull(mediaResponse.amazonId),
+            imdbId = requireNotNull(mediaResponse.imdbId),
+            dateAdded = requireNotNull(mediaResponse.dateAdded).toLocalDate(),
+            type = it
+        )
+    }
 }
 
 fun mapToMediaPage(mediaPageResponse: MediaPageResponse): MediaPage {
     return MediaPage(
         count = requireNotNull(mediaPageResponse.count),
-        shortMedia = requireNotNull(mediaPageResponse.results).map(::mapToMediaItem)
+        shortMedia = requireNotNull(mediaPageResponse.results).mapNotNull(::mapToMediaItem)
 
     )
 }

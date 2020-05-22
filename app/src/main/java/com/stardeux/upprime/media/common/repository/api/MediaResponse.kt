@@ -1,6 +1,7 @@
 package com.stardeux.upprime.media.common.repository.api
 
 import com.google.gson.annotations.SerializedName
+import com.stardeux.upprime.core.model.MediaType
 import org.threeten.bp.LocalDateTime
 
 data class MediaResponse(
@@ -17,5 +18,5 @@ data class MediaResponse(
     val dateAdded: LocalDateTime?,
 
     @SerializedName("Type")
-    val type: String?
+    val type: MediaType?
 )

@@ -2,9 +2,11 @@ package com.stardeux.upprime.network.amazon.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.network.amazon.AmazonApiConst
 import com.stardeux.upprime.network.amazon.AmazonAuthenticatorInterceptor
 import com.stardeux.upprime.network.amazon.LocalDateTimeJsonDeserializer
+import com.stardeux.upprime.network.amazon.MediaTypeJsonDeserializer
 import okhttp3.OkHttpClient
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -18,8 +20,7 @@ val amazonNetworkModule = module {
     factory(named(AMAZON_NAMED_QUALIFIER)) { provideAmazonOkHttpBuilder(get()) }
     single(named(AMAZON_NAMED_QUALIFIER)) {
         provideAmazonRetrofit(
-            get(named(AMAZON_NAMED_QUALIFIER)),
-            get(named(AMAZON_NAMED_QUALIFIER))
+            get(named(AMAZON_NAMED_QUALIFIER)), get(named(AMAZON_NAMED_QUALIFIER))
         )
     }
 }
@@ -35,9 +36,8 @@ private fun provideAmazonRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retro
 
 private fun provideGson(): Gson {
     return GsonBuilder().apply {
-        registerTypeAdapter(
-            LocalDateTime::class.java, LocalDateTimeJsonDeserializer()
-        )
+        registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeJsonDeserializer())
+        registerTypeAdapter(MediaType::class.java, MediaTypeJsonDeserializer())
     }.create()
 }
 
