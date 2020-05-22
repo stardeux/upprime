@@ -33,13 +33,11 @@ class MediaVideoItem : ConstraintLayout {
     }
 
     fun bind(mediaVideoUi: MediaVideoUi) {
-        with(Glide.with(this)) {
-            val videoCornerRadius = context.resources.getDimensionPixelOffset(R.dimen.video_corner_radius)
-            clear(videoImage)
-            load(mediaVideoUi.thumbnailUrl)
-                .transform(RoundedCorners(videoCornerRadius), CenterInside())
-                .into(videoImage)
-        }
+        val videoCornerRadius =
+            context.resources.getDimensionPixelOffset(R.dimen.video_corner_radius)
+        Glide.with(this).load(mediaVideoUi.thumbnailUrl)
+            .transform(RoundedCorners(videoCornerRadius), CenterInside()).into(videoImage)
+            .clearOnDetach()
 
         setOnClickListener { mediaVideoUi.onMediaVideoClicked(mediaVideoUi) }
     }

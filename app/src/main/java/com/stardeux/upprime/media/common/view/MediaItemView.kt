@@ -42,23 +42,34 @@ class MediaItemView : CardView {
 
     fun bind(mediaItemUi: MediaItemUi) {
         title.setTextAndVisibility(mediaItemUi.title)
-        firstInfo.setTextAndVisibility(computeText(context.getString(mapMediaTypeToStringId(mediaItemUi.type)), mediaItemUi.runtime, " "))
-        secondInfo.setTextAndVisibility(computeText(mediaItemUi.mainNationality, mediaItemUi.mediaReleaseYear, " "))
+        firstInfo.setTextAndVisibility(
+            computeText(
+                context.getString(
+                    mapMediaTypeToStringId(
+                        mediaItemUi.type
+                    )
+                ), mediaItemUi.runtime, " "
+            )
+        )
+        secondInfo.setTextAndVisibility(
+            computeText(
+                mediaItemUi.mainNationality,
+                mediaItemUi.mediaReleaseYear,
+                " "
+            )
+        )
         thirdInfo.setTextAndVisibility(mediaItemUi.mainGenre)
         ratings.setTextAndVisibility(mediaItemUi.rating)
 
-        with(Glide.with(this)) {
-            clear(poster)
-
-            mediaItemUi.posterUrl?.let {
-                load(it).centerCrop().error(R.drawable.ic_error_black_24dp).into(poster)
-            }
+        mediaItemUi.posterUrl?.let {
+            Glide.with(this).load(it).centerCrop().error(R.drawable.ic_error_black_24dp)
+                .into(poster).clearOnDetach()
         }
 
         setOnClickListener { mediaItemUi.onCardClicked(mediaItemUi) }
     }
 
-    private fun computeText(firstText: String?, secondText: String?, separator: String) : String? {
+    private fun computeText(firstText: String?, secondText: String?, separator: String): String? {
         return if (firstText != null && secondText != null) {
             "$firstText $separator $secondText"
         } else firstText ?: secondText

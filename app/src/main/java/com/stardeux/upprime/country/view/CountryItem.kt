@@ -37,10 +37,7 @@ class CountryItem : CardView {
 
     fun bind(countryUi: CountryUi) {
         countryNameTextView.text = context.getString(countryUi.nameResId)
-        with(Glide.with(context)) {
-            clear(countryNameTextView)
-            load(countryUi.flagUrl).into(flagImageView)
-        }
+        Glide.with(this).load(countryUi.flagUrl).into(flagImageView).clearOnDetach()
 
         setOnClickListener {
             countryUi.onCountryClicked(countryUi)

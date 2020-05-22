@@ -5,6 +5,7 @@ import com.stardeux.upprime.core.model.TmdbId
 import com.stardeux.upprime.tmdb.credit.repository.MediaCreditRepository
 import com.stardeux.upprime.tmdb.credit.usecase.model.Crew
 import com.stardeux.upprime.tmdb.credit.usecase.model.MediaCredits
+import java.util.*
 
 class MovieCreditUseCase(private val mediaCreditRepository: MediaCreditRepository) : CreditUseCase {
 
@@ -15,7 +16,7 @@ class MovieCreditUseCase(private val mediaCreditRepository: MediaCreditRepositor
     }
 
     private fun filerCrew(crew: List<Crew>): List<Crew> {
-        return crew.filter { JOB_KEPT.contains(it.job?.toLowerCase()) }
+        return crew.filter { JOB_KEPT.contains(it.job?.toLowerCase(Locale.ROOT)) }
     }
 
     companion object {

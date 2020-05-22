@@ -21,8 +21,8 @@
     <dimen name="video_corner_radius">8dp</dimen>
 
     <!-- Credits -->
-    <dimen name="credit_item_width">80dp</dimen>
-    <dimen name="credit_item_height">100dp</dimen>
+    <dimen name="credit_item_width">92dp</dimen>
+    <dimen name="credit_item_height">140dp</dimen>
 
     <!-- Common -->
     <dimen name="small_margin">4dp</dimen>
