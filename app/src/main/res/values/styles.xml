@@ -18,6 +18,7 @@
     </style>
 
     <style name="FicheSectionTitle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:layout_marginTop">8dp</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
     </style>

@@ -11,7 +11,7 @@ class MovieCreditUseCase(private val mediaCreditRepository: MediaCreditRepositor
 
     override suspend fun getMediaCredit(tmdbId: TmdbId): MediaCredits {
         return with(mediaCreditRepository.getCredits(MediaType.MOVIE, tmdbId)) {
-            copy(casting = filerCasting(casting), crew = filerCrew(crew))
+            copy(casting = casting, crew = filerCrew(crew))
         }
     }
 

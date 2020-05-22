@@ -16,7 +16,7 @@ class SeriesCreditsUseCase(
 
         return with(credit) {
             copy(
-                casting = filerCasting(casting),
+                casting = casting,
                 crew = creator
             )
         }

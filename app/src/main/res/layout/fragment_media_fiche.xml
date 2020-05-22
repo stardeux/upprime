@@ -91,7 +91,6 @@
             style="@style/FicheSectionTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
             android:text="@string/synopsis_section_title"
             app:layout_constraintEnd_toEndOf="@id/endGuideline"
             app:layout_constraintStart_toStartOf="@id/startGuideline"

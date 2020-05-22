@@ -27,7 +27,7 @@ val creditModule = module {
     factory { provideSeriesCreatorUseCase(get(), get()) }
     factory { provideSeriesCreatorRepository(get(), get()) }
 
-    factory { provideCreditUiMapper(get()) }
+    factory { provideCreditUiMapper() }
     factory { provideCreditUseCaseFacade(get()) }
 }
 
@@ -35,8 +35,8 @@ private fun provideCreditUseCaseFacade(creditUiMapper: CreditUiMapper): CreditUs
     return CreditUseCaseFacade(creditUiMapper)
 }
 
-private fun provideCreditUiMapper(posterMapper: PosterMapper) : CreditUiMapper {
-    return CreditUiMapper(posterMapper)
+private fun provideCreditUiMapper() : CreditUiMapper {
+    return CreditUiMapper()
 }
 
 private fun provideSeriesCreatorRepository(
