@@ -1,4 +1,4 @@
-package com.stardeux.upprime.search.repository.model
+package com.stardeux.upprime.search.repository.api
 
 import com.google.gson.annotations.SerializedName
 

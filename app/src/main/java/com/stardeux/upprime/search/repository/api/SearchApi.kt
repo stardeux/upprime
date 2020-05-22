@@ -1,6 +1,5 @@
 package com.stardeux.upprime.search.repository.api
 
-import com.stardeux.upprime.search.repository.model.SearchMediaContainerResponse
 import retrofit2.http.Query
 
 interface SearchApi {
