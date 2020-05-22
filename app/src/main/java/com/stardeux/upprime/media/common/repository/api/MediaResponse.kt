@@ -18,5 +18,5 @@ data class MediaResponse(
     val dateAdded: LocalDateTime?,
 
     @SerializedName("Type")
-    val type: MediaType?
+    val type: MediaTypeResponse?
 )

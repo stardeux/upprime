@@ -1,7 +1,9 @@
 package com.stardeux.upprime.media.common.repository.model
 
+import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.repository.api.MediaResponse
+import com.stardeux.upprime.media.common.repository.api.MediaTypeResponse
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
@@ -12,8 +14,15 @@ fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia? {
             amazonId = requireNotNull(mediaResponse.amazonId),
             imdbId = requireNotNull(mediaResponse.imdbId),
             dateAdded = requireNotNull(mediaResponse.dateAdded).toLocalDate(),
-            type = it
+            type = mapToMediaType(it)
         )
+    }
+}
+
+fun mapToMediaType(mediaTypeResponse: MediaTypeResponse): MediaType {
+    return when (mediaTypeResponse) {
+        MediaTypeResponse.MOVIE -> MediaType.MOVIE
+        MediaTypeResponse.SERIES -> MediaType.SERIES
     }
 }
 

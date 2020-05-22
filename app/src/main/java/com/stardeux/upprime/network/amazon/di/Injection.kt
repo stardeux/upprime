@@ -37,7 +37,6 @@ private fun provideAmazonRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retro
 private fun provideGson(): Gson {
     return GsonBuilder().apply {
         registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeJsonDeserializer())
-        registerTypeAdapter(MediaType::class.java, MediaTypeJsonDeserializer())
     }.create()
 }
 
