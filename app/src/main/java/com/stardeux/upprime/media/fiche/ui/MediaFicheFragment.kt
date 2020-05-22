@@ -102,8 +102,8 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         if (mediaFicheUi.backdropUrl?.isNotBlank() == true) {
             Glide.with(this).load(mediaFicheUi.backdropUrl).centerCrop().into(mediaCouv)
         } else {
-            val requestBuilder = Glide.with(this).download(mediaFicheUi.posterUrl)
-            val a = requestBuilder.listener(object : RequestListener<File> {
+            Glide.with(this).download(mediaFicheUi.posterUrl)
+                .listener(object : RequestListener<File> {
 
                 override fun onLoadFailed(
                     e: GlideException?, model: Any?, target: Target<File>?, isFirstResource: Boolean
@@ -128,6 +128,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
                 }
 
             }).submit()
+
         }
     }
 

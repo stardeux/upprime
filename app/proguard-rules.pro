@@ -49,4 +49,8 @@
   @com.google.gson.annotations.SerializedName <fields>;
 }
 
+# Glide
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
+
 ##---------------End: proguard configuration for Gson  ----------
