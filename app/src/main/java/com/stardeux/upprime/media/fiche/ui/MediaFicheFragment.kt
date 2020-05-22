@@ -47,19 +47,19 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         }
 
         val shortMedia: ShortMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
-        
+
         with(mediaFicheViewModel) {
             load(shortMedia)
             mediaItemUi.observeNotNull(viewLifecycleOwner, ::bindFiche)
             videos.observeNotNull(viewLifecycleOwner, ::bindVideos)
             videoClicked.observeNotNull(viewLifecycleOwner, ::onVideoClicked)
             credits.observeNotNull(viewLifecycleOwner, ::bindCredits)
-            illustration.observeNotNull(viewLifecycleOwner, ::onIllustration)            
+            illustration.observeNotNull(viewLifecycleOwner, ::onIllustration)
         }
     }
 
     private fun onIllustration(illustration: Illustration) {
-        when(illustration) {
+        when (illustration) {
             is Illustration.PosterWithBackgroundColor -> {
                 mediaCouv.setBackgroundColor(illustration.color)
                 mediaPoster.setImageBitmap(BitmapFactory.decodeFile(illustration.posterFilePath))
@@ -68,7 +68,12 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
                 Glide.with(this).load(illustration.backdropUrl).centerCrop().into(mediaCouv)
             }
             Illustration.Error -> {
-                mediaCouv.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+                mediaCouv.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.colorPrimary
+                    )
+                )
             }
         }
     }
@@ -79,7 +84,14 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     }
 
     private fun bindCredits(mediaCreditsList: CreditsUi) {
+        val actorsVisibility = mediaCreditsList.casting.isNotEmpty()
+        mediaActorsTitle.isVisible = actorsVisibility
+        mediaActors.isVisible = actorsVisibility
         mediaActors.text = mediaCreditsList.casting.map { it.name }.joinToString(",  ")
+
+        val responsibleVisibility = mediaCreditsList.crew.isNotEmpty()
+        mediaResponsibleTitle.isVisible = responsibleVisibility
+        mediaResponsible.isVisible = responsibleVisibility
         mediaResponsible.text = mediaCreditsList.crew.map { it.name }.joinToString(",  ")
     }
 
@@ -103,8 +115,15 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             mediaTitle.text = title
             mediaDetails.text = runtime
             mediaRatings.text = tmdbRating
+
+            val synopsisVisibility = synopsis?.isNotBlank() == true
+            mediaSynopsisTitle.isVisible = synopsisVisibility
+            mediaSynopsis.isVisible = synopsisVisibility
             mediaSynopsis.text = synopsis
-            mediaGenres.text = mediaFicheUi.genres?.joinToString(" ")
+
+            val genresVisibility = genres.isNotEmpty()
+            mediaGenres.isVisible = genresVisibility
+            mediaGenres.text = mediaFicheUi.genres.joinToString(" ")
         }
     }
 
