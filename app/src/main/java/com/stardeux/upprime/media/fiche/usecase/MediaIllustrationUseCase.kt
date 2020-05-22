@@ -2,6 +2,7 @@ package com.stardeux.upprime.media.fiche.usecase
 
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
@@ -50,12 +51,12 @@ class MediaIllustrationUseCase(private val context: Context) {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    val bitmap = BitmapFactory.decodeFile(resource.absolutePath)
+                    val absoluteResourcePath = resource.absolutePath
+                    val bitmap = BitmapFactory.decodeFile(absoluteResourcePath)
                     val defaultColor = ContextCompat.getColor(context, R.color.colorPrimary)
                     val mostColor = Palette.from(bitmap).generate().getDominantColor(defaultColor)
 
-                    cont.resume(Illustration.PosterWithBackgroundColor(resource.absolutePath, mostColor))
-
+                    cont.resume(Illustration.PosterWithBackgroundColor(absoluteResourcePath, mostColor))
                     return true
                 }
 
