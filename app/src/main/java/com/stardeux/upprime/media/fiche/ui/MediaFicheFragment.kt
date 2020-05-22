@@ -116,11 +116,26 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
                 }
             )
             mediaTitle.text = title
-            mediaDetails.text = runtime
 
+            handleVisibilityWithText(getDetails(mediaFicheUi), mediaDetails)
             handleVisibilityWithText(tmdbRating, mediaRatings)
             handleVisibilityWithText(synopsis, mediaSynopsis, mediaSynopsisTitle)
-            handleVisibilityWithText(mediaFicheUi.genres.joinToString(" "), mediaGenres)
+            handleVisibilityWithText(mediaFicheUi.genres.joinToString(", "), mediaGenres)
+        }
+    }
+
+    private fun getDetails(mediaFicheUi: MediaFicheUi): String {
+        val isReleaseYearKnown = mediaFicheUi.mediaReleaseYear?.isNotBlank() == true
+        val isRuntimeKnown = mediaFicheUi.runtime?.isNotBlank() == true
+
+        return if (isReleaseYearKnown && isRuntimeKnown) {
+            mediaFicheUi.mediaReleaseYear + " - "  + mediaFicheUi.runtime
+        } else if (isReleaseYearKnown){
+            mediaFicheUi.mediaReleaseYear!!
+        } else if (isRuntimeKnown) {
+            mediaFicheUi.runtime!!
+        } else {
+            ""
         }
     }
 
