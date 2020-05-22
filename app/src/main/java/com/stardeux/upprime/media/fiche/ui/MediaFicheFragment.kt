@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -22,6 +23,7 @@ import com.bumptech.glide.request.target.Target
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.extension.observeNotNull
+import com.stardeux.upprime.core.extension.setTextAndVisibility
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.model.Illustration
@@ -70,8 +72,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             Illustration.Error -> {
                 mediaCouv.setBackgroundColor(
                     ContextCompat.getColor(
-                        requireContext(),
-                        R.color.colorPrimary
+                        requireContext(), R.color.colorPrimary
                     )
                 )
             }
@@ -84,15 +85,17 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     }
 
     private fun bindCredits(mediaCreditsList: CreditsUi) {
-        val actorsVisibility = mediaCreditsList.casting.isNotEmpty()
-        mediaActorsTitle.isVisible = actorsVisibility
-        mediaActors.isVisible = actorsVisibility
-        mediaActors.text = mediaCreditsList.casting.map { it.name }.joinToString(",  ")
+        handleVisibilityWithText(
+            mediaCreditsList.casting.map { it.name }.joinToString(",  "),
+            mediaActors,
+            mediaActorsTitle
+        )
 
-        val responsibleVisibility = mediaCreditsList.crew.isNotEmpty()
-        mediaResponsibleTitle.isVisible = responsibleVisibility
-        mediaResponsible.isVisible = responsibleVisibility
-        mediaResponsible.text = mediaCreditsList.crew.map { it.name }.joinToString(",  ")
+        handleVisibilityWithText(
+            mediaCreditsList.crew.map { it.name }.joinToString(",  "),
+            mediaResponsible,
+            mediaResponsibleTitle
+        )
     }
 
 
@@ -116,15 +119,18 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             mediaDetails.text = runtime
             mediaRatings.text = tmdbRating
 
-            val synopsisVisibility = synopsis?.isNotBlank() == true
-            mediaSynopsisTitle.isVisible = synopsisVisibility
-            mediaSynopsis.isVisible = synopsisVisibility
-            mediaSynopsis.text = synopsis
-
-            val genresVisibility = genres.isNotEmpty()
-            mediaGenres.isVisible = genresVisibility
-            mediaGenres.text = mediaFicheUi.genres.joinToString(" ")
+            handleVisibilityWithText(synopsis, mediaSynopsis, mediaSynopsisTitle)
+            handleVisibilityWithText(mediaFicheUi.genres.joinToString(" "), mediaGenres, null)
         }
+    }
+
+    private fun handleVisibilityWithText(
+        text: String?, destinationTextView: TextView, titleTextView: TextView?
+    ) {
+        val computedVisibility = text?.isNotBlank() == true
+        destinationTextView.isVisible = computedVisibility
+        titleTextView?.isVisible = computedVisibility
+        destinationTextView.text = text
     }
 
     companion object {
