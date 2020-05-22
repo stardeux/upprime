@@ -25,6 +25,7 @@ import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.setTextAndVisibility
 import com.stardeux.upprime.core.model.MediaType
+import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.model.Illustration
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
@@ -46,6 +47,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         with(mediaVideos) {
             layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             adapter = MediaVideoAdapter()
+            addItemDecoration(SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.video_list_item_margin)))
         }
 
         val shortMedia: ShortMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))

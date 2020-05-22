@@ -10,8 +10,7 @@ class SpacesItemDecoration(private val space: Int) : RecyclerView.ItemDecoration
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
 
-        val layoutManager = parent.layoutManager
-        when(layoutManager){
+        when(val layoutManager = parent.layoutManager){
             is GridLayoutManager -> {
                 val position = parent.getChildAdapterPosition(view) // item position
                 val column = position % layoutManager.spanCount // item column
@@ -26,12 +25,22 @@ class SpacesItemDecoration(private val space: Int) : RecyclerView.ItemDecoration
 
             }
             is LinearLayoutManager -> {
-                if (parent.getChildAdapterPosition(view) == 0) {
-                    outRect.top = space
+                if (layoutManager.orientation == LinearLayoutManager.HORIZONTAL) {
+                    if (parent.getChildAdapterPosition(view) == 0) {
+                        outRect.left = 0
+                    } else {
+                        outRect.left = space
+                    }
+
+                    outRect.right = space
+                } else {
+                    if (parent.getChildAdapterPosition(view) == 0) {
+                        outRect.top = space
+                    }
+                    outRect.left = space
+                    outRect.right = space
+                    outRect.bottom = space
                 }
-                outRect.left = space
-                outRect.right = space
-                outRect.bottom = space
             }
         }
     }

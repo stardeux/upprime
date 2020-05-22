@@ -19,6 +19,7 @@
     <dimen name="video_item_width">132dp</dimen>
     <dimen name="video_item_height">100dp</dimen>
     <dimen name="video_corner_radius">8dp</dimen>
+    <dimen name="video_list_item_margin">8dp</dimen>
 
     <!-- Credits -->
     <dimen name="credit_item_width">92dp</dimen>
