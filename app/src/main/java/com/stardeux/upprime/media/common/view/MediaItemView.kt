@@ -53,18 +53,19 @@ class MediaItemView : CardView {
         )
         secondInfo.setTextAndVisibility(
             computeText(
-                mediaItemUi.mainNationality,
-                mediaItemUi.mediaReleaseYear,
-                " "
+                mediaItemUi.mainNationality, mediaItemUi.mediaReleaseYear, " "
             )
         )
         thirdInfo.setTextAndVisibility(mediaItemUi.mainGenre)
         ratings.setTextAndVisibility(mediaItemUi.rating)
 
+        Glide.with(this).clear(poster)
+
         mediaItemUi.posterUrl?.let {
-            Glide.with(this).load(it).centerCrop().error(R.drawable.ic_error_black_24dp)
-                .into(poster).clearOnDetach()
+            Glide.with(this).load(it).centerCrop()
+                .error(R.drawable.ic_error_black_24dp).into(poster)
         }
+
 
         setOnClickListener { mediaItemUi.onCardClicked(mediaItemUi) }
     }

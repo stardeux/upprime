@@ -106,7 +106,7 @@ abstract class AmazonMediaViewModel(
             _mediaItems.value = currentList
 
         } catch (exception: Exception) {
-            Log.e("Unfound", "Imd bId = ${shortMedia.imdbId}", exception)
+            Log.e("Unfound", "ImdbId = ${shortMedia.imdbId}", exception)
         }
     }
 
