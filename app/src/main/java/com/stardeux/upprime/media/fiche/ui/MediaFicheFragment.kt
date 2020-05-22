@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
+import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
-import com.stardeux.upprime.tmdb.credit.ui.list.CreditItemAdapter
-import com.stardeux.upprime.tmdb.credit.ui.model.CreditUi
+import com.stardeux.upprime.tmdb.credit.ui.model.CreditsUi
 import com.stardeux.upprime.tmdb.video.ui.list.MediaVideoAdapter
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import kotlinx.android.synthetic.main.fragment_media_fiche.*
@@ -33,11 +33,6 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             adapter = MediaVideoAdapter()
         }
 
-        with(mediaCredits) {
-            layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-            adapter = CreditItemAdapter()
-        }
-
         val shortMedia: ShortMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
         mediaFicheViewModel.load(shortMedia)
         mediaFicheViewModel.mediaItemUi.observeNotNull(viewLifecycleOwner, ::bindFiche)
@@ -50,8 +45,9 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mediaVideoUi.videoUrl)))
     }
 
-    private fun bindCredits(mediaCreditList: List<CreditUi>) {
-        (mediaCredits.adapter as CreditItemAdapter).submitList(mediaCreditList)
+    private fun bindCredits(mediaCreditsList: CreditsUi) {
+        mediaActors.text = mediaCreditsList.casting.map { it.name }.joinToString(",  ")
+        mediaResponsible.text = mediaCreditsList.crew.map { it.name }.joinToString(",  ")
     }
 
 
@@ -63,6 +59,12 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         with(mediaFicheUi) {
             Glide.with(requireContext()).load(backdropUrl).centerCrop().into(mediaCouv)
 
+            mediaResponsibleTitle.text = getString(
+                when (mediaFicheUi.type) {
+                    MediaType.MOVIE -> R.string.credits_movie_director_title
+                    MediaType.SERIES -> R.string.credits_series_creators_title
+                }
+            )
             mediaTitle.text = title
             mediaDetails.text = runtime
             mediaRatings.text = tmdbRating

@@ -105,7 +105,7 @@
             app:layout_constraintEnd_toEndOf="@id/endGuideline"
             app:layout_constraintStart_toStartOf="@id/startGuideline"
             app:layout_constraintTop_toBottomOf="@id/mediaSynopsisTitle"
-            tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+            tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in" />
 
         <TextView
             android:id="@+id/mediaVideoTitle"
@@ -126,23 +126,48 @@
             app:layout_constraintTop_toBottomOf="@id/mediaVideoTitle" />
 
         <TextView
-            android:id="@+id/mediaCreditsTitle"
+            android:id="@+id/mediaActorsTitle"
             style="@style/FicheSectionTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/credits_section_title"
+            android:text="@string/credits_actors_title"
             app:layout_constraintEnd_toEndOf="@id/endGuideline"
             app:layout_constraintStart_toStartOf="@id/startGuideline"
             app:layout_constraintTop_toBottomOf="@id/mediaVideos" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mediaCredits"
+        <TextView
+            android:id="@+id/mediaActors"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
             app:layout_constraintEnd_toEndOf="@id/endGuideline"
             app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaCreditsTitle" />
+            app:layout_constraintTop_toBottomOf="@id/mediaActorsTitle"
+            tools:text="Brad Pitt, Edward Norton, Meat Loaf" />
 
+        <TextView
+            android:id="@+id/mediaResponsibleTitle"
+            style="@style/FicheSectionTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Creator or Director"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@id/mediaActors" />
+
+        <TextView
+            android:id="@+id/mediaResponsible"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@id/mediaResponsibleTitle"
+            tools:text="Villeneuve" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

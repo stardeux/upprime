@@ -11,7 +11,7 @@ import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
-import com.stardeux.upprime.tmdb.credit.ui.model.CreditUi
+import com.stardeux.upprime.tmdb.credit.ui.model.CreditsUi
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
@@ -32,8 +32,8 @@ class MediaFicheViewModel(
     private val _videos = MutableLiveData<List<MediaVideoUi>>()
     val videos: LiveData<List<MediaVideoUi>> = _videos
 
-    private val _credits = MutableLiveData<List<CreditUi>>()
-    val credits: LiveData<List<CreditUi>> = _credits
+    private val _credits = MutableLiveData<CreditsUi>()
+    val credits: LiveData<CreditsUi> = _credits
 
     private val _videoClicked = SingleLiveEvent<MediaVideoUi>()
     val videoClicked : LiveData<MediaVideoUi> = _videoClicked

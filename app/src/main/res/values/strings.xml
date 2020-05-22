@@ -22,5 +22,7 @@
     <!-- Fiche -->
     <string name="synopsis_section_title">Synopsis</string>
     <string name="videos_section_title">Videos</string>
-    <string name="credits_section_title">Credits</string>
+    <string name="credits_actors_title">Actors</string>
+    <string name="credits_series_creators_title">Creator</string>
+    <string name="credits_movie_director_title">Director</string>
 </resources>

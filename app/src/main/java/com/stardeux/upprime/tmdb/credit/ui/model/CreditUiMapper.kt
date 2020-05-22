@@ -7,26 +7,22 @@ import com.stardeux.upprime.tmdb.credit.usecase.model.MediaCredits
 
 class CreditUiMapper(private val posterMapper: PosterMapper) {
 
-    suspend fun mapToCreditUiList(mediaCredits: MediaCredits): List<CreditUi> {
+    suspend fun mapToCreditUiList(mediaCredits: MediaCredits): CreditsUi {
         val crewUi = mediaCredits.crew.map { mapToCreditUi(it) }
         val castingUi = mediaCredits.casting.map { mapToCreditUi(it) }
 
-        return crewUi.union(castingUi).toList()
+        return CreditsUi(crewUi, castingUi)
     }
 
-    suspend fun mapToCreditUi(crew: Crew): CreditUi {
+    fun mapToCreditUi(crew: Crew): CrewUi {
         return with(crew) {
-            CreditUi(name = name,
-                role = job,
-                posterPath = posterPath?.let { posterMapper.getCompletePosterUrl(it) })
+            CrewUi(name = name)
         }
     }
 
-    suspend fun mapToCreditUi(casting: Casting): CreditUi {
+    fun mapToCreditUi(casting: Casting): CastingUi {
         return with(casting) {
-            CreditUi(name = name,
-                role = character,
-                posterPath = posterPath?.let { posterMapper.getCompletePosterUrl(it) })
+            CastingUi(name = name)
         }
     }
 
