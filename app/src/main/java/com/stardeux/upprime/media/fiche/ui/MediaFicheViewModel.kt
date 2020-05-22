@@ -9,7 +9,9 @@ import androidx.lifecycle.viewModelScope
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
+import com.stardeux.upprime.media.fiche.ui.model.Illustration
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
+import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
 import com.stardeux.upprime.tmdb.credit.ui.model.CreditsUi
@@ -24,7 +26,8 @@ class MediaFicheViewModel(
     private val getImdbMediaDetailsUseCaseFacade: GetImdbMediaDetailsUseCaseFacade,
     private val videoUseCase: VideoUseCase,
     private val creditUseCaseFacade: CreditUseCaseFacade,
-    private val mediaVideoMapper: MediaVideoMapper
+    private val mediaVideoMapper: MediaVideoMapper,
+    private val mediaIllustrationUseCase: MediaIllustrationUseCase
 ) : ViewModel() {
 
     private val _mediaItemUi = MutableLiveData<MediaFicheUi>()
@@ -39,8 +42,8 @@ class MediaFicheViewModel(
     private val _videoClicked = SingleLiveEvent<MediaVideoUi>()
     val videoClicked: LiveData<MediaVideoUi> = _videoClicked
 
-    private val _illustration = MutableLiveData<BackdropImage>()
-    val illustration: LiveData<BackdropImage> = _illustration
+    private val _illustration = MutableLiveData<Illustration>()
+    val illustration: LiveData<Illustration> = _illustration
 
     fun load(shortMedia: ShortMedia) {
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -54,6 +57,8 @@ class MediaFicheViewModel(
                 val mediaDetails =
                     getImdbMediaDetailsUseCaseFacade.getDetails(shortMedia.type, imdbMediaRequest)
                 _mediaItemUi.value = mediaDetails
+
+                _illustration.value = mediaIllustrationUseCase.getIllustration(mediaDetails)
 
                 launch {
                     val mediaVideos = videoUseCase.getVideos(shortMedia.type, mediaDetails.tmdbId)
@@ -74,16 +79,4 @@ class MediaFicheViewModel(
     private fun onMediaVideoUiClicked(mediaVideoUi: MediaVideoUi) {
         _videoClicked.value = mediaVideoUi
     }
-
-    fun onPaletteIllustrationDone(posterFilePath: String, @ColorInt color: Int) {
-        _illustration.postValue(BackdropImage.PosterWithBackgroundColor(posterFilePath, color))
-    }
-
-    sealed class BackdropImage {
-        class Landscape(val backdropUrl: String) : BackdropImage()
-        class PosterWithBackgroundColor(
-            val posterFilePath: String, @ColorInt val color: Int
-        ) : BackdropImage()
-    }
-
 }

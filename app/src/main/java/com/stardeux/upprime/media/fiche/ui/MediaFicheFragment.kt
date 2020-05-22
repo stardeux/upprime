@@ -23,6 +23,7 @@ import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
+import com.stardeux.upprime.media.fiche.ui.model.Illustration
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.tmdb.credit.ui.model.CreditsUi
 import com.stardeux.upprime.tmdb.video.ui.list.MediaVideoAdapter
@@ -53,14 +54,17 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         mediaFicheViewModel.illustration.observeNotNull(viewLifecycleOwner, ::onIllustration)
     }
 
-    private fun onIllustration(backdropImage: MediaFicheViewModel.BackdropImage) {
-        when(backdropImage) {
-            is MediaFicheViewModel.BackdropImage.Landscape -> {
-                Glide.with(this).load(backdropImage.backdropUrl).centerCrop().into(mediaCouv)
+    private fun onIllustration(illustration: Illustration) {
+        when(illustration) {
+            is Illustration.PosterWithBackgroundColor -> {
+                mediaCouv.setBackgroundColor(illustration.color)
+                mediaPoster.setImageBitmap(BitmapFactory.decodeFile(illustration.posterFilePath))
             }
-            is MediaFicheViewModel.BackdropImage.PosterWithBackgroundColor -> {
-                mediaCouv.setBackgroundColor(backdropImage.color)
-                mediaPoster.setImageBitmap(BitmapFactory.decodeFile(backdropImage.posterFilePath))
+            is Illustration.Landscape -> {
+                Glide.with(this).load(illustration.backdropUrl).centerCrop().into(mediaCouv)
+            }
+            Illustration.Error -> {
+                mediaCouv.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
             }
         }
     }
@@ -102,32 +106,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         if (mediaFicheUi.backdropUrl?.isNotBlank() == true) {
             Glide.with(this).load(mediaFicheUi.backdropUrl).centerCrop().into(mediaCouv)
         } else {
-            Glide.with(this).download(mediaFicheUi.posterUrl)
-                .listener(object : RequestListener<File> {
 
-                override fun onLoadFailed(
-                    e: GlideException?, model: Any?, target: Target<File>?, isFirstResource: Boolean
-                ): Boolean {
-                    return true
-                }
-
-                override fun onResourceReady(
-                    resource: File,
-                    model: Any?,
-                    target: Target<File>?,
-                    dataSource: DataSource?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    val bitmap = BitmapFactory.decodeFile(resource.absolutePath)
-                    val defaultColor = ContextCompat.getColor(requireContext(), R.color.colorPrimary)
-                    val mostColor = Palette.from(bitmap).generate().getDominantColor(defaultColor)
-
-                    mediaFicheViewModel.onPaletteIllustrationDone(resource.absolutePath, mostColor)
-
-                    return true
-                }
-
-            }).submit()
 
         }
     }
