@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.palette.graphics.Palette
 import androidx.palette.graphics.Palette.PaletteAsyncListener
@@ -84,6 +85,10 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
 
     private fun bindVideos(mediaVideosList: List<MediaVideoUi>) {
+        val visibility = mediaVideosList.isNotEmpty()
+
+        mediaVideos.isVisible = visibility
+        mediaVideoTitle.isVisible = visibility
         (mediaVideos.adapter as MediaVideoAdapter).submitList(mediaVideosList)
     }
 
