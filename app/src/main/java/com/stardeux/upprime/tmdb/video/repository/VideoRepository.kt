@@ -10,12 +10,12 @@ class VideoRepository(
     private val videoApi: TmdbVideoApi, private val videoMapper: VideoMapper
 ) {
 
-    suspend fun getVideos(mediaType: MediaType, tmdbId: TmdbId, locale: Locale): List<MediaVideo>? {
+    suspend fun getVideos(mediaType: MediaType, tmdbId: TmdbId, locale: Locale): List<MediaVideo> {
         return when (mediaType) {
             MediaType.MOVIE -> videoApi.movieVideos(tmdbId, locale.language)
             MediaType.SERIES -> videoApi.seriesVideos(tmdbId, locale.language)
         }.let {
-            videoMapper.mapToVideoList(it)
+            videoMapper.mapToVideoList(it) ?: emptyList()
         }
     }
 

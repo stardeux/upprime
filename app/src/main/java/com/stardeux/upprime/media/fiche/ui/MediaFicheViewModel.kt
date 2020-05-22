@@ -62,7 +62,7 @@ class MediaFicheViewModel(
 
                 launch {
                     val mediaVideos = videoUseCase.getVideos(shortMedia.type, mediaDetails.tmdbId)
-                    _videos.value = mediaVideos?.map {
+                    _videos.value = mediaVideos.map {
                         mediaVideoMapper.mapToMediaVideoUi(it, ::onMediaVideoUiClicked)
                     }
                 }

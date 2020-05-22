@@ -7,7 +7,7 @@ import java.util.*
 
 class VideoUseCase(private val videoRepository: VideoRepository, private val locale: Locale) {
 
-    suspend fun getVideos(mediaType: MediaType, tmdbId: TmdbId): List<MediaVideo>? {
+    suspend fun getVideos(mediaType: MediaType, tmdbId: TmdbId): List<MediaVideo> {
         return videoRepository.getVideos(mediaType, tmdbId, locale)
     }
 }

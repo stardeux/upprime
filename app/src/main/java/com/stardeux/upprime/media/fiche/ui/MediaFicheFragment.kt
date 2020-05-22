@@ -46,12 +46,15 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         }
 
         val shortMedia: ShortMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
-        mediaFicheViewModel.load(shortMedia)
-        mediaFicheViewModel.mediaItemUi.observeNotNull(viewLifecycleOwner, ::bindFiche)
-        mediaFicheViewModel.videos.observeNotNull(viewLifecycleOwner, ::bindVideos)
-        mediaFicheViewModel.videoClicked.observeNotNull(viewLifecycleOwner, ::onVideoClicked)
-        mediaFicheViewModel.credits.observeNotNull(viewLifecycleOwner, ::bindCredits)
-        mediaFicheViewModel.illustration.observeNotNull(viewLifecycleOwner, ::onIllustration)
+        
+        with(mediaFicheViewModel) {
+            load(shortMedia)
+            mediaItemUi.observeNotNull(viewLifecycleOwner, ::bindFiche)
+            videos.observeNotNull(viewLifecycleOwner, ::bindVideos)
+            videoClicked.observeNotNull(viewLifecycleOwner, ::onVideoClicked)
+            credits.observeNotNull(viewLifecycleOwner, ::bindCredits)
+            illustration.observeNotNull(viewLifecycleOwner, ::onIllustration)            
+        }
     }
 
     private fun onIllustration(illustration: Illustration) {
@@ -86,8 +89,6 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
     private fun bindFiche(mediaFicheUi: MediaFicheUi) {
         with(mediaFicheUi) {
-            handleBackdropImage(mediaFicheUi)
-
             mediaResponsibleTitle.text = getString(
                 when (mediaFicheUi.type) {
                     MediaType.MOVIE -> R.string.credits_movie_director_title
@@ -99,15 +100,6 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             mediaRatings.text = tmdbRating
             mediaSynopsis.text = synopsis
             mediaGenres.text = mediaFicheUi.genres?.joinToString(" ")
-        }
-    }
-
-    private fun handleBackdropImage(mediaFicheUi: MediaFicheUi) {
-        if (mediaFicheUi.backdropUrl?.isNotBlank() == true) {
-            Glide.with(this).load(mediaFicheUi.backdropUrl).centerCrop().into(mediaCouv)
-        } else {
-
-
         }
     }
 
