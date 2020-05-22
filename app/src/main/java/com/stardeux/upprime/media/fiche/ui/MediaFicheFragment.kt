@@ -117,15 +117,15 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             )
             mediaTitle.text = title
             mediaDetails.text = runtime
-            mediaRatings.text = tmdbRating
 
+            handleVisibilityWithText(tmdbRating, mediaRatings)
             handleVisibilityWithText(synopsis, mediaSynopsis, mediaSynopsisTitle)
-            handleVisibilityWithText(mediaFicheUi.genres.joinToString(" "), mediaGenres, null)
+            handleVisibilityWithText(mediaFicheUi.genres.joinToString(" "), mediaGenres)
         }
     }
 
     private fun handleVisibilityWithText(
-        text: String?, destinationTextView: TextView, titleTextView: TextView?
+        text: String?, destinationTextView: TextView, titleTextView: TextView? = null
     ) {
         val computedVisibility = text?.isNotBlank() == true
         destinationTextView.isVisible = computedVisibility
