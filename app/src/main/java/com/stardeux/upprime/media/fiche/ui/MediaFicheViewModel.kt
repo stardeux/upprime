@@ -1,6 +1,7 @@
 package com.stardeux.upprime.media.fiche.ui
 
 import android.util.Log
+import androidx.annotation.ColorInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,7 +37,10 @@ class MediaFicheViewModel(
     val credits: LiveData<CreditsUi> = _credits
 
     private val _videoClicked = SingleLiveEvent<MediaVideoUi>()
-    val videoClicked : LiveData<MediaVideoUi> = _videoClicked
+    val videoClicked: LiveData<MediaVideoUi> = _videoClicked
+
+    private val _illustration = MutableLiveData<BackdropImage>()
+    val illustration: LiveData<BackdropImage> = _illustration
 
     fun load(shortMedia: ShortMedia) {
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -59,7 +63,8 @@ class MediaFicheViewModel(
                 }
 
                 launch {
-                    val mediaCredits = creditUseCaseFacade.getCredits(shortMedia.type, mediaDetails.tmdbId)
+                    val mediaCredits =
+                        creditUseCaseFacade.getCredits(shortMedia.type, mediaDetails.tmdbId)
                     _credits.value = mediaCredits
                 }
             }
@@ -68,6 +73,17 @@ class MediaFicheViewModel(
 
     private fun onMediaVideoUiClicked(mediaVideoUi: MediaVideoUi) {
         _videoClicked.value = mediaVideoUi
+    }
+
+    fun onPaletteIllustrationDone(posterFilePath: String, @ColorInt color: Int) {
+        _illustration.postValue(BackdropImage.PosterWithBackgroundColor(posterFilePath, color))
+    }
+
+    sealed class BackdropImage {
+        class Landscape(val backdropUrl: String) : BackdropImage()
+        class PosterWithBackgroundColor(
+            val posterFilePath: String, @ColorInt val color: Int
+        ) : BackdropImage()
     }
 
 }
