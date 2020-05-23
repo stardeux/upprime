@@ -19,6 +19,7 @@ import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 
@@ -52,6 +53,7 @@ class MediaFicheViewModel(
 
         viewModelScope.launch(exceptionHandler) {
             supervisorScope {
+
                 val imdbMediaRequest = mapToImdbMediaRequest(shortMedia)
 
                 val mediaDetails =
