@@ -25,4 +25,12 @@
     <string name="credits_actors_title">Actors</string>
     <string name="credits_series_creators_title">Creator</string>
     <string name="credits_movie_director_title">Director</string>
+
+    <!-- Search -->
+    <string name="search_filter_all_media_type">All</string>
+    <string name="search_filter_only_movie">Movie</string>
+    <string name="search_filter_only_series">Series</string>
+
+    <string name="search_filter_year_start">From</string>
+    <string name="search_filter_year_end">To</string>
 </resources>

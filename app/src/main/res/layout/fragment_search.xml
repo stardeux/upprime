@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/medium_margin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/mediaTypeFiltersGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/allMediaRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/search_filter_all_media_type" />
+
+        <RadioButton
+            android:id="@+id/movieRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/search_filter_only_movie" />
+
+        <RadioButton
+            android:id="@+id/seriesRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/search_filter_only_series" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/yearStartText"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_height="wrap_content"
+        android:text="@string/search_filter_year_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mediaTypeFiltersGroup" />
+
+    <SeekBar
+        android:id="@+id/yearStartSeekbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_margin"
+        app:layout_constraintBottom_toBottomOf="@id/yearStartText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/yearStartText"
+        app:layout_constraintTop_toTopOf="@id/yearStartText" />
+
+    <TextView
+        android:id="@+id/yearStartMinText"
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/yearStartSeekbar"
+        app:layout_constraintTop_toBottomOf="@id/yearStartSeekbar"
+        tools:text="1950" />
+
+    <TextView
+        android:id="@+id/yearStartMaxText"
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/yearStartSeekbar"
+        app:layout_constraintTop_toBottomOf="@id/yearStartSeekbar"
+        tools:text="2020" />
+
+    <TextView
+        android:id="@+id/yearEndText"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:text="@string/search_filter_year_end"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yearStartMinText" />
+
+    <SeekBar
+        android:id="@+id/yearEndSeekbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/yearStartSeekbar"
+        app:layout_constraintBottom_toBottomOf="@id/yearEndText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/yearEndText"
+        app:layout_constraintTop_toTopOf="@id/yearEndText" />
+
+    <TextView
+        android:id="@+id/yearEndMinText"
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/yearEndSeekbar"
+        app:layout_constraintTop_toBottomOf="@id/yearEndSeekbar"
+        tools:text="1950" />
+
+    <TextView
+        android:id="@+id/yearSEndMaxText"
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/yearEndSeekbar"
+        app:layout_constraintTop_toBottomOf="@id/yearEndSeekbar"
+        tools:text="2020" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

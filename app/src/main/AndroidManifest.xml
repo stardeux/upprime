@@ -31,6 +31,8 @@
         <activity
             android:name=".country.ui.SelectCountryActivity"
             android:noHistory="true" />
+
+        <activity android:name=".search.ui.SearchActivity" />
     </application>
 
 </manifest>
