@@ -12,6 +12,7 @@ import com.stardeux.upprime.media.fiche.di.ficheModule
 import com.stardeux.upprime.tmdb.movie.di.movieModule
 import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
 import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
+import com.stardeux.upprime.search.di.searchModule
 import com.stardeux.upprime.tmdb.series.di.seriesModule
 import com.stardeux.upprime.splash.di.splashModule
 import com.stardeux.upprime.tmdb.configuration.di.tmdbConfigurationModule
@@ -67,7 +68,8 @@ abstract class UpPrimeApplication : Application() {
                 findModule,
                 ficheModule,
                 videoModule,
-                creditModule
+                creditModule,
+                searchModule
             )
         }
     }
