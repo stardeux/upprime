@@ -4,7 +4,7 @@ import com.stardeux.upprime.media.latest.repository.LatestMediaRepository
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
-import com.stardeux.upprime.media.common.usecase.model.mapAvailableCountryToApiValue
+import com.stardeux.upprime.media.common.usecase.model.apiValue
 import com.stardeux.upprime.media.latest.repository.preferences.LatestMediaPreferences
 import org.threeten.bp.OffsetDateTime
 
@@ -20,7 +20,7 @@ class GetLatestMediaUseCase(
             latestMediaRepository.clearCache()
         }
 
-        val request = AmazonMediaRequest(mapAvailableCountryToApiValue(availableCountry), page)
+        val request = AmazonMediaRequest(availableCountry.apiValue, page)
         return latestMediaRepository.getLatest(request)
     }
 }
