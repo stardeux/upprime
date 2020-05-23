@@ -2,6 +2,7 @@ package com.stardeux.upprime.tmdb.configuration.usecase
 
 import com.stardeux.upprime.tmdb.configuration.repository.TmdbConfigurationRepository
 import com.stardeux.upprime.tmdb.configuration.usecase.model.TmdbConfiguration
+import kotlinx.coroutines.delay
 import java.lang.Exception
 
 class GetTmdbConfigurationUseCase(private val tmdbConfigurationRepository: TmdbConfigurationRepository) {
@@ -9,7 +10,7 @@ class GetTmdbConfigurationUseCase(private val tmdbConfigurationRepository: TmdbC
     private var configuration: TmdbConfiguration? = null
 
     @Synchronized
-    suspend operator fun invoke(): TmdbConfiguration {
+    suspend fun get(): TmdbConfiguration {
         return configuration ?: fetchConfiguration().also { configuration = it }
     }
 
