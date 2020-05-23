@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.model.mapToString
 import com.stardeux.upprime.country.ui.SelectCountryActivity
+import com.stardeux.upprime.search.ui.SearchActivity
 import kotlinx.android.synthetic.main.fragment_tab_listing.*
 
 class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
@@ -28,6 +29,10 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
         return when (item.itemId) {
             R.id.item_settings -> {
                 startActivity(SelectCountryActivity.newIntent(requireContext()))
+                true
+            }
+            R.id.action_search -> {
+                startActivity(SearchActivity.newIntent(requireContext()))
                 true
             }
             else -> {
