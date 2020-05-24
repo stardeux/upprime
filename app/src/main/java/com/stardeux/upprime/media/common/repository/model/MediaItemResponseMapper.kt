@@ -8,14 +8,18 @@ import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
 fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia? {
-    return mediaResponse.type?.let {
-        ShortMedia(
-            title = mediaResponse.title,
-            amazonId = requireNotNull(mediaResponse.amazonId),
-            imdbId = requireNotNull(mediaResponse.imdbId),
-            dateAdded = requireNotNull(mediaResponse.dateAdded).toLocalDate(),
-            type = mapToMediaType(it)
-        )
+    return if (mediaResponse.type != null && mediaResponse.dateAdded != null) {
+        with(mediaResponse) {
+            ShortMedia(
+                title = title,
+                amazonId = requireNotNull(amazonId),
+                imdbId = requireNotNull(imdbId),
+                dateAdded = dateAdded!!.toLocalDate(),
+                type = mapToMediaType(type!!)
+            )
+        }
+    } else {
+        null
     }
 }
 

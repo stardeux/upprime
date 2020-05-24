@@ -1,6 +1,8 @@
 package com.stardeux.upprime.search.ui
 
 import androidx.lifecycle.*
+import com.stardeux.upprime.core.ui.SingleLiveEvent
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.search.repository.model.AmazonSearchRequest
 import com.stardeux.upprime.search.ui.model.AmazonSearchResultUi
 import com.stardeux.upprime.search.ui.model.AmazonSearchResultUiMapper
@@ -27,13 +29,23 @@ class SearchViewModel(
     private val _searchQuery = MutableLiveData<String>()
     val searchQuery: LiveData<String> = _searchQuery
 
+    private val _searchResultClicked = SingleLiveEvent<ShortMedia>()
+    val searchResultClicked: LiveData<ShortMedia> = _searchResultClicked
+
     val results = Transformations.switchMap(_searchQuery) { query ->
-        liveData<List<AmazonSearchResultUi>> {
+        liveData {
             val searchResults = search(query)
-            emit(searchResults.results.mapNotNull { amazonSearchResultUiMapper.mapToAmazonSearchResultUi(it) })
+            emit(searchResults.results.mapNotNull {
+                amazonSearchResultUiMapper.mapToAmazonSearchResultUi(
+                    it, ::onSearchResultClicked
+                )
+            })
         }
     }
 
+    private fun onSearchResultClicked(amazonSearchResultUi: AmazonSearchResultUi) {
+        _searchResultClicked.value = amazonSearchResultUiMapper.mapToShortMedia(amazonSearchResultUi)
+    }
 
     fun onYearStartChanged(yearStart: Int) {
         _startYearInterval.value = _startYearInterval.value?.copy(selectedYear = yearStart)

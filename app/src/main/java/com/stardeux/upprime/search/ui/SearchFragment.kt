@@ -16,6 +16,8 @@ import com.stardeux.upprime.core.extension.colorDivider
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.onValueChanged
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
+import com.stardeux.upprime.media.fiche.ui.MediaFicheActivity
 import com.stardeux.upprime.search.ui.list.SearchResultAdapter
 import com.stardeux.upprime.search.ui.model.AmazonSearchResultUi
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
@@ -47,10 +49,15 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             mediaTypeFilter.observeNotNull(viewLifecycleOwner, ::handleMediaTypeFilter)
             startYearInterval.observeNotNull(viewLifecycleOwner, ::handleStartYearInterval)
             endYearInterval.observeNotNull(viewLifecycleOwner, ::handleEndYearInterval)
+            searchResultClicked.observeNotNull(viewLifecycleOwner, ::handleSearchResultClicked)
             mediaTypeFiltersGroup.setOnCheckedChangeListener { _, checkedId ->
                 onMediaTypeFilterChanged(mapRadioButtonIdToFilter(checkedId))
             }
         }
+    }
+
+    private fun handleSearchResultClicked(shortMedia: ShortMedia) {
+        startActivity(MediaFicheActivity.newIntent(requireContext(), shortMedia))
     }
 
     private fun handleQuery(query: String) {

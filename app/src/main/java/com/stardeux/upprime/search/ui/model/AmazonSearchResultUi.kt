@@ -7,10 +7,11 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 
 data class AmazonSearchResultUi(
-    val title : String,
+    val title: String,
     val amazonId: AmazonId,
     val imdbId: ImdbId,
-    val dateAdded: LocalDateTime?,
+    val dateAdded: LocalDate,
     val type: MediaType,
-    val year: Int?
+    val year: Int?,
+    val onItemClicked: (AmazonSearchResultUi) -> Unit
 )

@@ -23,6 +23,7 @@ class SearchResultView : ConstraintLayout {
 
     fun bind(amazonSearchResultUi: AmazonSearchResultUi) {
         searchResultTitle.text = computeTitle(amazonSearchResultUi)
+        setOnClickListener { amazonSearchResultUi.onItemClicked(amazonSearchResultUi) }
     }
 
     private fun computeTitle(amazonSearchResultUi: AmazonSearchResultUi): String {
