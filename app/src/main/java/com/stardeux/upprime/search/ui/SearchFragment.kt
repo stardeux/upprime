@@ -9,10 +9,13 @@ import android.widget.SeekBar
 import androidx.annotation.IdRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.colorDivider
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.onValueChanged
+import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
@@ -27,6 +30,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        with(searchResultRecycler) {
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        }
 
         startYearPicker.colorDivider(Color.TRANSPARENT)
         endYearPicker.colorDivider(Color.TRANSPARENT)
@@ -45,7 +52,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun handleQuery(query: String) {
         val isQueryExists = query.isNotBlank()
-        searchResultRecycler.isVisible = isQueryExists
+        searchResultsGroup.isVisible = isQueryExists
         searchCriteriaGroup.isVisible = !isQueryExists
     }
 
@@ -67,6 +74,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
 
     private fun handleSearchResults(amazonSearchResultContainer: AmazonSearchResultContainer) {
+        searchProgressBar.isVisible = false
 
     }
 

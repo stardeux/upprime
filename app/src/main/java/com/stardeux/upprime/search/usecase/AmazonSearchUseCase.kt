@@ -7,6 +7,7 @@ import com.stardeux.upprime.search.repository.AmazonSearchRepository
 import com.stardeux.upprime.search.repository.model.AmazonSearchRequest
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResult
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
+import kotlinx.coroutines.delay
 import org.threeten.bp.LocalDateTime
 
 class AmazonSearchUseCase(
@@ -15,17 +16,8 @@ class AmazonSearchUseCase(
 ) {
 
     suspend fun search(amazonSearchRequest: AmazonSearchRequest): AmazonSearchResultContainer {
-        val amazonSearchResult = AmazonSearchResult(
-            "titanic",
-            "",
-            "",
-            LocalDateTime.now(),
-            2020,
-            "us",
-            MediaTypeResponse.MOVIE
-        )
-        return AmazonSearchResultContainer(0, listOf(amazonSearchResult))
-        //return amazonSearchRepository.search(amazonSearchRequest, availableCountry.apiValue)
+        delay(2000)
+        return amazonSearchRepository.search(amazonSearchRequest, availableCountry.apiValue)
     }
 
 }
