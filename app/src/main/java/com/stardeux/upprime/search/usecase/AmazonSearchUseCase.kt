@@ -11,7 +11,7 @@ class AmazonSearchUseCase(
     private val availableCountry: AvailableCountry
 ) {
 
-    fun search(amazonSearchRequest: AmazonSearchRequest): AmazonSearchResultContainer {
+    suspend fun search(amazonSearchRequest: AmazonSearchRequest): AmazonSearchResultContainer {
         return amazonSearchRepository.search(amazonSearchRequest, availableCountry.apiValue)
     }
 

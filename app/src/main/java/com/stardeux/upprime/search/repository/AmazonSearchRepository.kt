@@ -9,7 +9,7 @@ class AmazonSearchRepository(
     private val amazonSearchApi: AmazonSearchApi, private val amazonSearchMediaMapper: AmazonSearchMediaMapper
 ) {
 
-    fun search(
+    suspend fun search(
         amazonSearchRequest: AmazonSearchRequest, country: String
     ): AmazonSearchResultContainer {
         return amazonSearchMediaMapper.mapToAmazonSearchResult(

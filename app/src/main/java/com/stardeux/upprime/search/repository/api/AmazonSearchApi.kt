@@ -4,7 +4,7 @@ import retrofit2.http.Query
 
 interface AmazonSearchApi {
 
-    fun search(
+    suspend fun search(
         @Query("title") title: String,
         @Query("country") country: String,
         @Query("yearstart") yearStart: Int,
