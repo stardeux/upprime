@@ -32,6 +32,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         endYearPicker.colorDivider(Color.TRANSPARENT)
 
         with(searchViewModel) {
+            searchQuery.observeNotNull(viewLifecycleOwner, ::handleQuery)
             results.observeNotNull(viewLifecycleOwner, ::handleSearchResults)
             mediaTypeFilter.observeNotNull(viewLifecycleOwner, ::handleMediaTypeFilter)
             startYearInterval.observeNotNull(viewLifecycleOwner, ::handleStartYearInterval)
@@ -40,6 +41,12 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 onMediaTypeFilterChanged(mapRadioButtonIdToFilter(checkedId))
             }
         }
+    }
+
+    private fun handleQuery(query: String) {
+        val isQueryExists = query.isNotBlank()
+        searchResultRecycler.isVisible = isQueryExists
+        searchCriteriaGroup.isVisible = !isQueryExists
     }
 
     private fun handleStartYearInterval(yearIntervalUi: YearIntervalUi) {
@@ -60,8 +67,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
 
     private fun handleSearchResults(amazonSearchResultContainer: AmazonSearchResultContainer) {
-        searchResultRecycler.isVisible = true
-        searchCriteriaGroup.isVisible = false
+
     }
 
     private fun mapRadioButtonIdToFilter(@IdRes radioButtonId: Int): MediaTypeFilter {
