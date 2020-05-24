@@ -2,8 +2,10 @@ package com.stardeux.upprime.search.ui
 
 import android.graphics.Color
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.SeekBar
+import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.colorDivider
@@ -43,6 +45,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         endNumberPicker.maxValue = 2020
         endNumberPicker.value = 2020
 */
+
+        mediaTypeFiltersGroup.setOnCheckedChangeListener { _, checkedId ->
+            searchViewModel.onMediaTypeFilterChanged(mapRadioButtonIdToFilter(checkedId))
+        }
+
         with(searchViewModel) {
 
             mediaTypeFilter.observeNotNull(viewLifecycleOwner,::handleMediaTypeFilter)
@@ -55,6 +62,16 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             endYearInterval.observeNotNull(viewLifecycleOwner) {
                 //endYearIntervalView.bind(it)
             }
+        }
+    }
+
+
+    private fun mapRadioButtonIdToFilter(@IdRes radioButtonId: Int): MediaTypeFilter {
+        return when(radioButtonId) {
+            R.id.allMediaRadioButton -> MediaTypeFilter.ALL
+            R.id.movieRadioButton -> MediaTypeFilter.MOVIE
+            R.id.seriesRadioButton -> MediaTypeFilter.SERIES
+            else -> throw IllegalStateException("unknown radio button id")
         }
     }
 
