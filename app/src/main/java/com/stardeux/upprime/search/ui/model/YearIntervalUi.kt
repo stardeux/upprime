@@ -9,10 +9,10 @@ data class YearIntervalUi(
 ) {
     companion object {
 
-        private val MAX_YEAR = LocalDateTime.now().year
-        private const val MIN_YEAR = 1900
+        val MAX_YEAR = LocalDateTime.now().year
+        const val MIN_YEAR = 1900
 
-        fun defaultYearInterval(selectedYear: Int = MIN_YEAR) : YearIntervalUi {
+        fun defaultYearInterval(selectedYear: Int) : YearIntervalUi {
             return YearIntervalUi(MIN_YEAR, MAX_YEAR, selectedYear)
         }
 

@@ -12,10 +12,10 @@ class SearchViewModel(private val amazonSearchUseCase: AmazonSearchUseCase) : Vi
     private val _mediaTypeFilter = MutableLiveData(MediaTypeFilter.ALL)
     val mediaTypeFilter: LiveData<MediaTypeFilter> = _mediaTypeFilter
 
-    private val _startYearInterval = MutableLiveData(YearIntervalUi.defaultYearInterval())
+    private val _startYearInterval = MutableLiveData(YearIntervalUi.defaultYearInterval(1990))
     val startYearInterval: LiveData<YearIntervalUi> = _startYearInterval
 
-    private val _endYearInterval = MutableLiveData(YearIntervalUi.defaultYearInterval())
+    private val _endYearInterval = MutableLiveData(YearIntervalUi.defaultYearInterval(YearIntervalUi.MAX_YEAR))
     val endYearInterval = _endYearInterval
 
     private val _searchQuery = MutableLiveData<String>()
@@ -23,9 +23,8 @@ class SearchViewModel(private val amazonSearchUseCase: AmazonSearchUseCase) : Vi
 
     val results = Transformations.switchMap(_searchQuery) { query ->
         liveData<AmazonSearchResultContainer> {
-            val a = search(query)
-            emit(a)
-            val b = ""
+            val searchResults = search(query)
+            emit(searchResults)
         }
     }
 
