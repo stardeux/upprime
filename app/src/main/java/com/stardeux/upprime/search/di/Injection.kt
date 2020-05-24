@@ -1,5 +1,6 @@
 package com.stardeux.upprime.search.di
 
+import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
 import com.stardeux.upprime.search.repository.AmazonSearchRepository
@@ -16,7 +17,7 @@ val searchModule = module {
     factory { provideAmazonSearchApi(get(named(AMAZON_NAMED_QUALIFIER))) }
     factory { provideAmazonSearchMediaMapper() }
     factory { provideAmazonSearchRepository(get(), get()) }
-    viewModel { provideSearchViewModel() }
+    viewModel { provideSearchViewModel(getUserScope().get()) }
 
     scope<AvailableCountry> {
         factory { provideAmazonSearchUseCase(get(), get()) }
@@ -44,6 +45,6 @@ private fun provideAmazonSearchUseCase(
     return AmazonSearchUseCase(amazonSearchRepository, availableCountry)
 }
 
-private fun provideSearchViewModel(): SearchViewModel {
-    return SearchViewModel()
+private fun provideSearchViewModel(amazonSearchUseCase: AmazonSearchUseCase): SearchViewModel {
+    return SearchViewModel(amazonSearchUseCase)
 }

@@ -23,7 +23,9 @@ class SearchViewModel(private val amazonSearchUseCase: AmazonSearchUseCase) : Vi
 
     val results = Transformations.switchMap(_searchQuery) { query ->
         liveData<AmazonSearchResultContainer> {
-            search(query)
+            val a = search(query)
+            emit(a)
+            val b = ""
         }
     }
 

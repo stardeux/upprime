@@ -1,9 +1,11 @@
 package com.stardeux.upprime.search.repository.api
 
+import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface AmazonSearchApi {
 
+    @GET
     suspend fun search(
         @Query("title") title: String,
         @Query("country") country: String,

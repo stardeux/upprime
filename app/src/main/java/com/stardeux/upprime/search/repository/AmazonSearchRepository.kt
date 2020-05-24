@@ -6,7 +6,8 @@ import com.stardeux.upprime.search.repository.model.AmazonSearchRequest
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
 
 class AmazonSearchRepository(
-    private val amazonSearchApi: AmazonSearchApi, private val amazonSearchMediaMapper: AmazonSearchMediaMapper
+    private val amazonSearchApi: AmazonSearchApi,
+    private val amazonSearchMediaMapper: AmazonSearchMediaMapper
 ) {
 
     suspend fun search(

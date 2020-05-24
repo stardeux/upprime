@@ -13,6 +13,7 @@ import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.onValueChanged
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
+import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -53,6 +54,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         with(searchViewModel) {
 
+
+            results.observeNotNull(viewLifecycleOwner, ::handleSearchResults)
+
             mediaTypeFilter.observeNotNull(viewLifecycleOwner,::handleMediaTypeFilter)
 
 
@@ -66,6 +70,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
     }
 
+
+    private fun handleSearchResults(amazonSearchResultContainer: AmazonSearchResultContainer) {
+        val a = ""
+    }
 
     private fun mapRadioButtonIdToFilter(@IdRes radioButtonId: Int): MediaTypeFilter {
         return when(radioButtonId) {
