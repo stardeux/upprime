@@ -33,4 +33,5 @@
     <string name="search_filter_only_series">Series</string>
     <string name="search_filter_year_start">From</string>
     <string name="search_filter_year_end">To</string>
+    <string name="search_hint">Search</string>
 </resources>

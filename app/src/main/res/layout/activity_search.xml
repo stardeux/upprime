@@ -17,8 +17,11 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <EditText
+                android:id="@+id/searchEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@null"
+                android:hint="@string/search_hint" />
 
         </androidx.appcompat.widget.Toolbar>
 
