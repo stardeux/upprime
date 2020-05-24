@@ -9,13 +9,15 @@ import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.colorDivider
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.onValueChanged
+import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
-    private val searchViewModel: SearchViewModel by inject()
+    private val searchViewModel: SearchViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,6 +45,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 */
         with(searchViewModel) {
 
+            mediaTypeFilter.observeNotNull(viewLifecycleOwner,::handleMediaTypeFilter)
+
+
             startYearInterval.observeNotNull(viewLifecycleOwner) {
                 //startYearIntervalView.bind(it)
             }
@@ -50,6 +55,14 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             endYearInterval.observeNotNull(viewLifecycleOwner) {
                 //endYearIntervalView.bind(it)
             }
+        }
+    }
+
+    private fun handleMediaTypeFilter(mediaTypeFilter: MediaTypeFilter) {
+        when(mediaTypeFilter) {
+            MediaTypeFilter.ALL -> allMediaRadioButton.isChecked = true
+            MediaTypeFilter.MOVIE -> movieRadioButton.isChecked = true
+            MediaTypeFilter.SERIES -> seriesRadioButton.isChecked = true
         }
     }
 

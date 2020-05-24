@@ -34,9 +34,12 @@ class SearchViewModel : ViewModel() {
 
     }
 
-    fun onMediaTypeFilterChanged() {
-
+    fun onMediaTypeFilterChanged(mediaTypeFilter: MediaTypeFilter) {
+        _mediaTypeFilter.value = mediaTypeFilter
     }
 
+    override fun onCleared() {
+        super.onCleared()
+    }
 
 }

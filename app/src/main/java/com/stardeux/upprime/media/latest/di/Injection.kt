@@ -16,6 +16,7 @@ import com.stardeux.upprime.media.latest.repository.preferences.LatestMediaPrefe
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -29,7 +30,7 @@ val latestModule = module {
     single { provideLatestApi(get(named(AMAZON_NAMED_QUALIFIER))) }
     factory { provideLatestRepository(get(), get(), get()) }
 
-    factory { provideLatestMediaViewModel(getUserScope().get(), get(), get(), get()) }
+    viewModel { provideLatestMediaViewModel(getUserScope().get(), get(), get(), get()) }
 
     scope<AvailableCountry> {
         factory { provideLatestUseCase(get(), get(), get()) }

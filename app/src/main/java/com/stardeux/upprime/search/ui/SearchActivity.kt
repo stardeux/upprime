@@ -16,12 +16,17 @@ class SearchActivity : AppCompatActivity(R.layout.activity_search) {
 
         applyCommonBack(toolbar)
 
-        supportFragmentManager.commit {
-            replace(R.id.searchContent, SearchFragment.newInstance())
+        with(supportFragmentManager) {
+            if (findFragmentByTag(SEARCH_FRAGMENT_TAG) == null) {
+                commit {
+                    replace(R.id.searchContent, SearchFragment.newInstance(), SEARCH_FRAGMENT_TAG)
+                }
+            }
         }
     }
 
     companion object {
+        private const val SEARCH_FRAGMENT_TAG = "SEARCH_FRAGMENT_TAG"
         fun newIntent(context: Context): Intent {
             return Intent(context, SearchActivity::class.java)
         }
