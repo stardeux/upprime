@@ -4,17 +4,29 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.commit
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.applyCommonBack
 import kotlinx.android.synthetic.main.activity_media_fiche.*
+import kotlinx.android.synthetic.main.activity_media_fiche.toolbar
+import kotlinx.android.synthetic.main.activity_search.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchActivity : AppCompatActivity(R.layout.activity_search) {
+
+    private val searchViewModel: SearchViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         applyCommonBack(toolbar)
+
+        searchEditText.addTextChangedListener {
+            it?.let {
+                searchViewModel.onQueryTextChanged(it.toString())
+            }
+        }
 
         with(supportFragmentManager) {
             if (findFragmentByTag(SEARCH_FRAGMENT_TAG) == null) {

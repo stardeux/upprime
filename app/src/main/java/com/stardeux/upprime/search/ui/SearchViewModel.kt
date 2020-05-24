@@ -31,15 +31,11 @@ class SearchViewModel : ViewModel() {
     }
 
     fun onQueryTextChanged(queryText: String) {
-
+        var a = ""
     }
 
     fun onMediaTypeFilterChanged(mediaTypeFilter: MediaTypeFilter) {
         _mediaTypeFilter.value = mediaTypeFilter
-    }
-
-    override fun onCleared() {
-        super.onCleared()
     }
 
 }

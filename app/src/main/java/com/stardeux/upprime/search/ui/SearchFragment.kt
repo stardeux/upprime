@@ -15,11 +15,12 @@ import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
-    private val searchViewModel: SearchViewModel by viewModel()
+    private val searchViewModel: SearchViewModel by lazy { requireActivity().getViewModel<SearchViewModel>() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
