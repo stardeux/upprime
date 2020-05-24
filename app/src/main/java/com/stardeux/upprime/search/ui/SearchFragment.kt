@@ -16,6 +16,8 @@ import com.stardeux.upprime.core.extension.colorDivider
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.onValueChanged
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
+import com.stardeux.upprime.search.ui.list.SearchResultAdapter
+import com.stardeux.upprime.search.ui.model.AmazonSearchResultUi
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
@@ -33,6 +35,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         with(searchResultRecycler) {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            adapter = SearchResultAdapter()
         }
 
         startYearPicker.colorDivider(Color.TRANSPARENT)
@@ -52,7 +55,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun handleQuery(query: String) {
         val isQueryExists = query.isNotBlank()
-        searchResultsGroup.isVisible = isQueryExists
+        searchProgressBar.isVisible = isQueryExists
+        searchResultRecycler.isVisible = isQueryExists
         searchCriteriaGroup.isVisible = !isQueryExists
     }
 
@@ -73,9 +77,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
 
-    private fun handleSearchResults(amazonSearchResultContainer: AmazonSearchResultContainer) {
+    private fun handleSearchResults(amazonSearchResults: List<AmazonSearchResultUi>) {
         searchProgressBar.isVisible = false
-
+        (searchResultRecycler.adapter as SearchResultAdapter).submitResults(amazonSearchResults)
     }
 
     private fun mapRadioButtonIdToFilter(@IdRes radioButtonId: Int): MediaTypeFilter {

@@ -7,6 +7,7 @@ import com.stardeux.upprime.search.repository.AmazonSearchRepository
 import com.stardeux.upprime.search.repository.api.AmazonSearchApi
 import com.stardeux.upprime.search.repository.model.AmazonSearchMediaMapper
 import com.stardeux.upprime.search.ui.SearchViewModel
+import com.stardeux.upprime.search.ui.model.AmazonSearchResultUiMapper
 import com.stardeux.upprime.search.usecase.AmazonSearchUseCase
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -17,12 +18,17 @@ val searchModule = module {
     factory { provideAmazonSearchApi(get(named(AMAZON_NAMED_QUALIFIER))) }
     factory { provideAmazonSearchMediaMapper() }
     factory { provideAmazonSearchRepository(get(), get()) }
-    viewModel { provideSearchViewModel(getUserScope().get()) }
+    factory { provideAmazonSearchResultUiMapper() }
+    viewModel { provideSearchViewModel(getUserScope().get(), get()) }
 
     scope<AvailableCountry> {
         factory { provideAmazonSearchUseCase(get(), get()) }
     }
 
+}
+
+private fun provideAmazonSearchResultUiMapper(): AmazonSearchResultUiMapper {
+    return AmazonSearchResultUiMapper()
 }
 
 private fun provideAmazonSearchApi(retrofit: Retrofit): AmazonSearchApi {
@@ -45,6 +51,9 @@ private fun provideAmazonSearchUseCase(
     return AmazonSearchUseCase(amazonSearchRepository, availableCountry)
 }
 
-private fun provideSearchViewModel(amazonSearchUseCase: AmazonSearchUseCase): SearchViewModel {
-    return SearchViewModel(amazonSearchUseCase)
+private fun provideSearchViewModel(
+    amazonSearchUseCase: AmazonSearchUseCase,
+    amazonSearchResultUiMapper: AmazonSearchResultUiMapper
+): SearchViewModel {
+    return SearchViewModel(amazonSearchUseCase, amazonSearchResultUiMapper)
 }

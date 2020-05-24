@@ -2,12 +2,17 @@ package com.stardeux.upprime.search.ui
 
 import androidx.lifecycle.*
 import com.stardeux.upprime.search.repository.model.AmazonSearchRequest
+import com.stardeux.upprime.search.ui.model.AmazonSearchResultUi
+import com.stardeux.upprime.search.ui.model.AmazonSearchResultUiMapper
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
 import com.stardeux.upprime.search.usecase.AmazonSearchUseCase
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
 
-class SearchViewModel(private val amazonSearchUseCase: AmazonSearchUseCase) : ViewModel() {
+class SearchViewModel(
+    private val amazonSearchUseCase: AmazonSearchUseCase,
+    private val amazonSearchResultUiMapper: AmazonSearchResultUiMapper
+) : ViewModel() {
 
     private val _mediaTypeFilter = MutableLiveData(MediaTypeFilter.ALL)
     val mediaTypeFilter: LiveData<MediaTypeFilter> = _mediaTypeFilter
@@ -15,16 +20,17 @@ class SearchViewModel(private val amazonSearchUseCase: AmazonSearchUseCase) : Vi
     private val _startYearInterval = MutableLiveData(YearIntervalUi.defaultYearInterval(1990))
     val startYearInterval: LiveData<YearIntervalUi> = _startYearInterval
 
-    private val _endYearInterval = MutableLiveData(YearIntervalUi.defaultYearInterval(YearIntervalUi.MAX_YEAR))
+    private val _endYearInterval =
+        MutableLiveData(YearIntervalUi.defaultYearInterval(YearIntervalUi.MAX_YEAR))
     val endYearInterval = _endYearInterval
 
     private val _searchQuery = MutableLiveData<String>()
     val searchQuery: LiveData<String> = _searchQuery
 
     val results = Transformations.switchMap(_searchQuery) { query ->
-        liveData<AmazonSearchResultContainer> {
+        liveData<List<AmazonSearchResultUi>> {
             val searchResults = search(query)
-            emit(searchResults)
+            emit(searchResults.results.mapNotNull { amazonSearchResultUiMapper.mapToAmazonSearchResultUi(it) })
         }
     }
 
