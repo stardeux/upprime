@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/yearText"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="@id/yearText"
         tools:text="1900" />
 
-    <SeekBar
+    <NumberPicker
         android:id="@+id/yearSeekbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="@id/yearText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/yearValue"
-        app:layout_constraintTop_toTopOf="@id/yearText" />
+        app:layout_constraintTop_toTopOf="@id/yearText"/>
 
     <TextView
         android:id="@+id/yearMinText"

@@ -20,8 +20,15 @@ class SearchViewModel : ViewModel() {
     private val _endYearInterval = MutableLiveData<YearIntervalUi>().apply {
         value = YearIntervalUi.defaultYearInterval()
     }
-    private val endYearInterval = _endYearInterval
+    val endYearInterval = _endYearInterval
 
+    fun onYearStartChanged(yearStart: Int) {
+        _startYearInterval.value = _startYearInterval.value?.copy(selectedYear = yearStart)
+    }
+
+    fun onYearEndChanged(yearEnd: Int) {
+        _endYearInterval.value = _endYearInterval.value?.copy(selectedYear = yearEnd)
+    }
 
     fun onQueryTextChanged(queryText: String) {
 
@@ -31,11 +38,5 @@ class SearchViewModel : ViewModel() {
 
     }
 
-    fun onYearStartChanged(yearStart: Int) {
 
-    }
-
-    fun onYearEndChanged(yearEnd: Int) {
-
-    }
 }

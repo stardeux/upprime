@@ -1,10 +1,12 @@
 package com.stardeux.upprime.search.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import com.stardeux.upprime.R
+import com.stardeux.upprime.core.extension.colorDivider
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.onValueChanged
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
@@ -15,34 +17,40 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private val searchViewModel: SearchViewModel by inject()
 
-    private var minYear: Int? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        startYearIntervalView.setText(R.string.search_filter_year_start)
-        endYearIntervalView.setText(R.string.search_filter_year_end)
+        //startYearIntervalView.setText(R.string.search_filter_year_start)
+        //endYearIntervalView.setText(R.string.search_filter_year_end)
 
+        //startYearIntervalView.setOnValueChanged { searchViewModel.onYearStartChanged(it) }
+        //endYearIntervalView.setOnValueChanged { searchViewModel.onYearEndChanged(it) }
+
+        startYearPicker.minValue = 1900
+        startYearPicker.maxValue = 2020
+        startYearPicker.value = 1990
+        startYearPicker.colorDivider(Color.TRANSPARENT)
+
+        endYearPicker.minValue = 1900
+        endYearPicker.maxValue = 2020
+        endYearPicker.value = 2020
+        endYearPicker.colorDivider(Color.TRANSPARENT)
+
+        /*
+        endNumberPicker.minValue = 1900
+        endNumberPicker.maxValue = 2020
+        endNumberPicker.value = 2020
+*/
         with(searchViewModel) {
-            startYearIntervalView.setOnValueChanged { value ->
-                minYear?.let { onYearStartChanged(it + value) }
+
+            startYearInterval.observeNotNull(viewLifecycleOwner) {
+                //startYearIntervalView.bind(it)
             }
 
-            endYearIntervalView.setOnValueChanged { value ->
-                minYear?.let { onYearEndChanged(it + value) }
+            endYearInterval.observeNotNull(viewLifecycleOwner) {
+                //endYearIntervalView.bind(it)
             }
-
         }
-    }
-
-
-    private fun handleYearInterval(seekBar: SeekBar, yearIntervalUi: YearIntervalUi) {
-        minYear = yearIntervalUi.yearStart
-
-        seekBar.max = yearIntervalUi.yearEnd - yearIntervalUi.yearStart
-        seekBar.incrementProgressBy(1)
-        //yearStartMinText.text = yearIntervalUi.yearStart.toString()
-        //yearStartMaxText.text = yearIntervalUi.yearEnd.toString()
     }
 
     companion object {

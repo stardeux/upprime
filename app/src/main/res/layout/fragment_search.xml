@@ -15,41 +15,80 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
         <RadioButton
             android:id="@+id/allMediaRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/search_filter_all_media_type" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/movieRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/search_filter_only_movie" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/seriesRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/search_filter_only_series" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
     </RadioGroup>
 
-    <com.stardeux.upprime.search.view.YearIntervalSeekBar
-        android:id="@+id/startYearIntervalView"
-        android:layout_width="0dp"
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:text="@string/search_filter_year_start"
+        app:layout_constraintBottom_toBottomOf="@id/startYearPicker"
+        app:layout_constraintEnd_toStartOf="@id/startYearPicker"
+        app:layout_constraintTop_toTopOf="@id/startYearPicker" />
+
+    <NumberPicker
+        android:id="@+id/startYearPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        app:layout_constraintEnd_toStartOf="@id/endYearPicker"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mediaTypeFiltersGroup" />
 
-    <com.stardeux.upprime.search.view.YearIntervalSeekBar
-        android:id="@+id/endYearIntervalView"
-        android:layout_width="0dp"
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:text="@string/search_filter_year_end"
+        app:layout_constraintBottom_toBottomOf="@id/endYearPicker"
+        app:layout_constraintEnd_toStartOf="@id/endYearPicker"
+        app:layout_constraintTop_toTopOf="@id/endYearPicker" />
+
+    <NumberPicker
+        android:id="@+id/endYearPicker"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/startYearIntervalView" />
+        app:layout_constraintStart_toEndOf="@id/startYearPicker"
+        app:layout_constraintTop_toTopOf="@id/startYearPicker" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
