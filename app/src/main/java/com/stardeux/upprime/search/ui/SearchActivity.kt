@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.commit
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.applyCommonBack
+import com.stardeux.upprime.core.extension.observeNotNull
 import kotlinx.android.synthetic.main.activity_media_fiche.*
 import kotlinx.android.synthetic.main.activity_media_fiche.toolbar
 import kotlinx.android.synthetic.main.activity_search.*
@@ -27,6 +28,7 @@ class SearchActivity : AppCompatActivity(R.layout.activity_search) {
                 searchViewModel.onQueryTextChanged(it.toString())
             }
         }
+        searchViewModel.searchQuery.observeNotNull(this, ::handleQuery)
 
         with(supportFragmentManager) {
             if (findFragmentByTag(SEARCH_FRAGMENT_TAG) == null) {
@@ -35,6 +37,14 @@ class SearchActivity : AppCompatActivity(R.layout.activity_search) {
                 }
             }
         }
+    }
+
+    private fun handleQuery(query: String) {
+        if (query == searchEditText.text.toString()) {
+            return
+        }
+
+        searchEditText.setText(query)
     }
 
     companion object {
