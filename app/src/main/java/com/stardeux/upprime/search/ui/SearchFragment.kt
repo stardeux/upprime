@@ -6,51 +6,43 @@ import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
-import com.stardeux.upprime.search.ui.model.YearInterval
+import com.stardeux.upprime.core.extension.onValueChanged
+import com.stardeux.upprime.search.ui.model.YearIntervalUi
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.android.ext.android.inject
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
-    private val searchViewModel : SearchViewModel by inject()
+    private val searchViewModel: SearchViewModel by inject()
 
     private var minYear: Int? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        yearStartSeekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                minYear?.let {
-                    searchViewModel.onYearStartChanged(it + progress)
-                }
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        })
-
+        startYearIntervalView.setText(R.string.search_filter_year_start)
+        endYearIntervalView.setText(R.string.search_filter_year_end)
 
         with(searchViewModel) {
-            yearInterval.observeNotNull(viewLifecycleOwner, ::handleYearInterval)
+            startYearIntervalView.setOnValueChanged { value ->
+                minYear?.let { onYearStartChanged(it + value) }
+            }
+
+            endYearIntervalView.setOnValueChanged { value ->
+                minYear?.let { onYearEndChanged(it + value) }
+            }
+
         }
-
     }
-    private fun handleYearInterval(yearInterval: YearInterval) {
-        minYear = yearInterval.yearStart
 
-        yearStartSeekbar.max = yearInterval.yearEnd - yearInterval.yearStart
-        yearStartSeekbar.incrementProgressBy(1)
-        yearStartMinText.text = yearInterval.yearStart.toString()
-        yearStartMaxText.text = yearInterval.yearEnd.toString()
 
-        yearEndSeekbar.max = yearInterval.yearEnd - yearInterval.yearStart
-        yearEndSeekbar.incrementProgressBy(1)
-        yearEndMinText.text = yearInterval.yearStart.toString()
-        yearEndMaxText.text = yearInterval.yearEnd.toString()
+    private fun handleYearInterval(seekBar: SeekBar, yearIntervalUi: YearIntervalUi) {
+        minYear = yearIntervalUi.yearStart
+
+        seekBar.max = yearIntervalUi.yearEnd - yearIntervalUi.yearStart
+        seekBar.incrementProgressBy(1)
+        //yearStartMinText.text = yearIntervalUi.yearStart.toString()
+        //yearStartMaxText.text = yearIntervalUi.yearEnd.toString()
     }
 
     companion object {

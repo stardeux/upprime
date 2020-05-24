@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
-import com.stardeux.upprime.search.ui.model.YearInterval
+import com.stardeux.upprime.search.ui.model.YearIntervalUi
 
 class SearchViewModel : ViewModel() {
 
@@ -13,9 +13,14 @@ class SearchViewModel : ViewModel() {
     }
     val mediaTypeFilter: LiveData<MediaTypeFilter> = _mediaTypeFilter
 
-    private val _yearInterval =
-        MutableLiveData<YearInterval>().apply { value = YearInterval.defaultYearInterval() }
-    val yearInterval: LiveData<YearInterval> = _yearInterval
+    private val _startYearInterval =
+        MutableLiveData<YearIntervalUi>().apply { value = YearIntervalUi.defaultYearInterval() }
+    val startYearInterval: LiveData<YearIntervalUi> = _startYearInterval
+
+    private val _endYearInterval = MutableLiveData<YearIntervalUi>().apply {
+        value = YearIntervalUi.defaultYearInterval()
+    }
+    private val endYearInterval = _endYearInterval
 
 
     fun onQueryTextChanged(queryText: String) {
