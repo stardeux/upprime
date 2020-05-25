@@ -28,6 +28,7 @@
 
         <RadioButton
             android:id="@+id/allMediaRadioButton"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/search_filter_all_media_type" />
@@ -39,6 +40,7 @@
 
         <RadioButton
             android:id="@+id/movieRadioButton"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/search_filter_only_movie" />
@@ -50,6 +52,7 @@
 
         <RadioButton
             android:id="@+id/seriesRadioButton"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/search_filter_only_series" />
@@ -60,9 +63,19 @@
             android:layout_weight="1" />
     </RadioGroup>
 
+    <View
+        android:id="@+id/criteriaSeparator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mediaTypeFiltersGroup" />
+
     <TextView
         android:id="@+id/startYearText"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/big_margin"
@@ -73,16 +86,18 @@
 
     <NumberPicker
         android:id="@+id/startYearPicker"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/big_margin"
+        android:theme="@style/NumberPickerCustomText"
         app:layout_constraintEnd_toStartOf="@id/endYearPicker"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mediaTypeFiltersGroup" />
+        app:layout_constraintTop_toBottomOf="@id/criteriaSeparator" />
 
     <TextView
         android:id="@+id/endYearText"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/big_margin"
@@ -95,6 +110,7 @@
         android:id="@+id/endYearPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:theme="@style/NumberPickerCustomText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/startYearPicker"
         app:layout_constraintTop_toTopOf="@id/startYearPicker" />

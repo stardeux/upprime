@@ -23,4 +23,8 @@
         <item name="android:paddingBottom">12dp</item>
     </style>
 
+    <style name="NumberPickerCustomText">
+        <item name="android:textSize">22sp</item> // add if you want to change size
+    </style>
+
 </resources>
