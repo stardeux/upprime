@@ -2,6 +2,7 @@ package com.stardeux.upprime.search.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.stardeux.upprime.R
@@ -19,6 +20,7 @@ class SearchResultView : ConstraintLayout {
 
     init {
         setLayout(R.layout.item_search_result)
+        layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
     fun bind(amazonSearchResultUi: AmazonSearchResultUi) {

@@ -16,7 +16,6 @@ class AmazonSearchUseCase(
 ) {
 
     suspend fun search(amazonSearchRequest: AmazonSearchRequest): AmazonSearchResultContainer {
-        delay(2000)
         return amazonSearchRepository.search(amazonSearchRequest, availableCountry.apiValue)
     }
 
