@@ -28,7 +28,7 @@
 
         <RadioButton
             android:id="@+id/allMediaRadioButton"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/search_filter_all_media_type" />
@@ -40,7 +40,7 @@
 
         <RadioButton
             android:id="@+id/movieRadioButton"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/search_filter_only_movie" />
@@ -52,7 +52,7 @@
 
         <RadioButton
             android:id="@+id/seriesRadioButton"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/search_filter_only_series" />
@@ -75,7 +75,7 @@
 
     <TextView
         android:id="@+id/startYearText"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/big_margin"
@@ -100,7 +100,7 @@
 
     <TextView
         android:id="@+id/endYearText"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/big_margin"
