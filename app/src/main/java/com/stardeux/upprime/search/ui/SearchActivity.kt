@@ -31,7 +31,6 @@ class SearchActivity : AppCompatActivity(R.layout.activity_search) {
             }
         }
         searchEditText.requestFocus()
-        window.openKeyboard()
 
         searchViewModel.searchQuery.observeNotNull(this, ::handleQuery)
 

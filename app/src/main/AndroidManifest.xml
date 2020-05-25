@@ -32,7 +32,7 @@
             android:name=".country.ui.SelectCountryActivity"
             android:noHistory="true" />
 
-        <activity android:name=".search.ui.SearchActivity" />
+        <activity android:name=".search.ui.SearchActivity" android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
