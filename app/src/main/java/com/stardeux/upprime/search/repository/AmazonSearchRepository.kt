@@ -30,6 +30,7 @@ class AmazonSearchRepository(
                 amazonSearchApi.search(
                     amazonSearchRequest.title,
                     country,
+                    amazonSearchMediaMapper.mapToApiValue(amazonSearchRequest.mediaTypeFilter),
                     amazonSearchRequest.yearStart,
                     amazonSearchRequest.yearEnd,
                     amazonSearchRequest.page

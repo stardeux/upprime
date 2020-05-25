@@ -39,10 +39,10 @@ class SearchViewModel(
     private val _results = MutableLiveData<ViewState>()
     val results: LiveData<ViewState> = _results
 
-    private var queryJob : Job? = null
+    private var queryJob: Job? = null
 
     fun onQueryTextChanged(queryText: String) {
-        if (_searchQuery.value == queryText){
+        if (_searchQuery.value == queryText) {
             return
         }
 
@@ -66,28 +66,6 @@ class SearchViewModel(
         }
     }
 
-    /*
-    val results = Transformations.switchMap(_searchQuery) { query ->
-        liveData {
-            if (query.isEmpty()) {
-                emit(ViewState.Criteria)
-            } else {
-                emit(ViewState.Loading)
-                delay(5000)
-                if (_searchQuery.value == query) {
-                    val searchResults = search(query)
-                    val mapped = searchResults.results.mapNotNull {
-                        amazonSearchResultUiMapper.mapToAmazonSearchResultUi(
-                            it, ::onSearchResultClicked
-                        )
-                    }
-
-                    emit(ViewState.Results(mapped))
-                }
-            }
-        }
-    }*/
-
     private fun onSearchResultClicked(amazonSearchResultUi: AmazonSearchResultUi) {
         _searchResultClicked.value =
             amazonSearchResultUiMapper.mapToShortMedia(amazonSearchResultUi)
@@ -110,7 +88,6 @@ class SearchViewModel(
     }
 
 
-
     suspend fun search(query: String): AmazonSearchResultContainer {
         Log.d("coucou", query)
         return amazonSearchUseCase.search(buildRequest(query))
@@ -119,8 +96,9 @@ class SearchViewModel(
     private fun buildRequest(query: String): AmazonSearchRequest {
         val yearStart = requireNotNull(_startYearInterval.value?.selectedYear)
         val yearEnd = requireNotNull(_endYearInterval.value?.selectedYear)
+        val mediaTypeFilter = requireNotNull(_mediaTypeFilter.value)
 
-        return AmazonSearchRequest(query, yearStart, yearEnd, 1)
+        return AmazonSearchRequest(query, mediaTypeFilter, yearStart, yearEnd, 1)
     }
 
     fun onMediaTypeFilterChanged(mediaTypeFilter: MediaTypeFilter) {

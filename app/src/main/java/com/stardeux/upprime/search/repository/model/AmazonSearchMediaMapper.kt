@@ -3,6 +3,7 @@ package com.stardeux.upprime.search.repository.model
 import com.stardeux.upprime.media.common.repository.model.mapToMediaType
 import com.stardeux.upprime.search.repository.api.SearchMediaContainerResponse
 import com.stardeux.upprime.search.repository.api.SearchMediaResponse
+import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResult
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
 
@@ -30,6 +31,14 @@ class AmazonSearchMediaMapper {
         return with(searchMediaContainerResponse) {
             AmazonSearchResultContainer(count = count,
                 results = results?.mapNotNull { mapToAmazonSearchResult(it) } ?: emptyList())
+        }
+    }
+
+    fun mapToApiValue(mediaTypeFilter: MediaTypeFilter): String? {
+        return when(mediaTypeFilter) {
+            MediaTypeFilter.ALL -> null
+            MediaTypeFilter.MOVIE -> "Movie"
+            MediaTypeFilter.SERIES -> "TV"
         }
     }
 }
