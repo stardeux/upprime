@@ -36,15 +36,14 @@ class SearchViewModel(
         liveData {
             val searchResults = search(query)
             emit(searchResults.results.mapNotNull {
-                amazonSearchResultUiMapper.mapToAmazonSearchResultUi(
-                    it, ::onSearchResultClicked
-                )
+                amazonSearchResultUiMapper.mapToAmazonSearchResultUi(it, ::onSearchResultClicked)
             })
         }
     }
 
     private fun onSearchResultClicked(amazonSearchResultUi: AmazonSearchResultUi) {
-        _searchResultClicked.value = amazonSearchResultUiMapper.mapToShortMedia(amazonSearchResultUi)
+        _searchResultClicked.value =
+            amazonSearchResultUiMapper.mapToShortMedia(amazonSearchResultUi)
     }
 
     fun onYearStartChanged(yearStart: Int) {

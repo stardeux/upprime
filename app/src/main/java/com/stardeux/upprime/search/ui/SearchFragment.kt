@@ -41,7 +41,20 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
 
         startYearPicker.colorDivider(Color.TRANSPARENT)
+        startYearPicker.wrapSelectorWheel = false
+        startYearPicker.setOnValueChangedListener { _, _, newVal ->
+            searchViewModel.onYearStartChanged(newVal)
+        }
+
         endYearPicker.colorDivider(Color.TRANSPARENT)
+        endYearPicker.wrapSelectorWheel = false
+        endYearPicker.setOnValueChangedListener { _, _, newVal ->
+            searchViewModel.onYearEndChanged(newVal)
+        }
+
+        mediaTypeFiltersGroup.setOnCheckedChangeListener { _, checkedId ->
+            searchViewModel.onMediaTypeFilterChanged(mapRadioButtonIdToFilter(checkedId))
+        }
 
         with(searchViewModel) {
             searchQuery.observeNotNull(viewLifecycleOwner, ::handleQuery)
@@ -50,9 +63,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             startYearInterval.observeNotNull(viewLifecycleOwner, ::handleStartYearInterval)
             endYearInterval.observeNotNull(viewLifecycleOwner, ::handleEndYearInterval)
             searchResultClicked.observeNotNull(viewLifecycleOwner, ::handleSearchResultClicked)
-            mediaTypeFiltersGroup.setOnCheckedChangeListener { _, checkedId ->
-                onMediaTypeFilterChanged(mapRadioButtonIdToFilter(checkedId))
-            }
         }
     }
 
