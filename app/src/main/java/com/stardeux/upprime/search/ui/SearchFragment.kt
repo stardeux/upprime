@@ -1,11 +1,11 @@
 package com.stardeux.upprime.search.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shawnlin.numberpicker.NumberPicker
@@ -20,6 +20,7 @@ import com.stardeux.upprime.search.ui.model.YearIntervalUi
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
+
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private val searchViewModel: SearchViewModel by lazy { requireActivity().getViewModel<SearchViewModel>() }
@@ -30,6 +31,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         with(searchResultRecycler) {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = SearchResultAdapter()
+            val dividerItemDecoration = DividerItemDecoration(
+                context, RecyclerView.VERTICAL
+            )
+            addItemDecoration(dividerItemDecoration)
         }
 
         initNumberPicker(startYearPicker) { _, _, newVal ->

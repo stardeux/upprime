@@ -8,15 +8,16 @@
 
     <TextView
         android:id="@+id/searchResultTitle"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:foreground="?attr/selectableItemBackground"
-        android:maxLines="2"
         android:lineSpacingMultiplier="1.2"
+        android:maxLines="2"
         android:paddingTop="@dimen/big_margin"
         android:paddingBottom="@dimen/big_margin"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
