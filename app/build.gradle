@@ -93,6 +93,8 @@ dependencies {
     // Three Ten Date
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
 
+    implementation 'com.shawnlin:number-picker:2.4.9'
+
     testImplementation 'androidx.room:room-testing:2.2.5'
     testImplementation 'junit:junit:4.13'
 
