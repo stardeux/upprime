@@ -10,6 +10,7 @@ import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
 import com.stardeux.upprime.search.usecase.AmazonSearchUseCase
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
+import org.koin.ext.scope
 
 class SearchViewModel(
     private val amazonSearchUseCase: AmazonSearchUseCase,
@@ -48,10 +49,18 @@ class SearchViewModel(
 
     fun onYearStartChanged(yearStart: Int) {
         _startYearInterval.value = _startYearInterval.value?.copy(selectedYear = yearStart)
+        val selectedEndYear = requireNotNull(_endYearInterval.value?.selectedYear)
+        if (yearStart > selectedEndYear) {
+            _endYearInterval.value = _endYearInterval.value?.copy(selectedYear = yearStart)
+        }
     }
 
     fun onYearEndChanged(yearEnd: Int) {
         _endYearInterval.value = _endYearInterval.value?.copy(selectedYear = yearEnd)
+        val selectedStartYear = requireNotNull(_startYearInterval.value?.selectedYear)
+        if (yearEnd < selectedStartYear) {
+            _startYearInterval.value = _startYearInterval.value?.copy(selectedYear = yearEnd)
+        }
     }
 
     fun onQueryTextChanged(queryText: String) {
