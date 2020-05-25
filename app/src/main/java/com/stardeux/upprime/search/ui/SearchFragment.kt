@@ -49,7 +49,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
 
         with(searchViewModel) {
-            searchQuery.observeNotNull(viewLifecycleOwner, ::handleQuery)
             results.observeNotNull(viewLifecycleOwner, ::handleSearchResults)
             mediaTypeFilter.observeNotNull(viewLifecycleOwner, ::handleMediaTypeFilter)
             startYearInterval.observeNotNull(viewLifecycleOwner, ::handleStartYearInterval)
@@ -72,13 +71,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         startActivity(MediaFicheActivity.newIntent(requireContext(), shortMedia))
     }
 
-    private fun handleQuery(query: String) {
-        val isQueryExists = query.isNotBlank()
-        searchProgressBar.isVisible = isQueryExists
-        searchResultRecycler.isVisible = isQueryExists
-        searchCriteriaGroup.isVisible = !isQueryExists
-    }
-
     private fun handleStartYearInterval(yearIntervalUi: YearIntervalUi) {
         handleYearInterval(startYearPicker, yearIntervalUi)
     }
@@ -96,9 +88,25 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
 
-    private fun handleSearchResults(amazonSearchResults: List<AmazonSearchResultUi>) {
-        searchProgressBar.isVisible = false
-        (searchResultRecycler.adapter as SearchResultAdapter).submitResults(amazonSearchResults)
+    private fun handleSearchResults(amazonSearchResults: SearchViewModel.ViewState) {
+        searchCriteriaGroup.isVisible = amazonSearchResults is SearchViewModel.ViewState.Criteria
+        searchProgressBar.isVisible = amazonSearchResults is SearchViewModel.ViewState.Loading
+        searchResultRecycler.isVisible = amazonSearchResults is SearchViewModel.ViewState.Results
+        if (amazonSearchResults is SearchViewModel.ViewState.Results) {
+            (searchResultRecycler.adapter as SearchResultAdapter).submitResults(amazonSearchResults.result)
+        }
+        /*
+        when(amazonSearchResults) {
+            SearchViewModel.ViewState.Criteria -> {
+
+            }
+            SearchViewModel.ViewState.Loading -> {
+                searchProgressBar.isVisible = true
+            }
+            is SearchViewModel.ViewState.Results -> TODO()
+        }*/
+        //searchProgressBar.isVisible = false
+        //(searchResultRecycler.adapter as SearchResultAdapter).submitResults(amazonSearchResults)
     }
 
     private fun mapRadioButtonIdToFilter(@IdRes radioButtonId: Int): MediaTypeFilter {

@@ -1,5 +1,6 @@
 package com.stardeux.upprime.search.ui
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
@@ -10,7 +11,9 @@ import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
 import com.stardeux.upprime.search.usecase.AmazonSearchUseCase
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
-import org.koin.ext.scope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SearchViewModel(
     private val amazonSearchUseCase: AmazonSearchUseCase,
@@ -33,14 +36,57 @@ class SearchViewModel(
     private val _searchResultClicked = SingleLiveEvent<ShortMedia>()
     val searchResultClicked: LiveData<ShortMedia> = _searchResultClicked
 
-    val results = Transformations.switchMap(_searchQuery) { query ->
-        liveData {
-            val searchResults = search(query)
-            emit(searchResults.results.mapNotNull {
-                amazonSearchResultUiMapper.mapToAmazonSearchResultUi(it, ::onSearchResultClicked)
-            })
+    private val _results = MutableLiveData<ViewState>()
+    val results: LiveData<ViewState> = _results
+
+    private var queryJob : Job? = null
+
+    fun onQueryTextChanged(queryText: String) {
+        if (_searchQuery.value == queryText){
+            return
+        }
+
+        _searchQuery.value = queryText
+        queryJob?.cancel()
+        if (queryText.isEmpty()) {
+            _results.value = ViewState.Criteria
+        } else {
+            _results.value = ViewState.Loading
+            queryJob = viewModelScope.launch {
+                delay(1000)
+                val searchResults = search(queryText)
+                val mapped = searchResults.results.mapNotNull {
+                    amazonSearchResultUiMapper.mapToAmazonSearchResultUi(
+                        it, ::onSearchResultClicked
+                    )
+                }
+
+                _results.value = ViewState.Results(mapped)
+            }
         }
     }
+
+    /*
+    val results = Transformations.switchMap(_searchQuery) { query ->
+        liveData {
+            if (query.isEmpty()) {
+                emit(ViewState.Criteria)
+            } else {
+                emit(ViewState.Loading)
+                delay(5000)
+                if (_searchQuery.value == query) {
+                    val searchResults = search(query)
+                    val mapped = searchResults.results.mapNotNull {
+                        amazonSearchResultUiMapper.mapToAmazonSearchResultUi(
+                            it, ::onSearchResultClicked
+                        )
+                    }
+
+                    emit(ViewState.Results(mapped))
+                }
+            }
+        }
+    }*/
 
     private fun onSearchResultClicked(amazonSearchResultUi: AmazonSearchResultUi) {
         _searchResultClicked.value =
@@ -63,11 +109,10 @@ class SearchViewModel(
         }
     }
 
-    fun onQueryTextChanged(queryText: String) {
-        _searchQuery.value = queryText
-    }
+
 
     suspend fun search(query: String): AmazonSearchResultContainer {
+        Log.d("coucou", query)
         return amazonSearchUseCase.search(buildRequest(query))
     }
 
@@ -82,4 +127,9 @@ class SearchViewModel(
         _mediaTypeFilter.value = mediaTypeFilter
     }
 
+    sealed class ViewState {
+        object Criteria : ViewState()
+        object Loading : ViewState()
+        class Results(val result: List<AmazonSearchResultUi>) : ViewState()
+    }
 }
