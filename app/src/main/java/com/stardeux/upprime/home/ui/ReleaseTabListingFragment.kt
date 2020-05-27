@@ -1,5 +1,6 @@
 package com.stardeux.upprime.home.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -35,10 +36,31 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
                 startActivity(SearchActivity.newIntent(requireContext()))
                 true
             }
+            R.id.item_share -> {
+                shareApp()
+                true
+            }
             else -> {
                 super.onOptionsItemSelected(item)
             }
         }
+    }
+
+    private fun shareApp() {
+        val appName = getString(R.string.app_name)
+        val packageName = requireContext().packageName
+        val playStoreUri = "market://details?id=$packageName"
+
+        val shareTitle = getString(R.string.share_app_title, appName)
+        val shareText = getString(R.string.share_app_text, playStoreUri)
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, shareText)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, shareTitle)
+        startActivity(shareIntent)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

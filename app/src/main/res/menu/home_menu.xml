@@ -11,4 +11,8 @@
     <item
         android:id="@+id/item_settings"
         android:title="@string/change_country_menu_item_name" />
+
+    <item
+        android:id="@+id/item_share"
+        android:title="@string/share_menu_item_name" />
 </menu>
