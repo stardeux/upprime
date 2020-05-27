@@ -1,2 +1,14 @@
 Comment savoir si on a une page suivante ?
 Offset pour les dates ?
+
+
+
+https://forums.developer.amazon.com/questions/21566/linking-to-amazon-instant-videos.html
+
+
+This works for me to link to a specific video in IOS:
+
+aiv://aiv/play?asin={YOUR_ASIN}
+And this seems to work for Android:
+
+intent://watch.amazon.com/watch?asin={YOUR_ASIN}
