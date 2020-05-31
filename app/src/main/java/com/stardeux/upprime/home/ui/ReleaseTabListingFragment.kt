@@ -40,6 +40,10 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
                 shareApp()
                 true
             }
+            R.id.item_rate_app -> {
+
+                true
+            }
             else -> {
                 super.onOptionsItemSelected(item)
             }

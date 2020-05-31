@@ -15,4 +15,8 @@
     <item
         android:id="@+id/item_share"
         android:title="@string/share_menu_item_name" />
+
+    <item
+        android:id="@+id/item_rate_app"
+        android:title="@string/rate_app_menu_item_title" />
 </menu>

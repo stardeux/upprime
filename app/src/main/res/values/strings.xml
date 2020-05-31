@@ -41,4 +41,7 @@
     <!-- Share app -->
     <string name="share_app_text">Look at this app and don\'t miss any new Prime Video release : %s</string>
     <string name="share_app_title">Share %s</string>
+
+    <!-- Rate app -->
+    <string name="rate_app_menu_item_title">Rate app</string>
 </resources>
