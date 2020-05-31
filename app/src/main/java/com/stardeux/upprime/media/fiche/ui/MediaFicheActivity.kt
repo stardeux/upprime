@@ -16,6 +16,7 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         applyCommonBack(toolbar)
 
         val shortMedia: ShortMedia = requireNotNull(intent.getParcelableExtra(MEDIA_ARG))
