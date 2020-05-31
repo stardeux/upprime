@@ -27,7 +27,7 @@
     <string name="credits_series_creators_title">Creator</string>
     <string name="credits_movie_director_title">Director</string>
     <string name="share_fiche_media_title">Share</string>
-    <string name="share_fiche_media_content">%s is on Amazon Prime Video !\n Via %s %s</string>
+    <string name="share_fiche_media_content">%s is on Amazon Prime Video !\nVia %s %s</string>
 
     <!-- Search -->
     <string name="search_menu_item_title">Search</string>
