@@ -2,6 +2,6 @@ package com.stardeux.upprime.rate.usecase
 
 enum class RateAppAnswer {
     YES,
-    NO,
+    NEVER,
     NOT_NOW
 }

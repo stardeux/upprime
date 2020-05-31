@@ -12,6 +12,7 @@ import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.model.Illustration
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
+import com.stardeux.upprime.rate.usecase.RateAppUseCase
 import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
 import com.stardeux.upprime.tmdb.credit.ui.model.CreditsUi
@@ -28,7 +29,8 @@ class MediaFicheViewModel(
     private val videoUseCase: VideoUseCase,
     private val creditUseCaseFacade: CreditUseCaseFacade,
     private val mediaVideoMapper: MediaVideoMapper,
-    private val mediaIllustrationUseCase: MediaIllustrationUseCase
+    private val mediaIllustrationUseCase: MediaIllustrationUseCase,
+    rateAppUseCase: RateAppUseCase
 ) : ViewModel() {
 
     private val _mediaItemUi = MutableLiveData<MediaFicheUi>()
@@ -45,6 +47,10 @@ class MediaFicheViewModel(
 
     private val _illustration = MutableLiveData<Illustration>()
     val illustration: LiveData<Illustration> = _illustration
+
+    init {
+        rateAppUseCase.incrementFavorableAction()
+    }
 
     fun load(shortMedia: ShortMedia) {
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->

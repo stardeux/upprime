@@ -6,8 +6,8 @@ enum class RateAppAnswerData {
     @SerializedName("yes")
     YES,
 
-    @SerializedName("no")
-    NO,
+    @SerializedName("never")
+    NEVER,
 
     @SerializedName("not_now")
     NOT_NOW

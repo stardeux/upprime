@@ -4,6 +4,8 @@ import com.stardeux.upprime.rate.repository.RateAppRepository
 
 class RateAppUseCase(private val rateAppRepository: RateAppRepository) {
 
+    private var favorableActions = 0
+
     fun getRateAppAnswer(): RateAppAnswer? {
         return rateAppRepository.getRateAppAnswer()
     }
@@ -12,7 +14,11 @@ class RateAppUseCase(private val rateAppRepository: RateAppRepository) {
         rateAppRepository.setRateAppAnswer(rateAppAnswer)
     }
 
+    fun incrementFavorableAction() {
+        favorableActions++
+    }
+
     fun canDisplayRateApp(): Boolean {
-        return getRateAppAnswer() == RateAppAnswer.NOT_NOW || getRateAppAnswer() == null
+        return favorableActions == 3 && (getRateAppAnswer() == RateAppAnswer.NOT_NOW || getRateAppAnswer() == null)
     }
 }

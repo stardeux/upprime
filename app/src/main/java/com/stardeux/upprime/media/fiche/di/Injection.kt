@@ -5,6 +5,7 @@ import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.MediaFicheViewModel
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUiMapper
 import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
+import com.stardeux.upprime.rate.usecase.RateAppUseCase
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
@@ -15,7 +16,7 @@ val ficheModule = module {
     factory { provideMediaIllustrationUseCase(get()) }
     factory { provideMediaVideoMapper() }
     factory { provideMediaFicheUiMapper(get()) }
-    factory { provideMediaFicheViewModel(get(), get(), get(), get(), get()) }
+    factory { provideMediaFicheViewModel(get(), get(), get(), get(), get(), get()) }
 }
 
 private fun provideMediaIllustrationUseCase(context: Context): MediaIllustrationUseCase {
@@ -27,14 +28,16 @@ private fun provideMediaFicheViewModel(
     videoUseCase: VideoUseCase,
     creditUseCaseFacade: CreditUseCaseFacade,
     mediaVideoMapper: MediaVideoMapper,
-    mediaIllustrationUseCase: MediaIllustrationUseCase
+    mediaIllustrationUseCase: MediaIllustrationUseCase,
+    rateAppUseCase: RateAppUseCase
 ): MediaFicheViewModel {
     return MediaFicheViewModel(
         getImdbMediaDetailsUseCaseFacade,
         videoUseCase,
         creditUseCaseFacade,
         mediaVideoMapper,
-        mediaIllustrationUseCase
+        mediaIllustrationUseCase,
+        rateAppUseCase
     )
 }
 

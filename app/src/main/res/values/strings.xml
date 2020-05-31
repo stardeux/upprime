@@ -44,4 +44,9 @@
 
     <!-- Rate app -->
     <string name="rate_app_menu_item_title">Rate app</string>
+    <string name="rate_app_dialog_title">Rate %s</string>
+    <string name="rate_app_dialog_content">You like %s ?\nLet us know and rate us :)</string>
+    <string name="rate_app_answer_yes">Yes</string>
+    <string name="rate_app_answer_never">Never</string>
+    <string name="rate_app_answer_not_now">Not now</string>
 </resources>

@@ -9,7 +9,7 @@ import org.koin.dsl.module
 val rateAppModule = module {
     factory { provideRateAppAnswerMapper() }
     factory { provideRateAppRepository(get(), get()) }
-    factory { provideRateAppUseCase(get()) }
+    single { provideRateAppUseCase(get()) } //Single to keep a track on favorable actions
 }
 
 fun provideRateAppAnswerMapper(): RateAppAnswerMapper {
