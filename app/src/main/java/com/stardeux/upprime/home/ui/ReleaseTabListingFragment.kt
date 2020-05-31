@@ -7,14 +7,19 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.stardeux.upprime.R
+import com.stardeux.upprime.core.extension.observeNotNull
+import com.stardeux.upprime.core.extension.playStoreThisApp
 import com.stardeux.upprime.core.model.mapToString
 import com.stardeux.upprime.country.ui.SelectCountryActivity
 import com.stardeux.upprime.search.ui.SearchActivity
 import kotlinx.android.synthetic.main.fragment_tab_listing.*
 
 class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
+
+    private val releaseTabViewModel: ReleaseTabListingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +46,7 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
                 true
             }
             R.id.item_rate_app -> {
-
+                releaseTabViewModel.onRateAppClicked()
                 true
             }
             else -> {
@@ -49,6 +54,23 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
             }
         }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        pager.adapter = ReleaseTabAdapter(this)
+
+        TabLayoutMediator(tabLayout, pager) { tab, position ->
+            tab.text = getReleaseTabAdapter().getReleaseType(position).mapToString(requireContext())
+        }.attach()
+
+        releaseTabViewModel.displayRateApp.observeNotNull(viewLifecycleOwner) {
+            if (it) {
+                requireContext().playStoreThisApp()
+            }
+        }
+    }
+
 
     private fun shareApp() {
         val appName = getString(R.string.app_name)
@@ -67,15 +89,6 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
         startActivity(shareIntent)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        pager.adapter = ReleaseTabAdapter(this)
-
-        TabLayoutMediator(tabLayout, pager) { tab, position ->
-            tab.text = getReleaseTabAdapter().getReleaseType(position).mapToString(requireContext())
-        }.attach()
-    }
 
     private fun getReleaseTabAdapter(): ReleaseTabAdapter {
         return pager.adapter as ReleaseTabAdapter

@@ -7,11 +7,13 @@ import com.stardeux.upprime.media.latest.di.latestModule
 import com.stardeux.upprime.core.di.coreModule
 import com.stardeux.upprime.country.di.countryModule
 import com.stardeux.upprime.database.di.databaseModule
+import com.stardeux.upprime.home.di.homeModule
 import com.stardeux.upprime.media.common.di.commonMediaModule
 import com.stardeux.upprime.media.fiche.di.ficheModule
 import com.stardeux.upprime.tmdb.movie.di.movieModule
 import com.stardeux.upprime.network.okhttp.fullAmazonNetwork
 import com.stardeux.upprime.network.okhttp.fullTmdbNetwork
+import com.stardeux.upprime.rate.di.rateAppModule
 import com.stardeux.upprime.search.di.searchModule
 import com.stardeux.upprime.tmdb.series.di.seriesModule
 import com.stardeux.upprime.splash.di.splashModule
@@ -69,7 +71,9 @@ abstract class UpPrimeApplication : Application() {
                 ficheModule,
                 videoModule,
                 creditModule,
-                searchModule
+                searchModule,
+                rateAppModule,
+                homeModule
             )
         }
     }
