@@ -15,6 +15,7 @@
     <style name="AppTheme.Launcher">
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/white</item>
     </style>
 
     <style name="FicheSectionTitle" parent="TextAppearance.MaterialComponents.Headline6">
