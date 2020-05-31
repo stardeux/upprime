@@ -43,7 +43,7 @@
     <string name="share_app_title">Share %s</string>
 
     <!-- Rate app -->
-    <string name="rate_app_menu_item_title">Rate app</string>
+    <string name="rate_app_menu_item_title">Rate us</string>
     <string name="rate_app_dialog_title">Rate %s</string>
     <string name="rate_app_dialog_content">You like %s ?\nLet us know and rate us :)</string>
     <string name="rate_app_answer_yes">Yes</string>
