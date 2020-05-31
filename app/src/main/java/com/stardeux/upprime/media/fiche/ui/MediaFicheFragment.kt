@@ -1,29 +1,23 @@
 package com.stardeux.upprime.media.fiche.ui
 
-import android.R.attr.bitmap
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.palette.graphics.Palette
-import androidx.palette.graphics.Palette.PaletteAsyncListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.stardeux.upprime.R
-import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.extension.observeNotNull
-import com.stardeux.upprime.core.extension.setTextAndVisibility
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
@@ -34,12 +28,32 @@ import com.stardeux.upprime.tmdb.video.ui.list.MediaVideoAdapter
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import kotlinx.android.synthetic.main.fragment_media_fiche.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.File
 
 
 class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
+    private lateinit var shareMedia: ShortMedia
     private val mediaFicheViewModel: MediaFicheViewModel by viewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        shareMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fiche_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.item_share_media) {
+            shareMedia(shareMedia)
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -131,8 +145,8 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         val isRuntimeKnown = mediaFicheUi.runtime?.isNotBlank() == true
 
         return if (isReleaseYearKnown && isRuntimeKnown) {
-            mediaFicheUi.mediaReleaseYear + " - "  + mediaFicheUi.runtime
-        } else if (isReleaseYearKnown){
+            mediaFicheUi.mediaReleaseYear + " - " + mediaFicheUi.runtime
+        } else if (isReleaseYearKnown) {
             mediaFicheUi.mediaReleaseYear!!
         } else if (isRuntimeKnown) {
             mediaFicheUi.runtime!!
@@ -148,6 +162,25 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         destinationTextView.isVisible = computedVisibility
         titleTextView?.isVisible = computedVisibility
         destinationTextView.text = text
+    }
+
+
+    private fun shareMedia(shortMedia: ShortMedia) {
+        val appName = getString(R.string.app_name)
+        val packageName = requireContext().packageName
+        val playStoreUri = "market://details?id=$packageName"
+
+        val shareTitle = getString(R.string.share_fiche_media_title)
+        val shareText =
+            getString(R.string.share_fiche_media_content, shortMedia.title, appName, playStoreUri)
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, shareText)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, shareTitle)
+        startActivity(shareIntent)
     }
 
     companion object {
