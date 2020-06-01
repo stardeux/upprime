@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
     private fun loadBottomBanner() {
         AdView(this).apply {
-            adUnitId = getString(R.string.test_admob_banner_id)
+            adUnitId = getString(R.string.admob_home_banner_id)
             adSize = getAdaptiveAdSize()
 
             layoutParams = CoordinatorLayout.LayoutParams(
