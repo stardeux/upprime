@@ -3,6 +3,7 @@
     <string name="admob_app_id">ca-app-pub-4515047235022166~2918078970</string>
     <string name="admob_home_banner_id">ca-app-pub-4515047235022166/7055746489</string>
     <string name="admob_fiche_banner_id">ca-app-pub-4515047235022166/9604876445</string>
+    <string name="admob_interstitial_id">ca-app-pub-4515047235022166/1890037953</string>
 
     <string name="test_admob_banner_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

@@ -8,15 +8,18 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.commit
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.*
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.getAdaptiveAdSize
+import com.stardeux.upprime.core.extension.observeNotNull
 import kotlinx.android.synthetic.main.activity_home.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class HomeActivity : AppCompatActivity(R.layout.activity_home) {
+
+    private val homeViewModel: HomeViewModel by viewModel()
+    private var interstitialAd: InterstitialAd? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +36,30 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
             }
         }
 
+        homeViewModel.displayInterstitial.observeNotNull(this, ::handleDisplayInterstitial)
+
+        loadInterstitial()
         loadBottomBanner()
+    }
+
+    private fun handleDisplayInterstitial(displayInter: Boolean) {
+        if (displayInter) {
+            interstitialAd?.show()
+        }
+    }
+
+    private fun loadInterstitial() {
+        interstitialAd = InterstitialAd(this).apply {
+            adUnitId = getString(R.string.admob_interstitial_id)
+            loadAd(AdRequest.Builder().build())
+
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    super.onAdLoaded()
+                    homeViewModel.onInterstitialLoaded()
+                }
+            }
+        }
     }
 
     private fun loadBottomBanner() {
@@ -54,7 +80,6 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
             homeCoordinator.addView(this)
         }
     }
-
 
 
     companion object {
