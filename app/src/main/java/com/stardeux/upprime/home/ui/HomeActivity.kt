@@ -12,6 +12,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.stardeux.upprime.R
+import com.stardeux.upprime.core.extension.getAdaptiveAdSize
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -36,11 +37,11 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
     }
 
     private fun loadBottomBanner() {
-        val adView = AdView(this).apply {
+        AdView(this).apply {
             adUnitId = "ca-app-pub-3940256099942544/6300978111"
-            adSize = AdSize.BANNER
+            adSize = getAdaptiveAdSize()
 
-            val coordinatorLayoutParams = CoordinatorLayout.LayoutParams(
+            layoutParams = CoordinatorLayout.LayoutParams(
                 CoordinatorLayout.LayoutParams.MATCH_PARENT,
                 CoordinatorLayout.LayoutParams.WRAP_CONTENT
             ).apply {
@@ -48,13 +49,13 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
                 anchorGravity = Gravity.BOTTOM
             }
 
-            layoutParams = coordinatorLayoutParams
-
             loadAd(AdRequest.Builder().build())
-        }
 
-        homeCoordinator.addView(adView)
+            homeCoordinator.addView(this)
+        }
     }
+
+
 
     companion object {
         private const val RELEASE_TAB_FRAGMENT_TAG = "RELEASE_TAB_FRAGMENT_TAG"
