@@ -21,6 +21,7 @@
 #-renamesourcefileattribute SourceFile
 -keepattributes *Annotation*
 -keepattributes SourceFile,LineNumberTable
+-keep public class * extends java.lang.Exception  # Optional: Keep custom exceptions.
 
 ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
