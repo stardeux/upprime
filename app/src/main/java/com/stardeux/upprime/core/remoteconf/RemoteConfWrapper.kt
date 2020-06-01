@@ -17,12 +17,12 @@ class RemoteConfWrapper (private val firebaseRemoteConfig : FirebaseRemoteConfig
     }
 
 
-    fun isInterstitialAllowed() : Boolean {
+    fun isInterstitialActivated() : Boolean {
         return firebaseRemoteConfig.getBoolean(INTERSTITIAL_REMOTE_KEY)
     }
 
     companion object {
-        private const val INTERSTITIAL_REMOTE_KEY = ""
+        private const val INTERSTITIAL_REMOTE_KEY = "inter_activated"
     }
 
 }
