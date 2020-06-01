@@ -1,5 +1,6 @@
 package com.stardeux.upprime.home.di
 
+import com.stardeux.upprime.core.remoteconf.RemoteConfWrapper
 import com.stardeux.upprime.home.ui.HomeViewModel
 import com.stardeux.upprime.home.ui.ReleaseTabListingViewModel
 import com.stardeux.upprime.rate.usecase.RateAppUseCase
@@ -8,13 +9,13 @@ import org.koin.dsl.module
 
 val homeModule = module {
     viewModel { provideReleaseTabListingViewModel(get()) }
-    viewModel { provideHomeViewModel() }
+    viewModel { provideHomeViewModel(get()) }
 }
 
 private fun provideReleaseTabListingViewModel(rateAppUseCase: RateAppUseCase): ReleaseTabListingViewModel {
     return ReleaseTabListingViewModel(rateAppUseCase)
 }
 
-private fun provideHomeViewModel(): HomeViewModel {
-    return HomeViewModel()
+private fun provideHomeViewModel(remoteConfWrapper: RemoteConfWrapper): HomeViewModel {
+    return HomeViewModel(remoteConfWrapper)
 }

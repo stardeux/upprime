@@ -7,10 +7,10 @@ import com.stardeux.upprime.core.ui.SingleLiveEvent
 
 class HomeViewModel(private val remoteConfWrapper: RemoteConfWrapper) : ViewModel() {
 
-    private val _isInterstitialLoaded = SingleLiveEvent<Boolean>().apply {
+    private val _isInterstitialActivated = SingleLiveEvent<Boolean>().apply {
         value = remoteConfWrapper.isInterstitialActivated()
     }
-    val isInterstitialLoaded : LiveData<Boolean> = _isInterstitialLoaded
+    val isInterstitialActivated : LiveData<Boolean> = _isInterstitialActivated
 
     private val _displayInterstitial = SingleLiveEvent<Boolean>()
     val displayInterstitial : LiveData<Boolean> = _displayInterstitial
