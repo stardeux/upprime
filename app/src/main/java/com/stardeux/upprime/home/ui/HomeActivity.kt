@@ -15,7 +15,6 @@ import com.stardeux.upprime.core.extension.observeNotNull
 import kotlinx.android.synthetic.main.activity_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
     private val homeViewModel: HomeViewModel by viewModel()
