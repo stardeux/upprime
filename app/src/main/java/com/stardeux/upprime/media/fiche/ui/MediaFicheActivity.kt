@@ -6,7 +6,11 @@ import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.doOnLayout
+import androidx.core.view.doOnNextLayout
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.commit
+import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.stardeux.upprime.R
@@ -30,7 +34,11 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
 
         if (supportFragmentManager.findFragmentByTag(MEDIA_FICHE_FRAGMENT_TAG) == null) {
             supportFragmentManager.commit {
-                replace(R.id.ficheContent, MediaFicheFragment.newInstance(shortMedia), MEDIA_FICHE_FRAGMENT_TAG)
+                replace(
+                    R.id.ficheContent,
+                    MediaFicheFragment.newInstance(shortMedia),
+                    MEDIA_FICHE_FRAGMENT_TAG
+                )
             }
         }
 
@@ -53,6 +61,17 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
             loadAd(AdRequest.Builder().build())
 
             ficheCoordinator.addView(this)
+
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    super.onAdLoaded()
+
+                    doOnLayout {
+                        ficheContent.setPadding(0, 0, 0, height)
+                    }
+                }
+            }
+
         }
     }
 
