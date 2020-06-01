@@ -25,6 +25,6 @@ class SplashActivity : AppCompatActivity(R.layout.activity_splash) {
             SplashViewModel.NavigationEvent.Countries -> SelectCountryActivity.newIntent(this)
         }.exhaustive
 
-        //startActivity(intent)
+        startActivity(intent)
     }
 }

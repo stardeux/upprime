@@ -2,11 +2,14 @@ package com.stardeux.upprime.home.ui
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
+import com.google.android.gms.ads.AdRequest
 import com.stardeux.upprime.R
 import kotlinx.android.synthetic.main.activity_home.*
+
 
 class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
@@ -24,6 +27,8 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
                 )
             }
         }
+
+        adView.loadAd(AdRequest.Builder().build())
     }
 
     companion object {
