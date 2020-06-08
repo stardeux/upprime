@@ -1,7 +1,10 @@
 package com.stardeux.upprime.search.ui
 
+import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.*
+import com.stardeux.upprime.core.analytics.AnalyticsValues
+import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.search.repository.model.AmazonSearchRequest
@@ -17,7 +20,8 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel(
     private val amazonSearchUseCase: AmazonSearchUseCase,
-    private val amazonSearchResultUiMapper: AmazonSearchResultUiMapper
+    private val amazonSearchResultUiMapper: AmazonSearchResultUiMapper,
+    private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {
 
     private val _mediaTypeFilter = MutableLiveData(MediaTypeFilter.ALL)
@@ -89,7 +93,6 @@ class SearchViewModel(
 
 
     suspend fun search(query: String): AmazonSearchResultContainer {
-        Log.d("coucou", query)
         return amazonSearchUseCase.search(buildRequest(query))
     }
 
@@ -103,6 +106,10 @@ class SearchViewModel(
 
     fun onMediaTypeFilterChanged(mediaTypeFilter: MediaTypeFilter) {
         _mediaTypeFilter.value = mediaTypeFilter
+    }
+
+    fun trackScreen(activity: Activity) {
+        analyticsWrapper.setCurrentScreen(activity, AnalyticsValues.Screen.SEARCH)
     }
 
     sealed class ViewState {

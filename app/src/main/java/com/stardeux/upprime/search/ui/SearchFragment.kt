@@ -28,6 +28,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        searchViewModel.trackScreen(requireActivity())
+
         with(searchResultRecycler) {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = SearchResultAdapter()
@@ -38,9 +40,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
 
         initNumberPicker(startYearPicker) { _, _, newVal ->
-            searchViewModel.onYearStartChanged(
-                newVal
-            )
+            searchViewModel.onYearStartChanged(newVal)
         }
         initNumberPicker(endYearPicker) { _, _, newVal -> searchViewModel.onYearEndChanged(newVal) }
 
@@ -58,8 +58,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     private fun initNumberPicker(
-        numberPicker: NumberPicker,
-        onValueChangeListener: (NumberPicker, Int, Int) -> Unit
+        numberPicker: NumberPicker, onValueChangeListener: (NumberPicker, Int, Int) -> Unit
     ) {
         with(numberPicker) {
             formatter = NumberPicker.Formatter { number -> number.toString() }
