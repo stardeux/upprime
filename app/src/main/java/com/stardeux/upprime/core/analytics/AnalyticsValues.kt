@@ -10,6 +10,7 @@ object AnalyticsValues {
 
     object Event {
         const val SEARCH_EVENT = "search_event"
+        const val SEARCH_RESULTS_CLICKED = "search_results_clicked"
     }
 
     object Params {

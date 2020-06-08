@@ -73,6 +73,7 @@ class SearchViewModel(
     }
 
     private fun onSearchResultClicked(amazonSearchResultUi: AmazonSearchResultUi) {
+        analyticsWrapper.logEvent(AnalyticsValues.Event.SEARCH_RESULTS_CLICKED)
         _searchResultClicked.value =
             amazonSearchResultUiMapper.mapToShortMedia(amazonSearchResultUi)
     }
