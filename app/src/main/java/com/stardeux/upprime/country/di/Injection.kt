@@ -1,6 +1,7 @@
 package com.stardeux.upprime.country.di
 
 import android.content.SharedPreferences
+import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.country.repository.UserLocaleRepository
 import com.stardeux.upprime.country.ui.SelectCountryViewModel
 import com.stardeux.upprime.country.usecase.GetAvailableCountryUseCase
@@ -14,7 +15,7 @@ import org.koin.ext.getOrCreateScope
 import org.koin.java.KoinJavaComponent.getKoin
 
 val countryModule = module {
-    viewModel { provideSelectCountryViewModel(get(), get(), get()) }
+    viewModel { provideSelectCountryViewModel(get(), get(), get(), get()) }
     factory { provideGetAvailableCountryUseCase() }
     factory { provideGetFlagUrlUseCase() }
     factory { provideSelectedUserLocaleUseCase(get()) }
@@ -38,10 +39,11 @@ private fun provideUserLocaleRepository(sharedPreferences: SharedPreferences): U
 private fun provideSelectCountryViewModel(
     getAvailableCountryUseCase: GetAvailableCountryUseCase,
     selectedUserCountryUseCase: SelectedUserCountryUseCase,
-    getFlagUrlUseCase: GetFlagUrlUseCase
+    getFlagUrlUseCase: GetFlagUrlUseCase,
+    analyticsWrapper: AnalyticsWrapper
 ): SelectCountryViewModel {
     return SelectCountryViewModel(
-        getAvailableCountryUseCase, selectedUserCountryUseCase, getFlagUrlUseCase
+        getAvailableCountryUseCase, selectedUserCountryUseCase, getFlagUrlUseCase, analyticsWrapper
     )
 }
 

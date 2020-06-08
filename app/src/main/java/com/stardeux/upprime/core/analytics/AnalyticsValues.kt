@@ -8,6 +8,7 @@ object AnalyticsValues {
         const val SEARCH = "search"
         const val FICHE = "fiche"
         const val COUNTRY = "country"
+        const val SPLASH_SCREEN = "splash_screen"
     }
 
     object Event {

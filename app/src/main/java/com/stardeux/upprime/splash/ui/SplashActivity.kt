@@ -16,6 +16,7 @@ class SplashActivity : AppCompatActivity(R.layout.activity_splash) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        splashViewModel.trackScreen(this)
         splashViewModel.navigationEvent.observeNotNull(this, ::onNavigationEvent)
     }
 
