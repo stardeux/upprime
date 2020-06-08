@@ -3,7 +3,7 @@
 
     <!-- Core -->
     <string name="release_type_new">New</string>
-    <string name="release_type_expiring">Expiring</string>
+    <string name="release_type_expired">Expired</string>
     <string name="movie">Movie</string>
     <string name="series">Series</string>
 

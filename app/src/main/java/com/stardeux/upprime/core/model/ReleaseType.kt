@@ -11,6 +11,6 @@ enum class ReleaseType {
 fun ReleaseType.mapToString(context: Context): String {
     return when(this) {
         ReleaseType.NEW -> context.getString(R.string.release_type_new)
-        ReleaseType.EXPIRING -> context.getString(R.string.release_type_expiring)
+        ReleaseType.EXPIRING -> context.getString(R.string.release_type_expired)
     }
 }
