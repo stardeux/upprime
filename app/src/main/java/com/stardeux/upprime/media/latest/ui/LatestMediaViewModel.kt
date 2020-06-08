@@ -1,5 +1,6 @@
 package com.stardeux.upprime.media.latest.ui
 
+import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.ui.AmazonMediaViewModel
 import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
@@ -11,8 +12,14 @@ class LatestMediaViewModel(
     private val getLatestMediaUseCase: GetLatestMediaUseCase,
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
-    mediaDetailsMapper: MediaDetailsMapper
-) : AmazonMediaViewModel(getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase, mediaDetailsMapper) {
+    mediaDetailsMapper: MediaDetailsMapper,
+    analyticsWrapper: AnalyticsWrapper
+) : AmazonMediaViewModel(
+    getImdbMovieDetailsUseCase,
+    getImdbSeriesDetailsUseCase,
+    mediaDetailsMapper,
+    analyticsWrapper
+) {
 
     override suspend fun getAmazonMedia(page: Int): MediaPage {
         return getLatestMediaUseCase.getLatest(page)

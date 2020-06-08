@@ -1,6 +1,7 @@
 package com.stardeux.upprime.media.latest.di
 
 import android.content.SharedPreferences
+import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.media.latest.repository.LatestMediaRepository
 import com.stardeux.upprime.media.latest.repository.api.LatestApi
 import com.stardeux.upprime.media.latest.ui.LatestMediaViewModel
@@ -30,7 +31,7 @@ val latestModule = module {
     single { provideLatestApi(get(named(AMAZON_NAMED_QUALIFIER))) }
     factory { provideLatestRepository(get(), get(), get()) }
 
-    viewModel { provideLatestMediaViewModel(getUserScope().get(), get(), get(), get()) }
+    viewModel { provideLatestMediaViewModel(getUserScope().get(), get(), get(), get(), get()) }
 
     scope<AvailableCountry> {
         factory { provideLatestUseCase(get(), get(), get()) }
@@ -75,13 +76,15 @@ private fun provideLatestMediaViewModel(
     getLatestMediaUseCase: GetLatestMediaUseCase,
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
-    mediaDetailsMapper: MediaDetailsMapper
+    mediaDetailsMapper: MediaDetailsMapper,
+    analyticsWrapper: AnalyticsWrapper
 ): LatestMediaViewModel {
     return LatestMediaViewModel(
         getLatestMediaUseCase,
         getImdbMovieDetailsUseCase,
         getImdbSeriesDetailsUseCase,
-        mediaDetailsMapper
+        mediaDetailsMapper,
+        analyticsWrapper
     )
 }
 

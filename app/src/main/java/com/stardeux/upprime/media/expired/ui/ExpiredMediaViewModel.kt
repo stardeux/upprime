@@ -1,5 +1,6 @@
 package com.stardeux.upprime.media.expired.ui
 
+import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.ui.AmazonMediaViewModel
 import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
@@ -11,8 +12,14 @@ class ExpiredMediaViewModel(
     private val getExpiredMediaUseCase: GetExpiredMediaUseCase,
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
-    mediaDetailsMapper: MediaDetailsMapper
-) : AmazonMediaViewModel(getImdbMovieDetailsUseCase, getImdbSeriesDetailsUseCase, mediaDetailsMapper) {
+    mediaDetailsMapper: MediaDetailsMapper,
+    analyticsWrapper: AnalyticsWrapper
+) : AmazonMediaViewModel(
+    getImdbMovieDetailsUseCase,
+    getImdbSeriesDetailsUseCase,
+    mediaDetailsMapper,
+    analyticsWrapper
+) {
 
     override suspend fun getAmazonMedia(page: Int): MediaPage {
         return getExpiredMediaUseCase.getExpired(page)
