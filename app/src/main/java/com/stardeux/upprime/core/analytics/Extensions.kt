@@ -6,6 +6,7 @@ import com.stardeux.upprime.country.ui.model.CountryUi
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.model.MediaItemUi
+import com.stardeux.upprime.rate.usecase.RateAppAnswer
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 
@@ -50,4 +51,13 @@ fun MediaItemUi.getTrackingParameters(): Bundle {
         AnalyticsValues.Params.MEDIA_TMDB_ID to tmdbId,
         AnalyticsValues.Params.MEDIA_FOUND_TITLE to title
     )
+}
+
+fun RateAppAnswer.getTrackingParameters(): Bundle {
+    val value = when(this) {
+        RateAppAnswer.YES -> AnalyticsValues.ParamsValue.ANSWER_YES
+        RateAppAnswer.NEVER -> AnalyticsValues.ParamsValue.ANSWER_NEVER
+        RateAppAnswer.NOT_NOW -> AnalyticsValues.ParamsValue.ANSWER_NOT_NOW
+    }
+    return bundleOf(AnalyticsValues.Params.RATE_APP_ANSWER to value)
 }

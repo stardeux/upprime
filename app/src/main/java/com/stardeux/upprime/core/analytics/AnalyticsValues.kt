@@ -26,6 +26,7 @@ object AnalyticsValues {
         const val SHARE_APP_CLICKED = "share_app_clicked"
         const val COUNTRY_CLICKED = "search"
         const val RATE_APP_CLICKED = "rate_app_clicked"
+        const val RATE_APP_ANSWERED = "rate_app_answered"
     }
 
     object Params {
@@ -43,12 +44,17 @@ object AnalyticsValues {
         const val FICHE_VIDEO_KEY = "fiche_video_key"
 
         const val COUNTRY_ID = "country_id"
+        const val RATE_APP_ANSWER = "rate_app_answer"
     }
 
     object ParamsValue {
         const val FILTER_MEDIA_TYPE_ALL = "all"
         const val FILTER_MEDIA_TYPE_MOVIE = "movie"
         const val FILTER_MEDIA_TYPE_SERIES = "series"
+
+        const val ANSWER_YES = "yes"
+        const val ANSWER_NEVER = "never"
+        const val ANSWER_NOT_NOW = "not_now"
     }
 
 }

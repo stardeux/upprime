@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.stardeux.upprime.core.analytics.AnalyticsValues
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
+import com.stardeux.upprime.core.analytics.getTrackingParameters
 import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.model.ReleaseType
 import com.stardeux.upprime.core.ui.SingleLiveEvent
@@ -22,6 +23,11 @@ class ReleaseTabListingViewModel(
     val isFavorableActionReached = updateOnActiveLiveData { rateAppUseCase.canDisplayRateApp() }
 
     fun onRateAppAnswer(rateAppAnswer: RateAppAnswer) {
+        analyticsWrapper.logEvent(
+            AnalyticsValues.Event.RATE_APP_ANSWERED,
+            rateAppAnswer.getTrackingParameters()
+        )
+
         rateAppUseCase.setRateAppAnswer(rateAppAnswer)
         if (rateAppAnswer == RateAppAnswer.YES) {
             _event.value = Event.RateApp
