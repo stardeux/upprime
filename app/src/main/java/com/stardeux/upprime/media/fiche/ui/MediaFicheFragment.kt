@@ -32,13 +32,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
-    private lateinit var shareMedia: ShortMedia
+    private lateinit var shortMedia: ShortMedia
     private val mediaFicheViewModel: MediaFicheViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        shareMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
+        shortMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
         setHasOptionsMenu(true)
+
+        mediaFicheViewModel.trackScreen(requireActivity())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -48,7 +50,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.item_share_media) {
-            shareMedia(shareMedia)
+            shareMedia(shortMedia)
             true
         } else {
             super.onOptionsItemSelected(item)

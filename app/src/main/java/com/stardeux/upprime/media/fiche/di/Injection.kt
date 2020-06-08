@@ -1,6 +1,7 @@
 package com.stardeux.upprime.media.fiche.di
 
 import android.content.Context
+import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.MediaFicheViewModel
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUiMapper
@@ -16,7 +17,7 @@ val ficheModule = module {
     factory { provideMediaIllustrationUseCase(get()) }
     factory { provideMediaVideoMapper() }
     factory { provideMediaFicheUiMapper(get()) }
-    factory { provideMediaFicheViewModel(get(), get(), get(), get(), get(), get()) }
+    factory { provideMediaFicheViewModel(get(), get(), get(), get(), get(), get(), get()) }
 }
 
 private fun provideMediaIllustrationUseCase(context: Context): MediaIllustrationUseCase {
@@ -29,7 +30,8 @@ private fun provideMediaFicheViewModel(
     creditUseCaseFacade: CreditUseCaseFacade,
     mediaVideoMapper: MediaVideoMapper,
     mediaIllustrationUseCase: MediaIllustrationUseCase,
-    rateAppUseCase: RateAppUseCase
+    rateAppUseCase: RateAppUseCase,
+    analyticsWrapper: AnalyticsWrapper
 ): MediaFicheViewModel {
     return MediaFicheViewModel(
         getImdbMediaDetailsUseCaseFacade,
@@ -37,7 +39,8 @@ private fun provideMediaFicheViewModel(
         creditUseCaseFacade,
         mediaVideoMapper,
         mediaIllustrationUseCase,
-        rateAppUseCase
+        rateAppUseCase,
+        analyticsWrapper
     )
 }
 

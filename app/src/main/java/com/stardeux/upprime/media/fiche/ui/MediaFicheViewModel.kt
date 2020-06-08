@@ -1,11 +1,15 @@
 package com.stardeux.upprime.media.fiche.ui
 
+import android.app.Activity
 import android.util.Log
 import androidx.annotation.ColorInt
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.stardeux.upprime.core.analytics.AnalyticsValues
+import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
@@ -30,7 +34,8 @@ class MediaFicheViewModel(
     private val creditUseCaseFacade: CreditUseCaseFacade,
     private val mediaVideoMapper: MediaVideoMapper,
     private val mediaIllustrationUseCase: MediaIllustrationUseCase,
-    rateAppUseCase: RateAppUseCase
+    rateAppUseCase: RateAppUseCase,
+    private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {
 
     private val _mediaItemUi = MutableLiveData<MediaFicheUi>()
@@ -86,5 +91,9 @@ class MediaFicheViewModel(
 
     private fun onMediaVideoUiClicked(mediaVideoUi: MediaVideoUi) {
         _videoClicked.value = mediaVideoUi
+    }
+
+    fun trackScreen(activity: Activity) {
+        analyticsWrapper.setCurrentScreen(activity, AnalyticsValues.Screen.FICHE)
     }
 }
