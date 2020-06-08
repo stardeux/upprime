@@ -6,14 +6,17 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.TableLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.playStoreThisApp
 import com.stardeux.upprime.core.model.mapToString
+import com.stardeux.upprime.core.ui.OnlyOnTabSelectedListener
 import com.stardeux.upprime.country.ui.SelectCountryActivity
 import com.stardeux.upprime.rate.usecase.RateAppAnswer
 import com.stardeux.upprime.search.ui.SearchActivity
@@ -42,6 +45,13 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
         TabLayoutMediator(tabLayout, pager) { tab, position ->
             tab.text = getReleaseTabAdapter().getReleaseType(position).mapToString(requireContext())
         }.attach()
+
+        tabLayout.addOnTabSelectedListener(object : OnlyOnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                val releaseType = getReleaseTabAdapter().getReleaseType(tab.position)
+                releaseTabViewModel.trackScreen(requireActivity(), releaseType)
+            }
+        })
 
         releaseTabViewModel.displayRateApp.observeNotNull(
             viewLifecycleOwner, ::handleDisplayRateApp

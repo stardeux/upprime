@@ -18,7 +18,10 @@ val coreModule = module {
     single { provideSharedPreference(get()) }
     factory { provideLocale() }
 
+    single { provideFirebaseAnalytics(get()) }
+    single { provideFirebaseCrashlytics() }
     single { provideAnalyticsWrapper(get(), get()) }
+
     single { provideFirebaseRemoteConfig() }
     single { provideRemoteConfWrapper(get()) } //Single to assure init routine once
 }
@@ -43,4 +46,12 @@ private fun provideAnalyticsWrapper(
     firebaseAnalytics: FirebaseAnalytics, firebaseCrashlytics: FirebaseCrashlytics
 ): AnalyticsWrapper {
     return AnalyticsWrapper(firebaseAnalytics, firebaseCrashlytics)
+}
+
+private fun provideFirebaseAnalytics(context: Context): FirebaseAnalytics {
+    return FirebaseAnalytics.getInstance(context)
+}
+
+private fun provideFirebaseCrashlytics(): FirebaseCrashlytics {
+    return FirebaseCrashlytics.getInstance()
 }
