@@ -55,10 +55,13 @@ abstract class AmazonMediaViewModel(
             _loadingDataState.value = DataLoading.Loading
         }
 
-
         val errorHandler = CoroutineExceptionHandler { _, exception ->
             Log.e("Loading Error", "loading failed", exception)
-            _loadingDataState.value = DataLoading.Error
+            analyticsWrapper.recordException(exception)
+
+            if (_mediaItems.value?.isEmpty() == true) {
+                _loadingDataState.value = DataLoading.Error
+            }
         }
 
         viewModelScope.launch(errorHandler) {
