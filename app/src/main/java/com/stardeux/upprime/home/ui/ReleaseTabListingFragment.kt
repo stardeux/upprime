@@ -6,13 +6,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.TableLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.stardeux.upprime.R
+import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.playStoreThisApp
 import com.stardeux.upprime.core.model.mapToString
@@ -53,7 +52,7 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
             }
         })
 
-        releaseTabViewModel.displayRateApp.observeNotNull(
+        releaseTabViewModel.event.observeNotNull(
             viewLifecycleOwner, ::handleDisplayRateApp
         )
 
@@ -78,25 +77,36 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
         }
     }
 
-    private fun handleDisplayRateApp(display: Boolean) {
-        if (display) {
-            requireContext().playStoreThisApp()
-        }
+    private fun handleDisplayRateApp(event: ReleaseTabListingViewModel.Event) {
+        when(event){
+            ReleaseTabListingViewModel.Event.RateApp -> {
+                requireContext().playStoreThisApp()
+            }
+            ReleaseTabListingViewModel.Event.Search -> {
+                startActivity(SearchActivity.newIntent(requireContext()))
+            }
+            ReleaseTabListingViewModel.Event.Country -> {
+                startActivity(SelectCountryActivity.newIntent(requireContext()))
+            }
+            ReleaseTabListingViewModel.Event.ShareApp -> {
+                shareApp()
+            }
+        }.exhaustive
     }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_settings -> {
-                startActivity(SelectCountryActivity.newIntent(requireContext()))
+                releaseTabViewModel.onCountryClicked()
                 true
             }
             R.id.action_search -> {
-                startActivity(SearchActivity.newIntent(requireContext()))
+                releaseTabViewModel.onSearchClicked()
                 true
             }
             R.id.item_share -> {
-                shareApp()
+                releaseTabViewModel.onShareApp()
                 true
             }
             R.id.item_rate_app -> {

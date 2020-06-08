@@ -12,7 +12,8 @@ object AnalyticsValues {
     }
 
     object Event {
-        const val SEARCH_EVENT = "search_event"
+        const val SEARCH_CLICKED = "search_clicked"
+        const val SEARCH_QUERY = "search_query"
         const val SEARCH_RESULTS_CLICKED = "search_results_clicked"
 
         const val FICHE_VIDEO_CLICKED = "fiche_video_clicked"
@@ -21,6 +22,9 @@ object AnalyticsValues {
         const val COUNTRY_SELECTED = "country_selected"
 
         const val MEDIA_ITEM_CLICKED = "media_item_clicked"
+
+        const val SHARE_APP_CLICKED = "share_app_clicked"
+        const val COUNTRY_CLICKED = "search"
     }
 
     object Params {

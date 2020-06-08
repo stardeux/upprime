@@ -1,7 +1,6 @@
 package com.stardeux.upprime.search.ui
 
 import android.app.Activity
-import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.lifecycle.*
 import com.stardeux.upprime.core.analytics.AnalyticsValues
@@ -104,7 +103,7 @@ class SearchViewModel(
 
     private fun trackQuery(amazonSearchRequest: AmazonSearchRequest) {
         with(amazonSearchRequest) {
-            analyticsWrapper.logEvent(AnalyticsValues.Event.SEARCH_EVENT,
+            analyticsWrapper.logEvent(AnalyticsValues.Event.SEARCH_QUERY,
                 bundleOf(
                     AnalyticsValues.Params.SEARCH_EVENT_QUERY to title,
                     AnalyticsValues.Params.SEARCH_EVENT_MEDIA_TYPE to mediaTypeFilter.getTrackingValue(),

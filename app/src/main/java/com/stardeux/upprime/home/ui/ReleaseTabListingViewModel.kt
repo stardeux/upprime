@@ -16,21 +16,36 @@ class ReleaseTabListingViewModel(
     private val rateAppUseCase: RateAppUseCase, private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {
 
-    private val _displayRateApp = SingleLiveEvent<Boolean>()
-    val displayRateApp: LiveData<Boolean> = _displayRateApp
+    private val _event = SingleLiveEvent<Event>()
+    val event: LiveData<Event> = _event
 
     val isFavorableActionReached = updateOnActiveLiveData { rateAppUseCase.canDisplayRateApp() }
 
     fun onRateAppAnswer(rateAppAnswer: RateAppAnswer) {
         rateAppUseCase.setRateAppAnswer(rateAppAnswer)
         if (rateAppAnswer == RateAppAnswer.YES) {
-            _displayRateApp.value = true
+            _event.value = Event.RateApp
         }
     }
 
     fun onRateAppClicked() {
         rateAppUseCase.setRateAppAnswer(RateAppAnswer.YES)
-        _displayRateApp.value = true
+        _event.value = Event.RateApp
+    }
+
+    fun onSearchClicked() {
+        analyticsWrapper.logEvent(AnalyticsValues.Event.SEARCH_CLICKED)
+        _event.value = Event.Search
+    }
+
+    fun onCountryClicked() {
+        analyticsWrapper.logEvent(AnalyticsValues.Event.COUNTRY_CLICKED)
+        _event.value = Event.Country
+    }
+
+    fun onShareApp() {
+        analyticsWrapper.logEvent(AnalyticsValues.Event.SHARE_APP_CLICKED)
+        _event.value = Event.ShareApp
     }
 
     fun trackScreen(activity: Activity, releaseType: ReleaseType) {
@@ -40,5 +55,12 @@ class ReleaseTabListingViewModel(
         }.exhaustive
 
         analyticsWrapper.setCurrentScreen(activity, screenValue)
+    }
+
+    sealed class Event {
+        object RateApp : Event()
+        object Search : Event()
+        object Country : Event()
+        object ShareApp : Event()
     }
 }
