@@ -1,6 +1,7 @@
 package com.stardeux.upprime.media.latest.repository.api
 
 import com.google.gson.Gson
+import com.stardeux.upprime.BuildConfig
 import com.stardeux.upprime.core.extension.logDebug
 import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
@@ -16,7 +17,7 @@ class LatestMediaRemoteDataSource(private val latestApi: LatestApi) {
         
         val gson  by inject(Gson::class.java, named(AMAZON_NAMED_QUALIFIER))
 
-        val test = true
+        val test = BuildConfig.DEBUG && false
         return if (!test) {
             latestApi.new(amazonMediaRequest.country, amazonMediaRequest.days, amazonMediaRequest.page)
         } else {
