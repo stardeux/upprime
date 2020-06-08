@@ -12,6 +12,8 @@ object AnalyticsValues {
     object Event {
         const val SEARCH_EVENT = "search_event"
         const val SEARCH_RESULTS_CLICKED = "search_results_clicked"
+
+        const val FICHE_VIDEO_CLICKED = "fiche_video_clicked"
     }
 
     object Params {
@@ -23,6 +25,8 @@ object AnalyticsValues {
         const val MEDIA_TITLE = "media_title"
         const val MEDIA_AMAZON_ID = "amazon_id"
         const val MEDIA_IMDB_ID = "imdb_id"
+
+        const val FICHE_VIDEO_KEY = "fiche_video_key"
     }
 
     object ParamsValue {

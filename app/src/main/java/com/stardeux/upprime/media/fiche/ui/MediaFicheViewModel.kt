@@ -60,6 +60,7 @@ class MediaFicheViewModel(
     fun load(shortMedia: ShortMedia) {
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
             Log.e("FicheVM", "error", throwable)
+            analyticsWrapper.recordException(throwable)
         }
 
         viewModelScope.launch(exceptionHandler) {
@@ -90,6 +91,9 @@ class MediaFicheViewModel(
     }
 
     private fun onMediaVideoUiClicked(mediaVideoUi: MediaVideoUi) {
+        analyticsWrapper.logEvent(AnalyticsValues.Event.FICHE_VIDEO_CLICKED, bundleOf(
+            AnalyticsValues.Params.FICHE_VIDEO_KEY to mediaVideoUi.key
+        ))
         _videoClicked.value = mediaVideoUi
     }
 

@@ -19,8 +19,8 @@ class AnalyticsWrapper(
         firebaseAnalytics.setCurrentScreen(activity, screenName, null)
     }
 
-    fun recordException(exception: Exception) {
-        firebaseCrashlytics.recordException(exception)
+    fun recordException(throwable: Throwable) {
+        firebaseCrashlytics.recordException(throwable)
     }
 
     fun logEvent(event: String, params: Bundle? = null) {
