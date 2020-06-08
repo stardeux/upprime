@@ -19,6 +19,8 @@ object AnalyticsValues {
         const val FICHE_SHARE = "fiche_share"
 
         const val COUNTRY_SELECTED = "country_selected"
+
+        const val MEDIA_ITEM_CLICKED = "media_item_clicked"
     }
 
     object Params {
@@ -30,6 +32,8 @@ object AnalyticsValues {
         const val MEDIA_TITLE = "media_title"
         const val MEDIA_AMAZON_ID = "amazon_id"
         const val MEDIA_IMDB_ID = "imdb_id"
+        const val MEDIA_TMDB_ID = "tmdb_id"
+        const val MEDIA_FOUND_TITLE = "media_found_title"
 
         const val FICHE_VIDEO_KEY = "fiche_video_key"
 

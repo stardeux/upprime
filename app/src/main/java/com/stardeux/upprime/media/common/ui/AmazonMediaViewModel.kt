@@ -2,6 +2,9 @@ package com.stardeux.upprime.media.common.ui
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.stardeux.upprime.core.analytics.AnalyticsValues
+import com.stardeux.upprime.core.analytics.AnalyticsWrapper
+import com.stardeux.upprime.core.analytics.getTrackingParameters
 import com.stardeux.upprime.core.extension.logDebug
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.repository.model.MediaPage
@@ -21,7 +24,8 @@ import java.util.*
 abstract class AmazonMediaViewModel(
     private val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
-    private val mediaDetailsMapper: MediaDetailsMapper
+    private val mediaDetailsMapper: MediaDetailsMapper,
+    private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {
 
     private var page = 0
@@ -75,6 +79,7 @@ abstract class AmazonMediaViewModel(
 
 
     private fun onCardClicked(mediaItemUi: MediaItemUi) {
+        analyticsWrapper.logEvent(AnalyticsValues.Event.MEDIA_ITEM_CLICKED, mediaItemUi.getTrackingParameters())
         _navigationEvent.value = NavigationEvent.MediaDetailsFiche(mediaItemUi)
     }
 
@@ -85,8 +90,7 @@ abstract class AmazonMediaViewModel(
 
         shortMediaItems.poll()?.let {
             loadDetailsJob = viewModelScope.launch {
-                logDebug(it[0].imdbId)
-                it/*.subList(0, min(2, it.size))*/.forEach { shortMedia ->
+                it.forEach { shortMedia ->
                     updateViewFullMedia(shortMedia)
                 }
             }.also { it.invokeOnCompletion { loadNextDetails() } }
