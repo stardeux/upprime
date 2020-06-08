@@ -7,6 +7,7 @@ object AnalyticsValues {
         const val EXPIRED_RELEASE = "expired"
         const val SEARCH = "search"
         const val FICHE = "fiche"
+        const val COUNTRY = "country"
     }
 
     object Event {
@@ -15,6 +16,8 @@ object AnalyticsValues {
 
         const val FICHE_VIDEO_CLICKED = "fiche_video_clicked"
         const val FICHE_SHARE = "fiche_share"
+
+        const val COUNTRY_SELECTED = "country_selected"
     }
 
     object Params {
@@ -28,6 +31,8 @@ object AnalyticsValues {
         const val MEDIA_IMDB_ID = "imdb_id"
 
         const val FICHE_VIDEO_KEY = "fiche_video_key"
+
+        const val COUNTRY_ID = "country_id"
     }
 
     object ParamsValue {

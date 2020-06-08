@@ -2,6 +2,8 @@ package com.stardeux.upprime.core.analytics
 
 import android.os.Bundle
 import androidx.core.os.bundleOf
+import com.stardeux.upprime.country.ui.model.CountryUi
+import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
@@ -25,5 +27,16 @@ fun ShortMedia.getTrackingParameters(): Bundle {
 fun MediaVideoUi.getTrackingParameters(): Bundle {
     return bundleOf(
         AnalyticsValues.Params.FICHE_VIDEO_KEY to key
+    )
+}
+
+fun CountryUi.getTrackingParameters(): Bundle {
+    val countryTracking = when(availableCountry) {
+        AvailableCountry.UNITED_STATES_AMERICA -> "us"
+        AvailableCountry.GREAT_BRITAIN -> "gb"
+        AvailableCountry.GERMANY -> "de"
+    }
+    return bundleOf(
+        AnalyticsValues.Params.COUNTRY_ID to countryTracking
     )
 }

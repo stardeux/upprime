@@ -22,6 +22,8 @@ class SelectCountryFragment : Fragment(R.layout.fragment_country) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        selectCountryViewModel.trackScreen(requireActivity())
+
         with(countriesRecycler) {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = CountryAdapter()
