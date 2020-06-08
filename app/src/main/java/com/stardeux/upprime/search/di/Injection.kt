@@ -1,5 +1,6 @@
 package com.stardeux.upprime.search.di
 
+import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
@@ -19,7 +20,7 @@ val searchModule = module {
     factory { provideAmazonSearchMediaMapper() }
     factory { provideAmazonSearchRepository(get(), get()) }
     factory { provideAmazonSearchResultUiMapper() }
-    viewModel { provideSearchViewModel(getUserScope().get(), get()) }
+    viewModel { provideSearchViewModel(getUserScope().get(), get(), get()) }
 
     scope<AvailableCountry> {
         factory { provideAmazonSearchUseCase(get(), get()) }
@@ -53,7 +54,8 @@ private fun provideAmazonSearchUseCase(
 
 private fun provideSearchViewModel(
     amazonSearchUseCase: AmazonSearchUseCase,
-    amazonSearchResultUiMapper: AmazonSearchResultUiMapper
+    amazonSearchResultUiMapper: AmazonSearchResultUiMapper,
+    analyticsWrapper: AnalyticsWrapper
 ): SearchViewModel {
-    return SearchViewModel(amazonSearchUseCase, amazonSearchResultUiMapper)
+    return SearchViewModel(amazonSearchUseCase, amazonSearchResultUiMapper, analyticsWrapper)
 }
