@@ -25,6 +25,7 @@ object AnalyticsValues {
 
         const val SHARE_APP_CLICKED = "share_app_clicked"
         const val COUNTRY_CLICKED = "search"
+        const val RATE_APP_CLICKED = "rate_app_clicked"
     }
 
     object Params {

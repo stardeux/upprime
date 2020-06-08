@@ -29,6 +29,7 @@ class ReleaseTabListingViewModel(
     }
 
     fun onRateAppClicked() {
+        analyticsWrapper.logEvent(AnalyticsValues.Event.RATE_APP_CLICKED)
         rateAppUseCase.setRateAppAnswer(RateAppAnswer.YES)
         _event.value = Event.RateApp
     }
