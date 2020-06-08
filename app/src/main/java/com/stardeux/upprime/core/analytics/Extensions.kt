@@ -32,15 +32,16 @@ fun MediaVideoUi.getTrackingParameters(): Bundle {
     )
 }
 
-fun CountryUi.getTrackingParameters(): Bundle {
-    val countryTracking = when (availableCountry) {
+fun CountryUi.getTrackingValue(): String {
+    return when (availableCountry) {
         AvailableCountry.UNITED_STATES_AMERICA -> "us"
         AvailableCountry.GREAT_BRITAIN -> "gb"
         AvailableCountry.GERMANY -> "de"
     }
-    return bundleOf(
-        AnalyticsValues.Params.COUNTRY_ID to countryTracking
-    )
+}
+
+fun CountryUi.getTrackingParameters(): Bundle {
+    return bundleOf(AnalyticsValues.Params.COUNTRY_ID to getTrackingValue())
 }
 
 fun MediaItemUi.getTrackingParameters(): Bundle {
@@ -54,7 +55,7 @@ fun MediaItemUi.getTrackingParameters(): Bundle {
 }
 
 fun RateAppAnswer.getTrackingParameters(): Bundle {
-    val value = when(this) {
+    val value = when (this) {
         RateAppAnswer.YES -> AnalyticsValues.ParamsValue.ANSWER_YES
         RateAppAnswer.NEVER -> AnalyticsValues.ParamsValue.ANSWER_NEVER
         RateAppAnswer.NOT_NOW -> AnalyticsValues.ParamsValue.ANSWER_NOT_NOW

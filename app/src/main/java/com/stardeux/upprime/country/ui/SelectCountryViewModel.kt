@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.stardeux.upprime.core.analytics.AnalyticsValues
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.analytics.getTrackingParameters
+import com.stardeux.upprime.core.analytics.getTrackingValue
 import com.stardeux.upprime.country.ui.model.CountryUi
 import com.stardeux.upprime.country.usecase.GetAvailableCountryUseCase
 import com.stardeux.upprime.country.usecase.GetFlagUrlUseCase
@@ -41,6 +42,8 @@ class SelectCountryViewModel(
 
     private fun onFlagClicked(countryUi: CountryUi) {
         analyticsWrapper.logEvent(AnalyticsValues.Event.COUNTRY_SELECTED, countryUi.getTrackingParameters())
+        analyticsWrapper.setUserProperty(AnalyticsValues.UserProperty.COUNTRY, countryUi.getTrackingValue())
+
         selectedUserCountryUseCase.setSelectedCountry(countryUi.availableCountry)
         _selectedCountry.value = countryUi
     }

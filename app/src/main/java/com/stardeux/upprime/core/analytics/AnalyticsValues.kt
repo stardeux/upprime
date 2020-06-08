@@ -57,4 +57,8 @@ object AnalyticsValues {
         const val ANSWER_NOT_NOW = "not_now"
     }
 
+    object UserProperty {
+        const val COUNTRY = "country"
+    }
+
 }
