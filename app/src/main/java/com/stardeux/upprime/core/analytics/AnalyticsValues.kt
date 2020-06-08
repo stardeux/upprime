@@ -9,6 +9,7 @@ object AnalyticsValues {
         const val FICHE = "fiche"
         const val COUNTRY = "country"
         const val SPLASH_SCREEN = "splash_screen"
+        const val PRIVACY_POLICY = "privacy_policy"
     }
 
     object Event {
@@ -27,6 +28,8 @@ object AnalyticsValues {
         const val COUNTRY_CLICKED = "search"
         const val RATE_APP_CLICKED = "rate_app_clicked"
         const val RATE_APP_ANSWERED = "rate_app_answered"
+
+        const val PRIVACY_POLICY_CLICKED = "privacy_policy_clicked"
     }
 
     object Params {

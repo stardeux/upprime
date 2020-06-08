@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.stardeux.upprime.R
+import com.stardeux.upprime.app.UpPrimeApplication
 import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.playStoreThisApp
@@ -19,6 +20,8 @@ import com.stardeux.upprime.core.ui.OnlyOnTabSelectedListener
 import com.stardeux.upprime.country.ui.SelectCountryActivity
 import com.stardeux.upprime.rate.usecase.RateAppAnswer
 import com.stardeux.upprime.search.ui.SearchActivity
+import com.stardeux.upprime.webview.PrivacyPolicyActivity
+import com.stardeux.upprime.webview.WebViewActivity
 import kotlinx.android.synthetic.main.fragment_tab_listing.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -91,6 +94,9 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
             ReleaseTabListingViewModel.Event.ShareApp -> {
                 shareApp()
             }
+            ReleaseTabListingViewModel.Event.PrivacyPolicy -> {
+                startActivity(PrivacyPolicyActivity.newIntent(requireContext()))
+            }
         }.exhaustive
     }
 
@@ -111,6 +117,10 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
             }
             R.id.item_rate_app -> {
                 releaseTabViewModel.onRateAppClicked()
+                true
+            }
+            R.id.item_privacy_policy -> {
+                releaseTabViewModel.onPrivacyPolicyClicked()
                 true
             }
             else -> {

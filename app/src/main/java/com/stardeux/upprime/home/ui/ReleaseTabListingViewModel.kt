@@ -34,6 +34,11 @@ class ReleaseTabListingViewModel(
         }
     }
 
+    fun onPrivacyPolicyClicked() {
+        analyticsWrapper.logEvent(AnalyticsValues.Event.PRIVACY_POLICY_CLICKED)
+        _event.value = Event.PrivacyPolicy
+    }
+
     fun onRateAppClicked() {
         analyticsWrapper.logEvent(AnalyticsValues.Event.RATE_APP_CLICKED)
         rateAppUseCase.setRateAppAnswer(RateAppAnswer.YES)
@@ -69,5 +74,6 @@ class ReleaseTabListingViewModel(
         object Search : Event()
         object Country : Event()
         object ShareApp : Event()
+        object PrivacyPolicy : Event()
     }
 }

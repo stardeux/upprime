@@ -34,6 +34,8 @@
 
         <activity android:name=".search.ui.SearchActivity" android:windowSoftInputMode="adjustResize" />
 
+        <activity android:name=".webview.PrivacyPolicyActivity"/>
+
         <service
             android:name=".core.messaging.MyFirebaseMessagingService"
             android:exported="false">

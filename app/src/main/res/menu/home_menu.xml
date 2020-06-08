@@ -19,4 +19,8 @@
     <item
         android:id="@+id/item_rate_app"
         android:title="@string/rate_app_menu_item_title" />
+
+    <item
+        android:id="@+id/item_privacy_policy"
+        android:title="@string/privacy_policy" />
 </menu>
