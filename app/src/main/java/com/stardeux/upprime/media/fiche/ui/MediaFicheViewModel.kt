@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stardeux.upprime.core.analytics.AnalyticsValues
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
+import com.stardeux.upprime.core.analytics.getTrackingParameters
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
@@ -47,8 +48,8 @@ class MediaFicheViewModel(
     private val _credits = MutableLiveData<CreditsUi>()
     val credits: LiveData<CreditsUi> = _credits
 
-    private val _videoClicked = SingleLiveEvent<MediaVideoUi>()
-    val videoClicked: LiveData<MediaVideoUi> = _videoClicked
+    private val _events = SingleLiveEvent<Event>()
+    val events: LiveData<Event> = _events
 
     private val _illustration = MutableLiveData<Illustration>()
     val illustration: LiveData<Illustration> = _illustration
@@ -90,14 +91,31 @@ class MediaFicheViewModel(
         }
     }
 
+    fun onShareClicked(shortMedia: ShortMedia) {
+        analyticsWrapper.logEvent(
+            AnalyticsValues.Event.FICHE_SHARE, shortMedia.getTrackingParameters()
+        )
+        _events.value = Event.ShareClicked(shortMedia)
+    }
+
     private fun onMediaVideoUiClicked(mediaVideoUi: MediaVideoUi) {
-        analyticsWrapper.logEvent(AnalyticsValues.Event.FICHE_VIDEO_CLICKED, bundleOf(
-            AnalyticsValues.Params.FICHE_VIDEO_KEY to mediaVideoUi.key
-        ))
-        _videoClicked.value = mediaVideoUi
+        trackVideo(mediaVideoUi)
+        _events.value = Event.VideoClicked(mediaVideoUi)
+    }
+
+    private fun trackVideo(mediaVideoUi: MediaVideoUi) {
+        analyticsWrapper.logEvent(
+            AnalyticsValues.Event.FICHE_VIDEO_CLICKED,
+            mediaVideoUi.getTrackingParameters()
+        )
     }
 
     fun trackScreen(activity: Activity) {
         analyticsWrapper.setCurrentScreen(activity, AnalyticsValues.Screen.FICHE)
+    }
+
+    sealed class Event {
+        class VideoClicked(val mediaVideoUi: MediaVideoUi) : Event()
+        class ShareClicked(val shortMedia: ShortMedia) : Event()
     }
 }

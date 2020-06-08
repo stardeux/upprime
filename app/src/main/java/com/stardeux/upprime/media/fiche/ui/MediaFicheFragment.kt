@@ -50,7 +50,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.item_share_media) {
-            shareMedia(shortMedia)
+            mediaFicheViewModel.onShareClicked(shortMedia)
             true
         } else {
             super.onOptionsItemSelected(item)
@@ -72,7 +72,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             load(shortMedia)
             mediaItemUi.observeNotNull(viewLifecycleOwner, ::bindFiche)
             videos.observeNotNull(viewLifecycleOwner, ::bindVideos)
-            videoClicked.observeNotNull(viewLifecycleOwner, ::onVideoClicked)
+            events.observeNotNull(viewLifecycleOwner, ::onVideoClicked)
             credits.observeNotNull(viewLifecycleOwner, ::bindCredits)
             illustration.observeNotNull(viewLifecycleOwner, ::onIllustration)
         }
@@ -98,8 +98,16 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     }
 
 
-    private fun onVideoClicked(mediaVideoUi: MediaVideoUi) {
-        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mediaVideoUi.videoUrl)))
+    private fun onVideoClicked(event: MediaFicheViewModel.Event) {
+        when (event) {
+            is MediaFicheViewModel.Event.VideoClicked -> {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(event.mediaVideoUi.videoUrl)))
+            }
+            is MediaFicheViewModel.Event.ShareClicked -> {
+                shareMedia(event.shortMedia)
+            }
+        }
+
     }
 
     private fun bindCredits(mediaCreditsList: CreditsUi) {

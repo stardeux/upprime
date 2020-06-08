@@ -14,6 +14,7 @@ object AnalyticsValues {
         const val SEARCH_RESULTS_CLICKED = "search_results_clicked"
 
         const val FICHE_VIDEO_CLICKED = "fiche_video_clicked"
+        const val FICHE_SHARE = "fiche_share"
     }
 
     object Params {
