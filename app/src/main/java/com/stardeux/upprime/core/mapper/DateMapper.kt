@@ -8,7 +8,15 @@ import java.text.NumberFormat
 import java.util.*
 
 fun mapRuntimeToString(runtimeMinute: Int?): String? {
-    return runtimeMinute?.let { String.format("%dh%02dm", it / 60, it % 60) }
+    return runtimeMinute?.let {
+        val hours = it / 60
+        if (hours >= 1) {
+            String.format("%dh%02dm", hours, it % 60)
+        } else {
+            String.format("%dm", it)
+        }
+
+    }
 }
 
 fun mapReleaseDateToYear(localDate: LocalDate?): String? {
