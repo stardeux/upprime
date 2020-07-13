@@ -51,7 +51,7 @@ abstract class AmazonMediaViewModel(
             return
         }
 
-        if (_mediaItems.value?.isEmpty() == true) {
+        if (_mediaItems.value.isNullOrEmpty()) {
             _loadingDataState.value = DataLoading.Loading
         }
 
@@ -59,7 +59,7 @@ abstract class AmazonMediaViewModel(
             Log.e("Loading Error", "loading failed", exception)
             analyticsWrapper.recordException(exception)
 
-            if (_mediaItems.value?.isEmpty() == true) {
+            if (_mediaItems.value.isNullOrEmpty()) {
                 _loadingDataState.value = DataLoading.Error
             }
         }
