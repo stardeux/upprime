@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/errorIllustration"
+        android:layout_width="@dimen/error_view_illustration_size"
+        android:layout_height="@dimen/error_view_illustration_size"
+        android:src="@drawable/ic_baseline_error_outline_24"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/errorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/errorText"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginBottom="@dimen/big_margin"
+        android:gravity="center"
+        android:text="@string/error_details"
+        app:layout_constraintBottom_toTopOf="@id/errorCta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/errorIllustration" />
+
+    <Button
+        android:id="@+id/errorCta"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:text="@string/error_cta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/errorText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

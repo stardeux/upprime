@@ -51,4 +51,8 @@
     <string name="rate_app_answer_not_now">Not now</string>
 
     <string name="privacy_policy">Privacy policy</string>
+
+    <!-- Error -->
+    <string name="error_details">An error occurred while fetching data</string>
+    <string name="error_cta">Try again</string>
 </resources>

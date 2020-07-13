@@ -37,6 +37,8 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
             SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.media_list_item_spacing))
         mediaListingRecycler.addItemDecoration(decoration)
 
+        mediaListingError.setOnRetryClicked { latestViewModel.loadNext() }
+
         latestViewModel.navigationEvent.observeNotNull(viewLifecycleOwner, ::handleNavigationEvent)
         latestViewModel.datedMediaItems.observeNotNull(viewLifecycleOwner) {
             getMediaAdapter().submitList(it)

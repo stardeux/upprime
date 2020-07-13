@@ -29,4 +29,7 @@
     <dimen name="small_margin">4dp</dimen>
     <dimen name="medium_margin">8dp</dimen>
     <dimen name="big_margin">12dp</dimen>
+
+    <!-- Error view -->
+    <dimen name="error_view_illustration_size">60dp</dimen>
 </resources>
