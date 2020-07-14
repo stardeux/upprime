@@ -46,6 +46,15 @@ abstract class AmazonMediaViewModel(
 
     private var loadDetailsJob: Job? = null
 
+    private val errorHandler = CoroutineExceptionHandler { _, exception ->
+        Log.e("Loading Error", "loading failed", exception)
+        analyticsWrapper.recordException(exception)
+
+        if (_mediaItems.value.isNullOrEmpty()) {
+            _loadingDataState.value = DataLoading.Error
+        }
+    }
+
     fun loadNext() {
         if (totalCount > 0 && _mediaItems.value?.size ?: 0 >= totalCount) {
             return
@@ -53,15 +62,6 @@ abstract class AmazonMediaViewModel(
 
         if (_mediaItems.value.isNullOrEmpty()) {
             _loadingDataState.value = DataLoading.Loading
-        }
-
-        val errorHandler = CoroutineExceptionHandler { _, exception ->
-            Log.e("Loading Error", "loading failed", exception)
-            analyticsWrapper.recordException(exception)
-
-            if (_mediaItems.value.isNullOrEmpty()) {
-                _loadingDataState.value = DataLoading.Error
-            }
         }
 
         viewModelScope.launch(errorHandler) {
