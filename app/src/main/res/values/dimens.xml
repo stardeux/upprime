@@ -32,4 +32,5 @@
 
     <!-- Error view -->
     <dimen name="error_view_illustration_size">60dp</dimen>
+    <dimen name="error_view_text_margin">16dp</dimen>
 </resources>

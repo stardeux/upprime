@@ -28,7 +28,7 @@ abstract class AmazonMediaViewModel(
     private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {
 
-    private var page = 0
+    private var page = 1
     private var totalCount = 0
 
     private val _mediaItems = MutableLiveData<List<MediaItemUi>>()
@@ -65,8 +65,8 @@ abstract class AmazonMediaViewModel(
         }
 
         viewModelScope.launch(errorHandler) {
-            page++
             val result = getAmazonMedia(page)
+            page++
             totalCount = result.count
 
             val mediaUi = result.shortMedia.map { mediaDetailsMapper.mapToMediaUi(it, ::onCardClicked) }
