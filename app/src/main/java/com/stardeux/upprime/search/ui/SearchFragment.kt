@@ -13,6 +13,7 @@ import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.MediaFicheActivity
+import com.stardeux.upprime.network.amazon.di.amazonNetworkModule
 import com.stardeux.upprime.search.ui.list.SearchResultAdapter
 import com.stardeux.upprime.search.ui.model.AmazonSearchResultUi
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
@@ -46,6 +47,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         mediaTypeFiltersGroup.setOnCheckedChangeListener { _, checkedId ->
             searchViewModel.onMediaTypeFilterChanged(mapRadioButtonIdToFilter(checkedId))
+        }
+
+        searchErrorView.setOnRetryClicked {
+            searchViewModel.retry()
         }
 
         with(searchViewModel) {
@@ -90,6 +95,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun handleSearchResults(amazonSearchResults: SearchViewModel.ViewState) {
         searchCriteriaGroup.isVisible = amazonSearchResults is SearchViewModel.ViewState.Criteria
         searchProgressBar.isVisible = amazonSearchResults is SearchViewModel.ViewState.Loading
+        searchErrorView.isVisible = amazonSearchResults is SearchViewModel.ViewState.Error
         searchResultRecycler.isVisible = amazonSearchResults is SearchViewModel.ViewState.Results
         if (amazonSearchResults is SearchViewModel.ViewState.Results) {
             (searchResultRecycler.adapter as SearchResultAdapter).submitResults(amazonSearchResults.result)
