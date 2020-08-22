@@ -38,6 +38,10 @@
     <string name="search_filter_year_end">To</string>
     <string name="search_hint">Search</string>
 
+    <!-- Empty search -->
+    <string name="empty_search_caption">No results found for</string>
+
+
     <!-- Share app -->
     <string name="share_app_text">Look at this app and don\'t miss any new Prime Video release : %s</string>
     <string name="share_app_title">Share %s</string>

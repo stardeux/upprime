@@ -1,1 +1,1 @@
-En train de travailler sur l'error view de la recherche, il reste à tenter le click sur le bouton
+Faire l'empty view de la recherche

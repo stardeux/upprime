@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
         homeViewModel.isInterstitialActivated.observeNotNull(this, ::handleInterstitialActivated)
         homeViewModel.displayInterstitial.observeNotNull(this, ::handleDisplayInterstitial)
 
-        loadBottomBanner()
+        //loadBottomBanner()
     }
 
     private fun handleInterstitialActivated(isInterActivated: Boolean) {

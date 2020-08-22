@@ -91,27 +91,20 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
     }
 
-
     private fun handleSearchResults(amazonSearchResults: SearchViewModel.ViewState) {
         searchCriteriaGroup.isVisible = amazonSearchResults is SearchViewModel.ViewState.Criteria
         searchProgressBar.isVisible = amazonSearchResults is SearchViewModel.ViewState.Loading
         searchErrorView.isVisible = amazonSearchResults is SearchViewModel.ViewState.Error
-        searchResultRecycler.isVisible = amazonSearchResults is SearchViewModel.ViewState.Results
-        if (amazonSearchResults is SearchViewModel.ViewState.Results) {
-            (searchResultRecycler.adapter as SearchResultAdapter).submitResults(amazonSearchResults.result)
-        }
-        /*
-        when(amazonSearchResults) {
-            SearchViewModel.ViewState.Criteria -> {
+        searchResultRecycler.isVisible = amazonSearchResults is SearchViewModel.ViewState.Results && amazonSearchResults.result.isNotEmpty()
+        searchEmptyView.isVisible = amazonSearchResults is SearchViewModel.ViewState.Results && amazonSearchResults.result.isEmpty()
 
+        if (amazonSearchResults is SearchViewModel.ViewState.Results) {
+            if (amazonSearchResults.result.isEmpty()) {
+                searchEmptyView.setEmptyQuery(amazonSearchResults.query)
+            } else {
+                (searchResultRecycler.adapter as SearchResultAdapter).submitResults(amazonSearchResults.result)
             }
-            SearchViewModel.ViewState.Loading -> {
-                searchProgressBar.isVisible = true
-            }
-            is SearchViewModel.ViewState.Results -> TODO()
-        }*/
-        //searchProgressBar.isVisible = false
-        //(searchResultRecycler.adapter as SearchResultAdapter).submitResults(amazonSearchResults)
+        }
     }
 
     private fun mapRadioButtonIdToFilter(@IdRes radioButtonId: Int): MediaTypeFilter {

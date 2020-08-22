@@ -62,7 +62,7 @@ class SearchViewModel(
         _searchQuery.value?.let {
             _results.value = ViewState.Loading
             queryJob = viewModelScope.launch(errorHandler) {
-                _results.value = ViewState.Results(search(it))
+                _results.value = ViewState.Results(it, search(it))
             }
         }
     }
@@ -91,7 +91,7 @@ class SearchViewModel(
             _results.value = ViewState.Loading
             queryJob = viewModelScope.launch(errorHandler) {
                 delay(1000)
-                _results.value = ViewState.Results(search(queryText))
+                _results.value = ViewState.Results(queryText, search(queryText))
             }
         }
     }
@@ -151,6 +151,6 @@ class SearchViewModel(
         object Criteria : ViewState()
         object Loading : ViewState()
         object Error : ViewState()
-        class Results(val result: List<AmazonSearchResultUi>) : ViewState()
+        class Results(val query: String, val result: List<AmazonSearchResultUi>) : ViewState()
     }
 }
