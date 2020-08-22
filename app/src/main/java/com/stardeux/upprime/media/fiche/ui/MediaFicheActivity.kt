@@ -42,7 +42,7 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
             }
         }
 
-        //loadBottomBanner()
+        loadBottomBanner()
     }
 
     private fun loadBottomBanner() {
