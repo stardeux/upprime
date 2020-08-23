@@ -54,4 +54,7 @@
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
 
+# For GSON parsing
+-keepclassmembers enum * { *; }
+
 ##---------------End: proguard configuration for Gson  ----------
