@@ -21,6 +21,7 @@ class GetFlagUrlUseCase {
             AvailableCountry.UNITED_STATES_AMERICA -> "us"
             AvailableCountry.GREAT_BRITAIN -> "gb"
             AvailableCountry.GERMANY -> "de"
+            AvailableCountry.ARGENTINA -> "ar"
         }
     }
 

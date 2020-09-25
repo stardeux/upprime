@@ -19,5 +19,6 @@ fun mapToCountryNameResId(availableCountry: AvailableCountry): Int {
         AvailableCountry.UNITED_STATES_AMERICA -> R.string.country_us_name
         AvailableCountry.GREAT_BRITAIN -> R.string.country_uk_name
         AvailableCountry.GERMANY -> R.string.country_de_name
+        AvailableCountry.ARGENTINA -> R.string.country_ar_name
     }
 }

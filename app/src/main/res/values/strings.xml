@@ -12,6 +12,7 @@
     <string name="country_us_name">United States</string>
     <string name="country_uk_name">United Kingdom</string>
     <string name="country_de_name">Germany</string>
+    <string name="country_ar_name">Argentina</string>
 
     <!-- Settings -->
     <string name="change_country_menu_item_name">Change country</string>

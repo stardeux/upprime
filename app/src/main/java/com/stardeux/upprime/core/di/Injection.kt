@@ -31,7 +31,7 @@ private fun provideSharedPreference(context: Context): SharedPreferences {
 }
 
 private fun provideLocale(): Locale {
-    return if (BuildConfig.DEBUG) Locale.US else Locale.getDefault()
+    return Locale.getDefault()
 }
 
 private fun provideRemoteConfWrapper(firebaseRemoteConfig: FirebaseRemoteConfig): RemoteConfWrapper {
