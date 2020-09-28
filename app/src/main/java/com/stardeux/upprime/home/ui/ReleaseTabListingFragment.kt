@@ -1,6 +1,7 @@
 package com.stardeux.upprime.home.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -104,7 +105,9 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_settings -> {
-                releaseTabViewModel.onCountryClicked()
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("intent://watch.amazon.com/watch?asin=amzn1.dv.gti.16b38d58-ad87-92ac-e184-b6212e627223"))
+                startActivity(intent)
+                //releaseTabViewModel.onCountryClicked()
                 true
             }
             R.id.action_search -> {
