@@ -13,9 +13,9 @@ import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import kotlinx.android.synthetic.main.item_video.view.*
 
 class MediaVideoItem : ConstraintLayout {
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context, attrs, defStyleAttr
     )
 
