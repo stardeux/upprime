@@ -5,11 +5,15 @@ import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
 import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.core.model.MediaType
+import com.stardeux.upprime.tmdb.common.mapper.AmazonPlayUriMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
-class MediaFicheUiMapper(private val posterMapper: PosterMapper) {
+class MediaFicheUiMapper(
+    private val posterMapper: PosterMapper,
+    private val amazonPlayUriMapper: AmazonPlayUriMapper
+) {
 
     suspend fun mapToMediaFicheUi(
         movieDetails: MovieDetails
@@ -29,7 +33,8 @@ class MediaFicheUiMapper(private val posterMapper: PosterMapper) {
                 posterUrl = posterMapper.getCompletePosterUrl(posterPath),
                 amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
                 synopsis = synopsis,
-                backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath)
+                backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
+                amazonPlayUri = amazonPlayUriMapper.getAmazonPlayUri(movieDetails)
             )
         }
     }
@@ -52,7 +57,8 @@ class MediaFicheUiMapper(private val posterMapper: PosterMapper) {
                 posterUrl = posterMapper.getCompletePosterUrl(posterPath),
                 amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
                 synopsis = synopsis,
-                backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath)
+                backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
+                amazonPlayUri = amazonPlayUriMapper.getAmazonPlayUri(seriesDetails)
             )
         }
     }

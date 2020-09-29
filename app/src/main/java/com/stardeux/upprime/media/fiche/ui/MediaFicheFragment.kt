@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
+import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
@@ -65,13 +66,13 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             addItemDecoration(SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.video_list_item_margin)))
         }
 
-        val shortMedia: ShortMedia = requireNotNull(arguments?.getParcelable(MEDIA_ARG))
+        fab.setOnClickListener { mediaFicheViewModel.onFabClicked() }
 
         with(mediaFicheViewModel) {
-            load(shortMedia)
+            load()
             mediaItemUi.observeNotNull(viewLifecycleOwner, ::bindFiche)
             videos.observeNotNull(viewLifecycleOwner, ::bindVideos)
-            events.observeNotNull(viewLifecycleOwner, ::onVideoClicked)
+            events.observeNotNull(viewLifecycleOwner, ::onFicheClickEvent)
             credits.observeNotNull(viewLifecycleOwner, ::bindCredits)
             illustration.observeNotNull(viewLifecycleOwner, ::onIllustration)
         }
@@ -97,7 +98,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     }
 
 
-    private fun onVideoClicked(event: MediaFicheViewModel.Event) {
+    private fun onFicheClickEvent(event: MediaFicheViewModel.Event) {
         when (event) {
             is MediaFicheViewModel.Event.VideoClicked -> {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(event.mediaVideoUi.videoUrl)))
@@ -105,8 +106,10 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
             is MediaFicheViewModel.Event.ShareClicked -> {
                 shareMedia(event.shortMedia)
             }
-        }
-
+            is MediaFicheViewModel.Event.PlayClicked -> {
+                startActivity(Intent(Intent.ACTION_VIEW, event.mediaFicheUi.amazonPlayUri))
+            }
+        }.exhaustive
     }
 
     private fun bindCredits(mediaCreditsList: CreditsUi) {

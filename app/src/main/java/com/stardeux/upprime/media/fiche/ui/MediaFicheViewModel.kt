@@ -59,7 +59,7 @@ class MediaFicheViewModel(
         rateAppUseCase.incrementFavorableAction()
     }
 
-    fun load(shortMedia: ShortMedia) {
+    fun load() {
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
             Log.e("FicheVM", "error", throwable)
             analyticsWrapper.recordException(throwable)
@@ -99,6 +99,15 @@ class MediaFicheViewModel(
         _events.value = Event.ShareClicked(shortMedia)
     }
 
+    fun onFabClicked() {
+        analyticsWrapper.logEvent(
+            AnalyticsValues.Event.FICHE_PLAY, shortMedia.getTrackingParameters()
+        )
+        _mediaItemUi.value?.let {
+            _events.value = Event.PlayClicked(it)
+        }
+    }
+
     private fun onMediaVideoUiClicked(mediaVideoUi: MediaVideoUi) {
         trackVideo(mediaVideoUi)
         _events.value = Event.VideoClicked(mediaVideoUi)
@@ -118,5 +127,6 @@ class MediaFicheViewModel(
     sealed class Event {
         class VideoClicked(val mediaVideoUi: MediaVideoUi) : Event()
         class ShareClicked(val shortMedia: ShortMedia) : Event()
+        class PlayClicked(val mediaFicheUi: MediaFicheUi) : Event()
     }
 }

@@ -19,6 +19,7 @@ object AnalyticsValues {
 
         const val FICHE_VIDEO_CLICKED = "fiche_video_clicked"
         const val FICHE_SHARE = "fiche_share"
+        const val FICHE_PLAY = "fiche_play"
 
         const val COUNTRY_SELECTED = "country_selected"
 
