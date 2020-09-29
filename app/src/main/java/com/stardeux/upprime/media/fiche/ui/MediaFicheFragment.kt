@@ -9,6 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -24,6 +25,7 @@ import com.stardeux.upprime.core.ui.SpacesItemDecoration
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.model.Illustration
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
+import com.stardeux.upprime.rate.usecase.RateAppAnswer
 import com.stardeux.upprime.tmdb.credit.ui.model.CreditsUi
 import com.stardeux.upprime.tmdb.video.ui.list.MediaVideoAdapter
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
@@ -107,7 +109,7 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
                 shareMedia(event.shortMedia)
             }
             is MediaFicheViewModel.Event.PlayClicked -> {
-                startActivity(Intent(Intent.ACTION_VIEW, event.mediaFicheUi.amazonPlayUri))
+                startActivity(event.intent)
             }
         }.exhaustive
     }

@@ -2,6 +2,7 @@ package com.stardeux.upprime.core.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import androidx.preference.PreferenceManager
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -10,6 +11,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.stardeux.upprime.BuildConfig
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.remoteconf.RemoteConfWrapper
+import com.stardeux.upprime.core.usecase.IsIntentResolvableUseCase
 import org.koin.dsl.module
 import java.util.*
 
@@ -24,6 +26,9 @@ val coreModule = module {
 
     single { provideFirebaseRemoteConfig() }
     single { provideRemoteConfWrapper(get()) } //Single to assure init routine once
+
+    factory { providePackageManager(get()) }
+    factory { provideIsIntentResolvableUseCase(get()) }
 }
 
 private fun provideSharedPreference(context: Context): SharedPreferences {
@@ -54,4 +59,12 @@ private fun provideFirebaseAnalytics(context: Context): FirebaseAnalytics {
 
 private fun provideFirebaseCrashlytics(): FirebaseCrashlytics {
     return FirebaseCrashlytics.getInstance()
+}
+
+private fun providePackageManager(context: Context): PackageManager {
+    return context.packageManager
+}
+
+private fun provideIsIntentResolvableUseCase(packageManager: PackageManager): IsIntentResolvableUseCase {
+    return IsIntentResolvableUseCase(packageManager)
 }

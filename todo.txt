@@ -1,1 +1,5 @@
-Faire l'empty view de la recherche
+Je suis en train de gerer le click pour play
+Quand je click sur play je redirige soit vers l'app si elle est installée soit sur le web
+Je sais compute l'intent pour l'app
+Je trouve l'url web dans :     @SerializedName("Link") val amazonId: String?,
+qui etait avant @SerializedName("ASIN") val amazonId: String?

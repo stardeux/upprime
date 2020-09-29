@@ -2,15 +2,15 @@ package com.stardeux.upprime.media.fiche.di
 
 import android.content.Context
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
+import com.stardeux.upprime.core.usecase.IsIntentResolvableUseCase
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
-import com.stardeux.upprime.media.fiche.ui.MediaFicheActivity
 import com.stardeux.upprime.media.fiche.ui.MediaFicheFragment
 import com.stardeux.upprime.media.fiche.ui.MediaFicheViewModel
-import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUiMapper
+import com.stardeux.upprime.media.fiche.ui.mapper.MediaFicheUiMapper
 import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
 import com.stardeux.upprime.rate.usecase.RateAppUseCase
-import com.stardeux.upprime.tmdb.common.mapper.AmazonPlayUriMapper
+import com.stardeux.upprime.media.fiche.ui.mapper.AmazonPlayNativeUriMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
@@ -26,7 +26,7 @@ val ficheModule = module {
     factory { (fragment: MediaFicheFragment) -> provideShortMedia(fragment) }
     factory { (fragment: MediaFicheFragment) ->
         provideMediaFicheViewModel(
-            get { parametersOf(fragment) }, get(), get(), get(), get(), get(), get(), get()
+            get { parametersOf(fragment) }, get(), get(), get(), get(), get(), get(), get(), get()
         )
     }
 }
@@ -47,7 +47,8 @@ private fun provideMediaFicheViewModel(
     mediaVideoMapper: MediaVideoMapper,
     mediaIllustrationUseCase: MediaIllustrationUseCase,
     rateAppUseCase: RateAppUseCase,
-    analyticsWrapper: AnalyticsWrapper
+    analyticsWrapper: AnalyticsWrapper,
+    isIntentResolvableUseCase: IsIntentResolvableUseCase
 ): MediaFicheViewModel {
     return MediaFicheViewModel(
         shortMedia,
@@ -57,7 +58,8 @@ private fun provideMediaFicheViewModel(
         mediaVideoMapper,
         mediaIllustrationUseCase,
         rateAppUseCase,
-        analyticsWrapper
+        analyticsWrapper,
+        isIntentResolvableUseCase
     )
 }
 
@@ -65,12 +67,12 @@ private fun provideMediaVideoMapper(): MediaVideoMapper {
     return MediaVideoMapper()
 }
 
-private fun provideAmazonPlayUriMapper(): AmazonPlayUriMapper {
-    return AmazonPlayUriMapper()
+private fun provideAmazonPlayUriMapper(): AmazonPlayNativeUriMapper {
+    return AmazonPlayNativeUriMapper()
 }
 
 private fun provideMediaFicheUiMapper(
-    posterMapper: PosterMapper, amazonPlayUriMapper: AmazonPlayUriMapper
+    posterMapper: PosterMapper, amazonPlayNativeUriMapper: AmazonPlayNativeUriMapper
 ): MediaFicheUiMapper {
-    return MediaFicheUiMapper(posterMapper, amazonPlayUriMapper)
+    return MediaFicheUiMapper(posterMapper, amazonPlayNativeUriMapper)
 }

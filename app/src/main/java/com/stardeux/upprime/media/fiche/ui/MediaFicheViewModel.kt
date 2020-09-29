@@ -1,6 +1,7 @@
 package com.stardeux.upprime.media.fiche.ui
 
 import android.app.Activity
+import android.content.Intent
 import android.util.Log
 import androidx.annotation.ColorInt
 import androidx.core.os.bundleOf
@@ -12,6 +13,7 @@ import com.stardeux.upprime.core.analytics.AnalyticsValues
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.analytics.getTrackingParameters
 import com.stardeux.upprime.core.ui.SingleLiveEvent
+import com.stardeux.upprime.core.usecase.IsIntentResolvableUseCase
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.model.Illustration
@@ -37,7 +39,8 @@ class MediaFicheViewModel(
     private val mediaVideoMapper: MediaVideoMapper,
     private val mediaIllustrationUseCase: MediaIllustrationUseCase,
     rateAppUseCase: RateAppUseCase,
-    private val analyticsWrapper: AnalyticsWrapper
+    private val analyticsWrapper: AnalyticsWrapper,
+    private val isIntentResolvableUseCase: IsIntentResolvableUseCase
 ) : ViewModel() {
 
     private val _mediaItemUi = MutableLiveData<MediaFicheUi>()
@@ -104,7 +107,13 @@ class MediaFicheViewModel(
             AnalyticsValues.Event.FICHE_PLAY, shortMedia.getTrackingParameters()
         )
         _mediaItemUi.value?.let {
-            _events.value = Event.PlayClicked(it)
+
+            val intent = Intent(Intent.ACTION_VIEW, it.amazonPlayUri)
+            if (isIntentResolvableUseCase.isResolvable(intent)) {
+                _events.value = Event.PlayClicked(intent)
+            } else {
+                //Redirect to web
+            }
         }
     }
 
@@ -127,6 +136,6 @@ class MediaFicheViewModel(
     sealed class Event {
         class VideoClicked(val mediaVideoUi: MediaVideoUi) : Event()
         class ShareClicked(val shortMedia: ShortMedia) : Event()
-        class PlayClicked(val mediaFicheUi: MediaFicheUi) : Event()
+        class PlayClicked(val intent: Intent) : Event()
     }
 }
