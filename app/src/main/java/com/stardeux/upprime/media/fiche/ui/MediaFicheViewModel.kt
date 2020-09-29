@@ -92,7 +92,7 @@ class MediaFicheViewModel(
         }
     }
 
-    fun onShareClicked(shortMedia: ShortMedia) {
+    fun onShareClicked() {
         analyticsWrapper.logEvent(
             AnalyticsValues.Event.FICHE_SHARE, shortMedia.getTrackingParameters()
         )
