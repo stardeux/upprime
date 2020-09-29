@@ -1,190 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:paddingBottom="8dp">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp">
 
-        <ImageView
-            android:id="@+id/mediaCouv"
-            android:layout_width="0dp"
-            android:layout_height="220dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/colorPrimary" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/mediaPoster"
-            android:layout_width="120dp"
-            android:layout_height="160dp"
-            android:layout_marginStart="40dp"
-            app:layout_constraintBottom_toBottomOf="@id/mediaCouv"
-            app:layout_constraintStart_toStartOf="@id/mediaCouv"
-            app:layout_constraintTop_toTopOf="@id/mediaCouv"
-            tools:background="@android:color/holo_red_dark" />
+            <ImageView
+                android:id="@+id/mediaCouv"
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/colorPrimary" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/startGuideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.03" />
+            <ImageView
+                android:id="@+id/mediaPoster"
+                android:layout_width="120dp"
+                android:layout_height="160dp"
+                android:layout_marginStart="40dp"
+                app:layout_constraintBottom_toBottomOf="@id/mediaCouv"
+                app:layout_constraintStart_toStartOf="@id/mediaCouv"
+                app:layout_constraintTop_toTopOf="@id/mediaCouv"
+                tools:background="@android:color/holo_red_dark" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/endGuideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.97" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/startGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.03" />
 
-        <TextView
-            android:id="@+id/mediaTitle"
-            style="@style/TextAppearance.MaterialComponents.Headline4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaCouv"
-            tools:text="Titanic" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/endGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.97" />
 
-        <TextView
-            android:id="@+id/mediaDetails"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:gravity="start"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaTitle"
-            tools:text="2020 - 1h23min" />
+            <TextView
+                android:id="@+id/mediaTitle"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaCouv"
+                tools:text="Titanic" />
 
-        <TextView
-            android:id="@+id/mediaRatings"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:drawableStart="@drawable/ic_star_black_24dp"
-            android:drawablePadding="@dimen/cell_media_rating_icon_padding"
-            android:drawableTint="@color/rating_star_color"
-            android:gravity="start|center_vertical"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/mediaDetails"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toEndOf="@id/mediaDetails"
-            app:layout_constraintTop_toTopOf="@id/mediaDetails"
-            tools:text="3.5" />
+            <TextView
+                android:id="@+id/mediaDetails"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:gravity="start"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaTitle"
+                tools:text="2020 - 1h23min" />
 
-        <TextView
-            android:id="@+id/mediaGenres"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaDetails"
-            tools:text="Action, Documentaire" />
+            <TextView
+                android:id="@+id/mediaRatings"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawableStart="@drawable/ic_star_black_24dp"
+                android:drawablePadding="@dimen/cell_media_rating_icon_padding"
+                android:drawableTint="@color/rating_star_color"
+                android:gravity="start|center_vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/mediaDetails"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toEndOf="@id/mediaDetails"
+                app:layout_constraintTop_toTopOf="@id/mediaDetails"
+                tools:text="3.5" />
 
-        <TextView
-            android:id="@+id/mediaSynopsisTitle"
-            style="@style/FicheSectionTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/synopsis_section_title"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaGenres" />
+            <TextView
+                android:id="@+id/mediaGenres"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaDetails"
+                tools:text="Action, Documentaire" />
 
-        <TextView
-            android:id="@+id/mediaSynopsis"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaSynopsisTitle"
-            tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in" />
+            <TextView
+                android:id="@+id/mediaSynopsisTitle"
+                style="@style/FicheSectionTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/synopsis_section_title"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaGenres" />
 
-        <TextView
-            android:id="@+id/mediaVideoTitle"
-            style="@style/FicheSectionTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/videos_section_title"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaSynopsis" />
+            <TextView
+                android:id="@+id/mediaSynopsis"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaSynopsisTitle"
+                tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mediaVideos"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaVideoTitle" />
+            <TextView
+                android:id="@+id/mediaVideoTitle"
+                style="@style/FicheSectionTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/videos_section_title"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaSynopsis" />
 
-        <TextView
-            android:id="@+id/mediaActorsTitle"
-            style="@style/FicheSectionTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/credits_actors_title"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaVideos" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mediaVideos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaVideoTitle" />
 
-        <TextView
-            android:id="@+id/mediaActors"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaActorsTitle"
-            tools:text="Brad Pitt, Edward Norton, Meat Loaf" />
+            <TextView
+                android:id="@+id/mediaActorsTitle"
+                style="@style/FicheSectionTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/credits_actors_title"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaVideos" />
 
-        <TextView
-            android:id="@+id/mediaResponsibleTitle"
-            style="@style/FicheSectionTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaActors"
-            tools:text="Creator or Director" />
+            <TextView
+                android:id="@+id/mediaActors"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaActorsTitle"
+                tools:text="Brad Pitt, Edward Norton, Meat Loaf" />
 
-        <TextView
-            android:id="@+id/mediaResponsible"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/endGuideline"
-            app:layout_constraintStart_toStartOf="@id/startGuideline"
-            app:layout_constraintTop_toBottomOf="@id/mediaResponsibleTitle"
-            tools:text="Villeneuve" />
+            <TextView
+                android:id="@+id/mediaResponsibleTitle"
+                style="@style/FicheSectionTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaActors"
+                tools:text="Creator or Director" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/mediaResponsible"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toBottomOf="@id/mediaResponsibleTitle"
+                tools:text="Villeneuve" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="@dimen/material_fab_size"
+        android:layout_height="@dimen/material_fab_size"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_baseline_play_arrow_24" />
+
+</FrameLayout>

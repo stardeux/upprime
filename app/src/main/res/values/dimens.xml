@@ -33,4 +33,7 @@
     <!-- Error view -->
     <dimen name="error_view_illustration_size">60dp</dimen>
     <dimen name="error_view_text_margin">16dp</dimen>
+
+    <!-- Material -->
+    <dimen name="material_fab_size">56dp</dimen>
 </resources>
