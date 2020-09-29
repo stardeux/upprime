@@ -2,22 +2,35 @@ package com.stardeux.upprime.media.fiche.di
 
 import android.content.Context
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
+import com.stardeux.upprime.media.fiche.ui.MediaFicheActivity
+import com.stardeux.upprime.media.fiche.ui.MediaFicheFragment
 import com.stardeux.upprime.media.fiche.ui.MediaFicheViewModel
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUiMapper
 import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
 import com.stardeux.upprime.rate.usecase.RateAppUseCase
-import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
+import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
 val ficheModule = module {
     factory { provideMediaIllustrationUseCase(get()) }
     factory { provideMediaVideoMapper() }
     factory { provideMediaFicheUiMapper(get()) }
-    factory { provideMediaFicheViewModel(get(), get(), get(), get(), get(), get(), get()) }
+    factory { (fragment: MediaFicheFragment) -> provideShortMedia(fragment) }
+    factory { (fragment: MediaFicheFragment) ->
+        provideMediaFicheViewModel(
+            get { parametersOf(fragment) }, get(), get(), get(), get(), get(), get(), get()
+        )
+    }
+}
+
+private fun provideShortMedia(mediaFicheFragment: MediaFicheFragment): ShortMedia {
+    return mediaFicheFragment.getShortMedia()
 }
 
 private fun provideMediaIllustrationUseCase(context: Context): MediaIllustrationUseCase {
@@ -25,6 +38,7 @@ private fun provideMediaIllustrationUseCase(context: Context): MediaIllustration
 }
 
 private fun provideMediaFicheViewModel(
+    shortMedia: ShortMedia,
     getImdbMediaDetailsUseCaseFacade: GetImdbMediaDetailsUseCaseFacade,
     videoUseCase: VideoUseCase,
     creditUseCaseFacade: CreditUseCaseFacade,
@@ -34,6 +48,7 @@ private fun provideMediaFicheViewModel(
     analyticsWrapper: AnalyticsWrapper
 ): MediaFicheViewModel {
     return MediaFicheViewModel(
+        shortMedia,
         getImdbMediaDetailsUseCaseFacade,
         videoUseCase,
         creditUseCaseFacade,

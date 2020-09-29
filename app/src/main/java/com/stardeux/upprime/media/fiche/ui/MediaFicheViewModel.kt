@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 
 class MediaFicheViewModel(
+    private val shortMedia: ShortMedia,
     private val getImdbMediaDetailsUseCaseFacade: GetImdbMediaDetailsUseCaseFacade,
     private val videoUseCase: VideoUseCase,
     private val creditUseCaseFacade: CreditUseCaseFacade,
