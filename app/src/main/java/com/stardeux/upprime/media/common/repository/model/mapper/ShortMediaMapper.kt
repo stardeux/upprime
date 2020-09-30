@@ -1,5 +1,6 @@
 package com.stardeux.upprime.media.common.repository.model.mapper
 
+import android.net.Uri
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.repository.api.MediaResponse
@@ -20,7 +21,7 @@ class ShortMediaMapper {
                     imdbId = requireNotNull(imdbId),
                     dateAdded = dateAdded!!.toLocalDate(),
                     type = mapToMediaType(requireNotNull(type)),
-                    amazonWebUrl = requireNotNull(amazonWebUrl)
+                    amazonWebUrl = Uri.parse(requireNotNull(amazonWebUrl))
                 )
             }
         } else {
@@ -44,7 +45,7 @@ class ShortMediaMapper {
                 imdbId = imdbId,
                 dateAdded = dateAdded,
                 type = type,
-                amazonWebUrl = amazonWebUrl
+                amazonWebUrl = Uri.parse(amazonWebUrl)
             )
         }
     }
@@ -77,7 +78,7 @@ class ShortMediaMapper {
                 imdbId = imdbId,
                 dateAdded = dateAdded,
                 type = type,
-                amazonWebUrl = amazonWebUrl
+                amazonWebUrl = Uri.parse(amazonWebUrl)
             )
         }
     }

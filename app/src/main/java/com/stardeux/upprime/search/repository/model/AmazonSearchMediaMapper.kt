@@ -1,5 +1,6 @@
 package com.stardeux.upprime.search.repository.model
 
+import android.net.Uri
 import com.stardeux.upprime.media.common.repository.model.mapper.mapToMediaType
 import com.stardeux.upprime.search.repository.api.SearchMediaContainerResponse
 import com.stardeux.upprime.search.repository.api.SearchMediaResponse
@@ -15,7 +16,7 @@ class AmazonSearchMediaMapper {
                 AmazonSearchResult(
                     amazonId = "TODO",
                     title = title,
-                    amazonWebUrl = amazonId,
+                    amazonWebUrl = Uri.parse(amazonId),
                     imdbId = imdbId,
                     dateAdded = dateAdded!!.toLocalDate(),
                     year = year,
