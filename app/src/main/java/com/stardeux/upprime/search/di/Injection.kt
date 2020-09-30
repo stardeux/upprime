@@ -3,6 +3,7 @@ package com.stardeux.upprime.search.di
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
+import com.stardeux.upprime.media.common.usecase.GetAmazonIdUseCase
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
 import com.stardeux.upprime.search.repository.AmazonSearchRepository
 import com.stardeux.upprime.search.repository.api.AmazonSearchApi
@@ -17,7 +18,7 @@ import retrofit2.Retrofit
 
 val searchModule = module {
     factory { provideAmazonSearchApi(get(named(AMAZON_NAMED_QUALIFIER))) }
-    factory { provideAmazonSearchMediaMapper() }
+    factory { provideAmazonSearchMediaMapper(get()) }
     factory { provideAmazonSearchRepository(get(), get()) }
     factory { provideAmazonSearchResultUiMapper() }
     viewModel { provideSearchViewModel(getUserScope().get(), get(), get()) }
@@ -36,8 +37,8 @@ private fun provideAmazonSearchApi(retrofit: Retrofit): AmazonSearchApi {
     return retrofit.create(AmazonSearchApi::class.java)
 }
 
-private fun provideAmazonSearchMediaMapper(): AmazonSearchMediaMapper {
-    return AmazonSearchMediaMapper()
+private fun provideAmazonSearchMediaMapper(getAmazonIdUseCase: GetAmazonIdUseCase): AmazonSearchMediaMapper {
+    return AmazonSearchMediaMapper(getAmazonIdUseCase)
 }
 
 private fun provideAmazonSearchRepository(

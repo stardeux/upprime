@@ -1,6 +1,7 @@
 package com.stardeux.upprime.search.ui.model
 
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
+import com.stardeux.upprime.media.common.usecase.GetAmazonIdUseCase
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResult
 
 class AmazonSearchResultUiMapper {
@@ -9,7 +10,7 @@ class AmazonSearchResultUiMapper {
         return with(amazonSearchResultUi) {
             ShortMedia(
                 title = title,
-                amazonId = "TODO",
+                amazonId = amazonId,
                 imdbId = imdbId,
                 dateAdded = dateAdded,
                 type = type,
@@ -37,5 +38,4 @@ class AmazonSearchResultUiMapper {
 
         }
     }
-
 }

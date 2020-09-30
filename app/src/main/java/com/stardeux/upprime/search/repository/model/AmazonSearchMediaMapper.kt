@@ -2,21 +2,25 @@ package com.stardeux.upprime.search.repository.model
 
 import android.net.Uri
 import com.stardeux.upprime.media.common.repository.model.mapper.mapToMediaType
+import com.stardeux.upprime.media.common.usecase.GetAmazonIdUseCase
 import com.stardeux.upprime.search.repository.api.SearchMediaContainerResponse
 import com.stardeux.upprime.search.repository.api.SearchMediaResponse
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResult
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
 
-class AmazonSearchMediaMapper {
+class AmazonSearchMediaMapper(
+    private val getAmazonIdUseCase: GetAmazonIdUseCase
+) {
 
     fun mapToAmazonSearchResult(searchMediaResponse: SearchMediaResponse): AmazonSearchResult? {
         return if (searchMediaResponse.type != null && searchMediaResponse.dateAdded != null) {
             with(searchMediaResponse) {
+                val amazonWebUrl = Uri.parse(amazonId)
                 AmazonSearchResult(
-                    amazonId = "TODO",
+                    amazonId = getAmazonIdUseCase.fromAmazonWebUrl(amazonWebUrl),
                     title = title,
-                    amazonWebUrl = Uri.parse(amazonId),
+                    amazonWebUrl = amazonWebUrl,
                     imdbId = imdbId,
                     dateAdded = dateAdded!!.toLocalDate(),
                     year = year,
@@ -37,7 +41,7 @@ class AmazonSearchMediaMapper {
     }
 
     fun mapToApiValue(mediaTypeFilter: MediaTypeFilter): String? {
-        return when(mediaTypeFilter) {
+        return when (mediaTypeFilter) {
             MediaTypeFilter.ALL -> null
             MediaTypeFilter.MOVIE -> "Movie"
             MediaTypeFilter.SERIES -> "TV"

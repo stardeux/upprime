@@ -11,7 +11,7 @@ import org.koin.dsl.module
 val commonMediaModule = module {
     factory { provideGetImdbMediaDetailsUseCaseFacade(get()) }
     factory { provideMediaDetailsMapper(get()) }
-    factory { provideShortMediaMapper() }
+    factory { provideShortMediaMapper(get()) }
     factory { provideGetAmazonIdUseCase() }
 }
 
@@ -25,8 +25,8 @@ private fun provideGetImdbMediaDetailsUseCaseFacade(mediaFicheUiMapper: MediaFic
     )
 }
 
-private fun provideShortMediaMapper(): ShortMediaMapper {
-    return ShortMediaMapper()
+private fun provideShortMediaMapper(getAmazonIdUseCase: GetAmazonIdUseCase): ShortMediaMapper {
+    return ShortMediaMapper(getAmazonIdUseCase)
 }
 
 private fun provideGetAmazonIdUseCase(): GetAmazonIdUseCase {

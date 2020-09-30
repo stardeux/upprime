@@ -1,27 +1,29 @@
 package com.stardeux.upprime.media.common.repository.model.mapper
 
 import android.net.Uri
-import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.repository.api.MediaResponse
-import com.stardeux.upprime.media.common.repository.api.MediaTypeResponse
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
+import com.stardeux.upprime.media.common.usecase.GetAmazonIdUseCase
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
-class ShortMediaMapper {
+class ShortMediaMapper(
+    private val getAmazonIdUseCase: GetAmazonIdUseCase
+) {
 
     fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia? {
         return if (mediaResponse.type != null && mediaResponse.dateAdded != null) {
             with(mediaResponse) {
+                val amazonWebUrl = Uri.parse(requireNotNull(amazonWebUrl))
                 ShortMedia(
                     title = title,
-                    amazonId = "TODO",
+                    amazonId = getAmazonIdUseCase.fromAmazonWebUrl(amazonWebUrl),
                     imdbId = requireNotNull(imdbId),
                     dateAdded = dateAdded!!.toLocalDate(),
                     type = mapToMediaType(requireNotNull(type)),
-                    amazonWebUrl = Uri.parse(requireNotNull(amazonWebUrl))
+                    amazonWebUrl = amazonWebUrl
                 )
             }
         } else {
@@ -39,13 +41,14 @@ class ShortMediaMapper {
 
     fun mapToMediaItem(latestMediaEntity: LatestMediaEntity): ShortMedia {
         return with(latestMediaEntity) {
+            val amazonWebUrl = Uri.parse(amazonWebUrl)
             ShortMedia(
                 title = title,
-                amazonId = "TODO",
+                amazonId = getAmazonIdUseCase.fromAmazonWebUrl(amazonWebUrl),
                 imdbId = imdbId,
                 dateAdded = dateAdded,
                 type = type,
-                amazonWebUrl = Uri.parse(amazonWebUrl)
+                amazonWebUrl = amazonWebUrl
             )
         }
     }
