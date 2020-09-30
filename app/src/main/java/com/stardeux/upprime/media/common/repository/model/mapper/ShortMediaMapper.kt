@@ -63,7 +63,7 @@ class ShortMediaMapper(
         return with(shortMedia) {
             LatestMediaEntity(
                 id = 0,
-                amazonWebUrl = amazonId,
+                amazonWebUrl = amazonWebUrl.toString(),
                 title = title,
                 imdbId = imdbId,
                 dateAdded = dateAdded,
@@ -96,7 +96,7 @@ class ShortMediaMapper(
         return with(shortMedia) {
             ExpiredMediaEntity(
                 id = 0,
-                amazonWebUrl = amazonId,
+                amazonWebUrl = amazonWebUrl.toString(),
                 title = title,
                 imdbId = imdbId,
                 dateAdded = dateAdded,
