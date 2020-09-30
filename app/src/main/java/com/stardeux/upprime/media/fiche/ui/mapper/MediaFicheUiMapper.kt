@@ -6,14 +6,14 @@ import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
-import com.stardeux.upprime.media.fiche.usecase.AmazonPlayUriUseCase
+import com.stardeux.upprime.media.fiche.usecase.GetPlayAmazonVideoIntentUseCase
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 class MediaFicheUiMapper(
     private val posterMapper: PosterMapper,
-    private val amazonPlayUriUseCase: AmazonPlayUriUseCase
+    private val getPlayAmazonVideoIntentUseCase: GetPlayAmazonVideoIntentUseCase
 ) {
 
     suspend fun mapToMediaFicheUi(
@@ -35,7 +35,7 @@ class MediaFicheUiMapper(
                 amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
-                amazonPlayUri = amazonPlayUriUseCase.getAmazonPlayUri(movieDetails)
+                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(movieDetails)
             )
         }
     }
@@ -59,7 +59,7 @@ class MediaFicheUiMapper(
                 amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
-                amazonPlayUri = amazonPlayUriUseCase.getAmazonPlayUri(seriesDetails)
+                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(seriesDetails)
             )
         }
     }

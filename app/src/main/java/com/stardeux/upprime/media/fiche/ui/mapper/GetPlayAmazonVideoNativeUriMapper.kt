@@ -4,7 +4,7 @@ import android.net.Uri
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
-class AmazonPlayNativeUriMapper {
+class GetPlayAmazonVideoNativeUriMapper {
 
     fun getAmazonPlayNativeUri(movieDetails: MovieDetails): Uri {
         return getAmazonPlayNativeUri(movieDetails.amazonId)
