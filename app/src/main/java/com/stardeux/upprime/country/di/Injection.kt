@@ -21,10 +21,10 @@ val countryModule = module {
     factory { provideSelectedUserLocaleUseCase(get()) }
     factory { provideUserLocaleRepository(get()) }
 
-    factory { provideSelectedUserLocale(get()) }
+    factory { provideSelectedAvailableCountry(get()) }
 }
 
-private fun provideSelectedUserLocale(selectedUserCountryUseCase: SelectedUserCountryUseCase): AvailableCountry {
+private fun provideSelectedAvailableCountry(selectedUserCountryUseCase: SelectedUserCountryUseCase): AvailableCountry {
     return requireNotNull(selectedUserCountryUseCase.getSelectedCountry())
 }
 
