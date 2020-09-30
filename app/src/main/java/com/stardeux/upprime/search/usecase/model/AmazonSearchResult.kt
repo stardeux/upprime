@@ -8,8 +8,9 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 
 data class AmazonSearchResult(
-    val title: String?,
     val amazonId: AmazonId,
+    val title: String?,
+    val amazonWebUrl: String,
     val imdbId: ImdbId,
     val dateAdded: LocalDate,
     val year: Int?,

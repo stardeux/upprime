@@ -12,7 +12,7 @@ import org.threeten.bp.LocalDate
 @Entity(tableName = TABLE_EXPIRED_NAME)
 data class ExpiredMediaEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = COL_ID) val id: Long,
-    @ColumnInfo(name = COL_AMAZON_ID) val amazonId: AmazonId,
+    @ColumnInfo(name = COL_AMAZON_ID) val amazonWebUrl: String,
     @ColumnInfo(name = COL_TITLE) val title: String?,
     @ColumnInfo(name = COL_IMDB_ID) val imdbId: ImdbId,
     @ColumnInfo(name = COL_DATE_ADDED) val dateAdded: LocalDate,

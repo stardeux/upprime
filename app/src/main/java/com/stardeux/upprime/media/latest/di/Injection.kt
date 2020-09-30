@@ -9,6 +9,7 @@ import com.stardeux.upprime.media.latest.usecase.GetLatestMediaUseCase
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.database.UpPrimeDatabase
+import com.stardeux.upprime.media.common.repository.model.mapper.ShortMediaMapper
 import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
 import com.stardeux.upprime.media.latest.repository.api.LatestMediaRemoteDataSource
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaDao
@@ -29,7 +30,7 @@ val latestModule = module {
     factory { provideLatestMediaPreferences(get()) }
 
     single { provideLatestApi(get(named(AMAZON_NAMED_QUALIFIER))) }
-    factory { provideLatestRepository(get(), get(), get()) }
+    factory { provideLatestRepository(get(), get(), get(), get()) }
 
     viewModel { provideLatestMediaViewModel(getUserScope().get(), get(), get(), get(), get()) }
 
@@ -55,12 +56,13 @@ private fun provideLatestApi(retrofit: Retrofit): LatestApi {
 }
 
 private fun provideLatestRepository(
+    shortMediaMapper: ShortMediaMapper,
     latestMediaRemoteDataSource: LatestMediaRemoteDataSource,
     latestMediaLocalDataSource: LatestMediaLocalDataSource,
     latestMediaPreferences: LatestMediaPreferences
 ): LatestMediaRepository {
     return LatestMediaRepository(
-        latestMediaRemoteDataSource, latestMediaLocalDataSource, latestMediaPreferences
+        shortMediaMapper, latestMediaRemoteDataSource, latestMediaLocalDataSource, latestMediaPreferences
     )
 }
 

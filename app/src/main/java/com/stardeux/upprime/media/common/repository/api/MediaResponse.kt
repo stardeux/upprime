@@ -9,7 +9,7 @@ data class MediaResponse(
     val title : String?,
 
     @SerializedName("Link")
-    val amazonId: String?,
+    val amazonWebUrl: String?,
 
     @SerializedName("imdbID")
     val imdbId: String?,

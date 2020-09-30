@@ -9,9 +9,10 @@ import org.threeten.bp.LocalDate
 
 @Parcelize
 data class ShortMedia(
-    val title : String?,
     val amazonId: AmazonId,
+    val title : String?,
     val imdbId: ImdbId,
     val dateAdded: LocalDate,
-    val type: MediaType
+    val type: MediaType,
+    val amazonWebUrl: String
 ) : Parcelable

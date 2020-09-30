@@ -5,6 +5,7 @@ import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.database.UpPrimeDatabase
+import com.stardeux.upprime.media.common.repository.model.mapper.ShortMediaMapper
 import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
 import com.stardeux.upprime.media.expired.repository.ExpiredMediaRepository
 import com.stardeux.upprime.media.expired.repository.api.ExpiredApi
@@ -24,7 +25,7 @@ import retrofit2.Retrofit
 
 val expiredModule = module {
     single { provideExpiredApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
-    factory { provideExpiredRepository(get(), get(), get()) }
+    factory { provideExpiredRepository(get(), get(), get(), get()) }
     viewModel { provideExpiredMediaViewModel(getUserScope().get(), get(), get(), get(), get()) }
     factory { provideExpiredMediaRemoteDataSource(get()) }
     factory { provideExpiredMediaPreferences(get()) }
@@ -58,12 +59,16 @@ private fun provideExpiredApi(retrofit: Retrofit): ExpiredApi {
 }
 
 private fun provideExpiredRepository(
+    shortMediaMapper: ShortMediaMapper,
     expiredMediaLocalDataSource: ExpiredMediaLocalDataSource,
     expiredMediaRemoteDataSource: ExpiredMediaRemoteDataSource,
     expiredMediaPreferences: ExpiredMediaPreferences
 ): ExpiredMediaRepository {
     return ExpiredMediaRepository(
-        expiredMediaLocalDataSource, expiredMediaRemoteDataSource, expiredMediaPreferences
+        shortMediaMapper,
+        expiredMediaLocalDataSource,
+        expiredMediaRemoteDataSource,
+        expiredMediaPreferences
     )
 }
 

@@ -1,6 +1,6 @@
 package com.stardeux.upprime.search.repository.model
 
-import com.stardeux.upprime.media.common.repository.model.mapToMediaType
+import com.stardeux.upprime.media.common.repository.model.mapper.mapToMediaType
 import com.stardeux.upprime.search.repository.api.SearchMediaContainerResponse
 import com.stardeux.upprime.search.repository.api.SearchMediaResponse
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
@@ -13,8 +13,9 @@ class AmazonSearchMediaMapper {
         return if (searchMediaResponse.type != null && searchMediaResponse.dateAdded != null) {
             with(searchMediaResponse) {
                 AmazonSearchResult(
+                    amazonId = "TODO",
                     title = title,
-                    amazonId = amazonId,
+                    amazonWebUrl = amazonId,
                     imdbId = imdbId,
                     dateAdded = dateAdded!!.toLocalDate(),
                     year = year,
