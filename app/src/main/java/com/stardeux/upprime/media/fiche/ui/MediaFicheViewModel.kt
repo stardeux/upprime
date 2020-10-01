@@ -20,12 +20,12 @@ import com.stardeux.upprime.media.fiche.ui.model.Illustration
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
 import com.stardeux.upprime.rate.usecase.RateAppUseCase
-import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
 import com.stardeux.upprime.tmdb.credit.ui.model.CreditsUi
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
+import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -40,7 +40,8 @@ class MediaFicheViewModel(
     private val mediaIllustrationUseCase: MediaIllustrationUseCase,
     rateAppUseCase: RateAppUseCase,
     private val analyticsWrapper: AnalyticsWrapper,
-    private val isIntentResolvableUseCase: IsIntentResolvableUseCase
+    private val isIntentResolvableUseCase: IsIntentResolvableUseCase,
+    private val imdbMediaRequestMapper: ImdbMediaRequestMapper
 ) : ViewModel() {
 
     private val _mediaItemUi = MutableLiveData<MediaFicheUi>()
@@ -71,7 +72,7 @@ class MediaFicheViewModel(
         viewModelScope.launch(exceptionHandler) {
             supervisorScope {
 
-                val imdbMediaRequest = mapToImdbMediaRequest(shortMedia)
+                val imdbMediaRequest = imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia)
 
                 val mediaDetails =
                     getImdbMediaDetailsUseCaseFacade.getDetails(shortMedia.type, imdbMediaRequest)

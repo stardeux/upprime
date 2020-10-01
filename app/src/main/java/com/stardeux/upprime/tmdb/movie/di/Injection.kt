@@ -10,8 +10,7 @@ import com.stardeux.upprime.tmdb.movie.repository.model.MovieDetailsMapper
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
-import com.stardeux.upprime.tmdb.common.mapper.ImdbMediaRequestMapper
-import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
+import com.stardeux.upprime.tmdb.common.mapper.TmdbMediaRequestMapper
 import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import org.koin.core.qualifier.named
@@ -25,7 +24,7 @@ val movieModule = module {
     factory { provideMovieDetailLocalDataSource(get()) }
     factory { provideMovieDetailDao(get()) }
     factory { provideMovieRepository(get(), get(), get()) }
-    factory { provideGetMovieDetailsUseCase(get(), get()) }
+    factory { provideGetMovieDetailsUseCase(get()) }
     factory { provideMovieDetailsMapper() }
     factory { provideGetImdbMovieDetailsUseCase(get(), get(), get(), get()) }
 }
@@ -64,22 +63,21 @@ private fun provideMovieDetailDao(upPrimeDatabase: UpPrimeDatabase): MovieDetail
 }
 
 private fun provideGetMovieDetailsUseCase(
-    movieRepository: MovieRepository,
-    locale: Locale
+    movieRepository: MovieRepository
 ): GetMovieDetailsUseCase {
-    return GetMovieDetailsUseCase(movieRepository, locale)
+    return GetMovieDetailsUseCase(movieRepository)
 }
 
 private fun provideGetImdbMovieDetailsUseCase(
     getMovieDetailsUseCase: GetMovieDetailsUseCase,
     findMovieUseCase: FindMovieUseCase,
     searchMovieUseCase: SearchMovieUseCase,
-    imdbMediaRequestMapper: ImdbMediaRequestMapper
+    tmdbMediaRequestMapper: TmdbMediaRequestMapper
 ): GetImdbMovieDetailsUseCase {
     return GetImdbMovieDetailsUseCase(
         getMovieDetailsUseCase,
         findMovieUseCase,
         searchMovieUseCase,
-        imdbMediaRequestMapper
+        tmdbMediaRequestMapper
     )
 }

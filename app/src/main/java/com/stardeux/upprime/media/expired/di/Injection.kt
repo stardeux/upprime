@@ -18,6 +18,7 @@ import com.stardeux.upprime.media.expired.usecase.GetExpiredMediaUseCase
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
+import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -26,7 +27,7 @@ import retrofit2.Retrofit
 val expiredModule = module {
     single { provideExpiredApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
     factory { provideExpiredRepository(get(), get(), get(), get()) }
-    viewModel { provideExpiredMediaViewModel(getUserScope().get(), get(), get(), get(), get()) }
+    viewModel { provideExpiredMediaViewModel(getUserScope().get(), get(), get(), get(), get(), get()) }
     factory { provideExpiredMediaRemoteDataSource(get()) }
     factory { provideExpiredMediaPreferences(get()) }
 
@@ -85,6 +86,7 @@ private fun provideExpiredMediaViewModel(
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     mediaDetailsMapper: MediaDetailsMapper,
+    imdbMediaRequestMapper: ImdbMediaRequestMapper,
     analyticsWrapper: AnalyticsWrapper
 ): ExpiredMediaViewModel {
     return ExpiredMediaViewModel(
@@ -92,6 +94,7 @@ private fun provideExpiredMediaViewModel(
         getImdbMovieDetailsUseCase,
         getImdbSeriesDetailsUseCase,
         mediaDetailsMapper,
+        imdbMediaRequestMapper,
         analyticsWrapper
     )
 }

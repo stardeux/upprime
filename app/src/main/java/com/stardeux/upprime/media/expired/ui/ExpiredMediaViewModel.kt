@@ -7,17 +7,20 @@ import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
 import com.stardeux.upprime.media.expired.usecase.GetExpiredMediaUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
+import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 
 class ExpiredMediaViewModel(
     private val getExpiredMediaUseCase: GetExpiredMediaUseCase,
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     mediaDetailsMapper: MediaDetailsMapper,
+    imdbMediaRequestMapper: ImdbMediaRequestMapper,
     analyticsWrapper: AnalyticsWrapper
 ) : AmazonMediaViewModel(
     getImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase,
     mediaDetailsMapper,
+    imdbMediaRequestMapper,
     analyticsWrapper
 ) {
 

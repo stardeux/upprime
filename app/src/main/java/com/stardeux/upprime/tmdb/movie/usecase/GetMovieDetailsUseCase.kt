@@ -7,11 +7,10 @@ import java.util.*
 
 class GetMovieDetailsUseCase(
     private val movieRepository: MovieRepository,
-    private val locale: Locale
 ) {
 
     suspend operator fun invoke(tmdbMovieRequest: TmdbMovieRequest): MovieDetails {
-        return movieRepository.getMovieDetails(tmdbMovieRequest, locale.language)
+        return movieRepository.getMovieDetails(tmdbMovieRequest, tmdbMovieRequest.language)
     }
 
 }

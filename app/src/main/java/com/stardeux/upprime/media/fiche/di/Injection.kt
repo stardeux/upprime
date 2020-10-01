@@ -16,6 +16,7 @@ import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
+import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
@@ -28,7 +29,7 @@ val ficheModule = module {
     factory { (fragment: MediaFicheFragment) -> provideShortMedia(fragment) }
     factory { (fragment: MediaFicheFragment) ->
         provideMediaFicheViewModel(
-            get { parametersOf(fragment) }, get(), get(), get(), get(), get(), get(), get(), get()
+            get { parametersOf(fragment) }, get(), get(), get(), get(), get(), get(), get(), get(), get()
         )
     }
 }
@@ -50,7 +51,8 @@ private fun provideMediaFicheViewModel(
     mediaIllustrationUseCase: MediaIllustrationUseCase,
     rateAppUseCase: RateAppUseCase,
     analyticsWrapper: AnalyticsWrapper,
-    isIntentResolvableUseCase: IsIntentResolvableUseCase
+    isIntentResolvableUseCase: IsIntentResolvableUseCase,
+    imdbMediaRequestMapper: ImdbMediaRequestMapper
 ): MediaFicheViewModel {
     return MediaFicheViewModel(
         shortMedia,
@@ -61,7 +63,8 @@ private fun provideMediaFicheViewModel(
         mediaIllustrationUseCase,
         rateAppUseCase,
         analyticsWrapper,
-        isIntentResolvableUseCase
+        isIntentResolvableUseCase,
+        imdbMediaRequestMapper
     )
 }
 

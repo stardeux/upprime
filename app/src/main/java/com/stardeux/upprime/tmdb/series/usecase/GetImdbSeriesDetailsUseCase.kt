@@ -1,6 +1,6 @@
 package com.stardeux.upprime.tmdb.series.usecase
 
-import com.stardeux.upprime.tmdb.common.mapper.ImdbMediaRequestMapper
+import com.stardeux.upprime.tmdb.common.mapper.TmdbMediaRequestMapper
 import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
@@ -12,7 +12,7 @@ class GetImdbSeriesDetailsUseCase(
     private val findSeriesUseCase: FindSeriesUseCase,
     private val searchSeriesUseCase: SearchSeriesUseCase,
     private val getSeriesDetailsUseCase: GetSeriesDetailsUseCase,
-    private val imdbMediaRequestMapper: ImdbMediaRequestMapper
+    private val tmdbMediaRequestMapper: TmdbMediaRequestMapper
 ) {
 
     suspend operator fun invoke(imdbMediaRequest: ImdbMediaRequest): SeriesDetails {
@@ -27,7 +27,7 @@ class GetImdbSeriesDetailsUseCase(
 
             return tmdbId?.let {
                 getSeriesDetailsUseCase(
-                    imdbMediaRequestMapper.mapToTmdbSeriesRequest(
+                    tmdbMediaRequestMapper.mapToTmdbSeriesRequest(
                         imdbMediaRequest,
                         it
                     )

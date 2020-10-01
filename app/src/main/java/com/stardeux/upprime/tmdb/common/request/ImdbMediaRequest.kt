@@ -11,5 +11,6 @@ data class ImdbMediaRequest(
     val imdbId: ImdbId,
     val amazonId: AmazonId,
     val amazonReleaseDate: LocalDate,
-    val name: String?
+    val name: String?,
+    val language: String
 ) : Parcelable

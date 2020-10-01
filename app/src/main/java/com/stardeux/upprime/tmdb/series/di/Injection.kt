@@ -2,7 +2,7 @@ package com.stardeux.upprime.tmdb.series.di
 
 import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
-import com.stardeux.upprime.tmdb.common.mapper.ImdbMediaRequestMapper
+import com.stardeux.upprime.tmdb.common.mapper.TmdbMediaRequestMapper
 import com.stardeux.upprime.tmdb.series.repository.SeriesRepository
 import com.stardeux.upprime.tmdb.series.repository.api.SeriesRemoteDataSource
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
@@ -11,7 +11,6 @@ import com.stardeux.upprime.tmdb.series.repository.database.SeriesLocalDataSourc
 import com.stardeux.upprime.tmdb.series.repository.model.SeriesDetailsMapper
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
-import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import org.koin.core.qualifier.named
@@ -22,7 +21,7 @@ import java.util.*
 val seriesModule = module {
     factory { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
     factory { provideSeriesRepository(get(), get(), get()) }
-    factory { provideGetSeriesDetailUseCase(get(), get()) }
+    factory { provideGetSeriesDetailUseCase(get()) }
     factory { provideSeriesDao(get()) }
     factory { provideSeriesLocalDataSource(get()) }
     factory { provideSeriesRemoteDataSource(get()) }
@@ -55,9 +54,9 @@ private fun provideSeriesRepository(
 }
 
 private fun provideGetSeriesDetailUseCase(
-    seriesRepository: SeriesRepository, locale: Locale
+    seriesRepository: SeriesRepository
 ): GetSeriesDetailsUseCase {
-    return GetSeriesDetailsUseCase(seriesRepository, locale)
+    return GetSeriesDetailsUseCase(seriesRepository)
 }
 
 private fun provideSeriesMapper(): SeriesDetailsMapper {
@@ -68,9 +67,9 @@ private fun provideGetImdbSeriesDetailsUseCase(
     findSeriesUseCase: FindSeriesUseCase,
     searchSeriesUseCase: SearchSeriesUseCase,
     getSeriesDetailsUseCase: GetSeriesDetailsUseCase,
-    imdbMediaRequestMapper: ImdbMediaRequestMapper
+    tmdbMediaRequestMapper: TmdbMediaRequestMapper
 ): GetImdbSeriesDetailsUseCase {
     return GetImdbSeriesDetailsUseCase(
-        findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase, imdbMediaRequestMapper
+        findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase, tmdbMediaRequestMapper
     )
 }

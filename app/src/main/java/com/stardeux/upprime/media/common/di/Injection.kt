@@ -5,14 +5,18 @@ import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
 import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
 import com.stardeux.upprime.media.common.usecase.GetAmazonIdUseCase
 import com.stardeux.upprime.media.fiche.ui.mapper.MediaFicheUiMapper
+import com.stardeux.upprime.tmdb.common.mapper.TmdbMediaRequestMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
+import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import org.koin.dsl.module
+import java.util.*
 
 val commonMediaModule = module {
     factory { provideGetImdbMediaDetailsUseCaseFacade(get()) }
     factory { provideMediaDetailsMapper(get()) }
     factory { provideShortMediaMapper(get()) }
     factory { provideGetAmazonIdUseCase() }
+    factory { provideImdbMediaRequestMapper(get()) }
 }
 
 private fun provideMediaDetailsMapper(posterMapper: PosterMapper): MediaDetailsMapper {
@@ -31,4 +35,8 @@ private fun provideShortMediaMapper(getAmazonIdUseCase: GetAmazonIdUseCase): Sho
 
 private fun provideGetAmazonIdUseCase(): GetAmazonIdUseCase {
     return GetAmazonIdUseCase()
+}
+
+private fun provideImdbMediaRequestMapper(locale: Locale): ImdbMediaRequestMapper {
+    return ImdbMediaRequestMapper(locale)
 }

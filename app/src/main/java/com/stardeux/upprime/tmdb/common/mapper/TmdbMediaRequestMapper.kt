@@ -6,7 +6,7 @@ import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieRequest
 import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesRequest
 import java.util.*
 
-class ImdbMediaRequestMapper {
+class TmdbMediaRequestMapper {
 
     fun mapToTmdbSeriesRequest(
         imdbMediaRequest: ImdbMediaRequest,
@@ -18,7 +18,8 @@ class ImdbMediaRequestMapper {
                 amazonId = amazonId,
                 tmdbId = tmdbId,
                 amazonReleaseDate = amazonReleaseDate,
-                name = name
+                name = name,
+                language = language
             )
         }
     }
@@ -33,7 +34,8 @@ class ImdbMediaRequestMapper {
                 amazonId = amazonId,
                 tmdbId = tmdbId,
                 amazonReleaseDate = amazonReleaseDate,
-                name = name
+                name = name,
+                language = language
             )
         }
     }

@@ -10,5 +10,6 @@ data class TmdbSeriesRequest(
     val amazonId: AmazonId,
     val tmdbId: TmdbId,
     val amazonReleaseDate: LocalDate,
-    val name: String?
+    val name: String?,
+    val language: String
 )

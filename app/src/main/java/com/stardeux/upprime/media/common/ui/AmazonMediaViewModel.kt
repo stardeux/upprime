@@ -11,11 +11,11 @@ import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
 import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 import com.stardeux.upprime.core.model.MediaType
-import com.stardeux.upprime.tmdb.common.request.mapToImdbMediaRequest
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
+import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -25,6 +25,7 @@ abstract class AmazonMediaViewModel(
     private val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     private val mediaDetailsMapper: MediaDetailsMapper,
+    private val imdbMediaRequestMapper: ImdbMediaRequestMapper,
     private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {
 
@@ -121,11 +122,11 @@ abstract class AmazonMediaViewModel(
     private suspend fun loadFullMedia(shortMedia: ShortMedia): MediaItemUi {
         return when (shortMedia.type) {
             MediaType.MOVIE -> {
-                val movieDetails = getImdbMovieDetailsUseCase(mapToImdbMediaRequest(shortMedia))
+                val movieDetails = getImdbMovieDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia))
                 mediaDetailsMapper.mapToMediaUi(shortMedia, movieDetails, ::onCardClicked)
             }
             MediaType.SERIES -> {
-                val seriesDetails = getImdbSeriesDetailsUseCase(mapToImdbMediaRequest(shortMedia))
+                val seriesDetails = getImdbSeriesDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia))
                 mediaDetailsMapper.mapToMediaUi(shortMedia, seriesDetails, ::onCardClicked)
             }
         }

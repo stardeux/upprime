@@ -1,6 +1,6 @@
 package com.stardeux.upprime.tmdb.movie.usecase
 
-import com.stardeux.upprime.tmdb.common.mapper.ImdbMediaRequestMapper
+import com.stardeux.upprime.tmdb.common.mapper.TmdbMediaRequestMapper
 import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
 import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
@@ -11,13 +11,13 @@ class GetImdbMovieDetailsUseCase(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
     private val findMovieUseCase: FindMovieUseCase,
     private val searchMovieUseCase: SearchMovieUseCase,
-    private val imdbMediaRequestMapper: ImdbMediaRequestMapper
+    private val tmdbMediaRequestMapper: TmdbMediaRequestMapper
 ) {
 
     suspend operator fun invoke(imdbMediaRequest: ImdbMediaRequest): MovieDetails {
         return try {
             getMovieDetailsUseCase.invoke(
-                imdbMediaRequestMapper.mapToTmdbMovieRequest(
+                tmdbMediaRequestMapper.mapToTmdbMovieRequest(
                     imdbMediaRequest,
                     null
                 )
@@ -33,7 +33,7 @@ class GetImdbMovieDetailsUseCase(
         val tmdbId = findMovieUseCase.findMovieByImdbId(imdbMediaRequest.imdbId)?.tmdbId
         return if (tmdbId != null) {
             getMovieDetailsUseCase(
-                imdbMediaRequestMapper.mapToTmdbMovieRequest(
+                tmdbMediaRequestMapper.mapToTmdbMovieRequest(
                     imdbMediaRequest,
                     tmdbId
                 )
@@ -47,7 +47,7 @@ class GetImdbMovieDetailsUseCase(
                     val index = if (matchingTitleIndex == -1) 0 else matchingTitleIndex
 
                     getMovieDetailsUseCase(
-                        imdbMediaRequestMapper.mapToTmdbMovieRequest(
+                        tmdbMediaRequestMapper.mapToTmdbMovieRequest(
                             imdbMediaRequest,
                             searchResult.results[index].tmdbId
                         )

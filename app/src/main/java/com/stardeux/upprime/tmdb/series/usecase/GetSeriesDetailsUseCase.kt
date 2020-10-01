@@ -8,8 +8,7 @@ import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 import java.util.*
 
 class GetSeriesDetailsUseCase(
-    private val seriesRepository: SeriesRepository,
-    private val locale: Locale
+    private val seriesRepository: SeriesRepository
 ) {
 
     suspend fun getCachedSeriesDetails(imdbId: ImdbId): SeriesDetails? {
@@ -17,7 +16,7 @@ class GetSeriesDetailsUseCase(
     }
 
     suspend operator fun invoke(tmdbSeriesRequest: TmdbSeriesRequest): SeriesDetails {
-        return seriesRepository.getSeriesDetails(tmdbSeriesRequest, locale.language)
+        return seriesRepository.getSeriesDetails(tmdbSeriesRequest, tmdbSeriesRequest.language)
     }
 
 }
