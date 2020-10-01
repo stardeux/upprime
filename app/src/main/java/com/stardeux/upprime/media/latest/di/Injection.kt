@@ -10,7 +10,7 @@ import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.media.common.repository.model.mapper.ShortMediaMapper
-import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
+import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
 import com.stardeux.upprime.media.latest.repository.api.LatestMediaRemoteDataSource
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaDao
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaLocalDataSource
@@ -79,7 +79,7 @@ private fun provideLatestMediaViewModel(
     getLatestMediaUseCase: GetLatestMediaUseCase,
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
-    mediaDetailsMapper: MediaDetailsMapper,
+    mediaItemUiMapper: MediaItemUiMapper,
     imdbMediaRequestMapper: ImdbMediaRequestMapper,
     analyticsWrapper: AnalyticsWrapper
 ): LatestMediaViewModel {
@@ -87,7 +87,7 @@ private fun provideLatestMediaViewModel(
         getLatestMediaUseCase,
         getImdbMovieDetailsUseCase,
         getImdbSeriesDetailsUseCase,
-        mediaDetailsMapper,
+        mediaItemUiMapper,
         imdbMediaRequestMapper,
         analyticsWrapper
     )

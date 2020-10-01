@@ -6,7 +6,7 @@ import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.media.common.repository.model.mapper.ShortMediaMapper
-import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
+import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
 import com.stardeux.upprime.media.expired.repository.ExpiredMediaRepository
 import com.stardeux.upprime.media.expired.repository.api.ExpiredApi
 import com.stardeux.upprime.media.expired.repository.api.ExpiredMediaRemoteDataSource
@@ -85,7 +85,7 @@ private fun provideExpiredMediaViewModel(
     getExpiredMediaUseCase: GetExpiredMediaUseCase,
     getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
-    mediaDetailsMapper: MediaDetailsMapper,
+    mediaItemUiMapper: MediaItemUiMapper,
     imdbMediaRequestMapper: ImdbMediaRequestMapper,
     analyticsWrapper: AnalyticsWrapper
 ): ExpiredMediaViewModel {
@@ -93,7 +93,7 @@ private fun provideExpiredMediaViewModel(
         getExpiredMediaUseCase,
         getImdbMovieDetailsUseCase,
         getImdbSeriesDetailsUseCase,
-        mediaDetailsMapper,
+        mediaItemUiMapper,
         imdbMediaRequestMapper,
         analyticsWrapper
     )

@@ -10,7 +10,7 @@ import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
-class MediaDetailsMapper (private val posterMapper: PosterMapper) {
+class MediaItemUiMapper (private val posterMapper: PosterMapper) {
 
     fun mapToMediaUi(
         shortMedia: ShortMedia, onFullCardClicked: (MediaItemUi) -> Unit

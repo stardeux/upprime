@@ -5,7 +5,6 @@ import androidx.lifecycle.*
 import com.stardeux.upprime.core.analytics.AnalyticsValues
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.analytics.getTrackingParameters
-import com.stardeux.upprime.core.extension.logDebug
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
@@ -14,7 +13,7 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.core.ui.SingleLiveEvent
-import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
+import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
 import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
@@ -24,7 +23,7 @@ import java.util.*
 abstract class AmazonMediaViewModel(
     private val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
     private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
-    private val mediaDetailsMapper: MediaDetailsMapper,
+    private val mediaItemUiMapper: MediaItemUiMapper,
     private val imdbMediaRequestMapper: ImdbMediaRequestMapper,
     private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {
@@ -70,7 +69,7 @@ abstract class AmazonMediaViewModel(
             page++
             totalCount = result.count
 
-            val mediaUi = result.shortMedia.map { mediaDetailsMapper.mapToMediaUi(it, ::onCardClicked) }
+            val mediaUi = result.shortMedia.map { mediaItemUiMapper.mapToMediaUi(it, ::onCardClicked) }
             _mediaItems.value =
                 (_mediaItems.value?.toMutableList() ?: mutableListOf()).apply { addAll(mediaUi) }
 
@@ -123,11 +122,11 @@ abstract class AmazonMediaViewModel(
         return when (shortMedia.type) {
             MediaType.MOVIE -> {
                 val movieDetails = getImdbMovieDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia))
-                mediaDetailsMapper.mapToMediaUi(shortMedia, movieDetails, ::onCardClicked)
+                mediaItemUiMapper.mapToMediaUi(shortMedia, movieDetails, ::onCardClicked)
             }
             MediaType.SERIES -> {
                 val seriesDetails = getImdbSeriesDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia))
-                mediaDetailsMapper.mapToMediaUi(shortMedia, seriesDetails, ::onCardClicked)
+                mediaItemUiMapper.mapToMediaUi(shortMedia, seriesDetails, ::onCardClicked)
             }
         }
     }

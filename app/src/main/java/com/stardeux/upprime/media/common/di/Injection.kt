@@ -1,7 +1,7 @@
 package com.stardeux.upprime.media.common.di
 
 import com.stardeux.upprime.media.common.repository.model.mapper.ShortMediaMapper
-import com.stardeux.upprime.media.common.ui.model.MediaDetailsMapper
+import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
 import com.stardeux.upprime.media.common.ui.GetMediaFicheUiUseCaseFacade
 import com.stardeux.upprime.media.common.usecase.GetAmazonIdUseCase
 import com.stardeux.upprime.media.fiche.ui.mapper.MediaFicheUiMapper
@@ -18,8 +18,8 @@ val commonMediaModule = module {
     factory { provideImdbMediaRequestMapper(get()) }
 }
 
-private fun provideMediaDetailsMapper(posterMapper: PosterMapper): MediaDetailsMapper {
-    return MediaDetailsMapper(posterMapper)
+private fun provideMediaDetailsMapper(posterMapper: PosterMapper): MediaItemUiMapper {
+    return MediaItemUiMapper(posterMapper)
 }
 
 private fun provideGetImdbMediaDetailsUseCaseFacade(
