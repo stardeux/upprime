@@ -17,10 +17,7 @@ class GetImdbMovieDetailsUseCase(
     suspend operator fun invoke(imdbMediaRequest: ImdbMediaRequest): MovieDetails {
         return try {
             getMovieDetailsUseCase.invoke(
-                tmdbMediaRequestMapper.mapToTmdbMovieRequest(
-                    imdbMediaRequest,
-                    null
-                )
+                tmdbMediaRequestMapper.mapToTmdbMovieRequest(imdbMediaRequest, null)
             )
         } catch (exception: Exception) {
             val movieDetails = searchMovie(imdbMediaRequest)
@@ -34,8 +31,7 @@ class GetImdbMovieDetailsUseCase(
         return if (tmdbId != null) {
             getMovieDetailsUseCase(
                 tmdbMediaRequestMapper.mapToTmdbMovieRequest(
-                    imdbMediaRequest,
-                    tmdbId
+                    imdbMediaRequest, tmdbId
                 )
             )
         } else {
@@ -48,8 +44,7 @@ class GetImdbMovieDetailsUseCase(
 
                     getMovieDetailsUseCase(
                         tmdbMediaRequestMapper.mapToTmdbMovieRequest(
-                            imdbMediaRequest,
-                            searchResult.results[index].tmdbId
+                            imdbMediaRequest, searchResult.results[index].tmdbId
                         )
                     )
                 } else {
