@@ -29,7 +29,7 @@ val ficheModule = module {
     factory { (fragment: MediaFicheFragment) -> provideShortMedia(fragment) }
     factory { (fragment: MediaFicheFragment) ->
         provideMediaFicheViewModel(
-            get { parametersOf(fragment) }, get(), get(), get(), get(), get(), get(), get(), get(), get()
+            get { parametersOf(fragment) }, get(), get(), get(), get(), get(), get(), get(), get()
         )
     }
 }
@@ -52,7 +52,6 @@ private fun provideMediaFicheViewModel(
     rateAppUseCase: RateAppUseCase,
     analyticsWrapper: AnalyticsWrapper,
     isIntentResolvableUseCase: IsIntentResolvableUseCase,
-    imdbMediaRequestMapper: ImdbMediaRequestMapper
 ): MediaFicheViewModel {
     return MediaFicheViewModel(
         shortMedia,
@@ -63,8 +62,7 @@ private fun provideMediaFicheViewModel(
         mediaIllustrationUseCase,
         rateAppUseCase,
         analyticsWrapper,
-        isIntentResolvableUseCase,
-        imdbMediaRequestMapper
+        isIntentResolvableUseCase
     )
 }
 

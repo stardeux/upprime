@@ -40,8 +40,7 @@ class MediaFicheViewModel(
     private val mediaIllustrationUseCase: MediaIllustrationUseCase,
     rateAppUseCase: RateAppUseCase,
     private val analyticsWrapper: AnalyticsWrapper,
-    private val isIntentResolvableUseCase: IsIntentResolvableUseCase,
-    private val imdbMediaRequestMapper: ImdbMediaRequestMapper
+    private val isIntentResolvableUseCase: IsIntentResolvableUseCase
 ) : ViewModel() {
 
     private val _mediaItemUi = MutableLiveData<MediaFicheUi>()
@@ -72,10 +71,8 @@ class MediaFicheViewModel(
         viewModelScope.launch(exceptionHandler) {
             supervisorScope {
 
-                val imdbMediaRequest = imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia)
-
                 val mediaDetails =
-                    getImdbMediaDetailsUseCaseFacade.getDetails(shortMedia.type, imdbMediaRequest)
+                    getImdbMediaDetailsUseCaseFacade.getDetails(shortMedia)
                 _mediaItemUi.value = mediaDetails
 
                 _illustration.value = mediaIllustrationUseCase.getIllustration(mediaDetails)

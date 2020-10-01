@@ -12,7 +12,7 @@ import org.koin.dsl.module
 import java.util.*
 
 val commonMediaModule = module {
-    factory { provideGetImdbMediaDetailsUseCaseFacade(get()) }
+    factory { provideGetImdbMediaDetailsUseCaseFacade(get(), get()) }
     factory { provideMediaDetailsMapper(get()) }
     factory { provideShortMediaMapper(get()) }
     factory { provideGetAmazonIdUseCase() }
@@ -23,9 +23,11 @@ private fun provideMediaDetailsMapper(posterMapper: PosterMapper): MediaDetailsM
     return MediaDetailsMapper(posterMapper)
 }
 
-private fun provideGetImdbMediaDetailsUseCaseFacade(mediaFicheUiMapper: MediaFicheUiMapper): GetImdbMediaDetailsUseCaseFacade {
+private fun provideGetImdbMediaDetailsUseCaseFacade(
+    imdbMediaRequestMapper: ImdbMediaRequestMapper, mediaFicheUiMapper: MediaFicheUiMapper
+): GetImdbMediaDetailsUseCaseFacade {
     return GetImdbMediaDetailsUseCaseFacade(
-        mediaFicheUiMapper
+        imdbMediaRequestMapper, mediaFicheUiMapper
     )
 }
 
