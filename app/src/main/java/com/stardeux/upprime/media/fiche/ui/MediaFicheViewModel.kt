@@ -3,8 +3,6 @@ package com.stardeux.upprime.media.fiche.ui
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
-import androidx.annotation.ColorInt
-import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +13,7 @@ import com.stardeux.upprime.core.analytics.getTrackingParameters
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.core.usecase.IsIntentResolvableUseCase
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
-import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
+import com.stardeux.upprime.media.common.ui.GetMediaFicheUiUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.model.Illustration
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
@@ -25,15 +23,13 @@ import com.stardeux.upprime.tmdb.credit.ui.model.CreditsUi
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
-import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 
 class MediaFicheViewModel(
     private val shortMedia: ShortMedia,
-    private val getImdbMediaDetailsUseCaseFacade: GetImdbMediaDetailsUseCaseFacade,
+    private val getMediaFicheUiUseCaseFacade: GetMediaFicheUiUseCaseFacade,
     private val videoUseCase: VideoUseCase,
     private val creditUseCaseFacade: CreditUseCaseFacade,
     private val mediaVideoMapper: MediaVideoMapper,
@@ -72,7 +68,7 @@ class MediaFicheViewModel(
             supervisorScope {
 
                 val mediaDetails =
-                    getImdbMediaDetailsUseCaseFacade.getDetails(shortMedia)
+                    getMediaFicheUiUseCaseFacade.getDetails(shortMedia)
                 _mediaItemUi.value = mediaDetails
 
                 _illustration.value = mediaIllustrationUseCase.getIllustration(mediaDetails)

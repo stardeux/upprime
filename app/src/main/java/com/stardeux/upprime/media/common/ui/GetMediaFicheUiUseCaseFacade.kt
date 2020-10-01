@@ -9,7 +9,7 @@ import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import org.koin.java.KoinJavaComponent.getKoin
 
-class GetImdbMediaDetailsUseCaseFacade(
+class GetMediaFicheUiUseCaseFacade(
     private val imdbMediaRequestMapper: ImdbMediaRequestMapper,
     private val mediaFicheUiMapper: MediaFicheUiMapper
 ) {

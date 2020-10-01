@@ -4,7 +4,7 @@ import android.content.Context
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.usecase.IsIntentResolvableUseCase
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
-import com.stardeux.upprime.media.common.ui.GetImdbMediaDetailsUseCaseFacade
+import com.stardeux.upprime.media.common.ui.GetMediaFicheUiUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.MediaFicheFragment
 import com.stardeux.upprime.media.fiche.ui.MediaFicheViewModel
 import com.stardeux.upprime.media.fiche.ui.mapper.MediaFicheUiMapper
@@ -16,7 +16,6 @@ import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
 import com.stardeux.upprime.tmdb.video.usecase.VideoUseCase
-import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
@@ -44,7 +43,7 @@ private fun provideMediaIllustrationUseCase(context: Context): MediaIllustration
 
 private fun provideMediaFicheViewModel(
     shortMedia: ShortMedia,
-    getImdbMediaDetailsUseCaseFacade: GetImdbMediaDetailsUseCaseFacade,
+    getMediaFicheUiUseCaseFacade: GetMediaFicheUiUseCaseFacade,
     videoUseCase: VideoUseCase,
     creditUseCaseFacade: CreditUseCaseFacade,
     mediaVideoMapper: MediaVideoMapper,
@@ -55,7 +54,7 @@ private fun provideMediaFicheViewModel(
 ): MediaFicheViewModel {
     return MediaFicheViewModel(
         shortMedia,
-        getImdbMediaDetailsUseCaseFacade,
+        getMediaFicheUiUseCaseFacade,
         videoUseCase,
         creditUseCaseFacade,
         mediaVideoMapper,
