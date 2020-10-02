@@ -21,10 +21,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 abstract class AmazonMediaViewModel(
-    private val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
-    private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     private val mediaItemUiMapper: MediaItemUiMapper,
-    private val imdbMediaRequestMapper: ImdbMediaRequestMapper,
     private val getMediaItemUiUseCaseFacade: GetMediaItemUiUseCaseFacade,
     private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {

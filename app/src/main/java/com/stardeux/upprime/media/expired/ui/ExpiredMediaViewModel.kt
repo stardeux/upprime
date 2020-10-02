@@ -12,17 +12,11 @@ import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 
 class ExpiredMediaViewModel(
     private val getExpiredMediaUseCase: GetExpiredMediaUseCase,
-    getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
-    getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     mediaItemUiMapper: MediaItemUiMapper,
-    imdbMediaRequestMapper: ImdbMediaRequestMapper,
     getMediaItemUiUseCaseFacade: GetMediaItemUiUseCaseFacade,
     analyticsWrapper: AnalyticsWrapper
 ) : AmazonMediaViewModel(
-    getImdbMovieDetailsUseCase,
-    getImdbSeriesDetailsUseCase,
     mediaItemUiMapper,
-    imdbMediaRequestMapper,
     getMediaItemUiUseCaseFacade,
     analyticsWrapper
 ) {

@@ -28,7 +28,7 @@ import retrofit2.Retrofit
 val expiredModule = module {
     single { provideExpiredApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
     factory { provideExpiredRepository(get(), get(), get(), get()) }
-    viewModel { provideExpiredMediaViewModel(getUserScope().get(), get(), get(), get(), get(), get(), get()) }
+    viewModel { provideExpiredMediaViewModel(getUserScope().get(), get(), get(), get()) }
     factory { provideExpiredMediaRemoteDataSource(get()) }
     factory { provideExpiredMediaPreferences(get()) }
 
@@ -84,19 +84,13 @@ private fun provideExpiredUseCase(
 
 private fun provideExpiredMediaViewModel(
     getExpiredMediaUseCase: GetExpiredMediaUseCase,
-    getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase,
-    getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     mediaItemUiMapper: MediaItemUiMapper,
-    imdbMediaRequestMapper: ImdbMediaRequestMapper,
     getMediaItemUiUseCaseFacade: GetMediaItemUiUseCaseFacade,
     analyticsWrapper: AnalyticsWrapper
 ): ExpiredMediaViewModel {
     return ExpiredMediaViewModel(
         getExpiredMediaUseCase,
-        getImdbMovieDetailsUseCase,
-        getImdbSeriesDetailsUseCase,
         mediaItemUiMapper,
-        imdbMediaRequestMapper,
         getMediaItemUiUseCaseFacade,
         analyticsWrapper
     )
