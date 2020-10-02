@@ -5,16 +5,16 @@ import com.stardeux.upprime.tmdb.common.request.ImdbMediaRequest
 import com.stardeux.upprime.tmdb.find.usecase.FindMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import com.stardeux.upprime.tmdb.find.usecase.error.MovieNotFoundException
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieDetails
 
-class GetImdbMovieDetailsUseCase(
+class GetTmdbMovieDetailsUseCase(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
     private val findMovieUseCase: FindMovieUseCase,
     private val searchMovieUseCase: SearchMovieUseCase,
     private val tmdbMediaRequestMapper: TmdbMediaRequestMapper
 ) {
 
-    suspend operator fun invoke(imdbMediaRequest: ImdbMediaRequest): MovieDetails {
+    suspend operator fun invoke(imdbMediaRequest: ImdbMediaRequest): TmdbMovieDetails {
         return try {
             getMovieDetailsUseCase.invoke(
                 tmdbMediaRequestMapper.mapToTmdbMovieRequest(imdbMediaRequest, null)
@@ -25,7 +25,7 @@ class GetImdbMovieDetailsUseCase(
         }
     }
 
-    private suspend fun searchMovie(imdbMediaRequest: ImdbMediaRequest): MovieDetails? {
+    private suspend fun searchMovie(imdbMediaRequest: ImdbMediaRequest): TmdbMovieDetails? {
         //If first request failed, i think that findMovieByImdbId will necessarily fail
         val tmdbId = findMovieUseCase.findMovieByImdbId(imdbMediaRequest.imdbId)?.tmdbId
         return if (tmdbId != null) {

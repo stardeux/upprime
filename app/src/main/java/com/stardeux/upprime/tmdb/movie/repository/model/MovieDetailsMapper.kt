@@ -4,14 +4,14 @@ import com.stardeux.upprime.database.parser.parseDatabaseGenres
 import com.stardeux.upprime.database.parser.parseDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieDetailsResponse
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailsEntity
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieDetails
 import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieRequest
 
 class MovieDetailsMapper {
 
-    fun mapToMovieDetails(movieDetailsEntity: MovieDetailsEntity): MovieDetails {
+    fun mapToMovieDetails(movieDetailsEntity: MovieDetailsEntity): TmdbMovieDetails {
         return with(movieDetailsEntity){
-            MovieDetails(
+            TmdbMovieDetails(
                 tmdbId = tmdbId,
                 imdbId = imdbId,
                 amazonId = amazonId,
@@ -32,9 +32,9 @@ class MovieDetailsMapper {
 
     suspend fun mapToMovieDetails(
         tmdbMovieDetailsResponse: TmdbMovieDetailsResponse, tmdbMovieRequest: TmdbMovieRequest
-    ): MovieDetails {
+    ): TmdbMovieDetails {
         return with(tmdbMovieDetailsResponse) {
-            MovieDetails(
+            TmdbMovieDetails(
                 tmdbId = requireNotNull(tmdbId),
                 imdbId = tmdbMovieRequest.imdbId,
                 amazonId = tmdbMovieRequest.amazonId,

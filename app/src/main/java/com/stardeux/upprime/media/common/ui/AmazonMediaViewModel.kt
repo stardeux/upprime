@@ -9,12 +9,8 @@ import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
 import com.stardeux.upprime.media.common.ui.model.MediaItemUi
-import com.stardeux.upprime.core.model.MediaType
-import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
-import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
-import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

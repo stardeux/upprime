@@ -4,7 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import com.stardeux.upprime.core.usecase.IsIntentResolvableUseCase
 import com.stardeux.upprime.media.fiche.ui.mapper.GetPlayAmazonVideoNativeUriMapper
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 class GetPlayAmazonVideoIntentUseCase(
@@ -12,8 +12,8 @@ class GetPlayAmazonVideoIntentUseCase(
     private val getPlayAmazonVideoNativeUriMapper: GetPlayAmazonVideoNativeUriMapper
 ) {
 
-    fun getAmazonPlayIntent(movieDetails: MovieDetails): Uri {
-        val appDeeplink = getPlayAmazonVideoNativeUriMapper.getAmazonPlayNativeUri(movieDetails)
+    fun getAmazonPlayIntent(tmdbMovieDetails: TmdbMovieDetails): Uri {
+        val appDeeplink = getPlayAmazonVideoNativeUriMapper.getAmazonPlayNativeUri(tmdbMovieDetails)
         val intent = makeIntent(appDeeplink)
         return appDeeplink.takeIf { isIntentResolvableUseCase.isResolvable(intent) } ?: Uri.parse("")
     }

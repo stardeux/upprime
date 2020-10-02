@@ -4,8 +4,7 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
 import com.stardeux.upprime.media.common.ui.model.MediaItemUi
-import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
-import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.movie.usecase.GetTmdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import org.koin.java.KoinJavaComponent.getKoin
@@ -32,10 +31,10 @@ class GetMediaItemUiUseCaseFacade(
     }
 
     private suspend fun loadMovieDetail(shortMedia: ShortMedia, onFullCardClicked: (MediaItemUi) -> Unit): MediaItemUi {
-        val getImdbMovieDetailsUseCase: GetImdbMovieDetailsUseCase = getKoin().get()
+        val getTmdbMovieDetailsUseCase: GetTmdbMovieDetailsUseCase = getKoin().get()
         return mediaItemUiMapper.mapToMediaUi(
             shortMedia,
-            getImdbMovieDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia)),
+            getTmdbMovieDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia)),
             onFullCardClicked
         )
     }

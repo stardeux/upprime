@@ -7,7 +7,7 @@ import com.stardeux.upprime.tmdb.movie.repository.api.TmdbMovieApi
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailDao
 import com.stardeux.upprime.tmdb.movie.repository.database.MovieDetailLocalDataSource
 import com.stardeux.upprime.tmdb.movie.repository.model.MovieDetailsMapper
-import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
+import com.stardeux.upprime.tmdb.movie.usecase.GetTmdbMovieDetailsUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetMovieDetailsUseCase
 import com.stardeux.upprime.network.tmdb.di.TMDB_NAMED_QUALIFIER
 import com.stardeux.upprime.tmdb.common.mapper.TmdbMediaRequestMapper
@@ -16,7 +16,6 @@ import com.stardeux.upprime.tmdb.find.usecase.SearchMovieUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import java.util.*
 
 val movieModule = module {
     factory { provideTmdbMovieApi(get(named(TMDB_NAMED_QUALIFIER))) }
@@ -73,8 +72,8 @@ private fun provideGetImdbMovieDetailsUseCase(
     findMovieUseCase: FindMovieUseCase,
     searchMovieUseCase: SearchMovieUseCase,
     tmdbMediaRequestMapper: TmdbMediaRequestMapper
-): GetImdbMovieDetailsUseCase {
-    return GetImdbMovieDetailsUseCase(
+): GetTmdbMovieDetailsUseCase {
+    return GetTmdbMovieDetailsUseCase(
         getMovieDetailsUseCase,
         findMovieUseCase,
         searchMovieUseCase,

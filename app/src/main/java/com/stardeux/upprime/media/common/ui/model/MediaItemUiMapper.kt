@@ -7,7 +7,7 @@ import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 class MediaItemUiMapper (private val posterMapper: PosterMapper) {
@@ -37,13 +37,13 @@ class MediaItemUiMapper (private val posterMapper: PosterMapper) {
 
     suspend fun mapToMediaUi(
         shortMedia: ShortMedia,
-        movieDetails: MovieDetails,
+        tmdbMovieDetails: TmdbMovieDetails,
         onFullCardClicked: (MediaItemUi) -> Unit
     ): MediaItemUi {
         /**
          * Get ids from shortMediaUi because they are assuredly present
          */
-        return with(movieDetails) {
+        return with(tmdbMovieDetails) {
             MediaItemUi(
                 shortMedia = shortMedia,
                 tmdbId = tmdbId,

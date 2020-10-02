@@ -8,7 +8,7 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.media.fiche.usecase.GetPlayAmazonVideoIntentUseCase
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
-import com.stardeux.upprime.tmdb.movie.usecase.model.MovieDetails
+import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
 
 class MediaFicheUiMapper(
@@ -17,9 +17,9 @@ class MediaFicheUiMapper(
 ) {
 
     suspend fun mapToMediaFicheUi(
-        movieDetails: MovieDetails
+        tmdbMovieDetails: TmdbMovieDetails
     ): MediaFicheUi {
-        return with(movieDetails) {
+        return with(tmdbMovieDetails) {
             MediaFicheUi(
                 amazonId = amazonId,
                 imdbId = imdbId,
@@ -35,7 +35,7 @@ class MediaFicheUiMapper(
                 amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
-                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(movieDetails)
+                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(tmdbMovieDetails)
             )
         }
     }

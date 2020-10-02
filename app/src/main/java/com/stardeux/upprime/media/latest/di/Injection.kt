@@ -17,9 +17,6 @@ import com.stardeux.upprime.media.latest.repository.database.LatestMediaDao
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaLocalDataSource
 import com.stardeux.upprime.media.latest.repository.preferences.LatestMediaPreferences
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
-import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
-import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
-import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
