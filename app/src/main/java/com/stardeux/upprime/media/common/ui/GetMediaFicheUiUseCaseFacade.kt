@@ -24,6 +24,7 @@ class GetMediaFicheUiUseCaseFacade(
     private suspend fun loadSeriesDetail(shortMedia: ShortMedia): MediaFicheUi {
         val getTmdbSeriesDetailsUseCase: GetTmdbSeriesDetailsUseCase = getKoin().get()
         return mediaFicheUiMapper.mapToMediaFicheUi(
+            shortMedia,
             getTmdbSeriesDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia))
         )
     }
@@ -31,6 +32,7 @@ class GetMediaFicheUiUseCaseFacade(
     private suspend fun loadMovieDetail(shortMedia: ShortMedia): MediaFicheUi {
         val getTmdbMovieDetailsUseCase: GetTmdbMovieDetailsUseCase = getKoin().get()
         return mediaFicheUiMapper.mapToMediaFicheUi(
+            shortMedia,
             getTmdbMovieDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia))
         )
     }

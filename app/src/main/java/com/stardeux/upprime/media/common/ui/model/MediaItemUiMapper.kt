@@ -55,7 +55,7 @@ class MediaItemUiMapper (private val posterMapper: PosterMapper) {
                 mainNationality = nationalities?.getOrNull(0),
                 rating = mapToRatingString(tmdbRating),
                 posterUrl = posterMapper.getCompletePosterUrl(posterPath),
-                amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
+                amazonReleaseDate = formatToHumanReadableMonthDay(shortMedia.dateAdded),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
                 onCardClicked = onFullCardClicked
@@ -83,7 +83,7 @@ class MediaItemUiMapper (private val posterMapper: PosterMapper) {
                 mainNationality = nationalities?.getOrNull(0),
                 rating = mapToRatingString(tmdbRating),
                 posterUrl = posterMapper.getCompletePosterUrl(posterPath),
-                amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
+                amazonReleaseDate = formatToHumanReadableMonthDay(shortMedia.dateAdded),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
                 onCardClicked = onFullCardClicked

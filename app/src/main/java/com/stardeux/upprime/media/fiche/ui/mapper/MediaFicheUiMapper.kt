@@ -5,6 +5,7 @@ import com.stardeux.upprime.core.mapper.mapReleaseDateToYear
 import com.stardeux.upprime.core.mapper.mapRuntimeToString
 import com.stardeux.upprime.core.mapper.mapToRatingString
 import com.stardeux.upprime.core.model.MediaType
+import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.media.fiche.usecase.GetPlayAmazonVideoIntentUseCase
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
@@ -17,11 +18,12 @@ class MediaFicheUiMapper(
 ) {
 
     suspend fun mapToMediaFicheUi(
+        shortMedia: ShortMedia,
         tmdbMovieDetails: TmdbMovieDetails
     ): MediaFicheUi {
         return with(tmdbMovieDetails) {
             MediaFicheUi(
-                amazonId = amazonId,
+                amazonId = shortMedia.amazonId,
                 imdbId = imdbId,
                 tmdbId = tmdbId,
                 title = title,
@@ -32,20 +34,21 @@ class MediaFicheUiMapper(
                 mainNationality = nationalities?.getOrNull(0),
                 tmdbRating = mapToRatingString(tmdbRating),
                 posterUrl = posterMapper.getCompletePosterUrl(posterPath),
-                amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
+                amazonReleaseDate = formatToHumanReadableMonthDay(shortMedia.dateAdded),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
-                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(tmdbMovieDetails)
+                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(shortMedia)
             )
         }
     }
 
     suspend fun mapToMediaFicheUi(
+        shortMedia: ShortMedia,
         tmdbSeriesDetails: TmdbSeriesDetails
     ): MediaFicheUi {
         return with(tmdbSeriesDetails) {
             MediaFicheUi(
-                amazonId = amazonId,
+                amazonId = shortMedia.amazonId,
                 imdbId = imdbId,
                 tmdbId = tmdbId,
                 title = name,
@@ -56,10 +59,10 @@ class MediaFicheUiMapper(
                 mainNationality = nationalities?.getOrNull(0),
                 tmdbRating = mapToRatingString(tmdbRating),
                 posterUrl = posterMapper.getCompletePosterUrl(posterPath),
-                amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
+                amazonReleaseDate = formatToHumanReadableMonthDay(shortMedia.dateAdded),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
-                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(tmdbSeriesDetails)
+                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(shortMedia)
             )
         }
     }

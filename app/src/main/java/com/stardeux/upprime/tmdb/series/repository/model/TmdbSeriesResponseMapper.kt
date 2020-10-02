@@ -11,7 +11,6 @@ fun mapToSeriesDetailsEntity(tmdbSeriesDetails: TmdbSeriesDetails): SeriesDetail
         SeriesDetailsEntity(
             tmdbId = tmdbId,
             imdbId = imdbId,
-            amazonId = amazonId,
             title = name,
             originalTitle = originalName,
             posterPath = posterPath,
@@ -20,7 +19,6 @@ fun mapToSeriesDetailsEntity(tmdbSeriesDetails: TmdbSeriesDetails): SeriesDetail
             genres = genres?.let (::formatDatabaseGenres),
             productionCountries = nationalities?.let(::formatDatabaseProductionCountries),
             tmdbRating = tmdbRating,
-            amazonReleaseDate = amazonReleaseDate,
             synopsis = synopsis,
             backdropPath = backdropPath
         )

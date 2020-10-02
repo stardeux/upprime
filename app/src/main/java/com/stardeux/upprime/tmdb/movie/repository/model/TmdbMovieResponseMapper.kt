@@ -9,7 +9,6 @@ fun mapToMovieDetailsEntity(tmdbMovieDetails: TmdbMovieDetails): MovieDetailsEnt
         MovieDetailsEntity(
             tmdbId = tmdbId,
             imdbId = imdbId,
-            amazonId = amazonId,
             title = title,
             originalTitle = originalTitle,
             posterPath = posterPath,
@@ -18,7 +17,6 @@ fun mapToMovieDetailsEntity(tmdbMovieDetails: TmdbMovieDetails): MovieDetailsEnt
             genres = genres?.let (::formatDatabaseGenres),
             productionCountries = nationalities?.let(::formatDatabaseProductionCountries),
             tmdbRating = tmdbRating,
-            amazonReleaseDate = amazonReleaseDate,
             synopsis = synopsis,
             backdropPath = backdropPath
         )

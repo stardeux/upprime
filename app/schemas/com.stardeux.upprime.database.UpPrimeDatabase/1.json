@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9a42667d040ad4131846976d8215ed23",
+    "identityHash": "05178629f3f31bd1b63faf19968d21df",
     "entities": [
       {
         "tableName": "series",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`series_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT NOT NULL, `imdb_id` TEXT NOT NULL, `amazon_id` TEXT NOT NULL, `amazon_release_date` TEXT NOT NULL, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT, `genres` TEXT, `production_countries` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`series_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT NOT NULL, `imdb_id` TEXT NOT NULL, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT, `genres` TEXT, `production_countries` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -27,18 +27,6 @@
             "notNull": true
           },
           {
-            "fieldPath": "amazonId",
-            "columnName": "amazon_id",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "amazonReleaseDate",
-            "columnName": "amazon_release_date",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "title",
             "columnName": "title",
             "affinity": "TEXT",
@@ -51,7 +39,7 @@
             "notNull": false
           },
           {
-            "fieldPath": "posterUrl",
+            "fieldPath": "posterPath",
             "columnName": "poster_path",
             "affinity": "TEXT",
             "notNull": false
@@ -110,7 +98,7 @@
       },
       {
         "tableName": "movies",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movie_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT NOT NULL, `imdb_id` TEXT NOT NULL, `amazon_id` TEXT NOT NULL, `amazon_release_date` TEXT NOT NULL, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT, `genres` TEXT, `production_countries` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`movie_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tmdb_id` TEXT NOT NULL, `imdb_id` TEXT NOT NULL, `title` TEXT, `original_title` TEXT, `poster_path` TEXT, `release_date` TEXT, `runtime` INTEGER, `tmdb_rating` REAL, `synopsis` TEXT, `backdrop_path` TEXT, `genres` TEXT, `production_countries` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -131,18 +119,6 @@
             "notNull": true
           },
           {
-            "fieldPath": "amazonId",
-            "columnName": "amazon_id",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "amazonReleaseDate",
-            "columnName": "amazon_release_date",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "title",
             "columnName": "title",
             "affinity": "TEXT",
@@ -155,7 +131,7 @@
             "notNull": false
           },
           {
-            "fieldPath": "posterUrl",
+            "fieldPath": "posterPath",
             "columnName": "poster_path",
             "affinity": "TEXT",
             "notNull": false
@@ -223,7 +199,7 @@
             "notNull": true
           },
           {
-            "fieldPath": "amazonId",
+            "fieldPath": "amazonWebUrl",
             "columnName": "amazon_id",
             "affinity": "TEXT",
             "notNull": true
@@ -273,7 +249,7 @@
             "notNull": true
           },
           {
-            "fieldPath": "amazonId",
+            "fieldPath": "amazonWebUrl",
             "columnName": "amazon_id",
             "affinity": "TEXT",
             "notNull": true
@@ -316,7 +292,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9a42667d040ad4131846976d8215ed23')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '05178629f3f31bd1b63faf19968d21df')"
     ]
   }
 }

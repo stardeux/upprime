@@ -16,7 +16,6 @@ class SeriesDetailsMapper {
             TmdbSeriesDetails(
                 tmdbId = requireNotNull(tmdbId),
                 imdbId = tmdbSeriesRequest.imdbId,
-                amazonId = tmdbSeriesRequest.amazonId,
                 name = name,
                 originalName = originalName,
                 posterPath = posterPath,
@@ -25,7 +24,6 @@ class SeriesDetailsMapper {
                 genres = genres?.mapNotNull { it.name },
                 nationalities = originCountry,
                 tmdbRating = voteAverage?.takeIf { voteCount ?: 0 > 0 },
-                amazonReleaseDate = tmdbSeriesRequest.amazonReleaseDate,
                 synopsis = synopsis.takeIf { it?.isNotBlank() == true },
                 backdropPath = backdropPath
             )
@@ -38,7 +36,6 @@ class SeriesDetailsMapper {
             TmdbSeriesDetails(
                 tmdbId = tmdbId,
                 imdbId = imdbId,
-                amazonId = amazonId,
                 name = title,
                 originalName = originalTitle,
                 posterPath = posterPath,
@@ -47,7 +44,6 @@ class SeriesDetailsMapper {
                 genres = genres?.let(::parseDatabaseGenres),
                 nationalities = productionCountries?.let(::parseDatabaseProductionCountries),
                 tmdbRating = tmdbRating,
-                amazonReleaseDate = amazonReleaseDate,
                 synopsis = synopsis,
                 backdropPath = backdropPath
             )

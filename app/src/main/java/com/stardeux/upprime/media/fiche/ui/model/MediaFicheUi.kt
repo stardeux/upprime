@@ -21,5 +21,5 @@ data class MediaFicheUi(
     val amazonReleaseDate: String,
     val synopsis: String?,
     val backdropUrl: String?,
-    val amazonPlayUri: Uri
+    val amazonPlayUri: Uri,
 )
