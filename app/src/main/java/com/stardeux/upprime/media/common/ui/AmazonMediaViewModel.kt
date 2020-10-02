@@ -25,6 +25,7 @@ abstract class AmazonMediaViewModel(
     private val getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     private val mediaItemUiMapper: MediaItemUiMapper,
     private val imdbMediaRequestMapper: ImdbMediaRequestMapper,
+    private val getMediaItemUiUseCaseFacade: GetMediaItemUiUseCaseFacade,
     private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {
 
@@ -119,16 +120,7 @@ abstract class AmazonMediaViewModel(
 
 
     private suspend fun loadFullMedia(shortMedia: ShortMedia): MediaItemUi {
-        return when (shortMedia.type) {
-            MediaType.MOVIE -> {
-                val movieDetails = getImdbMovieDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia))
-                mediaItemUiMapper.mapToMediaUi(shortMedia, movieDetails, ::onCardClicked)
-            }
-            MediaType.SERIES -> {
-                val seriesDetails = getImdbSeriesDetailsUseCase(imdbMediaRequestMapper.mapToImdbMediaRequest(shortMedia))
-                mediaItemUiMapper.mapToMediaUi(shortMedia, seriesDetails, ::onCardClicked)
-            }
-        }
+        return getMediaItemUiUseCaseFacade.getDetails(shortMedia, ::onCardClicked)
     }
 
     private fun groupByDate(medias: List<MediaItemUi>): MutableList<Any> {

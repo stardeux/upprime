@@ -3,6 +3,7 @@ package com.stardeux.upprime.media.latest.ui
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.ui.AmazonMediaViewModel
+import com.stardeux.upprime.media.common.ui.GetMediaItemUiUseCaseFacade
 import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
 import com.stardeux.upprime.media.latest.usecase.GetLatestMediaUseCase
 import com.stardeux.upprime.tmdb.movie.usecase.GetImdbMovieDetailsUseCase
@@ -15,12 +16,14 @@ class LatestMediaViewModel(
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     mediaItemUiMapper: MediaItemUiMapper,
     imdbMediaRequestMapper: ImdbMediaRequestMapper,
+    getMediaItemUiUseCaseFacade: GetMediaItemUiUseCaseFacade,
     analyticsWrapper: AnalyticsWrapper
 ) : AmazonMediaViewModel(
     getImdbMovieDetailsUseCase,
     getImdbSeriesDetailsUseCase,
     mediaItemUiMapper,
     imdbMediaRequestMapper,
+    getMediaItemUiUseCaseFacade,
     analyticsWrapper
 ) {
 

@@ -6,6 +6,7 @@ import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.media.common.repository.model.mapper.ShortMediaMapper
+import com.stardeux.upprime.media.common.ui.GetMediaItemUiUseCaseFacade
 import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
 import com.stardeux.upprime.media.expired.repository.ExpiredMediaRepository
 import com.stardeux.upprime.media.expired.repository.api.ExpiredApi
@@ -27,7 +28,7 @@ import retrofit2.Retrofit
 val expiredModule = module {
     single { provideExpiredApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
     factory { provideExpiredRepository(get(), get(), get(), get()) }
-    viewModel { provideExpiredMediaViewModel(getUserScope().get(), get(), get(), get(), get(), get()) }
+    viewModel { provideExpiredMediaViewModel(getUserScope().get(), get(), get(), get(), get(), get(), get()) }
     factory { provideExpiredMediaRemoteDataSource(get()) }
     factory { provideExpiredMediaPreferences(get()) }
 
@@ -87,6 +88,7 @@ private fun provideExpiredMediaViewModel(
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     mediaItemUiMapper: MediaItemUiMapper,
     imdbMediaRequestMapper: ImdbMediaRequestMapper,
+    getMediaItemUiUseCaseFacade: GetMediaItemUiUseCaseFacade,
     analyticsWrapper: AnalyticsWrapper
 ): ExpiredMediaViewModel {
     return ExpiredMediaViewModel(
@@ -95,6 +97,7 @@ private fun provideExpiredMediaViewModel(
         getImdbSeriesDetailsUseCase,
         mediaItemUiMapper,
         imdbMediaRequestMapper,
+        getMediaItemUiUseCaseFacade,
         analyticsWrapper
     )
 }

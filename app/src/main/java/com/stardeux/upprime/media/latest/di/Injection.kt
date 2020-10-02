@@ -10,6 +10,7 @@ import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.database.UpPrimeDatabase
 import com.stardeux.upprime.media.common.repository.model.mapper.ShortMediaMapper
+import com.stardeux.upprime.media.common.ui.GetMediaItemUiUseCaseFacade
 import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
 import com.stardeux.upprime.media.latest.repository.api.LatestMediaRemoteDataSource
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaDao
@@ -33,7 +34,7 @@ val latestModule = module {
     single { provideLatestApi(get(named(AMAZON_NAMED_QUALIFIER))) }
     factory { provideLatestRepository(get(), get(), get(), get()) }
 
-    viewModel { provideLatestMediaViewModel(getUserScope().get(), get(), get(), get(), get(), get()) }
+    viewModel { provideLatestMediaViewModel(getUserScope().get(), get(), get(), get(), get(), get(), get()) }
 
     scope<AvailableCountry> {
         factory { provideLatestUseCase(get(), get(), get()) }
@@ -81,6 +82,7 @@ private fun provideLatestMediaViewModel(
     getImdbSeriesDetailsUseCase: GetImdbSeriesDetailsUseCase,
     mediaItemUiMapper: MediaItemUiMapper,
     imdbMediaRequestMapper: ImdbMediaRequestMapper,
+    getMediaItemUiUseCaseFacade: GetMediaItemUiUseCaseFacade,
     analyticsWrapper: AnalyticsWrapper
 ): LatestMediaViewModel {
     return LatestMediaViewModel(
@@ -89,6 +91,7 @@ private fun provideLatestMediaViewModel(
         getImdbSeriesDetailsUseCase,
         mediaItemUiMapper,
         imdbMediaRequestMapper,
+        getMediaItemUiUseCaseFacade,
         analyticsWrapper
     )
 }
