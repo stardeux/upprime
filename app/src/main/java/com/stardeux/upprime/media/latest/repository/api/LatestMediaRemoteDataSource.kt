@@ -6,7 +6,6 @@ import com.stardeux.upprime.core.extension.logDebug
 import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.usecase.model.AmazonMediaRequest
 import com.stardeux.upprime.network.amazon.di.AMAZON_NAMED_QUALIFIER
-import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
 import org.koin.core.qualifier.named
 import org.koin.java.KoinJavaComponent.inject
 

@@ -2,7 +2,7 @@ package com.stardeux.upprime.media.fiche.ui.mapper
 
 import android.net.Uri
 import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieDetails
-import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
+import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesDetails
 
 class GetPlayAmazonVideoNativeUriMapper {
 
@@ -10,8 +10,8 @@ class GetPlayAmazonVideoNativeUriMapper {
         return getAmazonPlayNativeUri(tmdbMovieDetails.amazonId)
     }
 
-    fun getAmazonPlayNativeUri(seriesDetails: SeriesDetails): Uri {
-        return getAmazonPlayNativeUri(seriesDetails.amazonId)
+    fun getAmazonPlayNativeUri(tmdbSeriesDetails: TmdbSeriesDetails): Uri {
+        return getAmazonPlayNativeUri(tmdbSeriesDetails.amazonId)
     }
 
     private fun getAmazonPlayNativeUri(amazonId: String): Uri {

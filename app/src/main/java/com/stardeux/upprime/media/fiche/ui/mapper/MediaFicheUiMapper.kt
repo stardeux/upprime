@@ -9,7 +9,7 @@ import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
 import com.stardeux.upprime.media.fiche.usecase.GetPlayAmazonVideoIntentUseCase
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieDetails
-import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
+import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesDetails
 
 class MediaFicheUiMapper(
     private val posterMapper: PosterMapper,
@@ -41,9 +41,9 @@ class MediaFicheUiMapper(
     }
 
     suspend fun mapToMediaFicheUi(
-        seriesDetails: SeriesDetails
+        tmdbSeriesDetails: TmdbSeriesDetails
     ): MediaFicheUi {
-        return with(seriesDetails) {
+        return with(tmdbSeriesDetails) {
             MediaFicheUi(
                 amazonId = amazonId,
                 imdbId = imdbId,
@@ -59,7 +59,7 @@ class MediaFicheUiMapper(
                 amazonReleaseDate = formatToHumanReadableMonthDay(amazonReleaseDate),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
-                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(seriesDetails)
+                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(tmdbSeriesDetails)
             )
         }
     }

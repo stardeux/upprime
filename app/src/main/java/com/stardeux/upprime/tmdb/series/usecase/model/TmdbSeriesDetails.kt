@@ -5,7 +5,7 @@ import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.TmdbId
 import org.threeten.bp.LocalDate
 
-data class SeriesDetails(
+data class TmdbSeriesDetails(
     val tmdbId: TmdbId,
     val imdbId: ImdbId,
     val amazonId: AmazonId,

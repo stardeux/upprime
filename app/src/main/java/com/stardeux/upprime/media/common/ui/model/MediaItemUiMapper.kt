@@ -8,7 +8,7 @@ import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieDetails
-import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
+import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesDetails
 
 class MediaItemUiMapper (private val posterMapper: PosterMapper) {
 
@@ -65,13 +65,13 @@ class MediaItemUiMapper (private val posterMapper: PosterMapper) {
 
     suspend fun mapToMediaUi(
         shortMedia: ShortMedia,
-        seriesDetails: SeriesDetails,
+        tmdbSeriesDetails: TmdbSeriesDetails,
         onFullCardClicked: (MediaItemUi) -> Unit
     ): MediaItemUi {
         /**
          * Get ids from shortMediaUi because they are assuredly present
          */
-        return with(seriesDetails) {
+        return with(tmdbSeriesDetails) {
             MediaItemUi(
                 shortMedia = shortMedia,
                 tmdbId = tmdbId,

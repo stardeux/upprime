@@ -4,18 +4,18 @@ import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.TmdbId
 import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesRequest
 import com.stardeux.upprime.tmdb.series.repository.SeriesRepository
-import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
+import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesDetails
 import java.util.*
 
 class GetSeriesDetailsUseCase(
     private val seriesRepository: SeriesRepository
 ) {
 
-    suspend fun getCachedSeriesDetails(imdbId: ImdbId): SeriesDetails? {
+    suspend fun getCachedSeriesDetails(imdbId: ImdbId): TmdbSeriesDetails? {
         return seriesRepository.getCachedSeriesDetails(imdbId)
     }
 
-    suspend operator fun invoke(tmdbSeriesRequest: TmdbSeriesRequest): SeriesDetails {
+    suspend operator fun invoke(tmdbSeriesRequest: TmdbSeriesRequest): TmdbSeriesDetails {
         return seriesRepository.getSeriesDetails(tmdbSeriesRequest, tmdbSeriesRequest.language)
     }
 

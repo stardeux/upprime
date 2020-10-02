@@ -9,14 +9,13 @@ import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesApi
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDao
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesLocalDataSource
 import com.stardeux.upprime.tmdb.series.repository.model.SeriesDetailsMapper
-import com.stardeux.upprime.tmdb.series.usecase.GetImdbSeriesDetailsUseCase
+import com.stardeux.upprime.tmdb.series.usecase.GetTmdbSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.series.usecase.GetSeriesDetailsUseCase
 import com.stardeux.upprime.tmdb.find.usecase.FindSeriesUseCase
 import com.stardeux.upprime.tmdb.find.usecase.SearchSeriesUseCase
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import java.util.*
 
 val seriesModule = module {
     factory { provideSeriesApi(get(named(TMDB_NAMED_QUALIFIER))) }
@@ -68,8 +67,8 @@ private fun provideGetImdbSeriesDetailsUseCase(
     searchSeriesUseCase: SearchSeriesUseCase,
     getSeriesDetailsUseCase: GetSeriesDetailsUseCase,
     tmdbMediaRequestMapper: TmdbMediaRequestMapper
-): GetImdbSeriesDetailsUseCase {
-    return GetImdbSeriesDetailsUseCase(
+): GetTmdbSeriesDetailsUseCase {
+    return GetTmdbSeriesDetailsUseCase(
         findSeriesUseCase, searchSeriesUseCase, getSeriesDetailsUseCase, tmdbMediaRequestMapper
     )
 }

@@ -3,11 +3,11 @@ package com.stardeux.upprime.tmdb.series.repository.model
 import com.stardeux.upprime.database.parser.formatDatabaseGenres
 import com.stardeux.upprime.database.parser.formatDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
-import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
+import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesDetails
 
 
-fun mapToSeriesDetailsEntity(seriesDetails: SeriesDetails): SeriesDetailsEntity {
-    return with(seriesDetails) {
+fun mapToSeriesDetailsEntity(tmdbSeriesDetails: TmdbSeriesDetails): SeriesDetailsEntity {
+    return with(tmdbSeriesDetails) {
         SeriesDetailsEntity(
             tmdbId = tmdbId,
             imdbId = imdbId,

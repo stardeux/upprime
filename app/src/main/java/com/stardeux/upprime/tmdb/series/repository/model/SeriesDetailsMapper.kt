@@ -4,16 +4,16 @@ import com.stardeux.upprime.database.parser.parseDatabaseGenres
 import com.stardeux.upprime.database.parser.parseDatabaseProductionCountries
 import com.stardeux.upprime.tmdb.series.repository.api.TmdbSeriesDetailsResponse
 import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
-import com.stardeux.upprime.tmdb.series.usecase.model.SeriesDetails
+import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesRequest
 
 class SeriesDetailsMapper {
 
     fun mapToSeriesDetails(
         tmdbSeriesDetailsResponse: TmdbSeriesDetailsResponse, tmdbSeriesRequest: TmdbSeriesRequest
-    ): SeriesDetails {
+    ): TmdbSeriesDetails {
         return with(tmdbSeriesDetailsResponse) {
-            SeriesDetails(
+            TmdbSeriesDetails(
                 tmdbId = requireNotNull(tmdbId),
                 imdbId = tmdbSeriesRequest.imdbId,
                 amazonId = tmdbSeriesRequest.amazonId,
@@ -33,9 +33,9 @@ class SeriesDetailsMapper {
     }
 
 
-    fun mapToSeriesDetails(seriesDetailsEntity: SeriesDetailsEntity): SeriesDetails {
+    fun mapToSeriesDetails(seriesDetailsEntity: SeriesDetailsEntity): TmdbSeriesDetails {
         return with(seriesDetailsEntity) {
-            SeriesDetails(
+            TmdbSeriesDetails(
                 tmdbId = tmdbId,
                 imdbId = imdbId,
                 amazonId = amazonId,
