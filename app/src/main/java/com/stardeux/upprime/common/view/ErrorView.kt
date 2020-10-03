@@ -15,11 +15,19 @@ class ErrorView : ConstraintLayout {
         context, attrs, defStyleAttr
     )
 
+    constructor(
+        context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int
+    ) : super(context, attrs, defStyleAttr, defStyleRes)
+
     init {
         setLayout(R.layout.view_error)
     }
 
     fun setOnRetryClicked(onRetryClicked: () -> Unit) {
         errorCta.setOnClickListener { onRetryClicked() }
+    }
+
+    override fun setVisibility(visibility: Int) {
+        super.setVisibility(visibility)
     }
 }

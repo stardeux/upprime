@@ -11,7 +11,7 @@
         android:layout_width="@dimen/error_view_illustration_size"
         android:layout_height="@dimen/error_view_illustration_size"
         android:src="@drawable/ic_baseline_error_outline_24"
-        android:tint="@color/colorPrimary"
+        app:tint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@id/errorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

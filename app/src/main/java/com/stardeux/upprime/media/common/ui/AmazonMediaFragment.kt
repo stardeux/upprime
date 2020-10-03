@@ -67,7 +67,17 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
     private fun onDataLoadingState(dataLoading: AmazonMediaViewModel.DataLoading) {
         mediaListingProgress.isVisible = dataLoading is AmazonMediaViewModel.DataLoading.Loading
         mediaListingRecycler.isVisible = dataLoading is AmazonMediaViewModel.DataLoading.Success
-        mediaListingError.isVisible = dataLoading is AmazonMediaViewModel.DataLoading.Error
+
+        /**
+         * Can't get why it is not working with View.GONE (using View#isVisible)
+         * For instance, when room schema is not valid mediaListingError won't be visible
+         * Maybe visibility switch is happening too fast
+         */
+        mediaListingError.visibility = if (dataLoading is AmazonMediaViewModel.DataLoading.Error) {
+            View.VISIBLE
+        } else {
+            View.INVISIBLE
+        }
     }
 
     private fun getMediaAdapter(): MediaAdapter {
