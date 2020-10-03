@@ -13,8 +13,7 @@ import com.stardeux.upprime.tmdb.movie.usecase.model.TmdbMovieDetails
 import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesDetails
 
 class MediaFicheUiMapper(
-    private val posterMapper: PosterMapper,
-    private val getPlayAmazonVideoIntentUseCase: GetPlayAmazonVideoIntentUseCase
+    private val posterMapper: PosterMapper
 ) {
 
     suspend fun mapToMediaFicheUi(
@@ -37,7 +36,6 @@ class MediaFicheUiMapper(
                 amazonReleaseDate = formatToHumanReadableMonthDay(shortMedia.dateAdded),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
-                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(shortMedia)
             )
         }
     }
@@ -62,7 +60,6 @@ class MediaFicheUiMapper(
                 amazonReleaseDate = formatToHumanReadableMonthDay(shortMedia.dateAdded),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
-                amazonPlayUri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(shortMedia)
             )
         }
     }

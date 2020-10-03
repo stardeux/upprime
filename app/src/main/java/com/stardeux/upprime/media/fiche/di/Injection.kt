@@ -23,7 +23,7 @@ val ficheModule = module {
     factory { provideMediaIllustrationUseCase(get()) }
     factory { provideMediaVideoMapper() }
     factory { provideAmazonPlayUriMapper() }
-    factory { provideMediaFicheUiMapper(get(), get()) }
+    factory { provideMediaFicheUiMapper(get()) }
     factory { provideAmazonPlayUriUseCase(get(), get()) }
     factory { (fragment: MediaFicheFragment) -> provideShortMedia(fragment) }
     factory { (fragment: MediaFicheFragment) ->
@@ -50,7 +50,7 @@ private fun provideMediaFicheViewModel(
     mediaIllustrationUseCase: MediaIllustrationUseCase,
     rateAppUseCase: RateAppUseCase,
     analyticsWrapper: AnalyticsWrapper,
-    isIntentResolvableUseCase: IsIntentResolvableUseCase,
+    getPlayAmazonVideoIntentUseCase: GetPlayAmazonVideoIntentUseCase
 ): MediaFicheViewModel {
     return MediaFicheViewModel(
         shortMedia,
@@ -61,7 +61,7 @@ private fun provideMediaFicheViewModel(
         mediaIllustrationUseCase,
         rateAppUseCase,
         analyticsWrapper,
-        isIntentResolvableUseCase
+        getPlayAmazonVideoIntentUseCase
     )
 }
 
@@ -81,7 +81,7 @@ private fun provideAmazonPlayUriUseCase(
 }
 
 private fun provideMediaFicheUiMapper(
-    posterMapper: PosterMapper, getPlayAmazonVideoIntentUseCase: GetPlayAmazonVideoIntentUseCase
+    posterMapper: PosterMapper
 ): MediaFicheUiMapper {
-    return MediaFicheUiMapper(posterMapper, getPlayAmazonVideoIntentUseCase)
+    return MediaFicheUiMapper(posterMapper)
 }

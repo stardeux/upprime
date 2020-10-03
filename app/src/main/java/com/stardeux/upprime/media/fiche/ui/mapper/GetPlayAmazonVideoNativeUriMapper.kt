@@ -8,8 +8,8 @@ import com.stardeux.upprime.tmdb.series.usecase.model.TmdbSeriesDetails
 
 class GetPlayAmazonVideoNativeUriMapper {
 
-    fun getAmazonPlayNativeUri(shortMedia: ShortMedia): Uri {
-        return getAmazonPlayNativeUri(shortMedia.amazonId)
+    fun getAmazonPlayNativeUri(mediaFicheUi : MediaFicheUi): Uri {
+        return getAmazonPlayNativeUri(mediaFicheUi.amazonId)
     }
 
     private fun getAmazonPlayNativeUri(amazonId: String): Uri {

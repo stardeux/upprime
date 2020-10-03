@@ -1,6 +1,5 @@
 package com.stardeux.upprime.media.fiche.ui.model
 
-import android.net.Uri
 import com.stardeux.upprime.core.model.AmazonId
 import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.MediaType
@@ -20,6 +19,5 @@ data class MediaFicheUi(
     val posterUrl: String?,
     val amazonReleaseDate: String,
     val synopsis: String?,
-    val backdropUrl: String?,
-    val amazonPlayUri: Uri,
+    val backdropUrl: String?
 )

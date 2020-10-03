@@ -16,6 +16,7 @@ import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.GetMediaFicheUiUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.model.Illustration
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
+import com.stardeux.upprime.media.fiche.usecase.GetPlayAmazonVideoIntentUseCase
 import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
 import com.stardeux.upprime.rate.usecase.RateAppUseCase
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
@@ -36,7 +37,7 @@ class MediaFicheViewModel(
     private val mediaIllustrationUseCase: MediaIllustrationUseCase,
     rateAppUseCase: RateAppUseCase,
     private val analyticsWrapper: AnalyticsWrapper,
-    private val isIntentResolvableUseCase: IsIntentResolvableUseCase
+    private val getPlayAmazonVideoIntentUseCase: GetPlayAmazonVideoIntentUseCase
 ) : ViewModel() {
 
     private val _mediaItemUi = MutableLiveData<MediaFicheUi>()
@@ -101,13 +102,9 @@ class MediaFicheViewModel(
             AnalyticsValues.Event.FICHE_PLAY, shortMedia.getTrackingParameters()
         )
         _mediaItemUi.value?.let {
-
-            val intent = Intent(Intent.ACTION_VIEW, it.amazonPlayUri)
-            if (isIntentResolvableUseCase.isResolvable(intent)) {
-                _events.value = Event.PlayClicked(intent)
-            } else {
-                //Redirect to web
-            }
+            val uri = getPlayAmazonVideoIntentUseCase.getAmazonPlayIntent(it)
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            _events.value = Event.PlayClicked(intent)
         }
     }
 
