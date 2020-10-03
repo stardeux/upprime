@@ -30,8 +30,6 @@ data class SeriesDetailsEntity(
         const val COL_SERIES_ID = "series_id"
         const val COL_SERIES_TMDB_ID = "tmdb_id"
         const val COL_SERIES_IMDB_ID = "imdb_id"
-        const val COL_SERIES_AMAZON_ID = "amazon_id"
-        const val COL_SERIES_AMAZON_RELEASE_DATE = "amazon_release_date"
         const val COL_SERIES_TITLE = "title"
         const val COL_SERIES_ORIGINAL_TITLE = "original_title"
         const val COL_SERIES_POSTER_PATH = "poster_path"

@@ -32,8 +32,6 @@ data class MovieDetailsEntity(
         const val COL_MOVIE_ID = "movie_id"
         const val COL_MOVIE_TMDB_ID = "tmdb_id"
         const val COL_MOVIE_IMDB_ID = "imdb_id"
-        const val COL_MOVIE_AMAZON_ID = "amazon_id"
-        const val COL_MOVIE_AMAZON_RELEASE_DATE = "amazon_release_date"
         const val COL_MOVIE_TITLE = "title"
         const val COL_MOVIE_ORIGINAL_TITLE = "original_title"
         const val COL_MOVIE_POSTER_PATH = "poster_path"

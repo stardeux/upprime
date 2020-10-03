@@ -11,5 +11,6 @@ val databaseModule = module {
 
 private fun provideUpPrimeDatabase(context: Context): UpPrimeDatabase {
     return Room.databaseBuilder(context, UpPrimeDatabase::class.java, UpPrimeDatabase.DB_NAME)
+        .fallbackToDestructiveMigrationFrom(1)
         .build()
 }

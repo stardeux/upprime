@@ -17,7 +17,7 @@ import com.stardeux.upprime.tmdb.series.repository.database.SeriesDetailsEntity
 @Database(
     entities = [SeriesDetailsEntity::class, MovieDetailsEntity::class, LatestMediaEntity::class, ExpiredMediaEntity::class],
     exportSchema = true,
-    version = 1
+    version = 2
 )
 @TypeConverters(MediaTypeTypeConverter::class, LocalDateTimeTypeConverter::class)
 abstract class UpPrimeDatabase : RoomDatabase() {
