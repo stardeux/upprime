@@ -36,6 +36,7 @@ class MediaFicheUiMapper(
                 amazonReleaseDate = formatToHumanReadableMonthDay(shortMedia.dateAdded),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
+                amazonWebUrl = shortMedia.amazonWebUrl
             )
         }
     }
@@ -60,6 +61,7 @@ class MediaFicheUiMapper(
                 amazonReleaseDate = formatToHumanReadableMonthDay(shortMedia.dateAdded),
                 synopsis = synopsis,
                 backdropUrl = posterMapper.getCompleteBackdropUrl(backdropPath),
+                amazonWebUrl = shortMedia.amazonWebUrl
             )
         }
     }

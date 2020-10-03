@@ -17,7 +17,7 @@ class GetPlayAmazonVideoIntentUseCase(
     fun getAmazonPlayIntent(mediaFicheUi: MediaFicheUi): Uri {
         val appDeeplink = getPlayAmazonVideoNativeUriMapper.getAmazonPlayNativeUri(mediaFicheUi)
         val intent = makeIntent(appDeeplink)
-        return appDeeplink.takeIf { isIntentResolvableUseCase.isResolvable(intent) } ?: Uri.parse("")
+        return appDeeplink.takeIf { isIntentResolvableUseCase.isResolvable(intent) } ?: mediaFicheUi.amazonWebUrl
     }
 
     private fun makeIntent(uri: Uri): Intent {
