@@ -22,6 +22,10 @@ class GetFlagUrlUseCase {
             AvailableCountry.GREAT_BRITAIN -> "gb"
             AvailableCountry.GERMANY -> "de"
             AvailableCountry.ARGENTINA -> "ar"
+            AvailableCountry.AUSTRALIA -> "au"
+            AvailableCountry.BRAZIL -> "br"
+            AvailableCountry.CANADA -> "ca"
+            AvailableCountry.FRANCE -> "fr"
         }
     }
 

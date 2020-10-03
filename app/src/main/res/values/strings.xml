@@ -13,6 +13,10 @@
     <string name="country_uk_name">United Kingdom</string>
     <string name="country_de_name">Germany</string>
     <string name="country_ar_name">Argentina</string>
+    <string name="country_au_name">Australia</string>
+    <string name="country_br_name">Brazil</string>
+    <string name="country_ca_name">Canada</string>
+    <string name="country_fr_name">France</string>
 
     <!-- Settings -->
     <string name="change_country_menu_item_name">Change country</string>
