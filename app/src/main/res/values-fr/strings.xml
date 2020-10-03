@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">UpPrime</string>
+
+    <!-- Core -->
+    <string name="release_type_new">Nouveaux</string>
+    <string name="release_type_expired">Expirés</string>
+    <string name="movie">Film</string>
+    <string name="series">Serie</string>
+
+    <!-- Country -->
+    <string name="country_caption">Choisir un pays</string>
+    <string name="country_us_name">Etats-Unis</string>
+    <string name="country_uk_name">Royaume-Uni</string>
+    <string name="country_de_name">Allemagne</string>
+    <string name="country_ar_name">Argentine</string>
+    <string name="country_au_name">Australie</string>
+    <string name="country_br_name">Bresil</string>
+    <string name="country_ca_name">Canada</string>
+    <string name="country_fr_name">France</string>
+
+    <!-- Settings -->
+    <string name="change_country_menu_item_name">Changer de pays</string>
+    <string name="share_menu_item_name">Partager l\'appli</string>
+
+    <!-- Debug -->
+    <string name="debug_error">Erreur</string>
+
+    <!-- Fiche -->
+    <string name="synopsis_section_title">Synopsis</string>
+    <string name="videos_section_title">Videos</string>
+    <string name="credits_actors_title">Acteurs</string>
+    <string name="credits_series_creators_title">Createur</string>
+    <string name="credits_movie_director_title">Directeur</string>
+    <string name="share_fiche_media_title">Partager</string>
+    <string name="share_fiche_media_content">%s est sur Amazon Prime Video !\nVia %s %s</string>
+
+    <!-- Search -->
+    <string name="search_menu_item_title">Recherche</string>
+    <string name="search_filter_all_media_type">Tout</string>
+    <string name="search_filter_only_movie">Film</string>
+    <string name="search_filter_only_series">Serie</string>
+    <string name="search_filter_year_start">Entre</string>
+    <string name="search_filter_year_end">et</string>
+    <string name="search_hint">Recherche</string>
+
+    <!-- Empty search -->
+    <string name="empty_search_caption">Aucun resultat pour</string>
+
+
+    <!-- Share app -->
+    <string name="share_app_text">Regarde cette appli et ne loupe plus aucun nouveau contenu d\'Amazon Prime Video : %s</string>
+    <string name="share_app_title">Partager %s</string>
+
+    <!-- Rate app -->
+    <string name="rate_app_menu_item_title">Noter l\'appli</string>
+    <string name="rate_app_dialog_title">Noter %s</string>
+    <string name="rate_app_dialog_content">Vous aimez %s ?\nDites le nous et notez l\'appli :)</string>
+    <string name="rate_app_answer_yes">Oui</string>
+    <string name="rate_app_answer_never">Jamais</string>
+    <string name="rate_app_answer_not_now">Plus tard</string>
+
+    <string name="privacy_policy">Politique de confidentialité</string>
+
+    <!-- Error -->
+    <string name="error_details">Une erreur est survenue</string>
+    <string name="error_cta">Essayer à nouveau</string>
+</resources>

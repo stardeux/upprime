@@ -26,8 +26,4 @@ class ErrorView : ConstraintLayout {
     fun setOnRetryClicked(onRetryClicked: () -> Unit) {
         errorCta.setOnClickListener { onRetryClicked() }
     }
-
-    override fun setVisibility(visibility: Int) {
-        super.setVisibility(visibility)
-    }
 }
