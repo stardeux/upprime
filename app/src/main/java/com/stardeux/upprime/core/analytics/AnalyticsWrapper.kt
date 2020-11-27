@@ -36,6 +36,7 @@ class AnalyticsWrapper(
         @Nullable @Size(max = 36L) value: String
     ) {
         firebaseAnalytics.setUserProperty(key, value)
+        firebaseCrashlytics.setCustomKey(key, value)
     }
 
 }

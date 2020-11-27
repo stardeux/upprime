@@ -33,7 +33,11 @@ fun MediaVideoUi.getTrackingParameters(): Bundle {
 }
 
 fun CountryUi.getTrackingValue(): String {
-    return when (availableCountry) {
+    return availableCountry.getTrackingValue()
+}
+
+fun AvailableCountry.getTrackingValue(): String {
+    return when (this) {
         AvailableCountry.UNITED_STATES_AMERICA -> "us"
         AvailableCountry.GREAT_BRITAIN -> "gb"
         AvailableCountry.GERMANY -> "de"

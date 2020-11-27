@@ -42,7 +42,6 @@ class SelectCountryViewModel(
 
     private fun onFlagClicked(countryUi: CountryUi) {
         analyticsWrapper.logEvent(AnalyticsValues.Event.COUNTRY_SELECTED, countryUi.getTrackingParameters())
-        analyticsWrapper.setUserProperty(AnalyticsValues.UserProperty.COUNTRY, countryUi.getTrackingValue())
 
         selectedUserCountryUseCase.setSelectedCountry(countryUi.availableCountry)
         _selectedCountry.value = countryUi
