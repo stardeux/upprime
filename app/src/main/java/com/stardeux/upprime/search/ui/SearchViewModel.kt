@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.*
 import com.stardeux.upprime.core.analytics.AnalyticsValues
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
+import com.stardeux.upprime.core.analytics.getTrackingParameters
 import com.stardeux.upprime.core.analytics.getTrackingValue
 import com.stardeux.upprime.core.ui.SingleLiveEvent
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
@@ -119,16 +120,9 @@ class SearchViewModel(
     }
 
     private fun trackQuery(amazonSearchRequest: AmazonSearchRequest) {
-        with(amazonSearchRequest) {
-            analyticsWrapper.logEvent(
-                AnalyticsValues.Event.SEARCH_QUERY, bundleOf(
-                    AnalyticsValues.Params.SEARCH_EVENT_QUERY to title,
-                    AnalyticsValues.Params.SEARCH_EVENT_MEDIA_TYPE to mediaTypeFilter.getTrackingValue(),
-                    AnalyticsValues.Params.SEARCH_EVENT_YEAR_START to yearStart,
-                    AnalyticsValues.Params.SEARCH_EVENT_YEAR_END to yearEnd
-                )
-            )
-        }
+        analyticsWrapper.logEvent(
+            AnalyticsValues.Event.SEARCH_QUERY, amazonSearchRequest.getTrackingParameters()
+        )
     }
 
     private fun buildRequest(query: String): AmazonSearchRequest {
