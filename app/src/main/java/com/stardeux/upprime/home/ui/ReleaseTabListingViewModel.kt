@@ -1,8 +1,10 @@
 package com.stardeux.upprime.home.ui
 
 import android.app.Activity
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.stardeux.upprime.core.analytics.AnalyticsParams
 import com.stardeux.upprime.core.analytics.AnalyticsValues
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.analytics.getTrackingParameters
@@ -24,8 +26,7 @@ class ReleaseTabListingViewModel(
 
     fun onRateAppAnswer(rateAppAnswer: RateAppAnswer) {
         analyticsWrapper.logEvent(
-            AnalyticsValues.Event.RATE_APP_ANSWERED,
-            rateAppAnswer.getTrackingParameters()
+            AnalyticsValues.Event.RATE_APP_ANSWERED, rateAppAnswer.getTrackingParameters()
         )
 
         rateAppUseCase.setRateAppAnswer(rateAppAnswer)

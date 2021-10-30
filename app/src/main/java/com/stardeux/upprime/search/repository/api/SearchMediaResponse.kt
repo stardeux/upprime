@@ -6,7 +6,7 @@ import org.threeten.bp.LocalDateTime
 
 data class SearchMediaResponse(
     @SerializedName("Title") val title: String?,
-    @SerializedName("ASIN") val amazonId: String,
+    @SerializedName("Link") val amazonId: String,
     @SerializedName("imdbID") val imdbId: String,
     @SerializedName("DateAdded") val dateAdded: LocalDateTime?,
     @SerializedName("Year") val year: Int?,

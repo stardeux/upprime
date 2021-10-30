@@ -13,6 +13,7 @@ import org.koin.dsl.module
 import org.threeten.bp.LocalDateTime
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 val amazonNetworkModule = module {
     factory { provideAmazonAuthenticatorInterceptor() }
@@ -45,6 +46,9 @@ private fun provideAmazonOkHttpBuilder(
 ): OkHttpClient.Builder {
     return OkHttpClient.Builder().apply {
         addInterceptor(amazonAuthenticatorInterceptor)
+        connectTimeout(20, TimeUnit.SECONDS)
+        readTimeout(20, TimeUnit.SECONDS)
+        writeTimeout(20, TimeUnit.SECONDS)
     }
 }
 

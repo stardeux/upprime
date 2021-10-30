@@ -2,6 +2,7 @@ package com.stardeux.upprime.media.common.ui
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.stardeux.upprime.core.analytics.AnalyticsParams
 import com.stardeux.upprime.core.analytics.AnalyticsValues
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.analytics.getTrackingParameters

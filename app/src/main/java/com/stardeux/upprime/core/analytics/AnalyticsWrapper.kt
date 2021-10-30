@@ -10,11 +10,11 @@ import java.lang.Exception
 
 class AnalyticsWrapper(
     private val firebaseAnalytics: FirebaseAnalytics,
-    private val firebaseCrashlytics: FirebaseCrashlytics) {
+    private val firebaseCrashlytics: FirebaseCrashlytics
+) {
 
     fun setCurrentScreen(
-        activity: Activity,
-        @Size(min = 1L, max = 36L) screenName: String? = null
+        activity: Activity, @Size(min = 1L, max = 36L) screenName: String? = null
     ) {
         firebaseAnalytics.setCurrentScreen(activity, screenName, null)
     }
@@ -23,8 +23,10 @@ class AnalyticsWrapper(
         firebaseCrashlytics.recordException(throwable)
     }
 
-    fun logEvent(event: String, params: Bundle? = null) {
-        firebaseAnalytics.logEvent(event, params)
+    fun logEvent(event: String, params: AnalyticsParams? = null) {
+        firebaseAnalytics.logEvent(event, params?.bundle)
+        val crashlyticsLog = event + params?.crashlyticsLog
+        firebaseCrashlytics.log(crashlyticsLog)
     }
 
     fun trackError(@Size(min = 1L, max = 40L) key: String, args: Bundle? = null) {
@@ -32,10 +34,10 @@ class AnalyticsWrapper(
     }
 
     fun setUserProperty(
-        @Size(min = 1L, max = 24L) key: String,
-        @Nullable @Size(max = 36L) value: String
+        @Size(min = 1L, max = 24L) key: String, @Nullable @Size(max = 36L) value: String
     ) {
         firebaseAnalytics.setUserProperty(key, value)
+        firebaseCrashlytics.setCustomKey(key, value)
     }
 
 }

@@ -1,3 +1,7 @@
+La recherche ne fonctionne pas sur mon telephone
+Pourquoi SearchMediaResponse contient un ASIN et non pas un Link ?
+
+
 Je suis en train de gerer le click pour play
 Quand je click sur play je redirige soit vers l'app si elle est installée soit sur le web
 Je sais compute l'intent pour l'app
