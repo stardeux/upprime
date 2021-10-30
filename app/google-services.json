@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "896993143691",
+    "firebase_url": "https://upprime-e169f.firebaseio.com",
+    "project_id": "upprime-e169f",
+    "storage_bucket": "upprime-e169f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896993143691:android:4fd8dd6e17d0f1915a9d8e",
+        "android_client_info": {
+          "package_name": "com.stardeux.upprime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896993143691-u4p7al38rk4d7tk822gemhjkjabmt6cf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj7-ougDZixD6BioPIvMLccxxJlftfLWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896993143691-u4p7al38rk4d7tk822gemhjkjabmt6cf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
