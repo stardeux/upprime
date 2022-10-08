@@ -98,8 +98,6 @@ dependencies {
     implementation "io.insert-koin:koin-core:3.2.0"
     // Koin AndroidX ViewModel features
     implementation "io.insert-koin:koin-android:3.2.0"
-    // Koin AndroidX Fragment features
-    //implementation "org.koin:koin-androidx-fragment:2.2.3"
 
     //Flipper
     debugImplementation 'com.facebook.flipper:flipper:0.164.0'
