@@ -2,6 +2,7 @@ package com.stardeux.upprime.media.fiche.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -100,6 +101,7 @@ class MediaFicheViewModel(
         )
         _mediaItemUi.value?.let {
             val intent = Intent(Intent.ACTION_VIEW, it.amazonWebUrl)
+            intent.flags = FLAG_ACTIVITY_NEW_TASK
             _events.value = Event.PlayClicked(intent)
         }
     }
