@@ -21,12 +21,8 @@ val searchModule = module {
     factory { provideAmazonSearchMediaMapper(get()) }
     factory { provideAmazonSearchRepository(get(), get()) }
     factory { provideAmazonSearchResultUiMapper() }
-    viewModel { provideSearchViewModel(getUserScope().get(), get(), get()) }
-
-    scope<AvailableCountry> {
-        factory { provideAmazonSearchUseCase(get(), get()) }
-    }
-
+    viewModel { provideSearchViewModel(get(), get(), get()) }
+    factory { provideAmazonSearchUseCase(get(), getUserScope().get()) }
 }
 
 private fun provideAmazonSearchResultUiMapper(): AmazonSearchResultUiMapper {
