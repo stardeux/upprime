@@ -103,7 +103,7 @@ dependencies {
     debugImplementation 'com.facebook.flipper:flipper:0.164.0'
     debugImplementation 'com.facebook.soloader:soloader:0.10.4'
     debugImplementation 'com.facebook.flipper:flipper-network-plugin:0.164.0'
-    releaseImplementation 'com.facebook.flipper:flipper-noop:0.47.0'
+    releaseImplementation 'com.facebook.flipper:flipper-noop:0.164.0'
 
     // Three Ten Date
     implementation 'com.jakewharton.threetenabp:threetenabp:1.4.0'
