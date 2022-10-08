@@ -100,10 +100,9 @@ abstract class AmazonMediaViewModel(
         try {
             val fullMedia = loadFullMedia(shortMedia)
 
-            val currentList = _mediaItems.value?.toMutableList()
-            currentList?.set(
-                currentList.indexOfFirst { it.shortMedia.imdbId == fullMedia.shortMedia.imdbId }, fullMedia
-            )
+            val currentList = requireNotNull(_mediaItems.value?.toMutableList())
+            val currentMediaIndex = currentList.indexOfFirst { it.shortMedia.imdbId == fullMedia.shortMedia.imdbId }
+            currentList[currentMediaIndex] = fullMedia
 
             _mediaItems.value = currentList
 
