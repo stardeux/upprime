@@ -5,14 +5,13 @@ import com.stardeux.upprime.country.usecase.model.AvailableCountry
 
 class GetFlagUrlUseCase {
 
-    //https://www.countryflags.io/be/flat/64.png
+    //https://countryflagsapi.com/svg/bra
     operator fun invoke(availableCountry: AvailableCountry): Uri {
         return Uri.Builder()
             .scheme("https")
-            .authority("www.countryflags.io")
+            .authority("www.countryflagsapi.com")
+            .appendPath("png")
             .appendPath(mapToApiIsoCode(availableCountry))
-            .appendPath("flat")
-            .appendPath("64.png")
             .build()
     }
 
