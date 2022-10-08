@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
+import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.ui.adapter.CountryAdapter
 import com.stardeux.upprime.country.ui.model.CountryUi
 import com.stardeux.upprime.home.ui.HomeActivity
@@ -39,7 +40,7 @@ class SelectCountryFragment : Fragment(R.layout.fragment_country) {
     }
 
     private fun onCountrySelected(countryUi: CountryUi) {
-        //getUserScope().close()
+        getUserScope().close()
         startActivity(HomeActivity.newIntent(requireContext()))
     }
 

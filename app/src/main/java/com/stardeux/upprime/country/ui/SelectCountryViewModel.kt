@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.stardeux.upprime.core.analytics.AnalyticsValues
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
 import com.stardeux.upprime.core.analytics.getTrackingParameters
@@ -14,11 +15,14 @@ import com.stardeux.upprime.country.ui.mapper.mapToCountryUi
 import com.stardeux.upprime.country.usecase.SelectedUserCountryUseCase
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import com.stardeux.upprime.core.ui.SingleLiveEvent
+import com.stardeux.upprime.country.usecase.LogoutUseCase
+import kotlinx.coroutines.launch
 
 class SelectCountryViewModel(
     private val getAvailableCountryUseCase: GetAvailableCountryUseCase,
     private val selectedUserCountryUseCase: SelectedUserCountryUseCase,
     private val getFlagUrlUseCase: GetFlagUrlUseCase,
+    private val logoutUseCase: LogoutUseCase,
     private val analyticsWrapper: AnalyticsWrapper
 ) : ViewModel() {
 
@@ -40,10 +44,14 @@ class SelectCountryViewModel(
     }
 
     private fun onFlagClicked(countryUi: CountryUi) {
-        analyticsWrapper.logEvent(AnalyticsValues.Event.COUNTRY_SELECTED, countryUi.getTrackingParameters())
+        viewModelScope.launch {
+            logoutUseCase.logout()
 
-        selectedUserCountryUseCase.setSelectedCountry(countryUi.availableCountry)
-        _selectedCountry.value = countryUi
+            analyticsWrapper.logEvent(AnalyticsValues.Event.COUNTRY_SELECTED, countryUi.getTrackingParameters())
+
+            selectedUserCountryUseCase.setSelectedCountry(countryUi.availableCountry)
+            _selectedCountry.value = countryUi
+        }
     }
 
     fun trackScreen(activity: Activity) {

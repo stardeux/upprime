@@ -6,8 +6,11 @@ import com.stardeux.upprime.country.repository.UserLocaleRepository
 import com.stardeux.upprime.country.ui.SelectCountryViewModel
 import com.stardeux.upprime.country.usecase.GetAvailableCountryUseCase
 import com.stardeux.upprime.country.usecase.GetFlagUrlUseCase
+import com.stardeux.upprime.country.usecase.LogoutUseCase
 import com.stardeux.upprime.country.usecase.SelectedUserCountryUseCase
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
+import com.stardeux.upprime.media.expired.repository.ExpiredMediaRepository
+import com.stardeux.upprime.media.latest.repository.LatestMediaRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
@@ -17,15 +20,22 @@ import org.koin.java.KoinJavaComponent.getKoin
 val USER_SCOPE_NAME = named("user_scope")
 
 val countryModule = module {
-    viewModel { provideSelectCountryViewModel(get(), get(), get(), get()) }
+    viewModel { provideSelectCountryViewModel(get(), get(), get(), get(), get()) }
     factory { provideGetAvailableCountryUseCase() }
     factory { provideGetFlagUrlUseCase() }
     factory { provideSelectedUserLocaleUseCase(get()) }
     factory { provideUserLocaleRepository(get()) }
+    factory { provideLogoutUseCase(get(), get()) }
 
     scope(USER_SCOPE_NAME) {
         scoped<AvailableCountry> { provideSelectedAvailableCountry(get()) }
     }
+}
+
+private fun provideLogoutUseCase(
+    latestMediaRepository: LatestMediaRepository, expiredMediaRepository: ExpiredMediaRepository
+): LogoutUseCase {
+    return LogoutUseCase(latestMediaRepository, expiredMediaRepository)
 }
 
 private fun provideSelectedAvailableCountry(selectedUserCountryUseCase: SelectedUserCountryUseCase): AvailableCountry {
@@ -44,10 +54,15 @@ private fun provideSelectCountryViewModel(
     getAvailableCountryUseCase: GetAvailableCountryUseCase,
     selectedUserCountryUseCase: SelectedUserCountryUseCase,
     getFlagUrlUseCase: GetFlagUrlUseCase,
-    analyticsWrapper: AnalyticsWrapper
+    logoutUseCase: LogoutUseCase,
+    analyticsWrapper: AnalyticsWrapper,
 ): SelectCountryViewModel {
     return SelectCountryViewModel(
-        getAvailableCountryUseCase, selectedUserCountryUseCase, getFlagUrlUseCase, analyticsWrapper
+        getAvailableCountryUseCase,
+        selectedUserCountryUseCase,
+        getFlagUrlUseCase,
+        logoutUseCase,
+        analyticsWrapper
     )
 }
 
