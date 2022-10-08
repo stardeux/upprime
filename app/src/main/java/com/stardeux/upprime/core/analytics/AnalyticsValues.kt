@@ -40,7 +40,6 @@ object AnalyticsValues {
         const val SEARCH_EVENT_MEDIA_TYPE = "media_type"
 
         const val MEDIA_TITLE = "media_title"
-        const val MEDIA_AMAZON_ID = "amazon_id"
         const val MEDIA_IMDB_ID = "imdb_id"
         const val MEDIA_TMDB_ID = "tmdb_id"
         const val MEDIA_FOUND_TITLE = "media_found_title"

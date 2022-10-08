@@ -2,7 +2,6 @@ package com.stardeux.upprime.media.fiche.di
 
 import android.content.Context
 import com.stardeux.upprime.core.analytics.AnalyticsWrapper
-import com.stardeux.upprime.core.usecase.IsIntentResolvableUseCase
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.common.ui.GetMediaFicheUiUseCaseFacade
 import com.stardeux.upprime.media.fiche.ui.MediaFicheFragment
@@ -10,7 +9,6 @@ import com.stardeux.upprime.media.fiche.ui.MediaFicheViewModel
 import com.stardeux.upprime.media.fiche.ui.mapper.MediaFicheUiMapper
 import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
 import com.stardeux.upprime.rate.usecase.RateAppUseCase
-import com.stardeux.upprime.media.fiche.ui.mapper.GetPlayAmazonVideoNativeUriMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
@@ -21,7 +19,6 @@ import org.koin.dsl.module
 val ficheModule = module {
     factory { provideMediaIllustrationUseCase(get()) }
     factory { provideMediaVideoMapper() }
-    factory { provideAmazonPlayUriMapper() }
     factory { provideMediaFicheUiMapper(get()) }
     factory { (fragment: MediaFicheFragment) -> provideShortMedia(fragment) }
     factory { (fragment: MediaFicheFragment) ->
@@ -63,10 +60,6 @@ private fun provideMediaFicheViewModel(
 
 private fun provideMediaVideoMapper(): MediaVideoMapper {
     return MediaVideoMapper()
-}
-
-private fun provideAmazonPlayUriMapper(): GetPlayAmazonVideoNativeUriMapper {
-    return GetPlayAmazonVideoNativeUriMapper()
 }
 
 private fun provideMediaFicheUiMapper(

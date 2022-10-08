@@ -3,7 +3,6 @@ package com.stardeux.upprime.media.expired.repository.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.stardeux.upprime.core.model.AmazonId
 import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity.Companion.TABLE_EXPIRED_NAME

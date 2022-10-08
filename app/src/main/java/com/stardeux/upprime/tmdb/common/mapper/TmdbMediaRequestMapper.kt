@@ -15,7 +15,6 @@ class TmdbMediaRequestMapper {
         return with(imdbMediaRequest) {
             TmdbSeriesRequest(
                 imdbId = imdbId,
-                amazonId = amazonId,
                 tmdbId = tmdbId,
                 amazonReleaseDate = amazonReleaseDate,
                 name = name,
@@ -31,7 +30,6 @@ class TmdbMediaRequestMapper {
         return with(imdbMediaRequest) {
             TmdbMovieRequest(
                 imdbId = imdbId,
-                amazonId = amazonId,
                 tmdbId = tmdbId,
                 amazonReleaseDate = amazonReleaseDate,
                 name = name,

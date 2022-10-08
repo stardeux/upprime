@@ -2,23 +2,19 @@ package com.stardeux.upprime.search.repository.model
 
 import android.net.Uri
 import com.stardeux.upprime.media.common.repository.model.mapper.mapToMediaType
-import com.stardeux.upprime.media.common.usecase.GetAmazonIdUseCase
 import com.stardeux.upprime.search.repository.api.SearchMediaContainerResponse
 import com.stardeux.upprime.search.repository.api.SearchMediaResponse
 import com.stardeux.upprime.search.ui.model.MediaTypeFilter
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResult
 import com.stardeux.upprime.search.usecase.model.AmazonSearchResultContainer
 
-class AmazonSearchMediaMapper(
-    private val getAmazonIdUseCase: GetAmazonIdUseCase
-) {
+class AmazonSearchMediaMapper() {
 
     fun mapToAmazonSearchResult(searchMediaResponse: SearchMediaResponse): AmazonSearchResult? {
         return if (searchMediaResponse.type != null && searchMediaResponse.dateAdded != null) {
             with(searchMediaResponse) {
                 val amazonWebUrl = Uri.parse(amazonId)
                 AmazonSearchResult(
-                    amazonId = getAmazonIdUseCase.fromAmazonWebUrl(amazonWebUrl),
                     title = title,
                     amazonWebUrl = amazonWebUrl,
                     imdbId = imdbId,

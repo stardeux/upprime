@@ -10,7 +10,6 @@ class ImdbMediaRequestMapper (private val locale: Locale) {
         return with(shortMedia) {
             ImdbMediaRequest(
                 imdbId = imdbId,
-                amazonId = amazonId,
                 amazonReleaseDate = dateAdded,
                 name = title,
                 locale.language

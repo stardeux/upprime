@@ -4,7 +4,6 @@ import com.stardeux.upprime.media.common.repository.model.mapper.ShortMediaMappe
 import com.stardeux.upprime.media.common.ui.model.MediaItemUiMapper
 import com.stardeux.upprime.media.common.ui.GetMediaFicheUiUseCaseFacade
 import com.stardeux.upprime.media.common.ui.GetMediaItemUiUseCaseFacade
-import com.stardeux.upprime.media.common.usecase.GetAmazonIdUseCase
 import com.stardeux.upprime.media.fiche.ui.mapper.MediaFicheUiMapper
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdbinapp.mapper.ImdbMediaRequestMapper
@@ -14,8 +13,7 @@ import java.util.*
 val commonMediaModule = module {
     factory { provideGetImdbMediaDetailsUseCaseFacade(get(), get()) }
     factory { provideMediaDetailsMapper(get()) }
-    factory { provideShortMediaMapper(get()) }
-    factory { provideGetAmazonIdUseCase() }
+    factory { provideShortMediaMapper() }
     factory { provideImdbMediaRequestMapper(get()) }
     factory { provideGetMediaItemUiUseCaseFacade(get(), get()) }
 }
@@ -32,12 +30,8 @@ private fun provideGetImdbMediaDetailsUseCaseFacade(
     )
 }
 
-private fun provideShortMediaMapper(getAmazonIdUseCase: GetAmazonIdUseCase): ShortMediaMapper {
-    return ShortMediaMapper(getAmazonIdUseCase)
-}
-
-private fun provideGetAmazonIdUseCase(): GetAmazonIdUseCase {
-    return GetAmazonIdUseCase()
+private fun provideShortMediaMapper(): ShortMediaMapper {
+    return ShortMediaMapper()
 }
 
 private fun provideImdbMediaRequestMapper(locale: Locale): ImdbMediaRequestMapper {

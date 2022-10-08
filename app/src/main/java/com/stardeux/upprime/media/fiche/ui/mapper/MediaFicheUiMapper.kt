@@ -21,7 +21,6 @@ class MediaFicheUiMapper(
     ): MediaFicheUi {
         return with(tmdbMovieDetails) {
             MediaFicheUi(
-                amazonId = shortMedia.amazonId,
                 imdbId = imdbId,
                 tmdbId = tmdbId,
                 title = title,
@@ -46,7 +45,6 @@ class MediaFicheUiMapper(
     ): MediaFicheUi {
         return with(tmdbSeriesDetails) {
             MediaFicheUi(
-                amazonId = shortMedia.amazonId,
                 imdbId = imdbId,
                 tmdbId = tmdbId,
                 title = name,

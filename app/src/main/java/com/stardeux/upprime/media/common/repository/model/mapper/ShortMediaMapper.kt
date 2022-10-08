@@ -5,13 +5,10 @@ import com.stardeux.upprime.media.common.repository.api.MediaPageResponse
 import com.stardeux.upprime.media.common.repository.api.MediaResponse
 import com.stardeux.upprime.media.common.repository.model.MediaPage
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
-import com.stardeux.upprime.media.common.usecase.GetAmazonIdUseCase
 import com.stardeux.upprime.media.expired.repository.database.ExpiredMediaEntity
 import com.stardeux.upprime.media.latest.repository.database.LatestMediaEntity
 
-class ShortMediaMapper(
-    private val getAmazonIdUseCase: GetAmazonIdUseCase
-) {
+class ShortMediaMapper() {
 
     fun mapToMediaItem(mediaResponse: MediaResponse): ShortMedia? {
         return if (mediaResponse.type != null && mediaResponse.dateAdded != null) {
@@ -19,7 +16,6 @@ class ShortMediaMapper(
                 val amazonWebUrl = Uri.parse(requireNotNull(amazonWebUrl))
                 ShortMedia(
                     title = title,
-                    amazonId = getAmazonIdUseCase.fromAmazonWebUrl(amazonWebUrl),
                     imdbId = requireNotNull(imdbId),
                     dateAdded = dateAdded!!.toLocalDate(),
                     type = mapToMediaType(requireNotNull(type)),
@@ -44,7 +40,6 @@ class ShortMediaMapper(
             val amazonWebUrl = Uri.parse(amazonWebUrl)
             ShortMedia(
                 title = title,
-                amazonId = getAmazonIdUseCase.fromAmazonWebUrl(amazonWebUrl),
                 imdbId = imdbId,
                 dateAdded = dateAdded,
                 type = type,
@@ -78,7 +73,6 @@ class ShortMediaMapper(
             val amazonWebUrl = Uri.parse(amazonWebUrl)
             ShortMedia(
                 title = title,
-                amazonId = getAmazonIdUseCase.fromAmazonWebUrl(amazonWebUrl),
                 imdbId = imdbId,
                 dateAdded = dateAdded,
                 type = type,

@@ -24,8 +24,7 @@ fun ShortMedia.getTrackingParameters(): AnalyticsParams {
         bundleOf(
             AnalyticsValues.Params.MEDIA_TITLE to title,
             AnalyticsValues.Params.MEDIA_IMDB_ID to imdbId,
-            AnalyticsValues.Params.MEDIA_AMAZON_ID to amazonId
-        ), spaceSeparator(imdbId, amazonId, title)
+        ), spaceSeparator(imdbId, title)
     )
 }
 
@@ -67,7 +66,6 @@ fun MediaItemUi.getTrackingParameters(): AnalyticsParams {
         bundleOf(
             AnalyticsValues.Params.MEDIA_TITLE to shortMedia.title,
             AnalyticsValues.Params.MEDIA_IMDB_ID to shortMedia.imdbId,
-            AnalyticsValues.Params.MEDIA_AMAZON_ID to shortMedia.amazonId,
             AnalyticsValues.Params.MEDIA_TMDB_ID to tmdbId,
             AnalyticsValues.Params.MEDIA_FOUND_TITLE to title
         ), spaceSeparator(shortMedia.title, shortMedia.imdbId, tmdbId)

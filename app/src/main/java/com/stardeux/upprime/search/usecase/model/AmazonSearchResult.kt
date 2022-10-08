@@ -1,13 +1,11 @@
 package com.stardeux.upprime.search.usecase.model
 
 import android.net.Uri
-import com.stardeux.upprime.core.model.AmazonId
 import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.MediaType
 import org.threeten.bp.LocalDate
 
 data class AmazonSearchResult(
-    val amazonId: AmazonId,
     val title: String?,
     val amazonWebUrl: Uri,
     val imdbId: ImdbId,
