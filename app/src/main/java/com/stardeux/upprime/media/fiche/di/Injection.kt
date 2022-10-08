@@ -11,7 +11,6 @@ import com.stardeux.upprime.media.fiche.ui.mapper.MediaFicheUiMapper
 import com.stardeux.upprime.media.fiche.usecase.MediaIllustrationUseCase
 import com.stardeux.upprime.rate.usecase.RateAppUseCase
 import com.stardeux.upprime.media.fiche.ui.mapper.GetPlayAmazonVideoNativeUriMapper
-import com.stardeux.upprime.media.fiche.usecase.GetPlayAmazonVideoIntentUseCase
 import com.stardeux.upprime.tmdb.common.mapper.PosterMapper
 import com.stardeux.upprime.tmdb.credit.ui.CreditUseCaseFacade
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoMapper
@@ -24,11 +23,10 @@ val ficheModule = module {
     factory { provideMediaVideoMapper() }
     factory { provideAmazonPlayUriMapper() }
     factory { provideMediaFicheUiMapper(get()) }
-    factory { provideAmazonPlayUriUseCase(get(), get()) }
     factory { (fragment: MediaFicheFragment) -> provideShortMedia(fragment) }
     factory { (fragment: MediaFicheFragment) ->
         provideMediaFicheViewModel(
-            get { parametersOf(fragment) }, get(), get(), get(), get(), get(), get(), get(), get()
+            get { parametersOf(fragment) }, get(), get(), get(), get(), get(), get(), get()
         )
     }
 }
@@ -50,7 +48,6 @@ private fun provideMediaFicheViewModel(
     mediaIllustrationUseCase: MediaIllustrationUseCase,
     rateAppUseCase: RateAppUseCase,
     analyticsWrapper: AnalyticsWrapper,
-    getPlayAmazonVideoIntentUseCase: GetPlayAmazonVideoIntentUseCase
 ): MediaFicheViewModel {
     return MediaFicheViewModel(
         shortMedia,
@@ -61,7 +58,6 @@ private fun provideMediaFicheViewModel(
         mediaIllustrationUseCase,
         rateAppUseCase,
         analyticsWrapper,
-        getPlayAmazonVideoIntentUseCase
     )
 }
 
@@ -71,13 +67,6 @@ private fun provideMediaVideoMapper(): MediaVideoMapper {
 
 private fun provideAmazonPlayUriMapper(): GetPlayAmazonVideoNativeUriMapper {
     return GetPlayAmazonVideoNativeUriMapper()
-}
-
-private fun provideAmazonPlayUriUseCase(
-    isIntentResolvableUseCase: IsIntentResolvableUseCase,
-    getPlayAmazonVideoNativeUriMapper: GetPlayAmazonVideoNativeUriMapper
-): GetPlayAmazonVideoIntentUseCase {
-    return GetPlayAmazonVideoIntentUseCase(isIntentResolvableUseCase, getPlayAmazonVideoNativeUriMapper)
 }
 
 private fun provideMediaFicheUiMapper(

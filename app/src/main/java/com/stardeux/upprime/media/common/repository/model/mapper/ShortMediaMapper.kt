@@ -75,13 +75,14 @@ class ShortMediaMapper(
 
     fun mapToMediaItem(expiredMediaEntity: ExpiredMediaEntity): ShortMedia {
         return with(expiredMediaEntity) {
+            val amazonWebUrl = Uri.parse(amazonWebUrl)
             ShortMedia(
                 title = title,
-                amazonId = amazonWebUrl,
+                amazonId = getAmazonIdUseCase.fromAmazonWebUrl(amazonWebUrl),
                 imdbId = imdbId,
                 dateAdded = dateAdded,
                 type = type,
-                amazonWebUrl = Uri.parse(amazonWebUrl)
+                amazonWebUrl = amazonWebUrl
             )
         }
     }

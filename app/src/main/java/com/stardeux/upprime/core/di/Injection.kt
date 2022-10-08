@@ -15,7 +15,6 @@ import com.stardeux.upprime.core.usecase.IsIntentResolvableUseCase
 import org.koin.dsl.module
 import java.util.*
 
-
 val coreModule = module {
     single { provideSharedPreference(get()) }
     factory { provideLocale() }
