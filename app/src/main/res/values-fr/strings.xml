@@ -17,6 +17,8 @@
     <string name="country_br_name">Bresil</string>
     <string name="country_ca_name">Canada</string>
     <string name="country_fr_name">France</string>
+    <string name="country_in_name">Inde</string>
+    <string name="country_nl_name">Pays-Bas</string>
 
     <!-- Settings -->
     <string name="change_country_menu_item_name">Changer de pays</string>

@@ -27,6 +27,8 @@ class SelectedUserCountryUseCase(private val userLocaleRepository: UserLocaleRep
             AvailableCountry.BRAZIL -> "br"
             AvailableCountry.CANADA -> "ca"
             AvailableCountry.FRANCE -> "fr"
+            AvailableCountry.INDIA -> "in"
+            AvailableCountry.NETHERLANDS -> "nl"
         }
     }
 }

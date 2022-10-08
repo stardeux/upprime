@@ -7,6 +7,8 @@ enum class AvailableCountry {
     CANADA,
     FRANCE,
     GERMANY,
+    INDIA,
+    NETHERLANDS,
     GREAT_BRITAIN,
     UNITED_STATES_AMERICA,
     ;
