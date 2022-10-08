@@ -9,10 +9,12 @@ import com.stardeux.upprime.country.usecase.GetFlagUrlUseCase
 import com.stardeux.upprime.country.usecase.SelectedUserCountryUseCase
 import com.stardeux.upprime.country.usecase.model.AvailableCountry
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
-import org.koin.ext.getOrCreateScope
 import org.koin.java.KoinJavaComponent.getKoin
+
+val USER_SCOPE_NAME = named("user_scope")
 
 val countryModule = module {
     viewModel { provideSelectCountryViewModel(get(), get(), get(), get()) }
@@ -21,7 +23,9 @@ val countryModule = module {
     factory { provideSelectedUserLocaleUseCase(get()) }
     factory { provideUserLocaleRepository(get()) }
 
-    factory { provideSelectedAvailableCountry(get()) }
+    scope(USER_SCOPE_NAME) {
+        scoped<AvailableCountry> { provideSelectedAvailableCountry(get()) }
+    }
 }
 
 private fun provideSelectedAvailableCountry(selectedUserCountryUseCase: SelectedUserCountryUseCase): AvailableCountry {
@@ -56,5 +60,5 @@ private fun provideGetFlagUrlUseCase(): GetFlagUrlUseCase {
 }
 
 fun getUserScope(): Scope {
-    return getKoin().get<AvailableCountry>().getOrCreateScope()
+    return getKoin().getOrCreateScope("user_scope", USER_SCOPE_NAME)
 }

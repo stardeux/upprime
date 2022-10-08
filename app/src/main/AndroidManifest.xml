@@ -17,6 +17,7 @@
 
         <activity
             android:name=".splash.ui.SplashActivity"
+            android:exported="true"
             android:noHistory="true"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
@@ -32,9 +33,11 @@
             android:name=".country.ui.SelectCountryActivity"
             android:noHistory="true" />
 
-        <activity android:name=".search.ui.SearchActivity" android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".search.ui.SearchActivity"
+            android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name=".webview.PrivacyPolicyActivity"/>
+        <activity android:name=".webview.PrivacyPolicyActivity" />
 
         <service
             android:name=".core.messaging.MyFirebaseMessagingService"
@@ -54,7 +57,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_app_id"/>
+            android:value="@string/admob_app_id" />
     </application>
 
 </manifest>

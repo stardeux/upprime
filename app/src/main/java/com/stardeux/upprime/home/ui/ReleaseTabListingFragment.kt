@@ -35,6 +35,7 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
         setHasOptionsMenu(true)
     }
 
+    @Deprecated("SDK deprecated")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.home_menu, menu)
@@ -101,7 +102,7 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
         }.exhaustive
     }
 
-
+    @Deprecated("SDK deprecated")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_settings -> {

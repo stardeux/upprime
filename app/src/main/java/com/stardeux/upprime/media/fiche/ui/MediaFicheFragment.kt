@@ -45,11 +45,13 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         mediaFicheViewModel.trackScreen(requireActivity())
     }
 
+    @Deprecated("SDK deprecated")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fiche_menu, menu)
     }
 
+    @Deprecated("SDK deprecated")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.item_share_media) {
             mediaFicheViewModel.onShareClicked()

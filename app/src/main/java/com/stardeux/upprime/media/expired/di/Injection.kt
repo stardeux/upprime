@@ -25,16 +25,14 @@ import retrofit2.Retrofit
 val expiredModule = module {
     single { provideExpiredApi(get((named(AMAZON_NAMED_QUALIFIER)))) }
     factory { provideExpiredRepository(get(), get(), get(), get()) }
-    viewModel { provideExpiredMediaViewModel(getUserScope().get(), get(), get(), get()) }
+    viewModel { provideExpiredMediaViewModel(get(), get(), get(), get()) }
     factory { provideExpiredMediaRemoteDataSource(get()) }
     factory { provideExpiredMediaPreferences(get()) }
 
     factory { provideExpiredMediaDao(get()) }
     factory { provideExpiredMediaLocalDataSource(get()) }
 
-    scope<AvailableCountry> {
-        factory { provideExpiredUseCase(get(), get(), get()) }
-    }
+    factory { provideExpiredUseCase(get(), getUserScope().get(), get()) }
 }
 
 private fun provideExpiredMediaPreferences(sharedPreferences: SharedPreferences): ExpiredMediaPreferences {

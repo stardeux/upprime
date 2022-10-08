@@ -48,7 +48,7 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
     private fun loadBottomBanner() {
         AdView(this).apply {
             adUnitId = getString(R.string.admob_fiche_banner_id)
-            adSize = getAdaptiveAdSize()
+            setAdSize(getAdaptiveAdSize())
 
             layoutParams = CoordinatorLayout.LayoutParams(
                 CoordinatorLayout.LayoutParams.MATCH_PARENT,

@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.commit
 import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.getAdaptiveAdSize
 import com.stardeux.upprime.core.extension.observeNotNull
@@ -48,29 +50,28 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
     private fun handleDisplayInterstitial(displayInter: Boolean) {
         if (displayInter) {
-            interstitialAd?.show()
+            interstitialAd?.show(this)
         }
     }
 
     private fun loadInterstitial() {
-        interstitialAd = InterstitialAd(this).apply {
-            adUnitId = getString(R.string.admob_interstitial_id)
-            loadAd(AdRequest.Builder().build())
-
-            adListener = object : AdListener() {
-                override fun onAdLoaded() {
-                    super.onAdLoaded()
-                    homeViewModel.onInterstitialLoaded()
-                }
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this,getString(R.string.admob_interstitial_id), adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                interstitialAd = null
             }
-        }
+
+            override fun onAdLoaded(newInterstitialAd: InterstitialAd) {
+                interstitialAd = newInterstitialAd
+                homeViewModel.onInterstitialLoaded()
+            }
+        })
     }
 
     private fun loadBottomBanner() {
         AdView(this).apply {
             adUnitId = getString(R.string.admob_home_banner_id)
-            adSize = getAdaptiveAdSize()
-
+            setAdSize(getAdaptiveAdSize())
             layoutParams = CoordinatorLayout.LayoutParams(
                 CoordinatorLayout.LayoutParams.MATCH_PARENT,
                 CoordinatorLayout.LayoutParams.WRAP_CONTENT
