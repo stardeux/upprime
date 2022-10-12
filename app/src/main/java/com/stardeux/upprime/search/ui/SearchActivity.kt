@@ -3,34 +3,32 @@ package com.stardeux.upprime.search.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.commit
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.applyCommonBack
 import com.stardeux.upprime.core.extension.observeNotNull
-import com.stardeux.upprime.core.extension.openKeyboard
-import kotlinx.android.synthetic.main.activity_media_fiche.toolbar
-import kotlinx.android.synthetic.main.activity_search.*
+import com.stardeux.upprime.core.viewbinding.viewBinding
+import com.stardeux.upprime.databinding.ActivitySearchBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchActivity : AppCompatActivity(R.layout.activity_search) {
 
+    private val binding by viewBinding(ActivitySearchBinding::bind)
     private val searchViewModel: SearchViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        applyCommonBack(toolbar)
+        applyCommonBack(binding.toolbar)
 
-        searchEditText.addTextChangedListener {
+        binding.searchEditText.addTextChangedListener {
             it?.let {
                 searchViewModel.onQueryTextChanged(it.toString())
             }
         }
-        searchEditText.requestFocus()
+        binding.searchEditText.requestFocus()
 
         searchViewModel.searchQuery.observeNotNull(this, ::handleQuery)
 
@@ -44,11 +42,11 @@ class SearchActivity : AppCompatActivity(R.layout.activity_search) {
     }
 
     private fun handleQuery(query: String) {
-        if (query == searchEditText.text.toString()) {
+        if (query == binding.searchEditText.text.toString()) {
             return
         }
 
-        searchEditText.setText(query)
+        binding.searchEditText.setText(query)
     }
 
     companion object {

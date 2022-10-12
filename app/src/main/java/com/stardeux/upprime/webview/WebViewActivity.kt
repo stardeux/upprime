@@ -7,13 +7,15 @@ import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.stardeux.upprime.R
-import kotlinx.android.synthetic.main.activity_webview.*
+import com.stardeux.upprime.core.viewbinding.viewBinding
+import com.stardeux.upprime.databinding.ActivityWebviewBinding
 
 abstract class WebViewActivity : AppCompatActivity() {
 
+    private val binding by viewBinding(ActivityWebviewBinding::bind)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_webview)
 
         val url = getUrl()
         if (url == null) {
@@ -21,15 +23,15 @@ abstract class WebViewActivity : AppCompatActivity() {
             return
         }
 
-        webView.webChromeClient = object : WebChromeClient() {
+        binding.webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView, progress: Int) {
-                webviewLoader.isVisible = progress < 100
-                webviewLoader.progress = progress
+                binding.webviewLoader.isVisible = progress < 100
+                binding.webviewLoader.progress = progress
             }
         }
 
-        webView.loadUrl(url)
-        webView.settings.javaScriptEnabled = true
+        binding.webView.loadUrl(url)
+        binding.webView.settings.javaScriptEnabled = true
 
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -8,14 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
+import com.stardeux.upprime.core.viewbinding.viewBinding
 import com.stardeux.upprime.country.di.getUserScope
 import com.stardeux.upprime.country.ui.adapter.CountryAdapter
 import com.stardeux.upprime.country.ui.model.CountryUi
+import com.stardeux.upprime.databinding.FragmentCountryBinding
 import com.stardeux.upprime.home.ui.HomeActivity
-import kotlinx.android.synthetic.main.fragment_country.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SelectCountryFragment : Fragment(R.layout.fragment_country) {
+
+    private val binding by viewBinding(FragmentCountryBinding::bind)
 
     private val selectCountryViewModel: SelectCountryViewModel by viewModel()
 
@@ -24,7 +27,7 @@ class SelectCountryFragment : Fragment(R.layout.fragment_country) {
 
         selectCountryViewModel.trackScreen(requireActivity())
 
-        with(countriesRecycler) {
+        with(binding.countriesRecycler) {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = CountryAdapter()
 
@@ -49,7 +52,7 @@ class SelectCountryFragment : Fragment(R.layout.fragment_country) {
     }
 
     private fun getCountryAdapter(): CountryAdapter {
-        return countriesRecycler.adapter as CountryAdapter
+        return binding.countriesRecycler.adapter as CountryAdapter
     }
 
     companion object {

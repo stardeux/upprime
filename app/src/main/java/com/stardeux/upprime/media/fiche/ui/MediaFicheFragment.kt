@@ -22,20 +22,20 @@ import com.stardeux.upprime.core.extension.exhaustive
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.model.MediaType
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
+import com.stardeux.upprime.core.viewbinding.viewBinding
+import com.stardeux.upprime.databinding.FragmentMediaFicheBinding
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
 import com.stardeux.upprime.media.fiche.ui.model.Illustration
 import com.stardeux.upprime.media.fiche.ui.model.MediaFicheUi
-import com.stardeux.upprime.rate.usecase.RateAppAnswer
 import com.stardeux.upprime.tmdb.credit.ui.model.CreditsUi
 import com.stardeux.upprime.tmdb.video.ui.list.MediaVideoAdapter
 import com.stardeux.upprime.tmdb.video.ui.model.MediaVideoUi
-import kotlinx.android.synthetic.main.fragment_media_fiche.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-
 class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
 
+    private val binding by viewBinding(FragmentMediaFicheBinding::bind)
     private val mediaFicheViewModel: MediaFicheViewModel by viewModel{ parametersOf(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,13 +45,11 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
         mediaFicheViewModel.trackScreen(requireActivity())
     }
 
-    @Deprecated("SDK deprecated")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fiche_menu, menu)
     }
 
-    @Deprecated("SDK deprecated")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == R.id.item_share_media) {
             mediaFicheViewModel.onShareClicked()
@@ -64,13 +62,13 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(mediaVideos) {
+        with(binding.mediaVideos) {
             layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             adapter = MediaVideoAdapter()
             addItemDecoration(SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.video_list_item_margin)))
         }
 
-        fab.setOnClickListener { mediaFicheViewModel.onFabClicked() }
+        binding.fab.setOnClickListener { mediaFicheViewModel.onFabClicked() }
 
         with(mediaFicheViewModel) {
             load()
@@ -85,14 +83,14 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     private fun onIllustration(illustration: Illustration) {
         when (illustration) {
             is Illustration.PosterWithBackgroundColor -> {
-                mediaCouv.setBackgroundColor(illustration.color)
-                mediaPoster.setImageBitmap(BitmapFactory.decodeFile(illustration.posterFilePath))
+                binding.mediaCouv.setBackgroundColor(illustration.color)
+                binding.mediaPoster.setImageBitmap(BitmapFactory.decodeFile(illustration.posterFilePath))
             }
             is Illustration.Landscape -> {
-                Glide.with(this).load(illustration.backdropUrl).centerCrop().into(mediaCouv)
+                Glide.with(this).load(illustration.backdropUrl).centerCrop().into(binding.mediaCouv)
             }
             Illustration.Error -> {
-                mediaCouv.setBackgroundColor(
+                binding.mediaCouv.setBackgroundColor(
                     ContextCompat.getColor(
                         requireContext(), R.color.colorPrimary
                     )
@@ -119,14 +117,14 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     private fun bindCredits(mediaCreditsList: CreditsUi) {
         handleVisibilityWithText(
             mediaCreditsList.casting.map { it.name }.joinToString(",  "),
-            mediaActors,
-            mediaActorsTitle
+            binding.mediaActors,
+            binding.mediaActorsTitle
         )
 
         handleVisibilityWithText(
             mediaCreditsList.crew.map { it.name }.joinToString(",  "),
-            mediaResponsible,
-            mediaResponsibleTitle
+            binding.mediaResponsible,
+            binding.mediaResponsibleTitle
         )
     }
 
@@ -134,25 +132,25 @@ class MediaFicheFragment : Fragment(R.layout.fragment_media_fiche) {
     private fun bindVideos(mediaVideosList: List<MediaVideoUi>) {
         val visibility = mediaVideosList.isNotEmpty()
 
-        mediaVideos.isVisible = visibility
-        mediaVideoTitle.isVisible = visibility
-        (mediaVideos.adapter as MediaVideoAdapter).submitList(mediaVideosList)
+        binding.mediaVideos.isVisible = visibility
+        binding.mediaVideoTitle.isVisible = visibility
+        (binding.mediaVideos.adapter as MediaVideoAdapter).submitList(mediaVideosList)
     }
 
     private fun bindFiche(mediaFicheUi: MediaFicheUi) {
         with(mediaFicheUi) {
-            mediaResponsibleTitle.text = getString(
+            binding.mediaResponsibleTitle.text = getString(
                 when (mediaFicheUi.type) {
                     MediaType.MOVIE -> R.string.credits_movie_director_title
                     MediaType.SERIES -> R.string.credits_series_creators_title
                 }
             )
-            mediaTitle.text = title
+            binding.mediaTitle.text = title
 
-            handleVisibilityWithText(getDetails(mediaFicheUi), mediaDetails)
-            handleVisibilityWithText(tmdbRating, mediaRatings)
-            handleVisibilityWithText(synopsis, mediaSynopsis, mediaSynopsisTitle)
-            handleVisibilityWithText(mediaFicheUi.genres.joinToString(", "), mediaGenres)
+            handleVisibilityWithText(getDetails(mediaFicheUi), binding.mediaDetails)
+            handleVisibilityWithText(tmdbRating, binding.mediaRatings)
+            handleVisibilityWithText(synopsis, binding.mediaSynopsis, binding.mediaSynopsisTitle)
+            handleVisibilityWithText(mediaFicheUi.genres.joinToString(", "), binding.mediaGenres)
         }
     }
 

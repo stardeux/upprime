@@ -2,14 +2,15 @@ package com.stardeux.upprime.country.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
-import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.country.ui.model.CountryUi
+import com.stardeux.upprime.databinding.ItemCountryBinding
 
 class CountryItem : CardView {
 
@@ -19,11 +20,9 @@ class CountryItem : CardView {
         context, attrs, defStyleAttr
     )
 
-    private val flagImageView by lazy { findViewById<ImageView>(R.id.countryFlag) }
-    private val countryNameTextView by lazy { findViewById<TextView>(R.id.countryName) }
+    private val binding = ItemCountryBinding.inflate(LayoutInflater.from(context), this)
 
     init {
-        setLayout(R.layout.item_country)
         initLayout()
     }
 
@@ -36,8 +35,8 @@ class CountryItem : CardView {
     }
 
     fun bind(countryUi: CountryUi) {
-        countryNameTextView.text = context.getString(countryUi.nameResId)
-        Glide.with(this).load(countryUi.flagUrl).into(flagImageView).clearOnDetach()
+        binding.countryName.text = context.getString(countryUi.nameResId)
+        Glide.with(this).load(countryUi.flagUrl).into(binding.countryFlag).clearOnDetach()
 
         setOnClickListener {
             countryUi.onCountryClicked(countryUi)

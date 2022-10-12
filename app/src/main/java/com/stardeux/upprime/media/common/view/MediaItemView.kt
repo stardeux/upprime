@@ -2,16 +2,17 @@ package com.stardeux.upprime.media.common.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.stardeux.upprime.R
-import com.stardeux.upprime.core.extension.setLayout
 import com.stardeux.upprime.media.common.ui.model.MediaItemUi
 import com.stardeux.upprime.core.extension.setTextAndVisibility
 import com.stardeux.upprime.core.mapper.mapMediaTypeToStringId
+import com.stardeux.upprime.databinding.ItemMediaBinding
 
 class MediaItemView : CardView {
 
@@ -21,15 +22,9 @@ class MediaItemView : CardView {
         context, attrs, defStyleAttr
     )
 
-    private val title: TextView by lazy { findViewById<TextView>(R.id.title) }
-    private val firstInfo: TextView by lazy { findViewById<TextView>(R.id.firstInfo) }
-    private val secondInfo: TextView by lazy { findViewById<TextView>(R.id.secondInfo) }
-    private val thirdInfo: TextView by lazy { findViewById<TextView>(R.id.thirdInfo) }
-    private val ratings: TextView by lazy { findViewById<TextView>(R.id.ratings) }
-    private val poster: ImageView by lazy { findViewById<ImageView>(R.id.poster) }
+    private val binding = ItemMediaBinding.inflate(LayoutInflater.from(context), this)
 
     init {
-        setLayout(R.layout.item_media)
         initLayout()
     }
 
@@ -41,8 +36,8 @@ class MediaItemView : CardView {
     }
 
     fun bind(mediaItemUi: MediaItemUi) {
-        title.setTextAndVisibility(mediaItemUi.title)
-        firstInfo.setTextAndVisibility(
+        binding.title.setTextAndVisibility(mediaItemUi.title)
+        binding.firstInfo.setTextAndVisibility(
             computeText(
                 context.getString(
                     mapMediaTypeToStringId(
@@ -51,19 +46,19 @@ class MediaItemView : CardView {
                 ), mediaItemUi.runtime, " "
             )
         )
-        secondInfo.setTextAndVisibility(
+        binding.secondInfo.setTextAndVisibility(
             computeText(
                 mediaItemUi.mainNationality, mediaItemUi.mediaReleaseYear, " "
             )
         )
-        thirdInfo.setTextAndVisibility(mediaItemUi.mainGenre)
-        ratings.setTextAndVisibility(mediaItemUi.rating)
+        binding.thirdInfo.setTextAndVisibility(mediaItemUi.mainGenre)
+        binding.ratings.setTextAndVisibility(mediaItemUi.rating)
 
-        Glide.with(this).clear(poster)
+        Glide.with(this).clear(binding.poster)
 
         mediaItemUi.posterUrl?.let {
             Glide.with(this).load(it).centerCrop()
-                .error(R.drawable.ic_error_black_24dp).into(poster)
+                .error(R.drawable.ic_error_black_24dp).into(binding.poster)
         }
 
 

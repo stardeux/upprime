@@ -13,7 +13,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.getAdaptiveAdSize
 import com.stardeux.upprime.core.extension.observeNotNull
-import kotlinx.android.synthetic.main.activity_home.*
+import com.stardeux.upprime.core.viewbinding.viewBinding
+import com.stardeux.upprime.databinding.ActivityHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity(R.layout.activity_home) {
@@ -21,10 +22,12 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
     private val homeViewModel: HomeViewModel by viewModel()
     private var interstitialAd: InterstitialAd? = null
 
+    private val binding by viewBinding(ActivityHomeBinding::bind)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
 
         if (supportFragmentManager.findFragmentByTag(RELEASE_TAB_FRAGMENT_TAG) == null) {
             supportFragmentManager.commit {
@@ -56,16 +59,20 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
     private fun loadInterstitial() {
         val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(this,getString(R.string.admob_interstitial_id), adRequest, object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                interstitialAd = null
-            }
+        InterstitialAd.load(
+            this,
+            getString(R.string.admob_interstitial_id),
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    interstitialAd = null
+                }
 
-            override fun onAdLoaded(newInterstitialAd: InterstitialAd) {
-                interstitialAd = newInterstitialAd
-                homeViewModel.onInterstitialLoaded()
-            }
-        })
+                override fun onAdLoaded(newInterstitialAd: InterstitialAd) {
+                    interstitialAd = newInterstitialAd
+                    homeViewModel.onInterstitialLoaded()
+                }
+            })
     }
 
     private fun loadBottomBanner() {
@@ -82,7 +89,7 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
             loadAd(AdRequest.Builder().build())
 
-            homeCoordinator.addView(this)
+            binding.homeCoordinator.addView(this)
         }
     }
 

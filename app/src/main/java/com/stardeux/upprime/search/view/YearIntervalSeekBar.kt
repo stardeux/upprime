@@ -2,6 +2,7 @@ package com.stardeux.upprime.search.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.NumberPicker
 import android.widget.SeekBar
@@ -11,7 +12,7 @@ import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.stardeux.upprime.R
-import com.stardeux.upprime.core.extension.setLayout
+import com.stardeux.upprime.databinding.ViewYearIntervalSeekbarBinding
 import com.stardeux.upprime.search.ui.model.YearIntervalUi
 
 
@@ -22,16 +23,11 @@ class YearIntervalSeekBar : ConstraintLayout {
         context, attrs, defStyleAttr
     )
 
+    private val binding = ViewYearIntervalSeekbarBinding.inflate(LayoutInflater.from(context), this)
+
     private var minYear: Int? = null
 
-    private val yearText: TextView by lazy { findViewById<TextView>(R.id.yearText) }
-    private val yearValue: TextView by lazy { findViewById<TextView>(R.id.yearValue) }
-    private val yearMinText: TextView by lazy { findViewById<TextView>(R.id.yearMinText) }
-    private val yearMaxText: TextView by lazy { findViewById<TextView>(R.id.yearMaxText) }
-    private val yearSeekbar: NumberPicker by lazy { findViewById<NumberPicker>(R.id.yearSeekbar) }
-
     init {
-        setLayout(R.layout.view_year_interval_seekbar)
         initLayout()
     }
 
@@ -40,7 +36,7 @@ class YearIntervalSeekBar : ConstraintLayout {
     }
 
     fun setText(@StringRes textId: Int, @IdRes connectedEndText: Int? = null) {
-        yearText.text = context.getString(textId)
+        binding.yearText.text = context.getString(textId)
         connectedEndText?.let {
             connectEndTextTo(it)
         }
@@ -63,10 +59,10 @@ class YearIntervalSeekBar : ConstraintLayout {
         with(yearIntervalUi) {
             minYear = yearStart
 
-            yearValue.text = selectedYear.toString()
-            yearSeekbar.maxValue = yearEnd - yearStart
-            yearMinText.text = yearStart.toString()
-            yearMaxText.text = yearEnd.toString()
+            binding.yearValue.text = selectedYear.toString()
+            binding.yearSeekbar.maxValue = yearEnd - yearStart
+            binding.yearMinText.text = yearStart.toString()
+            binding.yearMaxText.text = yearEnd.toString()
         }
     }
 

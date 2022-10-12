@@ -2,11 +2,10 @@ package com.stardeux.upprime.search.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.stardeux.upprime.R
-import com.stardeux.upprime.core.extension.setLayout
+import com.stardeux.upprime.databinding.ItemSearchResultBinding
 import com.stardeux.upprime.search.ui.model.AmazonSearchResultUi
 
 class SearchResultView : ConstraintLayout {
@@ -16,15 +15,14 @@ class SearchResultView : ConstraintLayout {
         context, attrs, defStyleAttr
     )
 
-    private val searchResultTitle by lazy { findViewById<TextView>(R.id.searchResultTitle) }
+    private val binding = ItemSearchResultBinding.inflate(LayoutInflater.from(context), this)
 
     init {
-        setLayout(R.layout.item_search_result)
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
     fun bind(amazonSearchResultUi: AmazonSearchResultUi) {
-        searchResultTitle.text = computeTitle(amazonSearchResultUi)
+        binding.searchResultTitle.text = computeTitle(amazonSearchResultUi)
         setOnClickListener { amazonSearchResultUi.onItemClicked(amazonSearchResultUi) }
     }
 

@@ -18,17 +18,20 @@ import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.extension.playStoreThisApp
 import com.stardeux.upprime.core.model.mapToString
 import com.stardeux.upprime.core.ui.OnlyOnTabSelectedListener
+import com.stardeux.upprime.core.viewbinding.viewBinding
 import com.stardeux.upprime.country.ui.SelectCountryActivity
+import com.stardeux.upprime.databinding.FragmentTabListingBinding
 import com.stardeux.upprime.rate.usecase.RateAppAnswer
 import com.stardeux.upprime.search.ui.SearchActivity
 import com.stardeux.upprime.webview.PrivacyPolicyActivity
 import com.stardeux.upprime.webview.WebViewActivity
-import kotlinx.android.synthetic.main.fragment_tab_listing.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
 
     private val releaseTabViewModel: ReleaseTabListingViewModel by viewModel()
+
+    private val binding by viewBinding(FragmentTabListingBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,13 +47,13 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        pager.adapter = ReleaseTabAdapter(this)
+        binding.pager.adapter = ReleaseTabAdapter(this)
 
-        TabLayoutMediator(tabLayout, pager) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             tab.text = getReleaseTabAdapter().getReleaseType(position).mapToString(requireContext())
         }.attach()
 
-        tabLayout.addOnTabSelectedListener(object : OnlyOnTabSelectedListener {
+        binding.tabLayout.addOnTabSelectedListener(object : OnlyOnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val releaseType = getReleaseTabAdapter().getReleaseType(tab.position)
                 releaseTabViewModel.trackScreen(requireActivity(), releaseType)
@@ -150,7 +153,7 @@ class ReleaseTabListingFragment : Fragment(R.layout.fragment_tab_listing) {
 
 
     private fun getReleaseTabAdapter(): ReleaseTabAdapter {
-        return pager.adapter as ReleaseTabAdapter
+        return binding.pager.adapter as ReleaseTabAdapter
     }
 
     companion object {

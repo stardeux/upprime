@@ -16,19 +16,20 @@ import com.google.android.gms.ads.AdView
 import com.stardeux.upprime.R
 import com.stardeux.upprime.core.extension.applyCommonBack
 import com.stardeux.upprime.core.extension.getAdaptiveAdSize
+import com.stardeux.upprime.core.viewbinding.viewBinding
+import com.stardeux.upprime.databinding.ActivityMediaFicheBinding
 import com.stardeux.upprime.media.common.repository.model.ShortMedia
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_media_fiche.*
-import kotlinx.android.synthetic.main.activity_media_fiche.toolbar
 
 class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
+
+    private val binding by viewBinding(ActivityMediaFicheBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        applyCommonBack(toolbar)
+        applyCommonBack(binding.toolbar)
 
         val shortMedia: ShortMedia = requireNotNull(intent.getParcelableExtra(MEDIA_ARG))
 
@@ -60,14 +61,14 @@ class MediaFicheActivity : AppCompatActivity(R.layout.activity_media_fiche) {
 
             loadAd(AdRequest.Builder().build())
 
-            ficheCoordinator.addView(this)
+            binding.ficheCoordinator.addView(this)
 
             adListener = object : AdListener() {
                 override fun onAdLoaded() {
                     super.onAdLoaded()
 
                     doOnLayout {
-                        ficheContent.setPadding(0, 0, 0, height)
+                        binding.ficheContent.setPadding(0, 0, 0, height)
                     }
                 }
             }

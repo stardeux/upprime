@@ -2,11 +2,12 @@ package com.stardeux.upprime.media.common.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.stardeux.upprime.R
-import com.stardeux.upprime.core.extension.setLayout
+import com.stardeux.upprime.databinding.ItemDateSeparatorBinding
 import com.stardeux.upprime.media.common.ui.model.DateSeparatorUi
 
 class DateSeparatorItemView : ConstraintLayout {
@@ -16,10 +17,9 @@ class DateSeparatorItemView : ConstraintLayout {
         context, attrs, defStyleAttr
     )
 
-    private val dateSeparatorText: TextView by lazy { findViewById<TextView>(R.id.dateSeparatorText) }
+    private val binding = ItemDateSeparatorBinding.inflate(LayoutInflater.from(context), this)
 
     init {
-        setLayout(R.layout.item_date_separator)
         initLayout()
     }
 
@@ -31,6 +31,6 @@ class DateSeparatorItemView : ConstraintLayout {
     }
 
     fun bind(dateSeparatorUi: DateSeparatorUi) {
-        dateSeparatorText.text = dateSeparatorUi.date
+        binding.dateSeparatorText.text = dateSeparatorUi.date
     }
 }

@@ -4,7 +4,7 @@ import android.net.Uri
 import android.os.Parcelable
 import com.stardeux.upprime.core.model.ImdbId
 import com.stardeux.upprime.core.model.MediaType
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import org.threeten.bp.LocalDate
 
 @Parcelize

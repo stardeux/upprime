@@ -11,11 +11,13 @@ import com.stardeux.upprime.media.common.ui.adapter.MediaAdapter
 import com.stardeux.upprime.core.extension.observeNotNull
 import com.stardeux.upprime.core.ui.EndlessRecyclerViewScrollListener
 import com.stardeux.upprime.core.ui.SpacesItemDecoration
+import com.stardeux.upprime.core.viewbinding.viewBinding
+import com.stardeux.upprime.databinding.FragmentMediaListingBinding
 import com.stardeux.upprime.media.fiche.ui.MediaFicheActivity
-import kotlinx.android.synthetic.main.fragment_media_listing.*
 
 abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
 
+    private val binding by viewBinding(FragmentMediaListingBinding::bind)
     private val latestViewModel by lazy { getViewModel() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,10 +25,10 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
 
         val linearLayoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        mediaListingRecycler.adapter = MediaAdapter()
-        mediaListingRecycler.layoutManager = linearLayoutManager
+        binding.mediaListingRecycler.adapter = MediaAdapter()
+        binding.mediaListingRecycler.layoutManager = linearLayoutManager
 
-        mediaListingRecycler.addOnScrollListener(object :
+        binding.mediaListingRecycler.addOnScrollListener(object :
             EndlessRecyclerViewScrollListener(linearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 latestViewModel.loadNext()
@@ -35,9 +37,9 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
 
         val decoration =
             SpacesItemDecoration(resources.getDimensionPixelOffset(R.dimen.media_list_item_spacing))
-        mediaListingRecycler.addItemDecoration(decoration)
+        binding.mediaListingRecycler.addItemDecoration(decoration)
 
-        mediaListingError.setOnRetryClicked { latestViewModel.loadNext() }
+        binding.mediaListingError.setOnRetryClicked { latestViewModel.loadNext() }
 
         latestViewModel.navigationEvent.observeNotNull(viewLifecycleOwner, ::handleNavigationEvent)
         latestViewModel.datedMediaItems.observeNotNull(viewLifecycleOwner) {
@@ -65,15 +67,15 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
     }
 
     private fun onDataLoadingState(dataLoading: AmazonMediaViewModel.DataLoading) {
-        mediaListingProgress.isVisible = dataLoading is AmazonMediaViewModel.DataLoading.Loading
-        mediaListingRecycler.isVisible = dataLoading is AmazonMediaViewModel.DataLoading.Success
+        binding.mediaListingProgress.isVisible = dataLoading is AmazonMediaViewModel.DataLoading.Loading
+        binding.mediaListingRecycler.isVisible = dataLoading is AmazonMediaViewModel.DataLoading.Success
 
         /**
          * Can't get why it is not working with View.GONE (using View#isVisible)
          * For instance, when room schema is not valid mediaListingError won't be visible
          * Maybe visibility switch is happening too fast
          */
-        mediaListingError.visibility = if (dataLoading is AmazonMediaViewModel.DataLoading.Error) {
+        binding.mediaListingError.visibility = if (dataLoading is AmazonMediaViewModel.DataLoading.Error) {
             View.VISIBLE
         } else {
             View.INVISIBLE
@@ -81,7 +83,7 @@ abstract class AmazonMediaFragment : Fragment(R.layout.fragment_media_listing) {
     }
 
     private fun getMediaAdapter(): MediaAdapter {
-        return mediaListingRecycler.adapter as MediaAdapter
+        return binding.mediaListingRecycler.adapter as MediaAdapter
     }
 
     abstract fun getViewModel(): AmazonMediaViewModel
